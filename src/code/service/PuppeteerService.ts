@@ -6,7 +6,12 @@ export class PuppeteerService {
   public url?: string;
 
   async obtainSourceInit(url: string) {
-    const browser = await launch({ headless: true });
+    const browser = await launch({
+      headless: 'new',
+      args: [
+        `--user-agent=Space`
+      ]
+    });
     this.page = await browser.newPage();
     this.url = url;
     await this.page?.goto(url, { waitUntil: 'domcontentloaded' });

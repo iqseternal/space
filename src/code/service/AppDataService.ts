@@ -15,8 +15,8 @@ export class AppDataService {
     this.sourcePath = join(app.getPath(relativeSourcePath), absoluteSourcePath);
   }
 
-  saveFile(url: string): Promise<string>;
-  saveFile(file: File): Promise<string>;
+  saveFile(url: string): Promise<string>
+  saveFile(file: File): Promise<string>
   saveFile(fu: string | File): Promise<string> {
     return new Promise(async (resolve, reject) => {
       const distPath = typeof fu === 'string'

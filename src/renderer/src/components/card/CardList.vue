@@ -1,7 +1,7 @@
 <template>
   <div class="list">
-    <template v-for="item in props.list" :key="item">
-      <Card class="card" :src="item"></Card>
+    <template v-for="item in props.list" :key="item.t">
+      <Card class="card" :src="item.source"></Card>
     </template>
   </div>
 </template>
@@ -11,7 +11,7 @@
 import Card from './Card.vue';
 
 const props = defineProps({
-  list: { type: Array<string>, default: () => ([]) }
+  list: { type: Array<Source>, default: () => ([]) }
 });
 
 </script>

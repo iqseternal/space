@@ -15,7 +15,7 @@ export class FileService {
   }
 
   static copyFile(sourceSrc: string, distSrc: string): Promise<{
-    ok: boolean; // 状态码, 只有为 0 的时候才是成功状态
+    ok: boolean; // 状态
     descriptor: string; // 描述
   }> {
     return new Promise(async (resolve, reject) => {

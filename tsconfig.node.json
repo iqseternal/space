@@ -7,12 +7,16 @@
     "src/preload/**/*",
     "src/code/**/*",
 
+    "src/@types/**/*.d.ts",
+    "src/constants/**/*.ts",
+
     "electron.vite.config.*",
     "tsconfig.node.json",
     "tsconfig.web.json",
     "alias.config.ts",
     "proxy.config.ts"
-  ],
+, "src/@types/wallpaper.ts"  ],
+  "exclude": ["node_modules", "dist", "out"],
   "compilerOptions": {
     "noEmit": true,
     "noEmitOnError": true,
@@ -23,12 +27,14 @@
     "allowUnusedLabels": true,
     "isolatedModules": false,
     "composite": true,
+    "moduleResolution": "Node",
     "types": ["electron-vite/node"],
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "#/*": ["src/*"],
-      "#code/*": ["src/code/*"]
+      "#code/*": ["src/code/*"],
+      "#constants/*": ["src/constants/*"]
     }
   }
 }

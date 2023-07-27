@@ -6,24 +6,16 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue';
 import { CardList } from '@renderer/components/card';
 
-const list = [
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg',
-  'https://www.toopic.cn/public/uploads/image/20200404/20200404182849_78999.jpg'
-]
+import { ICP_WALLPAPER } from '#constants/wallpaper';
+
+const list = ref<Source[]>([]);
+
+window.electron.ipcRenderer.invoke(ICP_WALLPAPER.MORE_WALLPAPER).then((sourceList: Source[]) => {
+  list.value = sourceList
+});
 
 </script>
 

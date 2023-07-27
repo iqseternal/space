@@ -6,8 +6,12 @@
     "src/renderer/src/**/*.vue",
     "src/constants/**.*",
 
+
+    "src/@types/**/*.d.ts",
+    "src/constants/**/*.ts",
+
     "src/preload/*.d.ts"
-  ],
+, "src/@types/wallpaper.ts"  ],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
@@ -28,6 +32,7 @@
     "baseUrl": ".",
     "paths": {
       "#/*": ["src/*"],
+      "#constants/*": ["src/constants/*"],
       "@renderer/*": ["src/renderer/src/*"]
     }
   }
