@@ -1,0 +1,34 @@
+{
+  "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
+  "include": [
+    "scripts/**/*",
+
+    "src/main/**/*",
+    "src/preload/**/*",
+    "src/code/**/*",
+
+    "electron.vite.config.*",
+    "tsconfig.node.json",
+    "tsconfig.web.json",
+    "alias.config.ts",
+    "proxy.config.ts"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "noEmitOnError": true,
+    "noUncheckedIndexedAccess": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "allowUnusedLabels": true,
+    "isolatedModules": false,
+    "composite": true,
+    "types": ["electron-vite/node"],
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "#/*": ["src/*"],
+      "#code/*": ["src/code/*"]
+    }
+  }
+}
