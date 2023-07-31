@@ -1,22 +1,30 @@
 import { defineConfig, defineViteConfig, externalizeDepsPlugin, bytecodePlugin } from 'electron-vite';
 import { webAlias, nodeAlias } from './alias.config';
-import { resolve } from 'path';
 
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig(() => ({
   main: {
-    plugins: [bytecodePlugin()],
+    plugins: [
+      externalizeDepsPlugin(), bytecodePlugin()
+    ],
     resolve: {
       alias: nodeAlias
     },
     build: {
-      chunkSizeWarningLimit: 4000,
+      chunkSizeWarningLimit: 2000,
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true
+        }
+      },
       rollupOptions: {
         output: {
-          exports: 'named',
-          format: 'cjs'
+          exports: 'auto',
+          format: 'cjs',
         }
       }
     }
@@ -42,8 +50,23 @@ export default defineConfig(() => ({
       },
       build: {
         chunkSizeWarningLimit: 2000,
-        assetsDir: 'static'
+        assetsDir: 'static',
+        minify: 'terser',
+        terserOptions: {
+          compress: {
+            drop_console: true,
+            drop_debugger: true
+          }
+        },
+        rollupOptions: {
+
+
+        }
       }
     }
   })
 }));
+
+
+
+

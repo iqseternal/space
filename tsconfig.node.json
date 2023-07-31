@@ -14,8 +14,9 @@
     "tsconfig.node.json",
     "tsconfig.web.json",
     "alias.config.ts",
-    "proxy.config.ts"
-, "src/@types/wallpaper.ts"  ],
+    "proxy.config.ts",
+    "src/@types/wallpaper.d.ts"
+  ],
   "exclude": ["node_modules", "dist", "out"],
   "compilerOptions": {
     "noEmit": true,
@@ -27,9 +28,7 @@
     "allowUnusedLabels": true,
     "isolatedModules": false,
     "composite": true,
-    "moduleResolution": "Node",
     "types": ["electron-vite/node"],
-    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "#/*": ["src/*"],

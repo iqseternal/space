@@ -1,6 +1,17 @@
 
-import { printWarn } from "@suey/printer";
+
+
 
 process.on('unhandledRejection', (reason, promise) => {
-  printWarn(`Unhandled Promise Rejection: ${reason}`);
+
+  console.warn(`未处理的Promise REJECTED:: ${reason}`);
 });
+
+
+process.on('uncaughtException', (reason, exception) => {
+
+
+  console.warn(`出现了异常 ${reason}`);
+
+});
+

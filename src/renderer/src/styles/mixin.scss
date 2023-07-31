@@ -1,0 +1,64 @@
+
+
+@mixin displayFlex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 1;
+  flex-wrap: wrap;
+}
+
+
+@mixin overflow($scroll: scroll) {
+  overflow-x: hidden;
+  overflow-y: $scroll !important;
+}
+
+@mixin beautifulBar {
+  overflow-y: scroll !important;
+
+  &::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px;
+    // background-color: rgba(0, 0, 0, 0);
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    border: 1px solid transparent;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+    background-clip: content-box;
+    //background-color: rgba(0, 0, 0, 0.25);
+    background-color: #0009;
+    //滚动条的颜色
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    -webkit-border-radius: 100px;
+  }
+}
+
+@mixin noneBar {
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+
+@mixin width($size, $min-size: unset, $max-size: unset) {
+  width: $size;
+  min-width: $min-size;
+  max-width: $max-size;
+}
+
+@mixin height($size, $min-size: unset, $max-size: unset) {
+  height: $size;
+  min-height: $min-size;
+  max-height: $max-size;
+}

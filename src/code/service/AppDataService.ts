@@ -1,9 +1,7 @@
 import { app } from 'electron';
-import { exec } from 'child_process';
 import { join } from 'path';
 import { FileService } from './FileService';
-import { printError } from '@suey/printer';
-import * as fs from 'fs';
+import { DownloadService } from './DownloadService';
 
 export class AppDataService {
   public readonly sourcePath: string;
@@ -16,25 +14,33 @@ export class AppDataService {
   }
 
   saveFile(url: string): Promise<string>
-  saveFile(file: File): Promise<string>
-  saveFile(fu: string | File): Promise<string> {
-    return new Promise(async (resolve, reject) => {
-      const distPath = typeof fu === 'string'
-        ? join(this.sourcePath, (fu.substring(fu.lastIndexOf('\\') + 1)))
-        : fu.path;
+  saveFile(source: Source): Promise<string>
 
+  saveFile(fu: string | Source): Promise<string> {
+    return new Promise(async (resolve, reject) => {
       if (typeof fu === 'string') {
+        const distPath = join(this.sourcePath, (fu.substring(fu.lastIndexOf('\\') + 1)))
+
         FileService.copyFile(fu, distPath).then(() => {
           resolve(distPath);
         }).catch(err => {
-
-          printError(err.descriptor);
+          console.error(err.descriptor);
           reject();
         });
         return;
       }
 
-      reject();
+      if (typeof fu === 'object') {
+
+        console.log(this.sourcePath);
+
+        console.log(fu);
+
+        new DownloadService().download(fu.src).then(bin => {
+
+        }).catch(reject);
+        return;
+      }
     });
   }
 }

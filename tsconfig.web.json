@@ -2,16 +2,15 @@
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
   "include": [
     "src/renderer/src/shims-vue.d.ts",
-    "src/renderer/src/**/*",
+    "src/renderer/src/**/*.ts",
     "src/renderer/src/**/*.vue",
-    "src/constants/**.*",
 
-
-    "src/@types/**/*.d.ts",
     "src/constants/**/*.ts",
 
-    "src/preload/*.d.ts"
-, "src/@types/wallpaper.ts"  ],
+    "src/preload/*.d.ts",
+    "src/@types/**/*.d.ts",
+    "src/@types/wallpaper.d.ts"
+],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",

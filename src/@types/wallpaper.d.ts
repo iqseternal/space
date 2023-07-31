@@ -7,5 +7,7 @@ declare type Source = {
   source: string;
 
   isOnline: boolean;
+
+  local?: string;
 };
 

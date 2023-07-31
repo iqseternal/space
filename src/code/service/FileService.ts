@@ -56,6 +56,26 @@ export class FileService {
     });
   }
 
+  static saveFile(distSrc: string, bin: BinaryData) {
+    return new Promise((resolve, reject) => {
+      const writeStream = fs.createWriteStream(distSrc, {
+        encoding: 'binary'
+      });
+
+      writeStream.write(bin);
+
+      writeStream.on('error', () => {
+        writeStream.close();
+        reject();
+      });
+
+      writeStream.on('finish', () => {
+        writeStream.close();
+        resolve(distSrc);
+      });
+    });
+  }
+
   static moveFile() {
 
   }

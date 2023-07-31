@@ -26,8 +26,8 @@ import Footer from './fotter/index.vue';
 .main {
   margin-top: var(--header-height);
   height: calc(100vh - var(--header-height) - var(--footter-height) - 20px);
-  padding: 0 10px 20px 10px;
-  overflow: hidden scroll;
+  // padding: 0 10px 20px 10px;
+  overflow: hidden hidden;
 }
 
 .footter {

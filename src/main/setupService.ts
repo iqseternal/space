@@ -3,41 +3,53 @@ import { WindowService } from '#code/service/WindowService';
 import { WallpaperService } from '#code/service/WallpaperService';
 
 import { ObtainWebPageService } from '#code/service/ObtainWebPageService';
+import { DownloadService } from '#/code/service/DownloadService';
 import { AppDataService } from '#/code/service/AppDataService';
 
-import { setupIcpHandle } from './setupHandle';
-
+import { setupIcpMainHandle } from './setupHandle';
 import { ICP_WALLPAPER } from '#constants/wallpaper';
 
 export const setupService = async () => {
+  const { wallpaperService, obtainService } = await setupWallpaperAndPuppeteer();
+  const { wallpaperSaveService, downloadService } = await setupAppDataDownload();
+
   const windowService = new WindowService();
+  const appDataService = new AppDataService('userData', 'profile');
 
-  const appDataService = new AppDataService('userData', 'test');
-
-  const wallpaperService = new WallpaperService();
-
-  const obtainService = await setupPuppeteer();
-
-  return { windowService, appDataService }
+  return { windowService };
 }
 
-async function setupPuppeteer() {
+async function setupAppDataDownload() {
+  const wallpaperSaveService = new AppDataService('userData', 'download');
+
+  const downloadService = new DownloadService();
+
+  setupIcpMainHandle(ICP_WALLPAPER.DOWNLOAD_WALLPAPER, (_, source: Source): Promise<string> => {
+
+    return wallpaperSaveService.saveFile(source);
+  });
+
+  return { wallpaperSaveService, downloadService };
+}
+
+async function setupWallpaperAndPuppeteer() {
   const obtainService = new ObtainWebPageService();
+  const wallpaperService = new WallpaperService();
 
   // init
-  await obtainService.obtainSourceInit('https://cn.bing.com/images/search?q=%e5%9b%be%e7%89%87&form=HDRSC3&first=1');
+  await obtainService.obtainSourceInit('https://cn.bing.com/images/search?cw=1905&ch=947&q=%e5%a3%81%e7%ba%b8&qft=+filterui:imagesize-wallpaper+filterui:photo-photo+filterui:aspect-wide+filterui:licenseType-Any&form=IRFLTR&first=1');
 
-  setupIcpHandle(ICP_WALLPAPER.GET_WALLPAPER, (_) => {
-    return 'fffff';
+  setupIcpMainHandle(ICP_WALLPAPER.GET_WALLPAPER, (_): Promise<string> => {
+    return wallpaperService.getWallpaper();
   });
 
-  setupIcpHandle(ICP_WALLPAPER.SET_WALLPAPER, (_, url: string) => {
-
+  setupIcpMainHandle(ICP_WALLPAPER.SET_WALLPAPER, (_, source: Source): Promise<string> => {
+    return wallpaperService.setWallpaper(source);
   });
 
-  setupIcpHandle(ICP_WALLPAPER.MORE_WALLPAPER, async (_) => {
-    return await obtainService.obtainImg();
+  setupIcpMainHandle(ICP_WALLPAPER.MORE_WALLPAPER, (_): Promise<Source[]> => {
+    return obtainService.obtainImg();
   });
 
-  return obtainService;
+  return { wallpaperService, obtainService };
 }
