@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 
-import Layout from '@renderer/layout/index.vue';
+import Layout from '@renderer/layout/space/index.vue';
 
 const spaceRoutes: RouteRecordRaw = {
   name: 'space',
