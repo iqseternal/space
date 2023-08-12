@@ -1,26 +1,32 @@
 import { join } from 'path';
-import { BrowserWindow, shell } from 'electron';
+import { BrowserWindow, shell, type BrowserWindowConstructorOptions } from 'electron';
 import { is } from '@electron-toolkit/utils';
 import { Tray, Menu, app, screen } from 'electron';
-import { setWindowCross, setWindowMaxSize, setWindowMinSize } from '../core/common/window';
+import { setWindowCross, setWindowMaxSize, setWindowMinSize, setWindowOpenHandler, setWindowCaption } from '../core/common/window';
+
+import { PAGES_WINDOW_SETTING, PAGES_WINDOW_MAIN } from '#/config';
 
 import icon from '#/../resources/icon.png?asset';
+
+const DEFAILT_OPTIONS: Partial<BrowserWindowConstructorOptions> = {
+  show: false,
+  autoHideMenuBar: true,
+  disableAutoHideCursor: true,
+  frame: true,
+  alwaysOnTop: false,
+};
 
 export class WindowService {
   public readonly window: BrowserWindow;
 
   constructor(
-
+    options: Partial<BrowserWindowConstructorOptions>
   ) {
     this.window = setWindowCross(new BrowserWindow({
       width: 1650,
       height: 780,
-      show: false,
-      autoHideMenuBar: true,
-      disableAutoHideCursor: true,
-      frame: true,
-      alwaysOnTop: false,
-
+      ...options,
+      ...DEFAILT_OPTIONS,
       ...(process.platform === 'linux' ? { icon } : {}),
       webPreferences: {
         preload: join(__dirname, '../preload/index.js'),
@@ -31,28 +37,42 @@ export class WindowService {
       }
     }));
 
-    setWindowMinSize(this.window, 900, 500);
     setWindowMaxSize(this.window);
 
     // Menu.setApplicationMenu(null);
 
     this.window.on('ready-to-show', () => this.window.show());
 
-    this.window.setIcon(icon);
-    this.window.setTitle('Precious');
+    setWindowCaption(this.window, icon, 'Percious');
 
-    this.window.webContents.setWindowOpenHandler((details) => {
-      shell.openExternal(details.url);
+    setWindowOpenHandler(this.window);
+  }
 
-      return { action: 'deny' };
+  open() {
+    this.window.loadURL(PAGES_WINDOW_SETTING);
+
+    // return;
+    // if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+    //   this.window.loadURL(process.env['ELECTRON_RENDERER_URL']);
+    // }
+    // else {
+    //   this.window.loadFile(PAGES_WINDOW_SETTING);
+    // }
+  }
+
+  async close(): Promise<boolean> {
+    return new Promise((resolve, rejecet) => {
+      if (this.window.closable) {
+
+        this.window.close();
+        resolve(true);
+      }
+      else rejecet(false);
     });
+  }
 
-    if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-      this.window.loadURL(process.env['ELECTRON_RENDERER_URL']);
-    }
-    else {
-      this.window.loadFile(join(__dirname, '../renderer/index.html'));
-    }
+  distory() {
+    this.window.destroy();
   }
 }
 

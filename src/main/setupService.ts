@@ -8,23 +8,39 @@ import { AppDataService } from '#/code/service/AppDataService';
 
 import { setupIcpMainHandle } from './setupHandle';
 
-import { ok, fail, r } from '#code/core/common/icpR';
+import { ICP_WALLPAPER, ICP_WINDOW } from '#/constants';
 
-import { ICP_WALLPAPER } from '#constants/wallpaper';
-
+import appConfig from '../../app.config.json';
 
 export const setupService = async () => {
   const { wallpaperService, obtainService } = await setupWallpaperAndPuppeteer();
   const { wallpaperSaveService, downloadService } = await setupAppDataDownload();
 
-  const windowService = new WindowService();
+  const { windowService } = await setupWindowService();
 
   const appDataService = new AppDataService('userData', 'profile');
 
   return { windowService };
 }
 
-async function setupAppDataDownload() {
+export async function setupWindowService() {
+
+  const windowService = new WindowService(appConfig.windows.mediumPopupWindow);
+
+  windowService.open();
+
+  setupIcpMainHandle(ICP_WINDOW.OPEN_WINDOW, (_) => icpR((ok, fail) => {
+    const window = new WindowService({});
+
+    window.open();
+
+    ok('ok');
+  }));
+
+  return { windowService };
+}
+
+export async function setupAppDataDownload() {
   const wallpaperSaveService = new AppDataService('userData', 'download');
 
   const downloadService = new DownloadService();
@@ -37,14 +53,14 @@ async function setupAppDataDownload() {
   return { wallpaperSaveService, downloadService };
 }
 
-async function setupWallpaperAndPuppeteer() {
+export async function setupWallpaperAndPuppeteer() {
   const obtainService = new ObtainWebPageService();
   const wallpaperService = new WallpaperService();
 
   // init
   await obtainService.obtainSourceInit('https://cn.bing.com/images/search?cw=1905&ch=947&q=%e5%a3%81%e7%ba%b8&qft=+filterui:imagesize-wallpaper+filterui:photo-photo+filterui:aspect-wide+filterui:licenseType-Any&form=IRFLTR&first=1');
 
-  setupIcpMainHandle(ICP_WALLPAPER.GET_WALLPAPER, (_) => r((ok, fail) => {
+  setupIcpMainHandle(ICP_WALLPAPER.GET_WALLPAPER, (_) => icpR((ok, fail) => {
     wallpaperService.getWallpaper().then(res => {
       ok(res);
     }).catch(err => {

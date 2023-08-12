@@ -9,6 +9,11 @@
 
     "src/@types/**/*.d.ts",
     "src/constants/**/*.ts",
+    "src/config/**/*.ts",
+    "src/globalForNode/**/*.ts",
+
+    "./user.config.json",
+    "./app.config.json",
 
     "electron.vite.config.*",
     "tsconfig.node.json",

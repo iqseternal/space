@@ -58,6 +58,9 @@ devDependencies:
   '@electron/notarize':
     specifier: ^1.2.3
     version: 1.2.3
+  '@electron/remote':
+    specifier: ^2.0.10
+    version: 2.0.10(electron@24.6.2)
   '@types/node':
     specifier: ^18.16.19
     version: 18.16.19
@@ -523,6 +526,14 @@ packages:
       fs-extra: 9.1.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@electron/remote@2.0.10(electron@24.6.2):
+    resolution: {integrity: sha512-3SFKKaQXcyWgwmibud+UqJl/XlHOgLcI3fwtB9pNelPSJAcTxocOJrF6FaxBIQaj1+R05Di6xuAswZpXAW7xhA==}
+    peerDependencies:
+      electron: '>= 13.0.0'
+    dependencies:
+      electron: 24.6.2
     dev: true
 
   /@electron/universal@1.2.1:

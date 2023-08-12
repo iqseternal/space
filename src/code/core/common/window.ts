@@ -1,6 +1,6 @@
 
 import { BrowserWindow } from 'electron';
-import { app, screen, Tray, Menu } from 'electron';
+import { app, screen, Tray, Menu, shell } from 'electron';
 
 /**
  * 设置浏览器窗口允许跨域的设置
@@ -48,4 +48,17 @@ export const setWindowMaxSize = (window: BrowserWindow, wMax?: number, hMax?: nu
  */
 export const setWindowMinSize = (window: BrowserWindow, wMin: number, hMin: number): void => {
   window.setMinimumSize(wMin, hMin);
+}
+
+
+export const setWindowOpenHandler = (window: BrowserWindow): void => {
+  window.webContents.setWindowOpenHandler((details) => {
+    shell.openExternal(details.url);
+    return { action: 'deny' };
+  });
+}
+
+export const setWindowCaption = (window: BrowserWindow, icon: string, title: string): void => {
+  window.setIcon(icon);
+  window.setTitle(title);
 }

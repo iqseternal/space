@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserView, BrowserWindow } from 'electron';
 import { electronApp, optimizer } from '@electron-toolkit/utils';
 
 export interface AppOptions {
@@ -17,7 +17,10 @@ export const setupApp = async (startApp: () => void, ops?: Partial<AppOptions>):
 
     app.on('browser-window-created', (_, window) => optimizer.watchWindowShortcuts(window));
 
-    startApp();
+    if (BrowserWindow.getAllWindows().length !== 0) {
+      BrowserWindow.getAllWindows()[0].focus();
+    }
+    else startApp();
 
     app.on('activate', function () {
       if (BrowserWindow.getAllWindows().length === 0) startApp();

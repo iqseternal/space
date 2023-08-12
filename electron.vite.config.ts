@@ -1,5 +1,6 @@
 import { defineConfig, defineViteConfig, externalizeDepsPlugin, bytecodePlugin } from 'electron-vite';
 import { webAlias, nodeAlias } from './alias.config';
+import { join } from 'path';
 
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
@@ -12,13 +13,15 @@ export default defineConfig(() => ({
     resolve: {
       alias: nodeAlias
     },
+
     build: {
       chunkSizeWarningLimit: 2000,
       minify: 'terser',
+
       terserOptions: {
         compress: {
-          drop_console: true,
-          drop_debugger: true
+          // drop_console: true,
+          // drop_debugger: true
         }
       },
       rollupOptions: {
@@ -41,6 +44,8 @@ export default defineConfig(() => ({
     }
   },
   renderer: defineViteConfig(({ command, mode }) => {
+
+    console.log(__dirname);
     return {
       root: 'src/renderer',
       resolve: { alias: webAlias },
@@ -48,6 +53,7 @@ export default defineConfig(() => ({
       server: {
 
       },
+
       build: {
         chunkSizeWarningLimit: 2000,
         assetsDir: 'static',
@@ -58,10 +64,14 @@ export default defineConfig(() => ({
             drop_debugger: true
           }
         },
+
         rollupOptions: {
-
-
-        }
+          input: {
+            index: join(__dirname, './src/renderer/index.html'),
+            setting: join(__dirname, './src/renderer/setting.html')
+          }
+        },
+        outDir: join(__dirname, './out/renderer')
       }
     }
   })

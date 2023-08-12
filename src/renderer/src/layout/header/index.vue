@@ -6,15 +6,28 @@
       <img src="~@renderer/assets/logo.png" alt="">
     </div>
     <div class="bar">
-      <div>动态壁纸</div>
-      <div>静态壁纸</div>
-      <div>我的</div>
+      <TiltButton :bg-color="route.path.startsWith('/space/dynamics') ? 'red' : 'black'" text="壁纸" @click="() => router.push('/space/dynamics')"></TiltButton>
+      <TiltButton :bg-color="route.path.startsWith('/space/profile') ? 'red' : 'black'" text="我的" @click="() => router.push('/space/profile')"></TiltButton>
     </div>
-    <div class="diy">2</div>
+    <div class="diy">
+
+      <button @click="setting">配置</button>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { useRouter, useRoute } from 'vue-router';
+
+import TiltButton from '@renderer/components/TiltButton';
+import { ICP_WINDOW } from '#/constants';
+
+const router = useRouter();
+const route = useRoute();
+
+const setting = () => {
+  window.electron.ipcRenderer.invoke(ICP_WINDOW.OPEN_WINDOW);
+}
 
 </script>
 
@@ -55,36 +68,6 @@
     display: flex;
     justify-content: left;
     align-items: center;
-
-    div {
-      margin-left: 20px;
-      padding: 10px;
-      font-size: 20px;
-      font-weight: bold;
-      border-radius: 18px;
-      cursor: pointer;
-
-      background-color: green;
-      position: relative;
-
-      &::before, &::after {
-        content: '';
-        position: absolute;
-      }
-
-      &::before {
-        bottom: 0;
-        left: 0;
-        width: 50%;
-        height: 50%;
-        background-color: blue;
-      }
-
-      &::after {
-        top: 0;
-        right: 0;
-      }
-    }
   }
 
   .diy {

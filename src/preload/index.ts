@@ -1,4 +1,6 @@
-import { electronAPI, type ElectronAPI } from '@electron-toolkit/preload';
+import { electronAPI } from '@electron-toolkit/preload';
+
+import { ElectronAPI } from './preload.d';
 import { autoExpose } from './autoExpose';
 
 export interface ExposeApi {

@@ -3,6 +3,7 @@
   "include": [
     "src/renderer/src/shims-vue.d.ts",
     "src/renderer/src/**/*.ts",
+    "src/renderer/src/**/*.tsx",
     "src/renderer/src/**/*.vue",
 
     "src/constants/**/*.ts",

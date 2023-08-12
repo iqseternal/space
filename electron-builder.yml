@@ -12,6 +12,8 @@ files:
 asarUnpack:
   - resources/**
   - scripts/**
+  - app.config.json
+  - user.config.json
 afterSign: build/notarize.js
 win:
   executableName: space
@@ -20,6 +22,8 @@ nsis:
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
+  allowToChangeInstallationDirectory: true
+  createStartMenuShortcut: true
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:

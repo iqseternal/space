@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { CardList } from '@renderer/components/card';
+import { CardList } from '@renderer/components/Card';
 
 </script>
 

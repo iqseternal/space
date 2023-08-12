@@ -10,6 +10,9 @@ export class AppDataService {
     public readonly relativeSourcePath: 'home' | 'appData' | 'userData' | 'sessionData' | 'temp' | 'exe' | 'module' | 'desktop' | 'documents' | 'downloads' | 'music' | 'pictures' | 'videos' | 'recent' | 'logs' | 'crashDumps',
     public readonly absoluteSourcePath: string
   ) {
+    console.log(this.relativeSourcePath, this.absoluteSourcePath);
+    console.log(app.getPath(relativeSourcePath));
+
     this.sourcePath = join(app.getPath(relativeSourcePath), absoluteSourcePath);
   }
 

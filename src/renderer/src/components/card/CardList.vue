@@ -1,7 +1,7 @@
 <template>
   <div class="list" ref="listRef">
     <template v-for="item in list" :key="item.t">
-      <Card @click="downloadWallpaperF(item)" class="card" :src="item.src"></Card>
+      <Card @click="downloadWallpaperF(item)" @contextmenu="contextmenu" class="card" :src="item.src"></Card>
     </template>
   </div>
 </template>
@@ -27,6 +27,11 @@ const downloadWallpaperF = (source: Source) => {
 
   });
 }
+
+const contextmenu = (e) => {
+  console.log('cardlist, card, contextmenu', e);
+}
+
 
 watch(() => isLoad.value, (nv) => {
   if (nv) {
