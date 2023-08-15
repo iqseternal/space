@@ -20,7 +20,7 @@
     "tsconfig.web.json",
     "alias.config.ts",
     "proxy.config.ts",
-    "src/@types/wallpaper.d.ts"
+    "src/@types/*.d.ts"
   ],
   "exclude": ["node_modules", "dist", "out"],
   "compilerOptions": {

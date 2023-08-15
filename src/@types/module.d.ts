@@ -9,7 +9,6 @@ declare module '*.json' {
 }
 
 declare global {
-
   var icpR: typeof icpResponseFn;
 }
 

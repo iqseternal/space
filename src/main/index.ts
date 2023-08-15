@@ -17,24 +17,14 @@ import { UserConfigService } from '#/code/service/UserConfigService';
 import { WindowService } from '#/code/service/WindowService';
 
 import appConfigJson from '../../app.config.json';
+import { join } from 'path';
 
 setupApp(async () => {
-  // const appDataService = new AppDataService('userData', 'download');
+  const appDataService = new AppDataService('userData', 'download');
 
-  // const downloadService = new DownloadService();
+  const bitData = await DownloadService.downloadForBin(
+    'https://tse3-mm.cn.bing.net/th/id/OIP-C.Md86Wi2EYiKHNPldRZiD4gHaEo?w=276&h=180&c=7&r=0&o=5&pid=1.7'
+  ).catch(e => e);
 
-  // const bitData = await downloadService.download('https://tse3-mm.cn.bing.net/th/id/OIP-C.Md86Wi2EYiKHNPldRZiD4gHaEo?w=276&h=180&c=7&r=0&o=5&pid=1.7');
-
-
-  // const appConfigService = AppConfigService.getInstance();
-
-  new WindowService(appConfigJson.windows.mediumPopupWindow).open();
-
-  // FileService.saveFile(appDataService.sourcePath, bitData).then(() => {
-
-  //   console.log('ok');
-  // }).catch(err => {
-  //   console.log(err);
-  // })
-
+  const appConfigService = AppConfigService.getInstance();
 });

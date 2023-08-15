@@ -7,4 +7,7 @@ export const setupIcpMainHandle = (icp: string, listener: (event: IpcMainInvokeE
 };
 
 
+export const sert: typeof setupIcpMainHandle = (icp, listener) => {
 
+
+}

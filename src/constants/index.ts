@@ -1,4 +1,4 @@
 
-export { ICP_WALLPAPER } from './wallpaper';
+export { IPC_WALLPAPER } from './wallpaper';
 
-export { ICP_WINDOW } from './window';
+export { IPC_WINDOW } from './window';

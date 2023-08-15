@@ -8,7 +8,7 @@ import { AppDataService } from '#/code/service/AppDataService';
 
 import { setupIcpMainHandle } from './setupHandle';
 
-import { ICP_WALLPAPER, ICP_WINDOW } from '#/constants';
+import { IPC_WALLPAPER, IPC_WINDOW } from '#/constants';
 
 import appConfig from '../../app.config.json';
 
@@ -29,7 +29,7 @@ export async function setupWindowService() {
 
   windowService.open();
 
-  setupIcpMainHandle(ICP_WINDOW.OPEN_WINDOW, (_) => icpR((ok, fail) => {
+  setupIcpMainHandle(IPC_WINDOW.OPEN_WINDOW, (_) => icpR((ok, fail) => {
     const window = new WindowService({});
 
     window.open();
@@ -45,7 +45,7 @@ export async function setupAppDataDownload() {
 
   const downloadService = new DownloadService();
 
-  setupIcpMainHandle(ICP_WALLPAPER.DOWNLOAD_WALLPAPER, (_, source: Source): Promise<string> => {
+  setupIcpMainHandle(IPC_WALLPAPER.DOWNLOAD_WALLPAPER, (_, source: Source): Promise<string> => {
 
     return wallpaperSaveService.saveFile(source);
   });
@@ -60,19 +60,19 @@ export async function setupWallpaperAndPuppeteer() {
   // init
   await obtainService.obtainSourceInit('https://cn.bing.com/images/search?cw=1905&ch=947&q=%e5%a3%81%e7%ba%b8&qft=+filterui:imagesize-wallpaper+filterui:photo-photo+filterui:aspect-wide+filterui:licenseType-Any&form=IRFLTR&first=1');
 
-  setupIcpMainHandle(ICP_WALLPAPER.GET_WALLPAPER, (_) => icpR((ok, fail) => {
+  setupIcpMainHandle(IPC_WALLPAPER.GET_WALLPAPER, (_) => icpR((ok, fail) => {
     wallpaperService.getWallpaper().then(res => {
       ok(res);
     }).catch(err => {
-      fail(err);
+      fail(err, '壁纸设置失败了');
     });
   }));
 
-  setupIcpMainHandle(ICP_WALLPAPER.SET_WALLPAPER, (_, source: Source): Promise<string> => {
+  setupIcpMainHandle(IPC_WALLPAPER.SET_WALLPAPER, (_, source: Source): Promise<string> => {
     return wallpaperService.setWallpaper(source);
   });
 
-  setupIcpMainHandle(ICP_WALLPAPER.MORE_WALLPAPER, (_): Promise<Source[]> => {
+  setupIcpMainHandle(IPC_WALLPAPER.MORE_WALLPAPER, (_): Promise<Source[]> => {
     return obtainService.obtainImg();
   });
 

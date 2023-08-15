@@ -10,7 +10,7 @@
 
     "src/preload/*.d.ts",
     "src/@types/**/*.d.ts",
-    "src/@types/wallpaper.d.ts"
+    "src/@types/source.d.ts"
 ],
   "compilerOptions": {
     "target": "ESNext",
