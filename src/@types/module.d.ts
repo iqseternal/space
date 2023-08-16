@@ -1,7 +1,7 @@
 
 /// <reference types="vite/client" />
 
-import { icpR as icpResponseFn } from '#/code/core/common/icpR';
+import { ipcR as ipcResponseFn } from '#/code/core/common/ipcR';
 
 declare module '*.json' {
   const data: Record<string, any>
@@ -9,7 +9,7 @@ declare module '*.json' {
 }
 
 declare global {
-  var icpR: typeof icpResponseFn;
+  var ipcR: typeof ipcResponseFn;
 }
 
 

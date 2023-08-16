@@ -1,6 +1,6 @@
-import { icpR } from '#/code/core/common/icpR';
+import { ipcR } from '#/code/core/common/ipcR';
 
-global.icpR = icpR;
+global.ipcR = ipcR;
 
 
 

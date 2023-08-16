@@ -20,16 +20,16 @@ export const setupService = async () => {
 
   const appDataService = new AppDataService('userData', 'profile');
 
-  return { windowService };
+  return { windowService, obtainService };
 }
 
 export async function setupWindowService() {
 
-  const windowService = new WindowService(appConfig.windows.mediumPopupWindow);
+  const windowService = new WindowService(appConfig.windows.mainWindow);
 
   windowService.open();
 
-  setupIcpMainHandle(IPC_WINDOW.OPEN_WINDOW, (_) => icpR((ok, fail) => {
+  setupIcpMainHandle(IPC_WINDOW.OPEN_WINDOW, (_) => ipcR((ok, fail) => {
     const window = new WindowService({});
 
     window.open();
@@ -60,7 +60,7 @@ export async function setupWallpaperAndPuppeteer() {
   // init
   await obtainService.obtainSourceInit('https://cn.bing.com/images/search?cw=1905&ch=947&q=%e5%a3%81%e7%ba%b8&qft=+filterui:imagesize-wallpaper+filterui:photo-photo+filterui:aspect-wide+filterui:licenseType-Any&form=IRFLTR&first=1');
 
-  setupIcpMainHandle(IPC_WALLPAPER.GET_WALLPAPER, (_) => icpR((ok, fail) => {
+  setupIcpMainHandle(IPC_WALLPAPER.GET_WALLPAPER, (_) => ipcR((ok, fail) => {
     wallpaperService.getWallpaper().then(res => {
       ok(res);
     }).catch(err => {
@@ -72,9 +72,9 @@ export async function setupWallpaperAndPuppeteer() {
     return wallpaperService.setWallpaper(source);
   });
 
-  setupIcpMainHandle(IPC_WALLPAPER.MORE_WALLPAPER, (_): Promise<Source[]> => {
-    return obtainService.obtainImg();
-  });
+  setupIcpMainHandle(IPC_WALLPAPER.MORE_WALLPAPER, (_) => ipcR((ok, fail) => {
+    obtainService.obtainImg().then(ok).catch(fail);
+  }));
 
   return { wallpaperService, obtainService };
 }

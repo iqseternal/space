@@ -1,4 +1,5 @@
 import { PuppeteerService } from './PuppeteerService';
+import { PlaywrightService } from './PlaywrightService';
 
 type SourceFix = Omit<Omit<Source, 'source'>, 'isOnline'>;
 
@@ -20,13 +21,13 @@ export class ObtainWebPageService extends PuppeteerService {
           if (!imageUrl || imageUrl.includes('base64')) return;
           if (imageUrl.endsWith('svg')) return;
 
-          imageUrls.push({ t: Date.now(), src: imageUrl });
+          imageUrls.push({ t: Date.now(), type: 'png', src: imageUrl });
         });
         return imageUrls;
       }) as Source[];
 
       if (Array.isArray(imageUrls)) {
-        resolve(imageUrls.map(s => ({ t: s.t, src: s.src, source: (this.url as string), isOnline: true })));
+        resolve(imageUrls.map(s => ({ t: s.t, type: 'png', src: s.src, source: (this.url as string), isOnline: true })));
         return;
       }
 

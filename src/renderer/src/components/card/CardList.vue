@@ -38,7 +38,7 @@ watch(() => isLoad.value, (nv) => {
     loadMoreWallpaper().then(ls => {
       console.log(ls);
 
-      list.value.push(...ls);
+      list.value.push(...ls.data);
     }).finally(() => {
 
       isLoad.value = false;

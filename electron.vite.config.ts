@@ -8,12 +8,21 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 export default defineConfig(() => ({
   main: {
     plugins: [
-      externalizeDepsPlugin(), bytecodePlugin()
+      /**
+       * 已测试, 依赖处理项 puppeteer 有问题, 如果自动排除依赖那么启动时出现:
+       *    A JavaScript error occured in the main process.
+       *    TypeError: http_proxy_agent_1.HttpProxyAgent.protocols is not iterable。
+       * 目前看来, 与字节码插件无关, 只和插件 externalizeDepsPlugin 的配置以及是否正确打包 puppeteer 有关
+       *
+       * 如果不将 electron 作为外部依赖处理，那么字节码插件在解析electron源码时会出现异常
+       * */
+      externalizeDepsPlugin({
+
+      }), bytecodePlugin()
     ],
     resolve: {
       alias: nodeAlias
     },
-
     build: {
       chunkSizeWarningLimit: 2000,
       minify: 'terser',
@@ -27,7 +36,7 @@ export default defineConfig(() => ({
       rollupOptions: {
         output: {
           exports: 'auto',
-          format: 'cjs',
+          format: 'es',
         }
       }
     }
@@ -44,8 +53,6 @@ export default defineConfig(() => ({
     }
   },
   renderer: defineViteConfig(({ command, mode }) => {
-
-    console.log(__dirname);
     return {
       root: 'src/renderer',
       resolve: { alias: webAlias },

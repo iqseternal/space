@@ -49,7 +49,7 @@ type IcpPromiseCall = <T>(data: T, descriptor?: string) => void;
  * @param callback
  * @returns
  */
-export const icpR = (callback: (ok: IcpPromiseCall, fail: IcpPromiseCall) => void): Promise<IcpResponse> => {
+export const ipcR = (callback: (ok: IcpPromiseCall, fail: IcpPromiseCall) => void): Promise<IcpResponse> => {
   return new Promise((resolve, reject)=> {
 
     const oks: IcpPromiseCall = <T>(data: T, descriptor?: string): void => resolve(ok(data, descriptor));

@@ -1,3 +1,27 @@
 {
-
+  "nodeServer": {
+    "port": "9303",
+    "source": [
+      {
+        "distSrc": "https://www.baidu.com",
+        "proxy": "http://127.0.0.1:7890",
+        "enable": true,
+        "loadType": "scrollY",
+        "scrollDistance": 100,
+        "scrollTrie": 20,
+        "scrollWait": 100
+      }
+    ],
+    "descriptor": "关于NODE服务的用户配置, SOURCE为爬虫的ITEM配置"
+  },
+  "theme": {
+    "descriptor": "主题的用户配置"
+  },
+  "windows": {
+    "mainWindow": {
+      "width": null,
+      "height": null,
+      "descriptor": "记录用户调整主视窗的大小, 能够在二次启动时记忆大小"
+    }
+  }
 }

@@ -10,12 +10,12 @@ const spaceRoutes: RouteRecordRaw = {
     {
       name: 'home',
       path: 'dynamics',
-      component: () => import('@renderer/views/dynamics/index.vue')
+      component: () => import('@pages/index/views/dynamics/index.vue')
     },
     {
       name: 'profile',
       path: 'profile',
-      component: () => import('@renderer/views/profile/index.vue')
+      component: () => import('@pages/index/views/profile/index.vue')
     }
   ]
 };

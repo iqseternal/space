@@ -20,13 +20,13 @@
 import { useRouter, useRoute } from 'vue-router';
 
 import TiltButton from '@renderer/components/TiltButton';
-import { ICP_WINDOW } from '#/constants';
+import { IPC_WINDOW } from '#/constants';
 
 const router = useRouter();
 const route = useRoute();
 
 const setting = () => {
-  window.electron.ipcRenderer.invoke(ICP_WINDOW.OPEN_WINDOW);
+  window.electron.ipcRenderer.invoke(IPC_WINDOW.OPEN_WINDOW);
 }
 
 </script>

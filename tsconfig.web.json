@@ -33,7 +33,8 @@
     "paths": {
       "#/*": ["src/*"],
       "#constants/*": ["src/constants/*"],
-      "@renderer/*": ["src/renderer/src/*"]
+      "@renderer/*": ["src/renderer/src/*"],
+      "@pages/*": ["src/renderer/src/pages/*"]
     }
   }
 }

@@ -1,11 +1,12 @@
-import { app, BrowserWindow } from 'electron';
-import { launch } from 'puppeteer';
+
+import { chromium, type Page } from 'playwright';
+
 
 /**
  * 模拟网页
  */
-export class PuppeteerService {
-  private page?: any;
+export class PlaywrightService {
+  private page?: Page;
   public url?: string;
 
   /**
@@ -13,15 +14,13 @@ export class PuppeteerService {
    * @param url
    */
   async obtainSourceInit(url: string) {
-    const browser = await launch({
+    const browser = await chromium.launch({
       args: [
         `--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3477.0 Safari/537.36`
         // `--proxy-server=127.0.0.1:7890`
       ],
-      headless: false
     });
     this.page = await browser.newPage();
-
     this.url = url;
     await this.page?.goto(url, { waitUntil: 'domcontentloaded' });
   }
