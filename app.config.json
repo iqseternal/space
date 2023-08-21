@@ -31,5 +31,12 @@
       "icon": "/resources/icon.png",
       "descriptor": "小型弹窗大小的配置"
     }
+  },
+  "miscellaneous": {
+    "script": {
+      "reptile": {
+        "log": true
+      }
+    }
   }
 }

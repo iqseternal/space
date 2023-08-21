@@ -29,13 +29,12 @@ import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
 
 setupApp(async () => {
   // const {} = await setupService();
-  new WindowService(appConfigJson.windows.mediumPopupWindow).open(PAGES_WINDOW_SETTING);
+  // new WindowService(appConfigJson.windows.mediumPopupWindow).open(PAGES_WINDOW_SETTING);
 
-  // const reptile = new ReptileService();
+  const appConfigService = new AppConfigService();
 
-  // const res = await reptile.obtainImg();
 
-  // console.log(res);
+
 });
 
 

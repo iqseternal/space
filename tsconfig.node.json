@@ -12,6 +12,7 @@
     "src/config/**/*.ts",
     "src/globalForNode/**/*.ts",
 
+    "./test.config.json",
     "./user.config.json",
     "./app.config.json",
 

@@ -1,4 +1,4 @@
-const { PlaywrightCrawler, Dataset, PuppeteerCrawler } = require('crawlee');
+const { Dataset } = require('crawlee');
 const { JSDOMCrawler, log } = require('crawlee');
 
 const userConfig = require('../../user.config.json');
@@ -45,7 +45,7 @@ module.exports.obtainImgForStatic = async (urls = []) => {
     });
 
     // Run the crawler and wait for it to finish.
-    await crawler.run(...urls);
+    await crawler.run(urls);
     resolve(images);
   });
 }

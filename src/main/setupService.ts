@@ -2,7 +2,7 @@
 import { WindowService } from '#code/service/WindowService';
 import { WallpaperService } from '#/code/_customService/WallpaperService';
 
-import { ObtainWebPageService } from '#/code/_customService/ObtainWebPageService';
+import { ReptileService } from '#/code/_customService/ReptileService';
 import { DownloadService } from '#/code/service/DownloadService';
 import { AppDataService } from '#/code/service/AppDataService';
 
@@ -14,14 +14,14 @@ import appConfig from '../../app.config.json';
 import { PAGES_WINDOW_MAIN } from '#/config';
 
 export const setupService = async () => {
-  const { wallpaperService, obtainService } = await setupWallpaperAndPuppeteer();
+  const { wallpaperService, reptileService } = await setupWallpaperAndPuppeteer();
   const { wallpaperSaveService, downloadService } = await setupAppDataDownload();
 
   const { windowService } = await setupWindowService();
 
   const appDataService = new AppDataService('userData', 'profile');
 
-  return { windowService, obtainService };
+  return { windowService, reptileService };
 }
 
 export async function setupWindowService() {
@@ -54,11 +54,8 @@ export async function setupAppDataDownload() {
 }
 
 export async function setupWallpaperAndPuppeteer() {
-  const obtainService = new ObtainWebPageService();
+  const reptileService = new ReptileService();
   const wallpaperService = new WallpaperService();
-
-  // init
-  await obtainService.obtainSourceInit('https://cn.bing.com/images/search?cw=1905&ch=947&q=%e5%a3%81%e7%ba%b8&qft=+filterui:imagesize-wallpaper+filterui:photo-photo+filterui:aspect-wide+filterui:licenseType-Any&form=IRFLTR&first=1');
 
   setupIcpMainHandle(IPC_WALLPAPER.GET_WALLPAPER, (_) => ipcR((ok, fail) => {
     wallpaperService.getWallpaper().then(res => {
@@ -73,8 +70,8 @@ export async function setupWallpaperAndPuppeteer() {
   });
 
   setupIcpMainHandle(IPC_WALLPAPER.MORE_WALLPAPER, (_) => ipcR((ok, fail) => {
-    obtainService.obtainImg().then(ok).catch(fail);
+    reptileService.obtainImg().then(ok).catch(fail);
   }));
 
-  return { wallpaperService, obtainService };
+  return { wallpaperService, reptileService };
 }

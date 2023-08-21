@@ -12,16 +12,18 @@ class Crawler {
   }
 
   async obtainImg() {
-    return Promise(async (resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       const trendsSource = [];
       const staticSource = [];
 
       userConfig.nodeServer.source.forEach(src => {
         if (!src.enable) return;
 
-        if (src.static) staticSource.push(src);
-        else trendsSource.push(src);
+        if (src.static) staticSource.push(src.src);
+        else trendsSource.push(src.src);
       });
+
+      console.log('爬取列表： ', trendsSource, staticSource);
 
       const resForTrends = await obtainImgForTrends(trendsSource);
 

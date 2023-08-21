@@ -10,7 +10,7 @@ function makePrintMessage(
   appColor: PrintColor,
   timeColor: PrintColor,
   typeColor: PrintColor, typeMessage: string,
-  thread: string,
+  thread: string, messageColor: PrintColor,
   ...message: unknown[]
 ) {
   const ms = message.reduce((pre: string, cur: unknown) => pre + cur, `[${appConfig.appName.toUpperCase()}] [${getCurFullDate()}] [${typeMessage}] [${thread}:]`);
@@ -25,7 +25,7 @@ function makePrintMessage(
       toPrintClear(), ' ',
       toColor(['cyan']), `[${thread}]:`,
       toPrintClear(), ' ',
-      ...message,
+      messageColor, ...message,
       toPrintClear()
     ]
   }
@@ -39,6 +39,7 @@ export class PrinterService {
         toColor(['cyan', 'bright']),
         toColor(['blue', 'underline']), 'INFO',
         'MAIN',
+        toColor(['blue']),
         ...message
       ).typeMs
     );
@@ -51,6 +52,7 @@ export class PrinterService {
         toColor(['cyan', 'bright']),
         toColor(['yellow', 'underline']), 'WARN',
         'MAIN',
+        toColor(['yellow']),
         ...message
       ).typeMs
     );
@@ -63,6 +65,7 @@ export class PrinterService {
         toColor(['cyan', 'bright']),
         toColor(['red', 'underline']), 'ERROR',
         'MAIN',
+        toColor(['red']),
         ...message
       ).typeMs
     );

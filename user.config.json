@@ -18,7 +18,18 @@
     },
     "source": [
       {
-        "src": "https://www.baidu.com",
+        "src": "https://cn.bing.com/images/search?cw=1905&ch=947&q=%e5%a3%81%e7%ba%b8&qft=+filterui:imagesize-wallpaper+filterui:photo-photo+filterui:aspect-wide+filterui:licenseType-Any&form=IRFLTR&first=1",
+        "proxy": "http://127.0.0.1:7890",
+        "enable": true,
+        "static": false,
+
+        "loadType": "scrollY",
+        "scrollDistance": 100,
+        "scrollTrie": 20,
+        "scrollWait": 100
+      },
+      {
+        "src": "https://sq.simpro.cn/",
         "proxy": "http://127.0.0.1:7890",
         "enable": true,
         "static": false,

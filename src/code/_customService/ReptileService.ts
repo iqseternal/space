@@ -5,42 +5,57 @@ import { join } from 'path';
 
 import { PrinterService } from '../service/PrinterService';
 
+import appConfigJson from '../../../app.config.json';
+
 export class ReptileService {
-  private process: ChildProcess = spawn(
-    'node', [join(__dirname, '../../scripts/reptile/index.js')], { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] }
-  );
+  private process: ChildProcess | null | undefined;
 
   constructor() {
-    app.on('will-quit', () => this.distory());
+    this.init();
 
-    this.process.stdout?.on('data', message => {
-      console.log(message.toString());
-    });
-    this.process.stdin?.on('data', message => {
-      console.log(message.toString());
-    });
-    this.process.stderr?.on('data', message => {
-      console.log(message.toString());
+    app.on('will-quit', () => {
+      if (this) this.distory();
     });
 
+    if (appConfigJson.miscellaneous.script.reptile.log) {
+      this.process?.stdout?.on('data', message => {
+        console.log(message.toString());
+      });
+      this.process?.stdin?.on('data', message => {
+        console.log(message.toString());
+      });
+      this.process?.stderr?.on('data', message => {
+        console.log(message.toString());
+      });
+    }
   }
 
   async obtainImg() {
-    this.send();
+    return new Promise((resolve, reject) => {
+      if (!this.process) return reject();
 
-    this.process.on('message', data => {
-      PrinterService.printInfo(data.toString());
-    })
+      this.process.send({
+        ok: true
+      })
 
+      this.process.on('message', data => {
+        resolve(data.toString().split(',').filter(e => e).map(src => ({
+          src: src
+        })));
+      })
+    });
   }
 
-  private send() {
-    this.process.send({
-      ok: true
-    })
+  init() {
+    this.process = spawn(
+      'node', [join(__dirname, '../../scripts/reptile/index.js')], { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] }
+    );
   }
 
   distory() {
-    if (this.process) this.process.kill('SIGTERM')
+    if (this.process) {
+      this.process.kill('SIGTERM');
+      this.process = null;
+    }
   }
 }

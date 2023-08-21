@@ -1,4 +1,3 @@
-
 const userConfig = require('../../user.config.json');
 const appConfig = require('../../app.config.json');
 
@@ -9,11 +8,11 @@ const { Crawler } = require('./crawler');
 
 const crawler = new Crawler();
 
-process.on('message', async data => {
-  console.log(data);
 
-  if (data.ok) {
-    const res = await crawler.obtainImg();
-    process.send(res);
-  }
-})
+;(async () => {
+
+  const res = await crawler.obtainImg();
+
+
+  console.log(res);
+})();
