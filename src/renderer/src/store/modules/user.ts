@@ -5,6 +5,7 @@ import { getToken, removeToken, setToken } from '@renderer/utils/storage';
 
 import { loginApi, getUserInfoApi } from '@renderer/api/login';
 import { type RouteRecordRaw } from 'vue-router';
+import '@vue/shared';
 
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "");

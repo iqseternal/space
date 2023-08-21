@@ -9,8 +9,7 @@
     "src/constants/**/*.ts",
 
     "src/preload/*.d.ts",
-    "src/@types/**/*.d.ts",
-    "src/@types/source.d.ts"
+    "src/@types/**/*.d.ts"
 ],
   "compilerOptions": {
     "target": "ESNext",

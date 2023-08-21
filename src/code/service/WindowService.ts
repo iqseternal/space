@@ -48,18 +48,9 @@ export class WindowService {
     setWindowOpenHandler(this.window);
   }
 
-  open() {
-    // this.window.loadURL(PAGES_WINDOW_SETTING);
-
-    this.window.loadFile(PAGES_WINDOW_MAIN);
-
-    // return;
-    // if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    //   this.window.loadURL(process.env['ELECTRON_RENDERER_URL']);
-    // }
-    // else {
-    //   this.window.loadFile(PAGES_WINDOW_SETTING);
-    // }
+  open(url: string) {
+    if (is.dev && process.env['ELECTRON_RENDERER_URL']) this.window.loadURL(url);
+    else this.window.loadFile(PAGES_WINDOW_MAIN);
   }
 
   async close(): Promise<boolean> {

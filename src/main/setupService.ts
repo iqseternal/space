@@ -1,8 +1,8 @@
 
 import { WindowService } from '#code/service/WindowService';
-import { WallpaperService } from '#code/service/WallpaperService';
+import { WallpaperService } from '#/code/_customService/WallpaperService';
 
-import { ObtainWebPageService } from '#code/service/ObtainWebPageService';
+import { ObtainWebPageService } from '#/code/_customService/ObtainWebPageService';
 import { DownloadService } from '#/code/service/DownloadService';
 import { AppDataService } from '#/code/service/AppDataService';
 
@@ -11,6 +11,7 @@ import { setupIcpMainHandle } from './setupHandle';
 import { IPC_WALLPAPER, IPC_WINDOW } from '#/constants';
 
 import appConfig from '../../app.config.json';
+import { PAGES_WINDOW_MAIN } from '#/config';
 
 export const setupService = async () => {
   const { wallpaperService, obtainService } = await setupWallpaperAndPuppeteer();
@@ -24,15 +25,14 @@ export const setupService = async () => {
 }
 
 export async function setupWindowService() {
-
   const windowService = new WindowService(appConfig.windows.mainWindow);
 
-  windowService.open();
+  windowService.open(PAGES_WINDOW_MAIN);
 
   setupIcpMainHandle(IPC_WINDOW.OPEN_WINDOW, (_) => ipcR((ok, fail) => {
     const window = new WindowService({});
 
-    window.open();
+    window.open(PAGES_WINDOW_MAIN);
 
     ok('ok');
   }));

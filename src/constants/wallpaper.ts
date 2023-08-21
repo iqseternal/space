@@ -8,8 +8,6 @@ export class IPC_WALLPAPER {
   public static readonly DOWNLOAD_WALLPAPER = 'ipc::render::wallpaper::download';
 
 
-
-
   public readonly GET_WALLPAPER = IPC_WALLPAPER.GET_WALLPAPER;
   public readonly SET_WALLPAPER = IPC_WALLPAPER.SET_WALLPAPER;
   public readonly MORE_WALLPAPER = IPC_WALLPAPER.MORE_WALLPAPER;

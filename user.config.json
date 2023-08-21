@@ -1,11 +1,28 @@
 {
   "nodeServer": {
     "port": "9303",
+    "mixin": false,
+    "static": {
+      "minConcurrency": 10,
+      "maxConcurrency": 50,
+      "maxRequestRetries": 1,
+      "requestHandlerTimeoutSecs": 30,
+      "descriptor": "静态页面的配置, 最小最大并发数, 请求的最大尝试次数, 请求超时的时间s"
+    },
+    "trends": {
+      "minConcurrency": 10,
+      "maxConcurrency": 50,
+      "maxRequestRetries": 1,
+      "requestHandlerTimeoutSecs": 30,
+      "descriptor": "动态页面的配置, 最小最大并发数, 请求的最大尝试次数, 请求超时的时间s"
+    },
     "source": [
       {
-        "distSrc": "https://www.baidu.com",
+        "src": "https://www.baidu.com",
         "proxy": "http://127.0.0.1:7890",
         "enable": true,
+        "static": false,
+
         "loadType": "scrollY",
         "scrollDistance": 100,
         "scrollTrie": 20,

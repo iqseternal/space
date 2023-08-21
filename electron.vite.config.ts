@@ -16,9 +16,7 @@ export default defineConfig(() => ({
        *
        * 如果不将 electron 作为外部依赖处理，那么字节码插件在解析electron源码时会出现异常
        * */
-      externalizeDepsPlugin({
-
-      }), bytecodePlugin()
+      externalizeDepsPlugin(), bytecodePlugin()
     ],
     resolve: {
       alias: nodeAlias
@@ -26,17 +24,10 @@ export default defineConfig(() => ({
     build: {
       chunkSizeWarningLimit: 2000,
       minify: 'terser',
-
       terserOptions: {
         compress: {
           // drop_console: true,
           // drop_debugger: true
-        }
-      },
-      rollupOptions: {
-        output: {
-          exports: 'auto',
-          format: 'es',
         }
       }
     }
@@ -54,11 +45,12 @@ export default defineConfig(() => ({
   },
   renderer: defineViteConfig(({ command, mode }) => {
     return {
-      root: 'src/renderer',
+
       resolve: { alias: webAlias },
       plugins: [vue(), vueJsx()],
       server: {
-
+        hmr: true,
+        host: '0.0.0.0'
       },
 
       build: {
@@ -66,12 +58,11 @@ export default defineConfig(() => ({
         assetsDir: 'static',
         minify: 'terser',
         terserOptions: {
-          compress: {
-            drop_console: true,
-            drop_debugger: true
-          }
+          // compress: {
+          //   drop_console: true,
+          //   drop_debugger: true
+          // }
         },
-
         rollupOptions: {
           input: {
             index: join(__dirname, './src/renderer/index.html'),

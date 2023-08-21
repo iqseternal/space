@@ -1,6 +1,6 @@
 
 /** ICP响应格式定义, 让响应体格式规范化 */
-interface IcpResponse<T = any> {
+interface IpcResponse<T = any> {
   ok: boolean; // 响应状态是否正确
 
   data: T; // 响应数据

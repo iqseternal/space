@@ -1,8 +1,8 @@
 
-import { getFullDate } from '../common/common';
+import { getCurFullDate } from '../common/common';
 
 const createLogMessage = (type: 'info' | 'warn' | 'error', message: string) => {
-  return `[${getFullDate()}] [levell: ${type}] ${message}`;
+  return `[${getCurFullDate()}] [levell: ${type}] ${message}`;
 }
 
 export function LoggerWarn() {

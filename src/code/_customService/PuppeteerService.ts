@@ -18,7 +18,7 @@ export class PuppeteerService {
         `--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3477.0 Safari/537.36`
         // `--proxy-server=127.0.0.1:7890`
       ],
-      headless: false
+      headless: 'new'
     });
     this.page = await browser.newPage();
 

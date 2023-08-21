@@ -1,5 +1,5 @@
 import { PuppeteerService } from './PuppeteerService';
-import { PlaywrightService } from './PlaywrightService';
+import { PlaywrightService } from '../service/PlaywrightService';
 
 type SourceFix = Omit<Omit<Source, 'source'>, 'isOnline'>;
 
