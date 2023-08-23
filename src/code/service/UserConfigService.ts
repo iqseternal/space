@@ -1,33 +1,25 @@
 import { app } from 'electron';
 import { FileService } from './FileService';
+import { SingleInstanceService } from './SingleInstanceService';
+import userConfigJson from 'user.config.json';
+import { join } from 'path';
+import { PrinterService } from './PrinterService';
 
 /**
  * 维护 UserConfig 的内容信息
  */
-export class UserConfigService {
-  private static instance: UserConfigService | undefined = void 0;
-  private userConfig: Record<string, any>;
+export class UserConfigService extends SingleInstanceService<UserConfigService> {
+  public config: typeof userConfigJson = require(join(__dirname, '../../user.config.json'));
 
-  constructor() {
-    this.userConfig = require('../../../user.config.json');
+  static getInstance<T = UserConfigService>() {
+    return super.getInstance<T>();
+  }
 
-    app.on('will-quit', () => {
-      this.save();
+  distory(): void {
+    FileService.saveObjToJson(this.config, join(__dirname, '../../user.config.json')).then(() => {
+      PrinterService.printInfo('应用程序即将退出, 复写 UserConfigJson');
+    }).catch(() => {
+      PrinterService.printWarn('应用程序即将退出, 复写 UserConfigJson 失败!!');
     });
-  }
-
-  /**
-   * 采用单实例做法, 这样可以保持应用程序数据的统一, 保持数据的一致性
-   * @returns
-   */
-  static getInstance() {
-    if (!UserConfigService.instance) UserConfigService.instance = new UserConfigService();
-    return UserConfigService.instance;
-  }
-
-
-  private save() {
-
-
   }
 }

@@ -11,12 +11,12 @@
       "minWidth": 900,
       "height": 780,
       "minHeight": 500,
-      "descriptor": "主窗口的配置, maxWidth, maxHeight 默认为屏幕的大小"
+      "descriptor": "主窗口, maxWidth, maxHeight 默认为屏幕最大最大值"
     },
-    "largePopupWindow":{
+    "largePopupWindow": {
       "type": "pop",
       "icon": "/resources/icon.png",
-      "descriptor": "大型弹窗大小的配置"
+      "descriptor": "大型弹窗"
     },
     "mediumPopupWindow": {
       "type": "pop",
@@ -24,18 +24,18 @@
       "width": 450,
       "heiht": 200,
       "resizable": false,
-      "descriptor": "中型弹窗大小的配置"
+      "descriptor": "中型弹窗"
     },
     "smallPopupWindow": {
       "type": "pop",
       "icon": "/resources/icon.png",
-      "descriptor": "小型弹窗大小的配置"
+      "descriptor": "小型弹窗"
     }
   },
   "miscellaneous": {
     "script": {
       "reptile": {
-        "log": true
+        "log": false
       }
     }
   }

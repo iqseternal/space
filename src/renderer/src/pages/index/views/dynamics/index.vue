@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <CardList class="cardList"></CardList>
-  </div>
+  <CardList class="cardList"></CardList>
 </template>
 
 <script lang="ts" setup>

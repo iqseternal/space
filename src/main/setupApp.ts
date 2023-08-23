@@ -1,5 +1,6 @@
 import { app, BrowserView, BrowserWindow } from 'electron';
 import { electronApp, optimizer } from '@electron-toolkit/utils';
+import { PrinterService } from '#/code/service/PrinterService';
 
 export interface AppOptions {
   modelId: string;
@@ -10,6 +11,7 @@ export const DEFAULT_APP_OPTIONS: Required<AppOptions> = {
 };
 
 export const setupApp = async (startApp: () => void, ops?: Partial<AppOptions>): Promise<void> => {
+  PrinterService.printInfo('应用程序构建, setupApp...');
   const options = { ...DEFAULT_APP_OPTIONS, ...ops } as Required<AppOptions>;
 
   app.whenReady().then(() => {
@@ -29,7 +31,8 @@ export const setupApp = async (startApp: () => void, ops?: Partial<AppOptions>):
 
   app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-      app.quit()
+      PrinterService.printInfo('窗口已关闭, 应用程序即将退出');
+      app.quit();
     };
   });
 

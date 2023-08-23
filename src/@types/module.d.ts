@@ -2,6 +2,7 @@
 /// <reference types="vite/client" />
 
 import { ipcR as ipcResponseFn } from '#/code/core/common/ipcR';
+import { PropType as VuePropType } from 'vue';
 
 declare module '*.json' {
   const data: Record<string, any>
@@ -10,6 +11,9 @@ declare module '*.json' {
 
 declare global {
   var ipcR: typeof ipcResponseFn;
+
+
+  declare type PropType = VuePropType;
 }
 
 

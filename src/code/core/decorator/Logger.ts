@@ -13,7 +13,7 @@ export function LoggerError() {
 
 }
 
-export function LoggerInfo() {
+export function LoggerInfo(target: any, propertyKey: string) {
 
 }
 

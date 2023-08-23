@@ -10,7 +10,8 @@ import { setupIcpMainHandle } from './setupHandle';
 
 import { IPC_WALLPAPER, IPC_WINDOW } from '#/constants';
 
-import appConfig from '../../app.config.json';
+import { AppConfigService } from '#/code/service/AppConfigService';
+import { PrinterService } from '#/code/service/PrinterService';
 import { PAGES_WINDOW_MAIN } from '#/config';
 
 export const setupService = async () => {
@@ -25,7 +26,10 @@ export const setupService = async () => {
 }
 
 export async function setupWindowService() {
-  const windowService = new WindowService(appConfig.windows.mainWindow);
+  PrinterService.printInfo('窗口构建');
+  const appConfigService = AppConfigService.getInstance();
+
+  const windowService = new WindowService(appConfigService.config.windows.mainWindow);
 
   windowService.open(PAGES_WINDOW_MAIN);
 
@@ -54,6 +58,7 @@ export async function setupAppDataDownload() {
 }
 
 export async function setupWallpaperAndPuppeteer() {
+  PrinterService.printInfo('构建壁纸和爬取服务');
   const reptileService = new ReptileService();
   const wallpaperService = new WallpaperService();
 

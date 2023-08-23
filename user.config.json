@@ -22,7 +22,6 @@
         "proxy": "http://127.0.0.1:7890",
         "enable": true,
         "static": false,
-
         "loadType": "scrollY",
         "scrollDistance": 100,
         "scrollTrie": 20,
@@ -33,7 +32,6 @@
         "proxy": "http://127.0.0.1:7890",
         "enable": true,
         "static": false,
-
         "loadType": "scrollY",
         "scrollDistance": 100,
         "scrollTrie": 20,
@@ -43,7 +41,7 @@
     "descriptor": "关于NODE服务的用户配置, SOURCE为爬虫的ITEM配置"
   },
   "theme": {
-    "descriptor": "主题的用户配置"
+    "descriptor": "主题的用户配置 哼哼哈hi"
   },
   "windows": {
     "mainWindow": {

@@ -58,6 +58,7 @@ onMounted(() => {
 @import "../../styles/mixin.scss";
 
 .list {
+  flex-wrap: wrap;
   @include displayFlex;
   @include overflow;
   @include beautifulBar;

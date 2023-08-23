@@ -1,12 +1,32 @@
 import { RouteRecordRaw } from 'vue-router';
 
-import Layout from '@renderer/layout/space/index.vue';
+import Layout from '@renderer/pages/index/layout/index.vue';
 
-const spaceRoutes: RouteRecordRaw = {
+export const spaceRoutes: RouteRecordRaw = {
   name: 'space',
   path: '/space',
   component: Layout,
   children: [
+    {
+      name: 'home',
+      path: 'dynamics',
+      component: () => import('@pages/index/views/dynamics/index.vue')
+    },
+    {
+      name: 'profile',
+      path: 'profile',
+      component: () => import('@pages/index/views/profile/index.vue')
+    },
+    {
+      name: 'home',
+      path: 'dynamics',
+      component: () => import('@pages/index/views/dynamics/index.vue')
+    },
+    {
+      name: 'profile',
+      path: 'profile',
+      component: () => import('@pages/index/views/profile/index.vue')
+    },
     {
       name: 'home',
       path: 'dynamics',

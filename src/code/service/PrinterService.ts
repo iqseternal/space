@@ -1,9 +1,9 @@
 
 import { print, toColor, printClear, type PrintTargetType, toPrintClear } from '@suey/printer';
 import { getCurDate, getCurFullDate, getCurTime } from '../core/common/common';
+import { AppConfigService } from './AppConfigService';
 
-import appConfig from '../../../app.config.json';
-
+const appConfigService = AppConfigService.getInstance();
 type PrintColor = ReturnType<typeof toColor>;
 
 function makePrintMessage(
@@ -13,11 +13,11 @@ function makePrintMessage(
   thread: string, messageColor: PrintColor,
   ...message: unknown[]
 ) {
-  const ms = message.reduce((pre: string, cur: unknown) => pre + cur, `[${appConfig.appName.toUpperCase()}] [${getCurFullDate()}] [${typeMessage}] [${thread}:]`);
+  const ms = message.reduce((pre: string, cur: unknown) => pre + cur, `[${appConfigService.config.appName.toUpperCase()}] [${getCurFullDate()}] [${typeMessage}] [${thread}:]`);
   return {
     ms,
     typeMs: [
-      appColor, `[${appConfig.appName.toUpperCase()}]`,
+      appColor, `[${appConfigService.config.appName.toUpperCase()}]`,
       toPrintClear(), ' ',
       timeColor, `[${getCurFullDate()}]`,
       toPrintClear(), ' ',

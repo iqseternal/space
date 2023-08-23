@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import { DownloadService } from './DownloadService';
+import { PrinterService } from './PrinterService';
 
 /**
  * 文件服务, 为应用程序的文件服务
@@ -67,6 +68,38 @@ export class FileService {
           descriptor: 'ok'
         });
       });
+    });
+  }
+
+  /**
+   * 将对象按照规范写入指定JSON文件
+   * @param object
+   * @param distPath
+   * @returns
+   */
+  static saveObjToJson<T extends Object>(object: T, distPath: string) {
+    if (!distPath.endsWith('.json')) {
+      PrinterService.printError('FileService.saveObjToJson 的指定路径不是一个JSON文件');
+      return Promise.reject();
+    }
+    return FileService.saveUtf8ToFile(JSON.stringify(object, null, 2), distPath);
+  }
+
+  /**
+   * 按照UTF-8的格式将字符写入指定路径
+   * @param str
+   * @param distPath
+   * @returns
+   */
+  static saveUtf8ToFile(str: string, distPath: string) {
+    return new Promise((resolve, reject) => {
+      const writeStream = fs.createWriteStream(distPath);
+
+      writeStream.write(str, 'utf-8', (err) => {
+        if (err) reject(err);
+      })
+
+      resolve(distPath);
     });
   }
 

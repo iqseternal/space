@@ -43,9 +43,8 @@ export default defineConfig(() => ({
       }
     }
   },
-  renderer: defineViteConfig(({ command, mode }) => {
+  renderer: defineViteConfig(() => {
     return {
-
       resolve: { alias: webAlias },
       plugins: [vue(), vueJsx()],
       server: {
