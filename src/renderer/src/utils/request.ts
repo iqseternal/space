@@ -1,4 +1,3 @@
-
 import { createApiRequest } from '@suey/packages';
 import { getToken } from './storage';
 
@@ -11,12 +10,13 @@ const isOkStatus = (status: number): boolean => {
   return false;
 }
 
-export const { request, apiGet, apiPost } = createApiRequest<{
+export const { apiGet } = createApiRequest<{
   needAuth?: boolean;
 }, {
   status: number;
   flag: string;
-}>(import.meta.env.VITE_APP_API, {}, {
+  data: unknown;
+}>('/api', {}, {
   onFulfilled: config => {
     if (config.hConfig?.needAuth) {
       if (!config.headers) config.headers = {};
@@ -28,14 +28,13 @@ export const { request, apiGet, apiPost } = createApiRequest<{
   onFulfilled: response => {
     if (response.data.status && response.data.flag) {
       const status = response.data.status;
-      // response.data = response.data.data;
       if (!isOkStatus(+status)) return Promise.reject(response.data);
       return Promise.resolve(response.data);
     }
     return Promise.resolve(response);
   },
   onRejected: err => {
-    if (err.data && err.data.status && err.data.flag) err.data = err.data.data;
+    if (err.data && err.data.status && err.data.flag) err.data = err.data.data as any;
     return Promise.reject(err);
   }
 });

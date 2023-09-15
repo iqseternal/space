@@ -1,4 +1,26 @@
+import type { IpcMainInvokeEvent, IpcMainEvent } from 'electron';
+import { ipcMain, ipcRenderer, BrowserWindow } from 'electron';
 
+import { type MainEventHandlers, IPC_WALLPAPER, IPC_WINDOW } from '#/constants'
+/**
+ * 原本采用接口扩展实现的, 但是 IpcMain 接口存在于 Electron 命名空间中
+ * 扩展时会导致 Parameters, ReturnType 等类型运算失效
+ * 所以采用封装函数的形式
+ */
+
+export const setIpcMainHandle = <T extends keyof MainEventHandlers>(icp: T, listener: (event: IpcMainInvokeEvent, ...args: Parameters<MainEventHandlers[T]>) => Promise<ReturnType<MainEventHandlers[T]>>) => ipcMain.handle(icp, listener as any);
+export const setIpcMainHandleOnce: typeof setIpcMainHandle = (icp, listener) => ipcMain.handleOnce(icp, listener as any);
+export const removeHandle = <T extends keyof MainEventHandlers>(channel: T) => ipcMain.removeHandler(channel);
+
+export const setIpcMainOn = <T extends keyof MainEventHandlers>(channel: T, listener: (event: IpcMainInvokeEvent, ...args: Parameters<MainEventHandlers[T]>) => void) => ipcMain.on(channel, listener as any);
+export const setIpcMainOnce: typeof setIpcMainOn = (channel, listener) => ipcMain.once(channel, listener as any);
+
+
+
+
+/**
+ * 以下是实现 IPC 交互时返回值的规程
+ */
 export class IpcResponseBase<T> implements IpcResponse<T> {
   constructor(
     public readonly ok: boolean,

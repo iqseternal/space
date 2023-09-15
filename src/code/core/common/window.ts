@@ -29,7 +29,6 @@ export const setWindowCross = (window: BrowserWindow): BrowserWindow => {
 export const setWindowMaxSize = (window: BrowserWindow, wMax?: number, hMax?: number): void => {
   if (wMax && hMax) {
     window.setMaximumSize(wMax, hMax);
-
     return;
   }
 

@@ -1,12 +1,12 @@
 
 import { WindowService } from '#code/service/WindowService';
-import { WallpaperService } from '#/code/_customService/WallpaperService';
+import { WallpaperService } from '#/code/service/WallpaperService';
 
-import { ReptileService } from '#/code/_customService/ReptileService';
+import { ReptileService } from '#/code/service/ReptileService';
 import { DownloadService } from '#/code/service/DownloadService';
 import { AppDataService } from '#/code/service/AppDataService';
 
-import { setupIcpMainHandle } from './setupHandle';
+import { setIpcMainHandle } from '#/code/core/common/ipcR';
 
 import { IPC_WALLPAPER, IPC_WINDOW } from '#/constants';
 
@@ -15,14 +15,14 @@ import { PrinterService } from '#/code/service/PrinterService';
 import { PAGES_WINDOW_MAIN } from '#/config';
 
 export const setupService = async () => {
-  const { wallpaperService, reptileService } = await setupWallpaperAndPuppeteer();
+  // const { wallpaperService, reptileService } = await setupWallpaperAndPuppeteer();
   const { wallpaperSaveService, downloadService } = await setupAppDataDownload();
 
   const { windowService } = await setupWindowService();
 
   const appDataService = new AppDataService('userData', 'profile');
 
-  return { windowService, reptileService };
+  return { windowService };
 }
 
 export async function setupWindowService() {
@@ -33,13 +33,14 @@ export async function setupWindowService() {
 
   windowService.open(PAGES_WINDOW_MAIN);
 
-  setupIcpMainHandle(IPC_WINDOW.OPEN_WINDOW, (_) => ipcR((ok, fail) => {
+  setIpcMainHandle(IPC_WINDOW.OPEN_WINDOW, (_, path: string) => ipcR((ok, fail) => {
     const window = new WindowService({});
 
     window.open(PAGES_WINDOW_MAIN);
 
     ok('ok');
   }));
+
 
   return { windowService };
 }
@@ -49,10 +50,9 @@ export async function setupAppDataDownload() {
 
   const downloadService = new DownloadService();
 
-  setupIcpMainHandle(IPC_WALLPAPER.DOWNLOAD_WALLPAPER, (_, source: Source): Promise<string> => {
-
-    return wallpaperSaveService.saveFile(source);
-  });
+  setIpcMainHandle(IPC_WALLPAPER.DOWNLOAD_WALLPAPER, (_, source: Source) => ipcR((ok, fail) => {
+    wallpaperSaveService.saveFile(source).then(ok).catch(fail);
+  }));
 
   return { wallpaperSaveService, downloadService };
 }
@@ -62,7 +62,7 @@ export async function setupWallpaperAndPuppeteer() {
   const reptileService = new ReptileService();
   const wallpaperService = new WallpaperService();
 
-  setupIcpMainHandle(IPC_WALLPAPER.GET_WALLPAPER, (_) => ipcR((ok, fail) => {
+  setIpcMainHandle(IPC_WALLPAPER.GET_WALLPAPER, (_) => ipcR((ok, fail) => {
     wallpaperService.getWallpaper().then(res => {
       ok(res);
     }).catch(err => {
@@ -70,11 +70,11 @@ export async function setupWallpaperAndPuppeteer() {
     });
   }));
 
-  setupIcpMainHandle(IPC_WALLPAPER.SET_WALLPAPER, (_, source: Source): Promise<string> => {
-    return wallpaperService.setWallpaper(source);
-  });
+  setIpcMainHandle(IPC_WALLPAPER.SET_WALLPAPER, (_, source: Source) => ipcR((ok, fail) => {
+    wallpaperService.setWallpaper(source).then(ok).catch(fail);
+  }));
 
-  setupIcpMainHandle(IPC_WALLPAPER.MORE_WALLPAPER, (_) => ipcR((ok, fail) => {
+  setIpcMainHandle(IPC_WALLPAPER.MORE_WALLPAPER, (_) => ipcR((ok, fail) => {
     reptileService.obtainImg().then(ok).catch(fail);
   }));
 

@@ -13,8 +13,6 @@
 ],
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Node",
     "noEmit": true,
     "noEmitOnError": true,
     "noUncheckedIndexedAccess": false,

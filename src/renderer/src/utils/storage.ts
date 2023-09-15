@@ -1,5 +1,5 @@
 
-import { loGet, loSet, loClear, loRemove } from '@suey/packages/storage';
+import { loGet, loSet, loClear, loRemove } from '@suey/packages';
 
 const TOKEN_KEY = '__token__';
 

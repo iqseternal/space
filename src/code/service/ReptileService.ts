@@ -3,9 +3,9 @@ import { app } from 'electron';
 import { spawn , type ChildProcess} from 'child_process';
 import { join } from 'path';
 
-import { PrinterService } from '../service/PrinterService';
+import { PrinterService } from './PrinterService';
 
-import { AppConfigService } from '../service/AppConfigService';
+import { AppConfigService } from './AppConfigService';
 
 const appConfigService = AppConfigService.getInstance();
 

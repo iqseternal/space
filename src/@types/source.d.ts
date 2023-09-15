@@ -16,4 +16,3 @@ declare type Source = {
 
   local?: string; // 当资源已经被下载了之后, local 为本地的 PATH 地址
 };
-

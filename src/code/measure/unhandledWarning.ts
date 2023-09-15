@@ -1,4 +1,3 @@
-
 import { PrinterService } from '../service/PrinterService';
 
 process.on('unhandledRejection', (reason, promise) => {
@@ -13,4 +12,3 @@ process.on('unhandledRejection', (reason, promise) => {
 process.on('uncaughtException', (reason, exception) => {
   PrinterService.printError(reason.stack);
 });
-
