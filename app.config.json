@@ -11,6 +11,8 @@
       "minWidth": 900,
       "height": 780,
       "minHeight": 500,
+      "frame": false,
+      "titleBarStyle": "hidden",
       "descriptor": "主窗口, maxWidth, maxHeight 默认为屏幕最大最大值"
     },
     "largePopupWindow": {
@@ -33,6 +35,14 @@
     }
   },
   "miscellaneous": {
+    "appJson": {
+      "overwrite": false,
+      "descriptor": "是否覆写JSON文件, 会在应用程序即将退出时执行, 建议不要覆写 AppJson"
+    },
+    "userJson": {
+      "overwrite": true,
+      "descriptor": "是否覆写JSON文件, 会在应用程序即将退出时执行, 建议覆写 UserJson"
+    },
     "script": {
       "reptile": {
         "log": false

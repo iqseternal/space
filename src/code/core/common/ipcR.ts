@@ -64,7 +64,7 @@ export const ok = <T>(data: T, descriptor?: string): IpcResponse<T> => new IpcRe
  */
 export const fail = <T>(data: T, descriptor?: string): IpcResponse<T> => new IpcResponseFail(data, descriptor);
 
-type IpcPromiseCall = <T>(data: T, descriptor?: string) => void;
+type IpcPromiseCall = <T>(data?: T, descriptor?: string) => void;
 
 /**
  * Ipc 的回复函数, 使用 r 函数将会返回一个 promise，允许你像 promise 一样调用，但 resolve 的数据会被规程化，变为 IpcResponse
@@ -74,9 +74,9 @@ type IpcPromiseCall = <T>(data: T, descriptor?: string) => void;
 export const ipcR = (callback: (ok: IpcPromiseCall, fail: IpcPromiseCall) => void): Promise<IpcResponse> => {
   return new Promise((resolve, reject)=> {
 
-    const oks: IpcPromiseCall = <T>(data: T, descriptor?: string): void => resolve(ok(data, descriptor));
+    const oks: IpcPromiseCall = <T>(data?: T, descriptor?: string): void => resolve(ok(data, descriptor));
 
-    const fails: IpcPromiseCall = <T>(data: T, descriptor?: string): void => reject(fail(data, descriptor));
+    const fails: IpcPromiseCall = <T>(data?: T, descriptor?: string): void => reject(fail(data, descriptor));
 
     callback(oks, fails);
   });

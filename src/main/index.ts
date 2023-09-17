@@ -22,12 +22,15 @@ import { IPC_WALLPAPER } from '#/constants';
 
 import { execShell } from '#code/core/shell/execShell';
 import { spawn } from 'child_process';
-import { printClear } from '@suey/printer';
+import { print, printClear, toColor } from '@suey/printer';
 import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
 import { webContents } from 'electron/main';
 
+import './setupHandle';
 
 setupApp(async () => {
   const { windowService } = await setupService();
 });
 
+
+new Error('');

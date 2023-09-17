@@ -10,8 +10,8 @@ const makeStartUrl = (url: string) => {
   return join(__dirname, `../renderer/${url}`);
 }
 
-export const PAGES_WINDOW_MAIN_NAME = 'index.html';
+const PAGES_WINDOW_MAIN_NAME = 'index.html';
 export const PAGES_WINDOW_MAIN = makeStartUrl(PAGES_WINDOW_MAIN_NAME);
 
-export const PAGES_WINDOW_SETTING_NAME = 'setting.html';
+const PAGES_WINDOW_SETTING_NAME = 'setting.html';
 export const PAGES_WINDOW_SETTING = makeStartUrl(PAGES_WINDOW_SETTING_NAME);

@@ -13,6 +13,8 @@ import { IPC_WALLPAPER, IPC_WINDOW } from '#/constants';
 import { AppConfigService } from '#/code/service/AppConfigService';
 import { PrinterService } from '#/code/service/PrinterService';
 import { PAGES_WINDOW_MAIN } from '#/config';
+import { UserConfigService } from '#/code/service/UserConfigService';
+import { BrowserWindow } from 'electron';
 
 export const setupService = async () => {
   // const { wallpaperService, reptileService } = await setupWallpaperAndPuppeteer();
@@ -30,6 +32,17 @@ export async function setupWindowService() {
   const appConfigService = AppConfigService.getInstance();
 
   const windowService = new WindowService(appConfigService.config.windows.mainWindow);
+
+  windowService.window.setMenu(null);
+  windowService.window.hookWindowMessage(278, e => {
+    windowService.window.setEnabled(false);
+    setTimeout(() => windowService.window.setEnabled(true), 100);
+    return true;
+  });
+  // windowService.window.setEnabled(false);
+  // windowService.window.setMaximizable(false);
+  // windowService.window.setResizable(false);
+
 
   windowService.open(PAGES_WINDOW_MAIN);
 

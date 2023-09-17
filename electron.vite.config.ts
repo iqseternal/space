@@ -51,7 +51,6 @@ export default defineConfig(() => ({
         hmr: true,
         host: '0.0.0.0'
       },
-
       build: {
         chunkSizeWarningLimit: 2000,
         assetsDir: 'static',

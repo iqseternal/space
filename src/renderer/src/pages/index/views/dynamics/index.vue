@@ -10,7 +10,7 @@ import { CardList } from '@renderer/components/Card';
 <style lang="scss" scoped>
 
 .cardList {
-  height: 900px;
+  height: 100%;
 }
 
 </style>

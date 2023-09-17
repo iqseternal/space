@@ -31,7 +31,8 @@
       "#/*": ["src/*"],
       "#constants/*": ["src/constants/*"],
       "@renderer/*": ["src/renderer/src/*"],
-      "@pages/*": ["src/renderer/src/pages/*"]
+      "@pages/*": ["src/renderer/src/pages/*"],
+      "@scss/*": ["src/renderer/src/styles/*"]
     }
   }
 }

@@ -11,9 +11,11 @@ import icon from '#/../resources/icon.png?asset';
 const DEFAILT_OPTIONS: Partial<BrowserWindowConstructorOptions> = {
   show: false,
   autoHideMenuBar: true,
-  disableAutoHideCursor: true,
-  frame: true,
+  disableAutoHideCursor: false,
+  frame: true, // 是否带有边框的窗口
   alwaysOnTop: false,
+  transparent: false, // 设置为 true, 窗口会变得透明
+  hasShadow: true
 };
 
 export class WindowService {
@@ -25,8 +27,8 @@ export class WindowService {
     this.window = setWindowCross(new BrowserWindow({
       width: 1650,
       height: 780,
-      ...options,
       ...DEFAILT_OPTIONS,
+      ...options,
       ...(process.platform === 'linux' ? { icon } : {}),
       webPreferences: {
         preload: join(__dirname, '../preload/index.js'),

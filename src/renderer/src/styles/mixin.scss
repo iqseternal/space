@@ -76,3 +76,12 @@
     width: 0;
   }
 }
+
+
+@mixin appRegion {
+  -webkit-app-region: drag;
+}
+
+@mixin appRegionNo {
+  -webkit-app-region: no-drag;
+}
