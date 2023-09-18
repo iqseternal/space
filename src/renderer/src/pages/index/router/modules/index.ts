@@ -8,29 +8,14 @@ export const spaceRoutes: RouteRecordRaw = {
   component: Layout,
   children: [
     {
-      name: 'home',
+      name: 'dynamics',
       path: 'dynamics',
       component: () => import('@pages/index/views/dynamics/index.vue')
     },
     {
-      name: 'profile',
-      path: 'profile',
-      component: () => import('@pages/index/views/profile/index.vue')
-    },
-    {
-      name: 'home',
-      path: 'dynamics',
-      component: () => import('@pages/index/views/dynamics/index.vue')
-    },
-    {
-      name: 'profile',
-      path: 'profile',
-      component: () => import('@pages/index/views/profile/index.vue')
-    },
-    {
-      name: 'home',
-      path: 'dynamics',
-      component: () => import('@pages/index/views/dynamics/index.vue')
+      name: 'dashboard',
+      path: 'dashboard',
+      component: () => import('@pages/index/views/dashboard/index.vue')
     },
     {
       name: 'profile',

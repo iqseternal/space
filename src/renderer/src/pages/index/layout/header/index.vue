@@ -1,25 +1,36 @@
 <template>
-  <div class="captionBar">
-    <div class="close" @click="minWindow"></div>
-    <div class="close" @click="maxWindow"></div>
-    <div class="close" @click="reductionWindow"></div>
-    <div class="close" @click="closeWindow"></div>
-  </div>
+  <CaptionBar class="captionBar">
+    <template #widget>
+      <WidgetSvg :src="windowMinSvg" @click="minWindow" class="widgetItem" />
+      <WidgetSvg :src="isMaximized ? windowRegionSvg : windowMaxSvg" @click="reductionWindow" class="widgetItem" />
+      <WidgetSvg :src="windowCloseSvg" @click="closeWindow" class="widgetItem"/>
+    </template>
+  </CaptionBar>
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
 
-import { IPC_WINDOW } from '#/constants';
+import CaptionBar from './CaptionBar.vue';
+import WidgetSvg from './WidgetSvg.vue';
+
+import windowMaxSvg from '@renderer/assets/svg/windowMax.svg?url';
+import windowMinSvg from '@renderer/assets/svg/windowMin.svg?url';
+import windowRegionSvg from '@renderer/assets/svg/windowRegion.svg?url';
+import windowCloseSvg from '@renderer/assets/svg/windowClose.svg?url';
+
+const isMaximized = ref(false);
+window.electron.ipcRenderer.on(IPC_RENDER_WINDOW.WINDOW_STATUS, (_, d) => (isMaximized.value = d.data));
 
 const router = useRouter();
 const route = useRoute();
 
-const dblclickWindow = () => window.electron.ipcRenderer.invoke(IPC_WINDOW.WINDOW_DOUBLE_CLICK);
-const maxWindow = () => window.electron.ipcRenderer.invoke(IPC_WINDOW.WINDOW_MAX_SIZE);
-const minWindow = () => window.electron.ipcRenderer.invoke(IPC_WINDOW.WINDOW_MIN_SIZE);
-const reductionWindow = () => window.electron.ipcRenderer.invoke(IPC_WINDOW.WINDOW_REDUCTION);
-const closeWindow = () => window.electron.ipcRenderer.invoke(IPC_WINDOW.WINDOW_CLOSE);
+const maxWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_MAX_SIZE);
+const minWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_MIN_SIZE);
+const reductionWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_REDUCTION);
+const closeWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_CLOSE);
 </script>
 
 <style lang="scss" scoped>
@@ -29,16 +40,16 @@ const closeWindow = () => window.electron.ipcRenderer.invoke(IPC_WINDOW.WINDOW_C
 .captionBar {
   width: 100%;
   height: $sMainCaptionBarHeight;
-  background-color: rgba(255, 0, 0, .2);
-  gap: 5px;
+  background-color: var(--s-main-frame-active-color);
+  // background-color: var(--s-main-frame-active-contain-color);
   @include appRegion;
-  @include displayFlex(right);
 
-  .close {
-    width: 30px;
-    height: 30px;
-    background-color: white;
-    border-radius: 10px;
+  .widgetItem {
+    --size: 28px;
+
+    width: var(--size);
+    height: var(--size);
+
     @include appRegionNo;
   }
 }

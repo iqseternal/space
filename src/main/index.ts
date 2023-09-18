@@ -26,11 +26,9 @@ import { print, printClear, toColor } from '@suey/printer';
 import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
 import { webContents } from 'electron/main';
 
-import './setupHandle';
+import './setupHandles';
+
 
 setupApp(async () => {
   const { windowService } = await setupService();
 });
-
-
-new Error('');

@@ -38,7 +38,6 @@ export class WindowService {
         webSecurity: true
       }
     }));
-
     setWindowMaxSize(this.window);
 
     // Menu.setApplicationMenu(null);

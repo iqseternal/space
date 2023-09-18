@@ -30,6 +30,7 @@
     "paths": {
       "#/*": ["src/*"],
       "#constants/*": ["src/constants/*"],
+      "@/*": ["src/renderer/*"],
       "@renderer/*": ["src/renderer/src/*"],
       "@pages/*": ["src/renderer/src/pages/*"],
       "@scss/*": ["src/renderer/src/styles/*"]

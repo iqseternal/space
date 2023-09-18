@@ -2,11 +2,14 @@
 // $sMainFrameContainerPadding: 4px; // 主窗口外部容器的内边距值
 $sMainFrameContainerRadius: 0px; // 主窗口外部容器的圆角值, 需要设置窗口选项 transparent 为 true
 
-$sMainCaptionBarHeight: 30px; // 主窗口自定义标题栏的高度
+$sMainCaptionBarHeight: 28px; // 主窗口自定义标题栏的高度
 
 :root {
 
-  --s-main-frame-background-color: white; // 主窗口的背景默认值
+  --s-main-frame-background-color: #e9effe; // 主窗口的背景默认值
 
+  --s-main-frame-sidebar-width: 50px; // 主窗口左侧 sidebar 的宽度
 
+  --s-main-frame-active-color: #e9effe; // 主窗口的活跃主题色
+  --s-main-frame-active-contain-color: white; // 主场口的活跃容器色
 }

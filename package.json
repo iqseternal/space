@@ -30,10 +30,10 @@
     "@suey/packages": "1.1.17",
     "@suey/printer": "^1.1.0",
     "@suey/rocketry": "^0.0.4",
+    "ant-design-vue": "4.x",
     "axios": "^1.5.0",
     "bufferutil": "^4.0.7",
     "electron-updater": "^5.3.0",
-    "element-plus": "^2.3.8",
     "http": "0.0.1-security",
     "nightmare": "^3.0.2",
     "pinia": "^2.1.4",
@@ -69,6 +69,7 @@
     "typescript": "^5.1.6",
     "vite": "^4.4.2",
     "vite-plugin-compression": "^0.5.1",
+    "vite-svg-loader": "^4.0.0",
     "vue-tsc": "^1.8.4"
   }
 }

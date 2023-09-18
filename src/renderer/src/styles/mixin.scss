@@ -17,6 +17,12 @@
   left: $left;
 }
 
+@mixin positionTr($type: absolute, $top: 0, $right: 0) {
+  position: absolute;
+  top: $top;
+  right: $right;
+}
+
 @mixin positionRb($type: absolute, $bottom: 0, $right: 0) {
   position: absolute;
   bottom: $bottom;

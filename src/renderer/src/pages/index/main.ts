@@ -5,8 +5,7 @@ import store from '@renderer/store';
 
 import App from './App.vue';
 
-import 'element-plus/dist/index.css';
-import 'element-plus/theme-chalk/dark/css-vars.css';
+import 'ant-design-vue/dist/reset.css';
 
 import '@suey/rocketry/index.css';
 

@@ -8,7 +8,7 @@ import { AppDataService } from '#/code/service/AppDataService';
 
 import { setIpcMainHandle } from '#/code/core/common/ipcR';
 
-import { IPC_WALLPAPER, IPC_WINDOW } from '#/constants';
+import { IPC_WALLPAPER, IPC_MAIN_WINDOW } from '#/constants';
 
 import { AppConfigService } from '#/code/service/AppConfigService';
 import { PrinterService } from '#/code/service/PrinterService';
@@ -31,7 +31,7 @@ export async function setupWindowService() {
   PrinterService.printInfo('窗口构建');
   const appConfigService = AppConfigService.getInstance();
 
-  const windowService = new WindowService(appConfigService.config.windows.mainWindow);
+  const windowService = new WindowService(appConfigService.config.windows.mainWindow as Electron.BrowserWindowConstructorOptions);
 
   windowService.window.setMenu(null);
   windowService.window.hookWindowMessage(278, e => {
@@ -39,6 +39,7 @@ export async function setupWindowService() {
     setTimeout(() => windowService.window.setEnabled(true), 100);
     return true;
   });
+
   // windowService.window.setEnabled(false);
   // windowService.window.setMaximizable(false);
   // windowService.window.setResizable(false);
@@ -46,7 +47,7 @@ export async function setupWindowService() {
 
   windowService.open(PAGES_WINDOW_MAIN);
 
-  setIpcMainHandle(IPC_WINDOW.OPEN_WINDOW, (_, path: string) => ipcR((ok, fail) => {
+  setIpcMainHandle(IPC_MAIN_WINDOW.OPEN_WINDOW, (_, path: string) => ipcR((ok, fail) => {
     const window = new WindowService({});
 
     window.open(PAGES_WINDOW_MAIN);

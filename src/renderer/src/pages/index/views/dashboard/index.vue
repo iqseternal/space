@@ -1,14 +1,15 @@
+
+
 <template>
-  <YearSelector />
+  <div>
+     dashboard
+  </div>
 </template>
 
 <script lang="ts" setup>
 
-import YearSelector from './YearSelector.vue';
-
 </script>
 
 <style lang="scss" scoped>
-
 
 </style>

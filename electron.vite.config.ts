@@ -5,6 +5,8 @@ import { join } from 'path';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 
+import svgLoader from 'vite-svg-loader';
+
 export default defineConfig(() => ({
   main: {
     plugins: [
@@ -46,7 +48,7 @@ export default defineConfig(() => ({
   renderer: defineViteConfig(() => {
     return {
       resolve: { alias: webAlias },
-      plugins: [vue(), vueJsx()],
+      plugins: [vue(), vueJsx(), svgLoader({ defaultImport: 'url' })],
       server: {
         hmr: true,
         host: '0.0.0.0'
