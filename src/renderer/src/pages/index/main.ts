@@ -6,6 +6,7 @@ import store from '@renderer/store';
 import App from './App.vue';
 
 import 'ant-design-vue/dist/reset.css';
+import 'dayjs/locale/zh-cn';
 
 import '@suey/rocketry/index.css';
 
@@ -21,3 +22,11 @@ import './style.scss';
     app.mount('#app');
   });
 })();
+
+
+import Mousetrap from 'mousetrap';
+
+Mousetrap.bind(['ctrl+r', 'command+r'], () => {
+  window.location.reload();
+});
+

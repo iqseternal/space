@@ -1,5 +1,9 @@
 <template>
   <CaptionBar class="captionBar">
+    <template #logo><Logo /></template>
+
+    <template #main><Search /></template>
+
     <template #widget>
       <WidgetSvg :src="windowMinSvg" @click="minWindow" class="widgetItem" />
       <WidgetSvg :src="isMaximized ? windowRegionSvg : windowMaxSvg" @click="reductionWindow" class="widgetItem" />
@@ -15,6 +19,8 @@ import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
 
 import CaptionBar from './CaptionBar.vue';
 import WidgetSvg from './WidgetSvg.vue';
+import Search from './Search.vue';
+import Logo from './Logo.vue';
 
 import windowMaxSvg from '@renderer/assets/svg/windowMax.svg?url';
 import windowMinSvg from '@renderer/assets/svg/windowMin.svg?url';
@@ -40,15 +46,13 @@ const closeWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WIN
 .captionBar {
   width: 100%;
   height: $sMainCaptionBarHeight;
-  background-color: var(--s-main-frame-active-color);
+  background-color: var(--s-main-frame-background-color);
   // background-color: var(--s-main-frame-active-contain-color);
   @include appRegion;
 
   .widgetItem {
-    --size: 28px;
-
-    width: var(--size);
-    height: var(--size);
+    width: $sMainCaptionBarHeight;
+    height: $sMainCaptionBarHeight;
 
     @include appRegionNo;
   }

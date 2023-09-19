@@ -36,11 +36,13 @@ div.compose {
 
   main.container {
     width: calc(100% - var(--s-main-frame-sidebar-width));
-    height: calc(100% - 8px);
+    height: calc(100% - $sMainCaptionBarHeight);
     // padding-left: 10px;
-    background-color: var(--s-main-frame-active-contain-color);
+    background-color: var(--s-main-frame-contain-color);
     border-top-left-radius: 8px;
-    @include positionTr(absolute, 0, 0);
+
+    @include positionTr(absolute, 0px, 0px);
+    @include beautifulBar(auto);
   }
 }
 

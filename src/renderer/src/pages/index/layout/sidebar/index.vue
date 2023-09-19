@@ -43,13 +43,13 @@ const controls = [
   gap: 10px;
   justify-content: flex-start;
   align-items: flex-end;
-  background-color: var(--s-main-frame-active-color);
+  background-color: var(--s-main-frame-background-color);
   user-select: none;
 
   .active {
-    color: var(--s-main-frame-active-color);
-    background-color: var(--s-main-frame-active-contain-color);
-    filter: drop-shadow(#0000FF 0px 0px) contrast(2);
+    // color: var(--s-main-frame-active-color);
+    background-color: var(--s-main-frame-contain-color);
+    // filter: drop-shadow(#0000FF 0px 0px) contrast(2);
 
     --r-size: 20px;
 
@@ -65,13 +65,13 @@ const controls = [
 
     &::before {
       top: calc(-1 * var(--r-size));
-      background-image: radial-gradient(circle var(--r-size) at 0 0, transparent var(--r-size), var(--s-main-frame-active-contain-color) 50%);
+      background-image: radial-gradient(circle var(--r-size) at 0 0, transparent var(--r-size), var(--s-main-frame-contain-color) 50%);
       @include activeEle();
     }
 
     &::after {
       bottom: calc(-1 * var(--r-size));
-      background-image: radial-gradient(circle var(--r-size) at 0 100%, transparent var(--r-size), var(--s-main-frame-active-contain-color) 50%);
+      background-image: radial-gradient(circle var(--r-size) at 0 100%, transparent var(--r-size), var(--s-main-frame-contain-color) 50%);
       @include activeEle();
     }
   }

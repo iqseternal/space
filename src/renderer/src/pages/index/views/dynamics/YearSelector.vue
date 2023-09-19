@@ -80,16 +80,16 @@ function keyUp() {
 @import "../../../../styles/mixin.scss";
 
 .selector {
-  margin-left: 100px;
-  margin-top: 100px;
+  --back-bg: #b4cbf5bd;
 
   width: 200px;
   aspect-ratio: 1 / 2;
   flex-direction: column;
   border-radius: 0 200px 200px 0;
-  background-color: #7399fb;
+  background-color: var(--back-bg);
   color: var(--s-main-frame-active-contain-color);
   position: relative;
+  user-select: none;
   @include displayFlex(center, flex-start);
   @include overflow(hidden);
 
@@ -112,6 +112,7 @@ function keyUp() {
       height: 10px;
       background-color: white;
       clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+      cursor: pointer;
       transform: translateX(-50%);
       @include positionLt(absolute, -20px, 50%);
     }
@@ -121,7 +122,7 @@ function keyUp() {
       height: 10px;
       background-color: white;
       clip-path: polygon(0% 0, 50% 100%, 100% 0%);
-
+      cursor: pointer;
       transform: translateX(50%);
       @include positionRb(absolute, -20px, 50%);
     }
@@ -133,30 +134,25 @@ function keyUp() {
     @include positionLt(absolute, 0, -100%);
 
     .innerCircle {
-
+      cursor: pointer;
       width: 80%;
       height: 80%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
       transform: translateX(-50%) translateY(-50%) rotate(0deg);
       transform-origin: center center;
       transition: all .7s ease-out;
 
       border-radius: 50%;
       border: 1px solid white;
-
+      @include positionLt(absolute, 50%, 50%);
 
       .discItem {
-        position: absolute;
-        top: 50%;
-        left: 50%;
         width: 3rem;
         text-align: center;
         transform: translateX(-50%) translateY(-50%) rotateZ(calc(var(--d) * var(--i))) translateX(335%);
-        background-color: transparent;
         color: white;
-        background-color: #7399fb;
+        background-color: var(--back-bg);
+
+        @include positionLt(absolute, 50%, 50%);
       }
     }
   }
