@@ -6,6 +6,8 @@
 @import "../../styles/var.scss";
 @import "../../styles/mixin.scss";
 
+
+
 #frame_app {
   width: 100vw;
   height: 100vh;
