@@ -47,6 +47,9 @@ dependencies:
   http:
     specifier: 0.0.1-security
     version: 0.0.1-security
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
   mousetrap:
     specifier: ^1.6.5
     version: 1.6.5
@@ -88,6 +91,9 @@ devDependencies:
   '@electron/remote':
     specifier: ^2.0.10
     version: 2.0.10(electron@24.6.2)
+  '@types/lodash':
+    specifier: ^4.14.199
+    version: 4.14.199
   '@types/mousetrap':
     specifier: ^1.6.11
     version: 1.6.11
@@ -1666,6 +1672,10 @@ packages:
   /@types/linkify-it@3.0.3:
     resolution: {integrity: sha512-pTjcqY9E4nOI55Wgpz7eiI8+LzdYnw3qxXCfHyBDdPbYvbyLgWLJGh8EdPvqawwMK1Uo1794AUkkR38Fr0g+2g==}
     dev: false
+
+  /@types/lodash@4.14.199:
+    resolution: {integrity: sha512-Vrjz5N5Ia4SEzWWgIVwnHNEnb1UE1XMkvY5DGXrAeOGE9imk0hgTHh5GyDjLDJi9OTCn9oo9dXH1uToK1VRfrg==}
+    dev: true
 
   /@types/markdown-it@13.0.1:
     resolution: {integrity: sha512-SUEb8Frsxs3D5Gg9xek6i6EG6XQ5s+O+ZdQzIPESZVZw3Pv3CPQfjCJBI+RgqZd1IBeu18S0Rn600qpPnEK37w==}

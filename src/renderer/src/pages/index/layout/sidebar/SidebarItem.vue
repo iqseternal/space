@@ -1,16 +1,30 @@
 <script lang="tsx">
 import { defineComponent } from 'vue';
+import { Tooltip } from 'ant-design-vue';
+import type { TooltipProps } from 'ant-design-vue';
+import { CONFIG } from '#/constants';
 
 export default defineComponent({
   props: {
-    src: { type: String, required: false }
+    src: { type: String, required: false, defeault: '' },
+    text: { type: String, required: false },
+    placement: { type: String as PropType<TooltipProps['placement']>, default: 'right' }
   },
   setup(props, { slots }) {
     return () => (
       <div class="sidebarItem">
-        <div class="itemContainer">
-          { slots.default ? slots.default() : (<img src={props.src} alt="" />) }
-        </div>
+        { slots.default
+          ? (
+              props.text
+                ? (<Tooltip mouseEnterDelay={CONFIG.VIEW.TOOLTIP_ENTER_TIME} title={props.text} placement={props.placement}>{slots.default()}</Tooltip>)
+                : (slots.default())
+            )
+          : (
+              props.text
+                ? (<Tooltip mouseEnterDelay={CONFIG.VIEW.TOOLTIP_ENTER_TIME} title={props.text} placement={props.placement}><img src={props.src} alt="" /></Tooltip>)
+                : (<img src={props.src} alt="" />)
+            )
+        }
       </div>
     )
   }
@@ -21,31 +35,18 @@ export default defineComponent({
 <style lang="scss" scoped>
 
 .sidebarItem {
-  --size: calc(var(--s-main-frame-sidebar-width) - 20px);
+  --size: calc(var(--s-main-frame-sidebar-width) - 22px);
   position: relative;
 
   width: var(--size);
   height: var(--size);
 
-  // background-color: chartreuse;
-  // border-top-left-radius: 10px;
-  // border-bottom-left-radius: 10px;
+  display: flex;
 
-  // border-radius: 10px 0 0 10px;
-  // background-color: red;
-
-  .itemContainer {
-    width: calc(var(--size) - 12px);
-    height: calc(var(--size) - 12px);
-    position: absolute;
-    top: 6px;
-    left: 6px;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 </style>

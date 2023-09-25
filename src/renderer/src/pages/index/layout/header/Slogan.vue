@@ -1,6 +1,7 @@
 <template>
   <Subfield>
-    <template #left>
+    <template #left></template>
+    <template #center>
       <span class="slogan animate__animated animate__slideInLeft">{{ 'SPACE' }}</span>
     </template>
     <template #right>
