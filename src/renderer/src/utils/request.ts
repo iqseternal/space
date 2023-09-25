@@ -16,7 +16,7 @@ export const { apiGet } = createApiRequest<{
   status: number;
   flag: string;
   data: unknown;
-}>('/api', {}, {
+}>('https://www.oupro.cn:3000/api/v1.0.0/', {}, {
   onFulfilled: config => {
     if (config.hConfig?.needAuth) {
       if (!config.headers) config.headers = {};

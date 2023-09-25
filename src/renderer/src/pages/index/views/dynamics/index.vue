@@ -1,20 +1,32 @@
 <template>
-  <button @click="disturb">打乱</button>
-  <div v-AutoAnimate class="dynamics">
-    <template v-for="item in list" :key="item">
-      <span>{{ item }}</span>
-    </template>
-  </div>
+  <Card>
+    <Subfield>
+      <template #left>
+        <Button @click="disturb">打乱</Button>
+      </template>
+      <template #center></template>
+      <template #right>
+        <Space v-AutoAnimate class="dynamics">
+          <template v-for="item in list" :key="item">
+            <span>{{ item }}</span>
+          </template>
+        </Space>
+      </template>
+    </Subfield>
+  </Card>
+  <Card>
+    `1`
+  </Card>
 </template>
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
 import { Dayjs } from 'dayjs';
-import { Calendar, Card, Badge, Tag, Space, Avatar } from 'ant-design-vue';
-
+import { Calendar, Card, Badge, Tag, Space, Avatar, Button } from 'ant-design-vue';
+import { shuffle } from 'lodash';
 import { vAutoAnimate, useAutoAnimate } from '@formkit/auto-animate/vue';
 
-import { shuffle } from 'lodash';
+import Subfield from '@renderer/components/Subfield/Subfield.vue';
 
 const [parent] = useAutoAnimate({ duration: 500 });
 
@@ -39,6 +51,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 @import "@scss/mixin.scss";
 @import "@scss/var.scss";
+
 .dynamics {
 
 

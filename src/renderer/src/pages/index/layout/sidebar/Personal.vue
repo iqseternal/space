@@ -25,7 +25,7 @@ const autoSize = ref(0);
 
 onMounted(() => {
   const r = getComputedStyle(document.querySelector(':root') as Element).getPropertyValue('--s-main-frame-sidebar-width');
-  autoSize.value = parseInt(r) - 22;
+  autoSize.value = parseInt(r) - 16;
 });
 
 </script>

@@ -1,12 +1,11 @@
 <template>
   <Subfield>
     <template #left><div /></template>
-    <template #center><div /></template>
     <template #right>
       <div />
       <Space :size="8" style="margin-right: 8px;">
         <WidgetSvg :src="windowMinSvg" @click="minWindow" class="widgetItem" />
-        <WidgetSvg :src="windowRegionSvg" @click="reductionWindow" class="widgetItem" />
+        <WidgetSvg v-if="!props.isPane" :src="windowRegionSvg" @click="reductionWindow" class="widgetItem" />
         <WidgetSvg :src="windowCloseSvg" @click="closeWindow" class="widgetItem"/>
       </Space>
     </template>
@@ -25,6 +24,10 @@ import windowMaxSvg from '@renderer/assets/svg/windowMax.svg?url';
 import windowMinSvg from '@renderer/assets/svg/windowMin.svg?url';
 import windowRegionSvg from '@renderer/assets/svg/windowRegion.svg?url';
 import windowCloseSvg from '@renderer/assets/svg/windowClose.svg?url';
+
+const props = defineProps({
+  isPane: { type: Boolean, default: false }
+});
 
 const isMaximized = ref(false);
 window.electron.ipcRenderer.on(IPC_RENDER_WINDOW.WINDOW_STATUS, (_, d) => (isMaximized.value = d.data));

@@ -9,17 +9,7 @@ import svgLoader from 'vite-svg-loader';
 
 export default defineConfig(() => ({
   main: {
-    plugins: [
-      /**
-       * 已测试, 依赖处理项 puppeteer 有问题, 如果自动排除依赖那么启动时出现:
-       *    A JavaScript error occured in the main process.
-       *    TypeError: http_proxy_agent_1.HttpProxyAgent.protocols is not iterable。
-       * 目前看来, 与字节码插件无关, 只和插件 externalizeDepsPlugin 的配置以及是否正确打包 puppeteer 有关
-       *
-       * 如果不将 electron 作为外部依赖处理，那么字节码插件在解析electron源码时会出现异常
-       * */
-      externalizeDepsPlugin(), bytecodePlugin()
-    ],
+    plugins: [externalizeDepsPlugin(), bytecodePlugin()],
     resolve: {
       alias: nodeAlias
     },
@@ -28,8 +18,8 @@ export default defineConfig(() => ({
       minify: 'terser',
       terserOptions: {
         compress: {
-          // drop_console: true,
-          // drop_debugger: true
+          drop_console: true,
+          drop_debugger: true
         }
       }
     }
@@ -51,7 +41,10 @@ export default defineConfig(() => ({
       plugins: [vue(), vueJsx(), svgLoader({ defaultImport: 'url' })],
       server: {
         hmr: true,
-        host: '0.0.0.0'
+        host: '0.0.0.0',
+        proxy: {
+
+        }
       },
       build: {
         chunkSizeWarningLimit: 2000,
@@ -70,7 +63,7 @@ export default defineConfig(() => ({
           }
         },
         outDir: join(__dirname, './out/renderer')
-      }
+      },
     }
   })
 }));

@@ -39,11 +39,13 @@ div.compose {
   }
 
   main.container {
+    padding: 0px 5px;
     width: calc(100% - calc(var(--s-main-frame-sidebar-width)));
     height: calc(100% - $sMainCaptionBarHeight);
     background-color: var(--s-main-frame-contain-color);
     @include positionTr(absolute, calc($sMainCaptionBarHeight + var(--p)), 0px);
     @include beautifulBar(auto);
+    @include overflow(hidden);
   }
 }
 

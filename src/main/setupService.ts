@@ -16,6 +16,8 @@ import { PAGES_WINDOW_MAIN } from '#/config';
 import { UserConfigService } from '#/code/service/UserConfigService';
 import { BrowserWindow } from 'electron';
 
+import './setupHandles';
+
 export const setupService = async () => {
   // const { wallpaperService, reptileService } = await setupWallpaperAndPuppeteer();
   const { wallpaperSaveService, downloadService } = await setupAppDataDownload();

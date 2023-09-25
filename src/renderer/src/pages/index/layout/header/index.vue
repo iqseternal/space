@@ -1,10 +1,10 @@
 <template>
   <Subfield class="captionBar">
-    <template #left><Slogan /></template>
+    <template #left><Slogan v-if="props.isPane === false" /></template>
 
-    <template #center><Search /></template>
+    <template #center><Search v-if="props.isPane === false" /></template>
 
-    <template #right><div class="placeholder" /><Control /></template>
+    <template #right><Control :isPane="props.isPane" /></template>
   </Subfield>
 </template>
 
@@ -13,6 +13,11 @@ import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import Slogan from './Slogan.vue';
 import Search from './Search.vue';
 import Control from './Control.vue';
+
+const props = defineProps({
+  isPane: { type: Boolean, default: false }
+});
+
 </script>
 
 <style lang="scss" scoped>
@@ -24,7 +29,5 @@ import Control from './Control.vue';
   user-select: none;
   @include appRegion;
 }
-
-.placeholder { width: var(--s-main-frame-sidebar-width); }
 </style>
 

@@ -1,0 +1,16 @@
+@import './var.scss';
+
+// card 组件
+div.ant-card.css-dev-only-do-not-override-kqecok.ant-card-bordered {
+  border: unset;
+  background-color: var(--s-main-frame-contain-active-color);
+
+  div.ant-card-body {
+    padding: 12px;
+    border-radius: unset;
+  }
+}
+
+div.ant-card.css-dev-only-do-not-override-kqecok.ant-card-bordered + div.ant-card.css-dev-only-do-not-override-kqecok.ant-card-bordered {
+  margin-top: 10px;
+}

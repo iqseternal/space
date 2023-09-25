@@ -4,11 +4,13 @@ import { Tooltip } from 'ant-design-vue';
 import type { TooltipProps } from 'ant-design-vue';
 import { CONFIG } from '#/constants';
 
+type Placement = TooltipProps['placement'];
+
 export default defineComponent({
   props: {
     src: { type: String, required: false, defeault: '' },
     text: { type: String, required: false },
-    placement: { type: String as PropType<TooltipProps['placement']>, default: 'right' }
+    placement: { type: String as PropType<Placement>, default: 'right' }
   },
   setup(props, { slots }) {
     return () => (
@@ -35,7 +37,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 
 .sidebarItem {
-  --size: calc(var(--s-main-frame-sidebar-width) - 22px);
+  --size: calc(var(--s-main-frame-sidebar-width) - 16px);
   position: relative;
 
   width: var(--size);

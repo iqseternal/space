@@ -15,7 +15,7 @@
   // width: 100%;
   // max-width: 400px;
   width: calc((100vw - var(--s-main-frame-sidebar-width)) / 3);
-  min-width: 300px;
+  min-width: 200px;
   height: $sMainCaptionBarHeight - 8px;
   padding: 4px;
   border-radius: 6px;
