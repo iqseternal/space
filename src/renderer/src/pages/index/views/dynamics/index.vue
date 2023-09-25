@@ -11,6 +11,18 @@
       <TaskLine />
     </div>
   </div>
+  <div class="dynamics">
+    <YearSelector class="yearSelector" />
+    <Card class="card">
+      <Calendar v-model:value="value" :fullscreen="false">
+
+      </Calendar>
+    </Card>
+
+    <div class="task">
+      <TaskLine />
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>

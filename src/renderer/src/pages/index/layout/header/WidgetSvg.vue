@@ -13,16 +13,15 @@ const props = defineProps({
 <style lang="scss" scoped>
 
 .widget {
-
   &:hover {
     background-color: rgba(0, 0, 0, .1);
   }
 
   img {
-    margin-top: 25%;
-    margin-left: 25%;
-    width: 50%;
-    height: 50%;
+    margin-top: 20%;
+    margin-left: 20%;
+    width: 60%;
+    height: 60%;
     object-fit: contain;
   }
 }

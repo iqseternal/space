@@ -1,11 +1,9 @@
 
 <template>
-  <Header />
   <div class="compose">
     <Sidebar class="sidebar" />
-    <main class="container">
-      <RouterView />
-    </main>
+    <Header class="header" />
+    <main class="container"><RouterView /></main>
   </div>
 </template>
 
@@ -16,32 +14,35 @@ import Sidebar from './sidebar/index.vue';
 </script>
 
 <style lang="scss" scoped>
-@import "../../../styles/mixin.scss";
-@import "../../../styles/var.scss";
+@import "@scss/mixin.scss";
+@import "@scss/var.scss";
 
 div.compose {
   position: relative;
   width: 100%;
   height: 100%;
 
+  --p: 5px; // 微调系数, 用于加宽顶部的 padding 值
+
   .sidebar {
-    padding-top: 40px;
-    padding-bottom: 10px;
-
     width: var(--s-main-frame-sidebar-width);
-    height: 100%;
+    height: calc(100%);
+    @include positionLt(absolute, 0px, 0px);
+  }
 
-    @include positionLt(absolute, 0, 0);
+  .header {
+    width: calc(100% - var(--s-main-frame-sidebar-width));
+    padding: var(--p) 0px;
+    height: calc($sMainCaptionBarHeight + var(--p));
+    min-height: $sMainCaptionBarHeight;
+    @include positionLt(absolute, 0px, var(--s-main-frame-sidebar-width));
   }
 
   main.container {
-    width: calc(100% - var(--s-main-frame-sidebar-width));
+    width: calc(100% - calc(var(--s-main-frame-sidebar-width)));
     height: calc(100% - $sMainCaptionBarHeight);
-    // padding-left: 10px;
     background-color: var(--s-main-frame-contain-color);
-    border-top-left-radius: 8px;
-
-    @include positionTr(absolute, 0px, 0px);
+    @include positionTr(absolute, calc($sMainCaptionBarHeight + var(--p)), 0px);
     @include beautifulBar(auto);
   }
 }

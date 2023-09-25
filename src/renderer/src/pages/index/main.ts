@@ -5,6 +5,7 @@ import store from '@renderer/store';
 
 import App from './App.vue';
 
+import 'animate.css';
 import 'ant-design-vue/dist/reset.css';
 import 'dayjs/locale/zh-cn';
 
@@ -23,10 +24,10 @@ import './style.scss';
   });
 })();
 
-
 import Mousetrap from 'mousetrap';
 
-Mousetrap.bind(['ctrl+r', 'command+r'], () => {
+Mousetrap.bind(['ctrl+r', 'command+r', 'f5'], () => {
   window.location.reload();
 });
+
 

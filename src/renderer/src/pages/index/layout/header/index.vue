@@ -1,62 +1,30 @@
 <template>
-  <CaptionBar class="captionBar">
-    <template #logo><Logo /></template>
+  <Subfield class="captionBar">
+    <template #left><Slogan /></template>
 
-    <template #main><Search /></template>
+    <template #center><Search /></template>
 
-    <template #widget>
-      <WidgetSvg :src="windowMinSvg" @click="minWindow" class="widgetItem" />
-      <WidgetSvg :src="isMaximized ? windowRegionSvg : windowMaxSvg" @click="reductionWindow" class="widgetItem" />
-      <WidgetSvg :src="windowCloseSvg" @click="closeWindow" class="widgetItem"/>
-    </template>
-  </CaptionBar>
+    <template #right><div class="placeholder" /><Control /></template>
+  </Subfield>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
-
-import CaptionBar from './CaptionBar.vue';
-import WidgetSvg from './WidgetSvg.vue';
+import Subfield from '@renderer/components/Subfield/Subfield.vue';
+import Slogan from './Slogan.vue';
 import Search from './Search.vue';
-import Logo from './Logo.vue';
-
-import windowMaxSvg from '@renderer/assets/svg/windowMax.svg?url';
-import windowMinSvg from '@renderer/assets/svg/windowMin.svg?url';
-import windowRegionSvg from '@renderer/assets/svg/windowRegion.svg?url';
-import windowCloseSvg from '@renderer/assets/svg/windowClose.svg?url';
-
-const isMaximized = ref(false);
-window.electron.ipcRenderer.on(IPC_RENDER_WINDOW.WINDOW_STATUS, (_, d) => (isMaximized.value = d.data));
-
-const router = useRouter();
-const route = useRoute();
-
-const maxWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_MAX_SIZE);
-const minWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_MIN_SIZE);
-const reductionWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_REDUCTION);
-const closeWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_CLOSE);
+import Control from './Control.vue';
 </script>
 
 <style lang="scss" scoped>
-@import "../../../../styles/mixin.scss";
-@import "../../../../styles/var.scss";
+@import "@scss/mixin.scss";
+@import "@scss/var.scss";
 
 .captionBar {
-  width: 100%;
-  height: $sMainCaptionBarHeight;
-  background-color: var(--s-main-frame-background-color);
-  // background-color: var(--s-main-frame-active-contain-color);
+  will-change: width;
+  user-select: none;
   @include appRegion;
-
-  .widgetItem {
-    width: $sMainCaptionBarHeight;
-    height: $sMainCaptionBarHeight;
-
-    @include appRegionNo;
-  }
 }
 
+.placeholder { width: var(--s-main-frame-sidebar-width); }
 </style>
 

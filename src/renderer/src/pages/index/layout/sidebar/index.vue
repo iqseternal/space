@@ -1,14 +1,58 @@
 <template>
-  <div class="sidebars">
+  <SubfieldCloumn class="sidebars">
+    <template #top>
+      <SidebarItem :src="''">
+        <Avatar :size="18" style="background-color: #87d068">
+          <template #icon>
+            <UserOutlined />
+          </template>
+        </Avatar>
+      </SidebarItem>
+    </template>
+    <template #middle>
+      <SidebarItem :src="''">
+        <Avatar :size="18" style="background-color: #87d068">
+          <template #icon>
+            <UserOutlined />
+          </template>
+        </Avatar>
+      </SidebarItem>
+    </template>
+    <template #bottom>
+      <SidebarItem :src="''">
+        <Avatar :size="18" style="background-color: #87d068">
+          <template #icon>
+            <UserOutlined />
+          </template>
+        </Avatar>
+      </SidebarItem>
+    </template>
+  </SubfieldCloumn>
+
+  <!-- <div class="sidebars">
+
+
     <template v-for="item in controls" :key="item.svg">
       <SidebarItem :src="item.svg" :class="route.path === item.path ? 'active' : ''" @click="() => router.push(item.path)" />
     </template>
-  </div>
+
+    <SidebarItem :src="''">
+      <Avatar :size="18" style="background-color: #87d068">
+        <template #icon>
+          <UserOutlined />
+        </template>
+      </Avatar>
+    </SidebarItem>
+  </div> -->
 </template>
 
 <script lang="ts" setup>
 import { useRouter, useRoute } from 'vue-router';
+import { Avatar, Space } from 'ant-design-vue';
+import { UserOutlined } from '@ant-design/icons-vue';
 
+import Subfield from '@renderer/components/Subfield/Subfield.vue';
+import SubfieldCloumn from '@renderer/components/Subfield/SubfieldColumn.vue';
 import SidebarItem from './SidebarItem.vue';
 
 import terminalSvg from '@renderer/assets/svg/terminal.svg?url';
@@ -31,25 +75,23 @@ const controls = [
     path: '/space/profile'
   }
 ];
-
-
 </script>
 
 <style lang="scss" scoped>
+
+@import "@scss/mixin.scss";
+@import "@scss/var.scss";
 
 .sidebars {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  justify-content: flex-start;
-  align-items: flex-end;
-  background-color: var(--s-main-frame-background-color);
+  align-items: center;
+  background-color: var(--s-main-frame-contain-active-color);
   user-select: none;
 
   .active {
-    // color: var(--s-main-frame-active-color);
     background-color: var(--s-main-frame-contain-color);
-    // filter: drop-shadow(#0000FF 0px 0px) contrast(2);
 
     --r-size: 20px;
 

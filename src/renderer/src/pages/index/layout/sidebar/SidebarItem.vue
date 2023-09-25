@@ -1,32 +1,37 @@
-<template>
-  <div class="sidebarItem">
-    <div class="itemContainer">
-      <img :src="props.src" alt="">
-    </div>
-  </div>
-</template>
+<script lang="tsx">
+import { defineComponent } from 'vue';
 
-<script lang="ts" setup>
-
-const props = defineProps({
-  src: { type: String, required: true }
-});
+export default defineComponent({
+  props: {
+    src: { type: String, required: false }
+  },
+  setup(props, { slots }) {
+    return () => (
+      <div class="sidebarItem">
+        <div class="itemContainer">
+          { slots.default ? slots.default() : (<img src={props.src} alt="" />) }
+        </div>
+      </div>
+    )
+  }
+})
 
 </script>
 
 <style lang="scss" scoped>
 
 .sidebarItem {
-  --size: calc(var(--s-main-frame-sidebar-width) - 10px);
+  --size: calc(var(--s-main-frame-sidebar-width) - 20px);
   position: relative;
 
-  width: calc((100% - var(--size)) / 2 + var(--size));
+  width: var(--size);
   height: var(--size);
 
+  // background-color: chartreuse;
   // border-top-left-radius: 10px;
   // border-bottom-left-radius: 10px;
 
-  border-radius: 10px 0 0 10px;
+  // border-radius: 10px 0 0 10px;
   // background-color: red;
 
   .itemContainer {

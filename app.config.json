@@ -8,9 +8,9 @@
       "type": "main",
       "icon": "/resources/icon.png",
       "width": 1650,
-      "minWidth": 900,
+      "minWidth": 650,
       "height": 780,
-      "minHeight": 500,
+      "minHeight": 400,
       "frame": false,
       "titleBarStyle": "hidden",
       "descriptor": "主窗口, maxWidth, maxHeight 默认为屏幕最大最大值"
