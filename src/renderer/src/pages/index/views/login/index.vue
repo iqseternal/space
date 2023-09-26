@@ -1,17 +1,21 @@
 <template>
   <div class="loginPage">
     <Header isPane style="background-color: rgba(255, 255, 255, .4);" />
+    <Button @click="() => router.push('/space/dynamics')">进入页面</Button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { onBeforeMount, onBeforeUnmount, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { Space, Input, Button, Form, FormItem, Modal } from 'ant-design-vue';
 
 import { IPC_MAIN_WINDOW } from '#/constants';
 import { CONFIG } from '#/constants';
 
 import Header from '@pages/index/layout/header/index.vue';
+
+const router = useRouter();
 
 onBeforeMount(async() => {
   const setSize = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SET_SIZE, 700, 500);

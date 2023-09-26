@@ -41,6 +41,7 @@
     "lodash": "^4.17.21",
     "mousetrap": "^1.6.5",
     "nightmare": "^3.0.2",
+    "pako": "^2.1.0",
     "pinia": "^2.1.4",
     "selenium-webdriver": "^4.11.1",
     "utf-8-validate": "^6.0.3",
