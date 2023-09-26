@@ -1,6 +1,6 @@
 <template>
   <div class="loginPage">
-    <Header isPane />
+    <Header isPane style="background-color: rgba(255, 255, 255, .4);" />
   </div>
 </template>
 
