@@ -10,12 +10,12 @@ const isOkStatus = (status: number): boolean => {
   return false;
 }
 
-export const { apiGet } = createApiRequest<{
+export const { apiGet, apiPost, request } = createApiRequest<{
   needAuth?: boolean;
 }, {
   status: number;
   flag: string;
-  data: unknown;
+  data: any;
 }>('https://www.oupro.cn:3000/api/v1.0.0/', {}, {
   onFulfilled: config => {
     if (config.hConfig?.needAuth) {

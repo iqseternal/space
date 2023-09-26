@@ -1,4 +1,4 @@
-import { request, apiGet, apiPost } from "@renderer/utils/request";
+import { request, apiGet, apiPost } from '@renderer/utils/request';
 
 export type LoginApiData = { username: string, password: string, code: string }
 export function loginApi(data) {

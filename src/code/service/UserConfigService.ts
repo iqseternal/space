@@ -1,7 +1,7 @@
 import { app } from 'electron';
 import { FileService } from './FileService';
 import { SingleInstanceService } from './SingleInstanceService';
-import userConfigJson from 'user.config.json';
+import userConfigJson from '#/../user.config.json';
 import { join } from 'path';
 import { PrinterService } from './PrinterService';
 import { AppConfigService } from './AppConfigService';

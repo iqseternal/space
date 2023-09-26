@@ -2,7 +2,7 @@ import { app } from 'electron';
 import { FileService } from './FileService';
 import { PrinterService } from './PrinterService';
 import { SingleInstanceService } from './SingleInstanceService';
-import appConfigJson from 'app.config.json'; // 引入只为获取类型, 请勿使用, 请使用require动态引入
+import appConfigJson from '#/../app.config.json'; // 引入只为获取类型, 请勿使用, 请使用require动态引入
 import { join } from 'path';
 
 /**

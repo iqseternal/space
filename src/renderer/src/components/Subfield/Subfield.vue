@@ -1,22 +1,11 @@
 
 <template>
   <div class="subfield">
-    <div v-if="slots.left" class="left"><slot name="left"></slot></div>
-    <div v-if="slots.center" class="center"><slot name="center"></slot></div>
-    <div v-if="slots.right" class="right"><slot name="right"></slot></div>
+    <div v-if="$slots.left" class="left"><slot name="left"></slot></div>
+    <div v-if="$slots.center" class="center"><slot name="center"></slot></div>
+    <div v-if="$slots.right" class="right"><slot name="right"></slot></div>
   </div>
 </template>
-
-<script lang="tsx" setup>
-import type { Component } from 'vue';
-
-const slots = defineSlots<{
-  left?: () => Component;
-  center?: () => Component;
-  right?: () => Component;
-}>();
-
-</script>
 
 <style lang="scss" scoped>
 .subfield {
