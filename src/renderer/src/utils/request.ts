@@ -10,7 +10,9 @@ const isOkStatus = (status: number): boolean => {
   return false;
 }
 
-export const { apiGet, apiPost, request } = createApiRequest<{
+export { REQ_METHODS } from '@suey/packages';
+
+export const { apiGet, apiPost, request, createApi } = createApiRequest<{
   needAuth?: boolean;
 }, {
   status: number;

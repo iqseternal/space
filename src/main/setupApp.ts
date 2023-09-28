@@ -1,6 +1,7 @@
 import { app, BrowserView, BrowserWindow } from 'electron';
 import { electronApp, optimizer } from '@electron-toolkit/utils';
 import { PrinterService } from '#/code/service/PrinterService';
+import { print } from '@suey/printer';
 
 import './setupHandles';
 
@@ -13,6 +14,7 @@ export const DEFAULT_APP_OPTIONS: Required<AppOptions> = {
 };
 
 export const setupApp = async (startApp: () => void, ops?: Partial<AppOptions>): Promise<void> => {
+  print();
   PrinterService.printInfo('应用程序构建, setupApp...');
   const options = { ...DEFAULT_APP_OPTIONS, ...ops } as Required<AppOptions>;
 
