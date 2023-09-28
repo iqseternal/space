@@ -61,3 +61,11 @@ export const setWindowCaption = (window: BrowserWindow, icon: string, title: str
   window.setIcon(icon);
   window.setTitle(title);
 }
+
+export const setWindowCloseCaptionContextmenu = (window: BrowserWindow) => {
+  window.hookWindowMessage(278, e => {
+    window.setEnabled(false);
+    setTimeout(() => window.setEnabled(true), 100);
+    return true;
+  });
+}

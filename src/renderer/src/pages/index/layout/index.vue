@@ -8,9 +8,17 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted } from 'vue';
+
 import Header from './header/index.vue';
 import Sidebar from './sidebar/index.vue';
 
+import { IPC_MAIN_WINDOW } from '#/constants';
+
+onMounted(async () => {
+  const target = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SHOW, true);
+  if (!target.data) window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RELAUNCH);
+})
 </script>
 
 <style lang="scss" scoped>

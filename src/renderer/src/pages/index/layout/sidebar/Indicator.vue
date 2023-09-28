@@ -1,6 +1,6 @@
 <template>
-  <SidebarItem class="indicator" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.HzuXCBqER6Bl3dzBzRN03QHaHa?w=115&h=128&c=7&r=0&o=5&pid=1.7">
-
+  <SidebarItem class="indicator">
+    <Logo />
   </SidebarItem>
 </template>
 
@@ -9,6 +9,7 @@ import { Avatar, Space } from 'ant-design-vue';
 import { UserOutlined } from '@ant-design/icons-vue';
 import SidebarItem from './SidebarItem.vue';
 
+import Logo from '@renderer/components/Logo/Logo.vue';
 
 </script>
 

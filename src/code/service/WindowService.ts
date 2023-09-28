@@ -22,7 +22,7 @@ export class WindowService {
   public readonly window: BrowserWindow;
 
   constructor(
-    options: Partial<BrowserWindowConstructorOptions>
+    options: Partial<BrowserWindowConstructorOptions>, public readonly url: string
   ) {
     this.window = setWindowCross(new BrowserWindow({
       width: 1650,
@@ -49,8 +49,8 @@ export class WindowService {
     setWindowOpenHandler(this.window);
   }
 
-  open(url: string) {
-    if (is.dev && process.env['ELECTRON_RENDERER_URL']) this.window.loadURL(url);
+  open(url?: string) {
+    if (is.dev && process.env['ELECTRON_RENDERER_URL']) this.window.loadURL(url ?? this.url);
     else this.window.loadFile(PAGES_WINDOW_MAIN);
   }
 

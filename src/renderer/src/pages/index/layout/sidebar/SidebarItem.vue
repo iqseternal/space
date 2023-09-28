@@ -4,13 +4,13 @@ import { Tooltip } from 'ant-design-vue';
 import type { TooltipProps } from 'ant-design-vue';
 import { CONFIG } from '#/constants';
 
-type Placement = TooltipProps['placement'];
+type TooltipPlacement = 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
 
 export default defineComponent({
   props: {
     src: { type: String, required: false, defeault: '' },
     text: { type: String, required: false },
-    placement: { type: String as PropType<Placement>, default: 'right' }
+    placement: { type: String as PropType<TooltipPlacement>, default: 'right' }
   },
   setup(props, { slots }) {
     return () => (
@@ -42,6 +42,7 @@ export default defineComponent({
 
   width: var(--size);
   height: var(--size);
+  cursor: pointer;
 
   display: flex;
 

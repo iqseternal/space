@@ -2,6 +2,8 @@ import { app, BrowserView, BrowserWindow } from 'electron';
 import { electronApp, optimizer } from '@electron-toolkit/utils';
 import { PrinterService } from '#/code/service/PrinterService';
 
+import './setupHandles';
+
 export interface AppOptions {
   modelId: string;
 };
@@ -25,7 +27,10 @@ export const setupApp = async (startApp: () => void, ops?: Partial<AppOptions>):
     else startApp();
 
     app.on('activate', function () {
-      if (BrowserWindow.getAllWindows().length === 0) startApp();
+      if (BrowserWindow.getAllWindows().length === 0) {
+        try { startApp(); }
+        catch { app.quit(); }
+      }
     });
   });
 

@@ -1,7 +1,7 @@
 import type { IpcMainInvokeEvent, IpcMainEvent } from 'electron';
 import { ipcMain, ipcRenderer, BrowserWindow, webContents } from 'electron';
 
-import { type MainEventHandlers, IPC_WALLPAPER, IPC_MAIN_WINDOW, RendererEventHandlers } from '#/constants'
+import { type MainEventHandlers, IPC_MAIN_WINDOW, RendererEventHandlers } from '#/constants'
 /**
  * 原本采用接口扩展实现的, 但是 IpcMain 接口存在于 Electron 命名空间中
  * 扩展时会导致 Parameters, ReturnType 等类型运算失效

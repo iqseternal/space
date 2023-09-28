@@ -2,7 +2,7 @@ import '#/globalForNode';
 import '#/code/measure/unhandledWarning';
 
 import { setupApp } from './setupApp';
-import { setupService } from './setupService';
+import { setupMainWindow } from './setupService';
 import { setupUi } from './setupUi';
 
 import { dialog, ipcMain, app, BrowserWindow } from 'electron';
@@ -18,7 +18,6 @@ import { PrinterService } from '#/code/service/PrinterService';
 import { ReptileService } from '#/code/service/ReptileService';
 
 import { join } from 'path';
-import { IPC_WALLPAPER } from '#/constants';
 
 import { execShell } from '#code/core/shell/execShell';
 import { spawn } from 'child_process';
@@ -27,5 +26,10 @@ import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
 import { webContents } from 'electron/main';
 
 setupApp(async () => {
-  const { windowService } = await setupService();
+  // const { windowService } = await setupService();
+
+  const mainWindow = await setupMainWindow();
+
+  mainWindow.open();
 });
+

@@ -1,4 +1,3 @@
-
 import { contextBridge } from 'electron';
 
 type ExposeApiObj = Record<string | symbol, any>;
