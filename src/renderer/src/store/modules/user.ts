@@ -3,7 +3,8 @@ import store from "@renderer/store";
 import { defineStore } from 'pinia';
 import { getToken, removeToken, setToken } from '@renderer/utils/storage';
 
-import { loginApi, getUserInfoApi } from '@renderer/api/login';
+import { apiUrl, apiPost } from '@renderer/api';
+
 import { type RouteRecordRaw } from 'vue-router';
 import '@vue/shared';
 
@@ -22,7 +23,7 @@ export const useUserStore = defineStore("user", () => {
   /** 获取用户详情 */
   const getInfo = () => {
     return new Promise((resolve, reject) => {
-      getUserInfoApi()
+      apiPost(apiUrl.getUserinfo)
         .then((res) => {
           const data = res.data
           username.value = data.username
@@ -38,10 +39,12 @@ export const useUserStore = defineStore("user", () => {
   /** 登录 */
   const login = (loginData) => {
     return new Promise((resolve, reject) => {
-      loginApi({
-        username: loginData.username,
-        password: loginData.password,
-        code: loginData.code
+      apiPost(apiUrl.login, {
+        data: {
+          username: loginData.username,
+          password: loginData.password,
+          code: loginData.code
+        }
       }).then((res) => {
         setToken(res.data.userinfo.token)
         token.value = res.data.token

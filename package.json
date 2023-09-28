@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "suey",
   "homepage": "https://www.electronjs.org",
   "scripts": {
     "reptile": "nodemon ./scripts/reptile/exec.js --watch",

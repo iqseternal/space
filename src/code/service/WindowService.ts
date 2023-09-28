@@ -18,17 +18,23 @@ const DEFAILT_OPTIONS: Partial<BrowserWindowConstructorOptions> = {
   hasShadow: true
 };
 
+interface Options {
+  url: string;
+  autoShow: boolean;
+}
+
 export class WindowService {
   public readonly window: BrowserWindow;
 
   constructor(
-    options: Partial<BrowserWindowConstructorOptions>, public readonly url: string
+    windowOptions: Partial<BrowserWindowConstructorOptions>,
+    public readonly options: Options
   ) {
     this.window = setWindowCross(new BrowserWindow({
       width: 1650,
       height: 780,
       ...DEFAILT_OPTIONS,
-      ...options,
+      ...windowOptions,
       ...(process.platform === 'linux' ? { icon } : {}),
       webPreferences: {
         preload: join(__dirname, '../preload/index.js'),
@@ -42,7 +48,7 @@ export class WindowService {
 
     // Menu.setApplicationMenu(null);
 
-    this.window.on('ready-to-show', () => this.window.show());
+    if (this.options.autoShow) this.window.on('ready-to-show', () => this.window.show());
 
     setWindowCaption(this.window, icon, 'Percious');
 
@@ -50,7 +56,7 @@ export class WindowService {
   }
 
   open(url?: string) {
-    if (is.dev && process.env['ELECTRON_RENDERER_URL']) this.window.loadURL(url ?? this.url);
+    if (is.dev && process.env['ELECTRON_RENDERER_URL']) this.window.loadURL(url ?? this.options.url);
     else this.window.loadFile(PAGES_WINDOW_MAIN);
   }
 

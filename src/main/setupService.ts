@@ -32,7 +32,10 @@ export async function setupMainWindow() {
   PrinterService.printInfo('窗口构建');
   const appConfigService = AppConfigService.getInstance();
 
-  const windowService = new WindowService(appConfigService.config.windows.mainWindow as Electron.BrowserWindowConstructorOptions, PAGES_WINDOW_MAIN);
+  const windowService = new WindowService(appConfigService.config.windows.mainWindow as Electron.BrowserWindowConstructorOptions, {
+    url: PAGES_WINDOW_MAIN,
+    autoShow: false
+  });
 
   windowService.window.setMenu(null);
   setWindowCloseCaptionContextmenu(windowService.window);
@@ -47,7 +50,10 @@ export async function setupSettingWindow() {
   Printer.printInfo('构建设置页面');
 
   const appConfigService = AppConfigService.getInstance();
-  const windowService = new WindowService(appConfigService.config.windows.largePopupWindow as Electron.BrowserWindowConstructorOptions, PAGES_WINDOW_SETTING);
+  const windowService = new WindowService(appConfigService.config.windows.largePopupWindow as Electron.BrowserWindowConstructorOptions, {
+    url: PAGES_WINDOW_SETTING,
+    autoShow: true
+  });
 
   windowService.window.setResizable(false);
   windowService.window.setMenu(null);

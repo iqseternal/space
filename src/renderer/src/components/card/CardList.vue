@@ -1,7 +1,7 @@
 <template>
   <div class="list" ref="listRef">
     <template v-for="item in list" :key="item.t">
-      <Card @click="downloadWallpaperF(item)" @contextmenu="contextmenu" class="card" :src="item.src"></Card>
+
     </template>
   </div>
 </template>
@@ -9,7 +9,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, type Ref, watch } from 'vue';
 
-import { loadMoreWallpaper, downloadWallpaper } from '@renderer/utils/wallpaper';
 import { useDebounce } from '@renderer/hooks/useDebounce';
 
 import Card from './Card.vue';
@@ -20,12 +19,7 @@ const listRef = ref() as Ref<HTMLDivElement>;
 const isLoad = ref(false);
 
 const downloadWallpaperF = (source: Source) => {
-  downloadWallpaper({ ...source }).then(path => {
-    console.log(path);
 
-  }).catch(err => {
-
-  });
 }
 
 const contextmenu = (e) => {
@@ -35,14 +29,7 @@ const contextmenu = (e) => {
 
 watch(() => isLoad.value, (nv) => {
   if (nv) {
-    loadMoreWallpaper().then(ls => {
-      console.log(ls);
 
-      list.value.push(...ls.data);
-    }).finally(() => {
-
-      isLoad.value = false;
-    });
   }
 
 });

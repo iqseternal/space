@@ -2,15 +2,19 @@
   <div class="loginPage">
     <Header class="header" isPane />
 
+    <!-- <Logo /> -->
+
     <Subfield>
       <template #left>
         <!-- <Card hoverable> -->
           <!-- <template #cover> -->
+            <div />
             <img alt="" :src="loginTakeFilePng" />
           <!-- </template> -->
         <!-- </Card> -->
       </template>
       <template #right>
+
         <div>
           <LoginForm />
           <Subfield>
@@ -18,6 +22,7 @@
             <template #right><div /><Button>Create Account</Button></template>
           </Subfield>
         </div>
+        <div />
       </template>
     </Subfield>
   </div>
@@ -40,8 +45,6 @@ import RegisterForm from './RegisterForm.vue';
 
 import loginTakeFilePng from '@renderer/assets/png/loginTakeFile.png?url';
 
-console.log(loginTakeFilePng);
-
 const router = useRouter();
 
 onBeforeMount(async() => {
@@ -49,6 +52,9 @@ onBeforeMount(async() => {
   const setResizeable = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RESIZE_ABLE, false).catch(e => e);
 
   if (!setSize.data || !setResizeable.data) window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RELAUNCH);
+
+  // 如果一切没有问题, 那么就准备就绪, 就可以展示页面了
+  window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SHOW, true);
 });
 
 onBeforeUnmount(() => {
@@ -57,6 +63,7 @@ onBeforeUnmount(() => {
 });
 
 const login = async () => {
+  // 登录成功了
   window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SHOW, false).catch(() => {
     window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RELAUNCH);
   });
