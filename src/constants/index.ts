@@ -6,7 +6,7 @@ export const CONFIG = {
   PROJECT: 'SPACE',
 
   VIEW: {
-    TOOLTIP_ENTER_TIME: 1, // tooltip 进入1s后显示
+    TOOLTIP_ENTER_TIME: 0.6, // tooltip 进入x s后显示
 
 
   }

@@ -2,9 +2,20 @@
   <div class="loginPage">
     <Header class="header" isPane />
 
-    <!-- <Logo /> -->
+    <Subfield style="margin-top: 40px;">
+      <template #left>
+        <div />
+        <Space>
+          <Logo style="display: inline-block;width: 40px;height: 40px;" />
+          <div>SPACE</div>
+        </Space>
+        <div />
+      </template>
+      <template #center></template>
+      <template #right></template>
+    </Subfield>
 
-    <Subfield>
+    <Subfield style="margin-top: 40px;">
       <template #left>
         <!-- <Card hoverable> -->
           <!-- <template #cover> -->
@@ -14,7 +25,6 @@
         <!-- </Card> -->
       </template>
       <template #right>
-
         <div>
           <LoginForm />
           <Subfield>
@@ -22,7 +32,6 @@
             <template #right><div /><Button>Create Account</Button></template>
           </Subfield>
         </div>
-        <div />
       </template>
     </Subfield>
   </div>
@@ -82,16 +91,6 @@ const login = async () => {
 .loginPage {
   width: 100vw;
   height: 100vh;
-
   background-color: var(--s-main-frame-contain-color);
-
-  // background-image: url('https://ccdn.goodq.top/caches/0949e197e2481ff51826a8a6ab38f749/aHR0cHM6Ly81ZjExNDcxZmNhMjgzLnQ3NC5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMjAvMDcvMjFmNzA2NjNkYzUxNWNjY2FhODEyNGNlOGExOWEzZWItMTAyNHg2MDAtOTAud2VicA_p_p100_p_3D_p_p100_p_3D.webp');
-  // background-repeat: no-repeat;
-  // background-size: cover;
-
-  .header {
-    // background-color: var(--s-main-frame-contain-color);
-  }
 }
-
 </style>
