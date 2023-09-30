@@ -45,6 +45,8 @@ import { Space, Input, Button, Form, FormItem, Modal, TabPane, Tabs, Card } from
 
 import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
 
+import { useMousetrap } from '@renderer/hooks/useMousetrap';
+
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 
 import Header from '@pages/index/layout/header/index.vue';
@@ -55,6 +57,10 @@ import RegisterForm from './RegisterForm.vue';
 import loginTakeFilePng from '@renderer/assets/png/loginTakeFile.png?url';
 
 const router = useRouter();
+
+useMousetrap([
+  (mousetrap) => mousetrap.bind(['enter'], () => { console.log(1); })
+]);
 
 onBeforeMount(async() => {
   const setSize = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SET_SIZE, 850, 550).catch(e => e);
