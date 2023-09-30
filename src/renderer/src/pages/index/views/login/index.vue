@@ -58,9 +58,7 @@ import loginTakeFilePng from '@renderer/assets/png/loginTakeFile.png?url';
 
 const router = useRouter();
 
-useMousetrap([
-  (mousetrap) => mousetrap.bind(['enter'], () => { console.log(1); })
-]);
+
 
 onBeforeMount(async() => {
   const setSize = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SET_SIZE, 850, 550).catch(e => e);
@@ -86,6 +84,10 @@ const login = async () => {
   router.push('/space/dynamics');
 }
 
+
+useMousetrap([
+  (mousetrap) => mousetrap.bind(['enter'], () => { login(); })
+]);
 </script>
 
 <style lang="scss" scoped>

@@ -1,16 +1,32 @@
 <script lang="tsx">
-import { defineComponent } from 'vue';
-import { Input } from 'ant-design-vue';
+import type { Ref } from 'vue';
+import { ref, onMounted, defineComponent } from 'vue';
+import { Input, InputProps } from 'ant-design-vue';
 
-export default defineComponent({
+interface RInputProps extends InputProps {
+
+}
+
+export default defineComponent<RInputProps>({
   setup(props, { slots }) {
+    const d = ref() as Ref<HTMLElement>;
+
+
     return () => (
-      <Input { ...props }>{slots}</Input>
+      <div class="rInpt">
+        <Input { ...props }>{slots}</Input>
+      </div>
     );
   }
 });
 </script>
 
 <style lang="scss" scoped>
+
+.rInput {
+
+
+
+}
 
 </style>
