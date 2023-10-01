@@ -3,35 +3,32 @@
     <Header class="header" isPane />
 
     <Subfield style="margin-top: 40px;">
-      <template #left>
+      <template #center>
         <div />
         <Space>
           <Logo style="display: inline-block;width: 40px;height: 40px;" />
-          <div>SPACE</div>
+          <BlendedText text="SPACE FOR YOUR PLATFORM" :distSpacing="4" style="display: inline-block;font-size: 40px;line-height: 40px;" />
         </Space>
         <div />
       </template>
-      <template #center></template>
-      <template #right></template>
     </Subfield>
 
-    <Subfield style="margin-top: 40px;">
+    <Subfield style="margin-top: 20px;">
       <template #left>
-        <!-- <Card hoverable> -->
-          <!-- <template #cover> -->
-            <div />
-            <img alt="" :src="loginTakeFilePng" />
-          <!-- </template> -->
-        <!-- </Card> -->
+        <div />
+        <img alt="" :src="loginTakeFilePng" />
       </template>
       <template #right>
-        <div>
+        <Space direction="vertical" :size="10">
+          <div style="font-size: 40px;">Welcome Back :&rpar;</div>
+          <div style="font-size: 14px;color: rgba(0, 0, 0, .6);max-width: 350px;">To keep connected us please login with your personal information by emial address and password.</div>
           <LoginForm />
           <Subfield>
-            <template #left><Button @click="login">Login Now</Button></template>
-            <template #right><div /><Button>Create Account</Button></template>
+            <template #left><div /><RButton @click="login">LoginNow</RButton><div /></template>
+            <template #center><RButton>CreateAccount</RButton><div /></template>
+            <template #right></template>
           </Subfield>
-        </div>
+        </Space>
       </template>
     </Subfield>
   </div>
@@ -49,10 +46,14 @@ import { useMousetrap } from '@renderer/hooks/useMousetrap';
 
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 
+import BlendedText from '@renderer/components/BlendedText/BlendedText.vue';
+
 import Header from '@pages/index/layout/header/index.vue';
 import Logo from '@renderer/components/Logo/Logo.vue';
 import LoginForm from './LoginForm.vue';
 import RegisterForm from './RegisterForm.vue';
+
+import RButton from '@renderer/components/RButton/RButton.vue';
 
 import loginTakeFilePng from '@renderer/assets/png/loginTakeFile.png?url';
 
@@ -93,8 +94,6 @@ useMousetrap([
 <style lang="scss" scoped>
 @import "@scss/mixin.scss";
 @import "@scss/var.scss";
-
-
 
 .loginPage {
   width: 100vw;

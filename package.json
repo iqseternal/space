@@ -46,8 +46,6 @@
     "selenium-webdriver": "^4.11.1",
     "utf-8-validate": "^6.0.3",
     "vue": "^3.3.4",
-    "vue-animate": "^0.0.4",
-    "vue-animeta": "^1.0.2",
     "vue-router": "^4.2.4",
     "ws": "^8.13.0"
   },
@@ -60,7 +58,6 @@
     "@types/nightmare": "^2.10.6",
     "@types/node": "^18.16.19",
     "@types/request": "^2.48.8",
-    "@types/selenium-webdriver": "^4.1.15",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "crawlee": "^3.5.1",

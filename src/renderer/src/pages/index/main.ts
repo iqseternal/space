@@ -11,8 +11,7 @@ import 'dayjs/locale/zh-cn';
 
 import '@suey/rocketry/index.css';
 
-import '@renderer/styles/index.scss';
-import './style.scss';
+import '@scss/index.scss';
 
 ;(async () => {
   const app = createApp(App);
