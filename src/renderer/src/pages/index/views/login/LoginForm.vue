@@ -22,7 +22,6 @@ import { ref } from 'vue';
 import { Space, FormItem, Modal, Form, Input, InputPassword } from 'ant-design-vue';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue';
 
-
 import RInput from '@renderer/components/RInput/RInput.vue';
 
 </script>

@@ -12,8 +12,14 @@ export default function(props, { slots, attrs }) {
 <style lang="scss" scoped>
 
 .rButton {
-  border-radius: 18px;
+  border-radius: 14px;
   padding: 10px 10px;
+  font-size: 14px;
+  font-family: fantasy;
+  line-height: 16px;
+
+  height: 36px;
+  width: max-content;
 }
 
 </style>

@@ -22,7 +22,9 @@
       <template #right>
         <Space direction="vertical" :size="10">
           <div style="font-size: 40px;">Welcome Back :&rpar;</div>
-          <div style="font-size: 14px;color: rgba(0, 0, 0, .6);max-width: 350px;">To keep connected us please login with your personal information by emial address and password.</div>
+          <div style="font-size: 14px;color: rgba(0, 0, 0, .6);max-width: 350px;">
+            To keep connected us please login with your personal information by emial address and password.
+          </div>
           <LoginForm />
           <Subfield>
             <template #left><div /><RButton @click="login">LoginNow</RButton><div /></template>
