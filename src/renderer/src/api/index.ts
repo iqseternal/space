@@ -12,5 +12,4 @@ export const apiUrl = {
   register: '/user/register',
   getUserinfo: '/user/getUserinfo',
 
-
 }
