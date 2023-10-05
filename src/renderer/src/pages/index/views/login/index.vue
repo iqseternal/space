@@ -1,6 +1,6 @@
 <template>
   <div class="loginPage">
-    <Header class="header" isPane />
+    <Header isPane />
 
     <Subfield style="margin-top: 40px;">
       <template #center>
@@ -12,7 +12,6 @@
         <div />
       </template>
     </Subfield>
-
 
     <Subfield style="margin-top: 20px;">
       <template #left>
@@ -26,11 +25,6 @@
             To keep connected us please login with your personal information by emial address and password.
           </div>
           <LoginForm />
-          <Subfield>
-            <template #left><div /><RButton @click="login">LoginNow</RButton><div /></template>
-            <template #center><RButton>CreateAccount</RButton><div /></template>
-            <template #right></template>
-          </Subfield>
         </Space>
       </template>
     </Subfield>
@@ -56,8 +50,6 @@ import RButton from '@renderer/components/RButton/RButton.vue';
 
 import loginTakeFilePng from '@renderer/assets/png/loginTakeFile.png?url';
 
-const router = useRouter();
-
 onBeforeMount(async() => {
   const setSize = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SET_SIZE, 850, 550).catch(e => e);
   const setResizeable = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RESIZE_ABLE, false).catch(e => e);
@@ -72,20 +64,6 @@ onBeforeUnmount(() => {
   window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RESIZE_ABLE, true);
   window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, 'mainWindow');
 });
-
-const login = async () => {
-  // 登录成功了
-  window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SHOW, false).catch(() => {
-    window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RELAUNCH);
-  });
-
-  router.push('/space/dynamics');
-}
-
-
-useMousetrap([
-  (mousetrap) => mousetrap.bind(['enter'], () => { login(); })
-]);
 </script>
 
 <style lang="scss" scoped>

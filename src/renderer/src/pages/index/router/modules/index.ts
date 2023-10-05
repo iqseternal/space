@@ -1,10 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
-
+import { terminalSvg, dashboardSvg, settingSvg } from '@renderer/assets';
 import Layout from '@renderer/pages/index/layout/index.vue';
-
-import terminalSvg from '@renderer/assets/svg/terminal.svg?url';
-import dashboardSvg from '@renderer/assets/svg/dashboard.svg?url';
-import settingSvg from '@renderer/assets/svg/setting.svg?url';
 
 export const loginRoute: RouteRecordRaw = {
   name: 'Login',

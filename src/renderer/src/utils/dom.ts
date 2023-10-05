@@ -14,8 +14,6 @@ export const setCssVars = (node: HTMLElement, properties: Partial<CSSStyleDeclar
   Object.keys(properties).forEach((prop) => setCssVar(node, prop as keyof CSSStyleDeclarationAndVars, properties[prop], isImportant));
 
 
-
-
 export const setCssVarForRoot = <T extends keyof CSSStyleDeclarationAndVars>(cssVar: T, value: string) => setCssVar<T>(cssRoot, cssVar, value);
 
 export const getCssVarForRoot = <T extends keyof CSSStyleDeclarationAndVars>(cssVar: T) => getCssVar<T>(cssRoot, cssVar);
@@ -23,13 +21,11 @@ export const getCssVarForRoot = <T extends keyof CSSStyleDeclarationAndVars>(css
 export const setCssVarsForRoot = (properties: CSSStyleDeclarationAndVars) => setCssVars(cssRoot, properties);
 
 
+export const getStyleProperty = getCssVar;
 
-export const getStyleProperty = <T extends keyof CSSStyleDeclaration>(node: HTMLElement, key: T) => node.style[key];
+export const setStyleProperty = setCssVar;
 
-export const setStyleProperty = <T extends keyof CSSStyleDeclaration>(node: HTMLElement, key: T, value: CSSStyleDeclaration[T]) => node.style.setProperty(key as string, value as string);
-
-export const setStyleProperties = <T extends keyof CSSStyleDeclaration>(node: HTMLElement, styleProperties: Partial<CSSStyleDeclaration>) =>
-  Object.keys(styleProperties).forEach((prop) => setStyleProperty(node, prop as T, styleProperties[prop]));
+export const setStyleProperties = setCssVars;
 
 
 

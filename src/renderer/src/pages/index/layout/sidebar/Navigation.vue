@@ -10,12 +10,9 @@
 <script lang="ts" setup>
 import { useRouter, useRoute } from 'vue-router';
 import { Space } from 'ant-design-vue';
+import { terminalSvg, dashboardSvg, settingSvg } from '@renderer/assets';
 
 import SidebarItem from './SidebarItem.vue';
-
-import terminalSvg from '@renderer/assets/svg/terminal.svg?url';
-import dashboardSvg from '@renderer/assets/svg/dashboard.svg?url';
-import settingSvg from '@renderer/assets/svg/setting.svg?url';
 
 const router = useRouter(), route = useRoute();
 

@@ -17,9 +17,8 @@
 import { ref, onMounted } from 'vue';
 import { Avatar, Space } from 'ant-design-vue';
 import { UserOutlined } from '@ant-design/icons-vue';
+import { settingSvg } from '@renderer/assets';
 import SidebarItem from './SidebarItem.vue';
-
-import settingSvg from '@renderer/assets/svg/setting.svg?url';
 
 const autoSize = ref(0);
 

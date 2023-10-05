@@ -1,5 +1,6 @@
 import { createApiRequest } from '@suey/packages';
 import { getToken } from './storage';
+import { inflate } from 'pako';
 
 const isOkStatus = (status: number): boolean => {
   if (status >= 200 && status < 300) return true;
@@ -18,6 +19,9 @@ export const { apiGet, apiPost, request, createApi } = createApiRequest<{
   status: number;
   flag: string;
   data: any;
+  more?: {
+    pako?: boolean;
+  }
 }>('https://www.oupro.cn:3000/api/v1.0.0/', {}, {
   onFulfilled: config => {
     if (config.hConfig?.needAuth) {
@@ -30,6 +34,9 @@ export const { apiGet, apiPost, request, createApi } = createApiRequest<{
   onFulfilled: response => {
     if (response.data.status && response.data.flag) {
       const status = response.data.status;
+
+      if (response.data.more && response.data.more.pako === true) response.data.data = JSON.parse(inflate(response.data.data as Buffer, { to: 'string' }));
+
       if (!isOkStatus(+status)) return Promise.reject(response.data);
       return Promise.resolve(response.data);
     }

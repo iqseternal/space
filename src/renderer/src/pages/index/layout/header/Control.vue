@@ -17,13 +17,10 @@ import { ref } from 'vue';
 import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
 import { Space } from 'ant-design-vue';
 
+import { windowCloseSvg, windowMaxSvg, windowMinSvg, windowRegionSvg } from '@renderer/assets';
+
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import WidgetSvg from './WidgetSvg.vue';
-
-import windowMaxSvg from '@renderer/assets/svg/windowMax.svg?url';
-import windowMinSvg from '@renderer/assets/svg/windowMin.svg?url';
-import windowRegionSvg from '@renderer/assets/svg/windowRegion.svg?url';
-import windowCloseSvg from '@renderer/assets/svg/windowClose.svg?url';
 
 const props = defineProps({
   isPane: { type: Boolean, default: false }
