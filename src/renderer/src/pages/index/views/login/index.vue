@@ -38,6 +38,7 @@ import { useRouter } from 'vue-router';
 import { Space, Input, Button, Form, FormItem, Modal, TabPane, Tabs, Card } from 'ant-design-vue';
 import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
+import { loginTakeFilePng } from '@renderer/assets';
 
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import BlendedText from '@renderer/components/BlendedText/BlendedText.vue';
@@ -47,8 +48,6 @@ import Logo from '@renderer/components/Logo/Logo.vue';
 import LoginForm from './LoginForm.vue';
 import RegisterForm from './RegisterForm.vue';
 import RButton from '@renderer/components/RButton/RButton.vue';
-
-import loginTakeFilePng from '@renderer/assets/png/loginTakeFile.png?url';
 
 onBeforeMount(async() => {
   const setSize = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SET_SIZE, 850, 550).catch(e => e);
