@@ -1,4 +1,4 @@
-import { BrowserWindow, app } from 'electron';
+import { BrowserWindow, app, screen } from 'electron';
 import { setIpcMainHandle, sendToRenderer, IpcResponseOk } from '#/code/core/common/ipcR';
 import { reloadApp } from '#code/core/common/app';
 import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
@@ -75,10 +75,58 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SET_SIZE, (e, width, height) => ipcR((ok
     return;
   }
 
+  if (window.isMaximized()) window.restore();
+
   window.setMinimumSize(0, 0);
   window.setSize(width, height);
 
   ok(true);
+}));
+
+setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SET_POSITION, (e, _1: number | 'center' | 'left' | 'right' | 'top' | 'bottom', _2?: number) => ipcR((ok, fail) => {
+  const window = BrowserWindow.fromId(e.frameId);
+  if (!window) {
+
+    fail(false, '找不到指定窗口');
+    return;
+  }
+
+  if (typeof _1 === 'string' && !_2) {
+    const type = _1; // 类型, 窗口大小
+
+    const [currentPx, currentPy] = window.getPosition();
+    const [width, height] = window.getSize();
+
+    if (type === 'center') {
+      const { width: maxScreenWidth, height: maxScreenHeight } = screen.getPrimaryDisplay().size;
+
+      const targetPx = maxScreenWidth / 2 - width / 2;
+      const targetPy = maxScreenHeight / 2 - height / 2;
+
+      window.setPosition(targetPx, targetPy, false);
+      ok(true);
+      return;
+    }
+
+    let targetPx = currentPx, targetPy = currentPy;
+
+    if (type === 'left') { targetPx -= width; }
+    if (type === 'right') { targetPx += width; }
+    if (type === 'top') { targetPy -= height; }
+    if (type === 'bottom') { targetPy += height; }
+
+    window.setPosition(targetPx, targetPy);
+    ok(true);
+    return;
+  }
+
+  if (typeof _1 === 'number' && typeof _2 === 'number') {
+    window.setPosition(_1, _2);
+    ok(true);
+    return;
+  }
+
+  fail(false, '传参类型有问题');
 }));
 
 // 渲染进程改变窗口大小, 在此做了更改大小的时候, 窗口也会更随着自动定位到原来窗口的中心位置扩展
@@ -94,34 +142,40 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, (e, type) => ipcR((ok
   const appConfigService = AppConfigService.getInstance();
   const userConfigService = UserConfigService.getInstance();
 
-  const { width: userWidth, height: userHeight } = userConfigService.config.windows.mainWindow;
-  const { width: appWidth, height: appHeight } = appConfigService.config.windows.mainWindow;
-
-  const [width, height] = window.getSize();
-  const [positionX, positionY] = window.getPosition();
-
-  let targetWidth: number = 0, targetHeight: number = 0;
-  let gapWidth: number = 0, gapHeight: number = 0;
-  let targetPx: number = 0, targetPy: number = 0;
-
-  if (!userWidth || !userHeight) targetWidth = appWidth, targetHeight = appHeight;
-  else targetWidth = userWidth, targetHeight = userHeight;
-
-  gapWidth = (targetWidth - width) * (targetWidth > width ? 1 : -1);
-  gapHeight = (targetHeight - height) * (targetHeight > height ? 1 : -1);
-
-  targetPx = positionX + gapWidth / 2 * -1;
-  targetPy = positionY + gapHeight / 2 * -1;
-
   if (type === 'mainWindow') {
     const { minWidth, minHeight } = appConfigService.config.windows.mainWindow;
     window.setMinimumSize(minWidth, minHeight);
+
+    const { width: userWidth, height: userHeight } = userConfigService.config.windows.mainWindow;
+    const { width: appWidth, height: appHeight } = appConfigService.config.windows.mainWindow;
+
+    const [width, height] = window.getSize();
+    const [positionX, positionY] = window.getPosition();
+
+    let targetWidth: number = 0, targetHeight: number = 0;
+    let gapWidth: number = 0, gapHeight: number = 0;
+    let targetPx: number = 0, targetPy: number = 0;
+
+    if (!userWidth || !userHeight) targetWidth = appWidth, targetHeight = appHeight;
+    else targetWidth = userWidth, targetHeight = userHeight;
+
+    gapWidth = (targetWidth - width) * (targetWidth > width ? 1 : -1);
+    gapHeight = (targetHeight - height) * (targetHeight > height ? 1 : -1);
+
+    targetPx = positionX + gapWidth / 2 * -1;
+    targetPy = positionY + gapHeight / 2 * -1;
+
+    // 取消这是因为当前使用的标题栏在屏幕上方, 如果按中心改变位置, 可能出现看不到标题栏从而无法拖动的情况
+    if (targetPx <= 0) targetPx = positionX;
+    if (targetPy <= 0) targetPy = positionY;
+
+    window.setPosition(targetPx, targetPy);
+    window.setSize(targetWidth, targetHeight);
+    ok();
+    return;
   }
 
-  // 取消这是因为当前使用的标题栏在屏幕上方, 如果按中心改变位置, 可能出现看不到标题栏从而无法拖动的情况
-  // window.setPosition(targetPx, targetPy);
-  window.setSize(targetWidth, targetHeight);
-  ok();
+  fail(false, '传入了未指定类型 type');
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_OPEN, (e, type) => ipcR(async (ok, fail) => {

@@ -11,7 +11,10 @@ export class AppDataService {
   public readonly relativeSourcePath: string;
 
   constructor(
-    relativeSourcePath: 'home' | 'appData' | 'userData' | 'sessionData' | 'temp' | 'exe' | 'module' | 'desktop' | 'documents' | 'downloads' | 'music' | 'pictures' | 'videos' | 'recent' | 'logs' | 'crashDumps',
+    relativeSourcePath:
+      'home' | 'appData' | 'userData' | 'sessionData' | 'temp' |
+      'exe' | 'module' | 'desktop' | 'documents' | 'downloads' |
+      'music' | 'pictures' | 'videos' | 'recent' | 'logs' | 'crashDumps',
     public readonly absoluteSourcePath: string
   ) {
     this.relativeSourcePath = app.getPath(relativeSourcePath);

@@ -9,6 +9,8 @@ export class IPC_MAIN_WINDOW {
   public static readonly WINDOW_SET_SIZE = 'WINDOW_SET_SIZE'; // 设置窗口大小
   public static readonly WINDOW_RESET_CUSTOM_SIZE = 'WINDOW_CUSTOM_SIZE'; // 重置为用户设置的大小
 
+  public static readonly WINDOW_SET_POSITION = 'WINDOW_SET_POSITION'; // 设置窗口的位置
+
   public static readonly WINDOW_OPEN = 'WINDOW_OPEN'; // 打开一个窗口
   public static readonly WINDOW_CLOSE = 'WINDOW_CLOSE'; // 关闭窗口
   public static readonly WINDOW_SHOW = 'WINDOW_SHOW'; // 隐藏窗口
@@ -27,6 +29,8 @@ export type MainEventHandlers = {
   [IPC_MAIN_WINDOW.WINDOW_RELAUNCH]: () => IpcResponse<void>;
   [IPC_MAIN_WINDOW.WINDOW_SET_SIZE]: (width: number, height: number) => IpcResponse<boolean>;
   [IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE]: (type: 'mainWindow') => IpcResponse<void>;
+
+  [IPC_MAIN_WINDOW.WINDOW_SET_POSITION]: (x: number | 'center' | 'left' | 'right' | 'top' | 'bottom', y?: number) => IpcResponse<boolean>;
 
   [IPC_MAIN_WINDOW.WINDOW_OPEN]: (pageType: 'windowMain' | 'windowSetting') => IpcResponse<boolean>; // 三个页面, 登录、主窗口、设置页面
   [IPC_MAIN_WINDOW.WINDOW_CLOSE]: (id?: number) => IpcResponse<boolean>;
