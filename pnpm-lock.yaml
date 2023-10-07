@@ -42,8 +42,8 @@ dependencies:
     specifier: ^1.11.9
     version: 1.11.9
   electron-store:
-    specifier: ^8.1.0
-    version: 8.1.0
+    specifier: ^8.0.1
+    version: 8.0.1
   electron-updater:
     specifier: ^5.3.0
     version: 5.3.0
@@ -3421,11 +3421,11 @@ packages:
       - supports-color
     dev: true
 
-  /electron-store@8.1.0:
-    resolution: {integrity: sha512-2clHg/juMjOH0GT9cQ6qtmIvK183B39ZXR0bUoPwKwYHJsEF3quqyDzMFUAu+0OP8ijmN2CbPRAelhNbWUbzwA==}
+  /electron-store@8.0.1:
+    resolution: {integrity: sha512-ZyLvNywiqSpbwC/pp89O/AycVWY/UJIkmtyzF2Bd0Nm/rLmcFc0NTGuLdg6+LE8mS8qsiK5JMoe4PnrecLHH5w==}
     dependencies:
       conf: 10.2.0
-      type-fest: 2.19.0
+      type-fest: 1.4.0
     dev: false
 
   /electron-to-chromium@1.4.461:
@@ -6675,9 +6675,9 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /type-fest@2.19.0:
-    resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
-    engines: {node: '>=12.20'}
+  /type-fest@1.4.0:
+    resolution: {integrity: sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==}
+    engines: {node: '>=10'}
     dev: false
 
   /type-fest@4.2.0:

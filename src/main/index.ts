@@ -27,7 +27,6 @@ import { webContents } from 'electron/main';
 
 setupApp(async () => {
   // const { windowService } = await setupService();
-
   const mainWindow = await setupMainWindow();
 
   mainWindow.open();

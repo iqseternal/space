@@ -39,10 +39,14 @@ export class WindowService {
       webPreferences: {
         preload: join(__dirname, '../preload/index.js'),
         sandbox: false,
-        nodeIntegration: true,
         devTools: true,
-        webSecurity: true
-      }
+        webSecurity: true,
+        nodeIntegration: true,
+
+        contextIsolation: true,
+
+        nodeIntegrationInSubFrames: true
+      },
     }));
     setWindowMaxSize(this.window);
 
