@@ -21,6 +21,7 @@ export default defineComponent<RInputProps>({
         if (input.value.input.input.value === '') {
           topic.value.style.transform = `translateY(-50%) translateY(-15px)`;
           topic.value.style.color = `rgba(0, 0, 255, .7)`;
+          topic.value.style.cursor = 'default';
           isFocused.value = true;
         }
       },
@@ -29,6 +30,7 @@ export default defineComponent<RInputProps>({
         if (input.value.input.input.value === '') {
           topic.value.style.transform = `translateY(-50%)`;
           topic.value.style.color = `rgba(0, 0, 0, .35)`;
+          topic.value.style.cursor = 'text';
           isFocused.value = false;
         }
       }
@@ -64,8 +66,8 @@ export default defineComponent<RInputProps>({
   .topic {
     z-index: 10;
     font-size: 12px;
+    font-family: fantasy;
     color: rgba(0, 0, 0, .35);
-    cursor: default;
     transform: translateY(-50%);
     transition: all .5s ease-out;
     @include positionLt(absolute, 50%, 56px);
@@ -91,12 +93,26 @@ export default defineComponent<RInputProps>({
     .ant-input {
       // min-width: 80%;
       font-size: 16px;
+      font-family: sans-serif;
       line-height: 18px;
+      min-height: 28px !important;
       padding-top: 10px;
       background: unset;
+
+      &::placeholder {
+        font-size: 12px;
+        line-height: 18px;
+        color: rgba(0, 0, 0, .2);
+        opacity: 0;
+        transition: opacity .5s ease-out;
+      }
+
+      &:focus {
+        &::placeholder {
+          opacity: 1;
+        }
+      }
     }
   }
-
 }
-
 </style>

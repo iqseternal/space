@@ -32,8 +32,8 @@ import Subfield from '@renderer/components/Subfield/Subfield.vue';
 const router = useRouter();
 
 useMousetrap([
-  (mousetrap) => mousetrap.bind('alt+left', () => router.back(), 'keyup'),
-  (mousetrap) => mousetrap.bind('alt+right', () => router.forward(), 'keyup')
+  ['alt+left', () => router.back(), 'keyup'],
+  ['alt+right', () => router.forward(), 'keyup']
 ]);
 </script>
 

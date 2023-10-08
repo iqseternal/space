@@ -1,9 +1,17 @@
 <template>
-  <input class="search" placeholder="搜索">
+  <input ref="searchInput" class="search" placeholder="搜索🔍(Command+Shift+K)">
 </template>
 
 <script lang="ts" setup>
+import type { Ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useMousetrap } from '@renderer/hooks/useMousetrap';
 
+const searchInput = ref() as Ref<HTMLInputElement>;
+
+useMousetrap(['command+shift+k', 'ctrl+shift+k'], () => {
+  searchInput.value.focus();
+});
 </script>
 
 <style lang="scss" scoped>

@@ -30,5 +30,14 @@ setupApp(async () => {
   const mainWindow = await setupMainWindow();
 
   mainWindow.open();
+
+
+  setTimeout(() => {
+    if (!mainWindow.window.isVisible()) {
+      PrinterService.printError('渲染进程代码出错, 请检查');
+
+      mainWindow.window.show();
+    }
+  }, 2000);
 });
 

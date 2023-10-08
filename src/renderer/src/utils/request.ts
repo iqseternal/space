@@ -11,11 +11,13 @@ const isOkStatus = (status: number): boolean => {
   return false;
 }
 
-export { REQ_METHODS } from '@suey/packages';
+export { REQ_METHODS, type RequestConfig } from '@suey/packages';
 
-export const { apiGet, apiPost, request, createApi } = createApiRequest<{
+export interface HConfig {
   needAuth?: boolean;
-}, {
+}
+
+export const { apiGet, apiPost, request, createApi } = createApiRequest<HConfig, {
   status: number;
   flag: string;
   data: any;

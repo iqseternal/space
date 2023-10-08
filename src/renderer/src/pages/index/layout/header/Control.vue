@@ -4,9 +4,15 @@
     <template #right>
       <div />
       <Space :size="8" style="margin-right: 8px;">
-        <WidgetSvg :src="windowMinSvg" @click="minWindow" class="widgetItem" />
-        <WidgetSvg v-if="!props.isPane" :src="windowRegionSvg" @click="reductionWindow" class="widgetItem" />
-        <WidgetSvg :src="windowCloseSvg" @click="closeWindow" class="widgetItem"/>
+        <Tooltip title="最小化" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
+          <WidgetSvg :src="windowMinSvg" @click="minWindow" class="widgetItem" />
+        </Tooltip>
+        <Tooltip title="还原窗口" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
+          <WidgetSvg v-if="!props.isPane" :src="windowRegionSvg" @click="reductionWindow" class="widgetItem" />
+        </Tooltip>
+        <Tooltip title="关闭" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
+          <WidgetSvg :src="windowCloseSvg" @click="closeWindow" class="widgetItem"/>
+        </Tooltip>
       </Space>
     </template>
   </Subfield>
@@ -15,9 +21,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
-import { Space } from 'ant-design-vue';
+import { Space, Tooltip } from 'ant-design-vue';
 
 import { windowCloseSvg, windowMaxSvg, windowMinSvg, windowRegionSvg } from '@renderer/assets';
+import { CONFIG } from '#/constants';
 
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import WidgetSvg from './WidgetSvg.vue';
