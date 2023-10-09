@@ -96,8 +96,8 @@ export default defineComponent<RInputProps>({
       font-family: sans-serif;
       line-height: 18px;
       min-height: 28px !important;
-      padding-top: 10px;
       background: unset;
+      margin-top: 10px;
 
       &::placeholder {
         font-size: 12px;
