@@ -18,6 +18,10 @@ config -> 关于项目的配置，这个配置是不希望被用户更改的，�
 
 constant -> 一些常量枚举，比如关于主线程和渲染进程之间交互的事件规定
 
+![Alt text](./readme/ZA0MZL5WF$Y658W4E6YQJZ2.png)
+
+![Alt text](./readme/I1OKK9FZDU@GHMTYTK9B.png)
+
 ## Project Setup
 
 ### Install
