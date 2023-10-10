@@ -28,12 +28,3 @@ import Mousetrap from 'mousetrap';
 Mousetrap.bind(['ctrl+r', 'command+r', 'f5'], () => {
   window.location.reload();
 });
-
-
-// import ElectronStore from 'electron-store';
-// import fs from 'fs';
-// console.log(ElectronStore);
-
-// console.log(fs);
-
-// console.log(__dirname);
