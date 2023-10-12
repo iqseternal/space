@@ -17,21 +17,24 @@
   .top {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
     flex: 1;
   }
 
   .middle {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     flex: 1;
   }
 
   .bottom {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     flex: 1;
   }
 }

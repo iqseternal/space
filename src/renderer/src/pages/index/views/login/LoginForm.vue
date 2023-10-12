@@ -2,18 +2,22 @@
   <Form>
     <FormItem hasFeedback validateStatus="success" required>
       <RInput placeholder="请输入用户名/邮箱">
-        <template #topic>User/Email</template>
         <template #prefix><MailOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
+        <template #topic>User/Email</template>
       </RInput>
     </FormItem>
     <FormItem required>
       <RInput type="password" ref="lastInput" placeholder="请输入用户密码">
-        <template #topic>Password</template>
         <template #prefix><LockOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
+        <template #topic>Password</template>
       </RInput>
     </FormItem>
   </Form>
   <Subfield>
+    <template #left><Checkbox v-model:checked="rememberMe">RememberMe</Checkbox></template>
+    <template #right><div /><div /><a>忘记密码</a><div /></template>
+  </Subfield>
+  <Subfield style="margin-top: 18px;">
     <template #left><div /><RButton type="primary" @click="login">LoginNow</RButton><div /></template>
     <template #center><RButton>CreateAccount</RButton><div /></template>
   </Subfield>
@@ -23,32 +27,48 @@
 import type { Ref } from 'vue';
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { Space, FormItem, Modal, Form, Input, InputPassword, notification, message } from 'ant-design-vue';
+import { Space, FormItem, Modal, Form, Input, InputPassword, notification, message, Checkbox, Radio } from 'ant-design-vue';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue';
 import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 import { apiAuthPost, apiUrl } from '@renderer/api';
+import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import RInput from '@renderer/components/RInput/RInput.vue';
 import RButton from '@renderer/components/RButton/RButton.vue';
 
 const router = useRouter();
+const [stage, setStage] = useStageInject();
+
+const rememberMe = ref(true);
 
 const lastInput = ref() as Ref<{ $el: HTMLDivElement; }>;
 
 const login = async () => {
+  setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE);
+
   apiAuthPost(apiUrl.login, {
     username: 'admin',
     password: '12345678'
+  }, {}, {
+    timeout: 2000
   }).then(res => {
-    // 登录成功了
-    window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SHOW, false).catch(() => {
-      window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RELAUNCH);
-    });
-    router.push('/space/dynamics');
+    setTimeout(() => {
+      if (stage.value !== DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE) return;
+
+      // 登录成功了
+      window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SHOW, false).catch(() => {
+        window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RELAUNCH);
+      });
+
+      router.push('/space/dynamics');
+    }, 600);
   }).catch(err => {
+    if (stage.value !== DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE) return;
+
     message.error(err.descriptor);
+    setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE);
   });
 }
 
