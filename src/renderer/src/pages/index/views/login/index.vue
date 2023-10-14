@@ -7,14 +7,12 @@
       </template>
       <template v-else>
         <Subfield style="margin-top: 40px;">
-          <template #center>
-            <div />
-            <Space>
-              <Logo style="display: inline-block;width: 40px;height: 40px;" />
-              <BlendedText text="SPACE FOR YOUR PLATFORM" :distSpacing="4" style="display: inline-block;font-size: 40px;line-height: 40px;" />
-            </Space>
-            <div />
-          </template>
+          <div />
+          <Space>
+            <Logo style="display: inline-block;width: 40px;height: 40px;" />
+            <BlendedText text="SPACE FOR YOUR PLATFORM" :distSpacing="4" style="display: inline-block;font-size: 40px;line-height: 40px;" />
+          </Space>
+          <div />
         </Subfield>
 
         <Subfield style="margin-top: 20px;">
@@ -54,7 +52,7 @@ import { loginTakeFilePng } from '@renderer/assets';
 import { LoginLoading } from '@renderer/components/Loading';
 import { useStage, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 
-import Subfield from '@renderer/components/Subfield/Subfield.vue';
+import { Subfield, SubfieldPlaceholder } from '@renderer/components/Subfield';
 import BlendedText from '@renderer/components/BlendedText/BlendedText.vue';
 
 import Header from '@pages/index/layout/header/index.vue';

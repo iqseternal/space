@@ -1,8 +1,13 @@
 <template>
   <div class="subfield-cloumn">
-    <div v-if="$slots.top" class="top"><slot name="top"></slot></div>
-    <div v-if="$slots.middle" class="middle"><slot name="middle"></slot></div>
-    <div v-if="$slots.bottom" class="bottom"><slot name="bottom"></slot></div>
+    <template v-if="$slots.default">
+      <slot></slot>
+    </template>
+    <template v-else>
+      <div v-if="$slots.top" class="top"><slot name="top"></slot></div>
+      <div v-if="$slots.middle" class="middle"><slot name="middle"></slot></div>
+      <div v-if="$slots.bottom" class="bottom"><slot name="bottom"></slot></div>
+    </template>
   </div>
 </template>
 

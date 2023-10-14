@@ -1,8 +1,8 @@
 <template>
   <SubfieldCloumn class="sidebars">
-    <template #top><Indicator /></template>
-    <template #middle><Navigation /></template>
-    <template #bottom><Personal /></template>
+    <Indicator />
+    <Navigation />
+    <Personal />
   </SubfieldCloumn>
 </template>
 

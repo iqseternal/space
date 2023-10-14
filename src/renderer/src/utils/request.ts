@@ -1,4 +1,4 @@
-import { createApiRequest } from '@suey/packages';
+import { createApiRequest } from '@suey/pkg-utils';
 import { getToken } from './storage';
 import { inflate } from 'pako';
 
@@ -11,7 +11,7 @@ const isOkStatus = (status: number): boolean => {
   return false;
 }
 
-export { REQ_METHODS, type RequestConfig } from '@suey/packages';
+export { REQ_METHODS, type RequestConfig } from '@suey/pkg-utils';
 
 export interface HConfig {
   needAuth?: boolean;

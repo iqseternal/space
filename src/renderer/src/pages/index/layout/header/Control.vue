@@ -1,20 +1,18 @@
 <template>
   <Subfield>
-    <template #left><div /></template>
-    <template #right>
-      <div />
-      <Space :size="8" style="margin-right: 8px;">
-        <Tooltip title="最小化" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
-          <WidgetSvg :src="windowMinSvg" @click="minWindow" class="widgetItem" />
-        </Tooltip>
-        <Tooltip title="还原窗口" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
-          <WidgetSvg v-if="!props.isPane" :src="windowRegionSvg" @click="reductionWindow" class="widgetItem" />
-        </Tooltip>
-        <Tooltip title="关闭" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
-          <WidgetSvg :src="windowCloseSvg" @click="closeWindow" class="widgetItem"/>
-        </Tooltip>
-      </Space>
-    </template>
+    <div />
+    
+    <Space :size="8" style="margin-right: 8px;">
+      <Tooltip title="最小化" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
+        <WidgetSvg :src="windowMinSvg" @click="minWindow" class="widgetItem" />
+      </Tooltip>
+      <Tooltip title="还原窗口" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
+        <WidgetSvg v-if="!props.isPane" :src="windowRegionSvg" @click="reductionWindow" class="widgetItem" />
+      </Tooltip>
+      <Tooltip title="关闭" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
+        <WidgetSvg :src="windowCloseSvg" @click="closeWindow" class="widgetItem"/>
+      </Tooltip>
+    </Space>
   </Subfield>
 </template>
 

@@ -1,9 +1,14 @@
 
 <template>
   <div class="subfield">
-    <div v-if="$slots.left" class="left"><slot name="left"></slot></div>
-    <div v-if="$slots.center" class="center"><slot name="center"></slot></div>
-    <div v-if="$slots.right" class="right"><slot name="right"></slot></div>
+    <template v-if="!$slots.left && !$slots.center && !$slots.right">
+      <slot></slot>
+    </template>
+    <template v-else>
+      <div v-if="$slots.left" class="left"><slot name="left"></slot></div>
+      <div v-if="$slots.center" class="center"><slot name="center"></slot></div>
+      <div v-if="$slots.right" class="right"><slot name="right"></slot></div>
+    </template>
   </div>
 </template>
 
