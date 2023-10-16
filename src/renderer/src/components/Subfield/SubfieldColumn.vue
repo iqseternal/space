@@ -1,5 +1,5 @@
 <template>
-  <div class="subfield-cloumn">
+  <div class="subfield-cloumn" :style="{ flex: props.flex }">
     <template v-if="$slots.default">
       <slot></slot>
     </template>
@@ -10,6 +10,14 @@
     </template>
   </div>
 </template>
+
+<script lang="ts" setup>
+
+const props = defineProps({
+  flex: { type: Number, default: 1 }
+})
+
+</script>
 
 <style lang="scss" scoped>
 

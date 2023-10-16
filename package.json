@@ -64,6 +64,7 @@
     "@types/request": "^2.48.8",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "ajv": "^7",
     "crawlee": "^3.5.1",
     "depcheck": "^1.4.3",
     "electron": "^24.6.2",
