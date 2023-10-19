@@ -31,7 +31,7 @@ import { Space, FormItem, Modal, Form, Input, InputPassword, notification, messa
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue';
 import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
-import { apiAuthPost, apiUrl } from '@renderer/api';
+import { apiAuthPost, apiUrl, apiPost } from '@renderer/api';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
@@ -48,10 +48,11 @@ const lastInput = ref() as Ref<{ $el: HTMLDivElement; }>;
 const login = async () => {
   setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE);
 
-  apiAuthPost(apiUrl.login, {
-    username: 'admin',
-    password: '12345678'
-  }, {}, {
+  apiPost(apiUrl.login, {
+    data: {
+      username: 'admin',
+      password: '12345678'
+    },
     timeout: 2000
   }).then(res => {
     setTimeout(() => {
