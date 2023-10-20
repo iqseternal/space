@@ -1,18 +1,5 @@
 <template>
-  <Form>
-    <FormItem hasFeedback validateStatus="success" required>
-      <RInput placeholder="请输入用户名/邮箱">
-        <template #prefix><MailOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
-        <template #topic>User/Email</template>
-      </RInput>
-    </FormItem>
-    <FormItem required>
-      <RInput type="password" ref="lastInput" placeholder="请输入用户密码">
-        <template #prefix><LockOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
-        <template #topic>Password</template>
-      </RInput>
-    </FormItem>
-  </Form>
+  <LoginForm />
   <Subfield>
     <template #left><Checkbox v-model:checked="rememberMe">RememberMe</Checkbox></template>
     <template #right><div /><div /><a>忘记密码</a><div /></template>
@@ -32,6 +19,7 @@ import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue'
 import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 import { apiAuthPost, apiUrl, apiPost } from '@renderer/api';
+import { LoginForm } from '@renderer/components/LoginForm';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
@@ -43,7 +31,7 @@ const [stage, setStage] = useStageInject();
 
 const rememberMe = ref(true);
 
-const lastInput = ref() as Ref<{ $el: HTMLDivElement; }>;
+// const lastInput = ref() as Ref<{ $el: HTMLDivElement; }>;
 
 const login = async () => {
   setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE);
@@ -74,7 +62,7 @@ const login = async () => {
 }
 
 useMousetrap('enter', () => login());
-onMounted(() => useMousetrap(lastInput.value.$el, 'enter', () => login()));
+// onMounted(() => useMousetrap(lastInput.value.$el, 'enter', () => login()));
 </script>
 
 <style lang="scss" scoped>

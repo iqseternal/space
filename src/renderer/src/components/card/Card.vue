@@ -8,7 +8,6 @@
 
 <script lang="ts" setup>
 import { apiGet } from '@renderer/utils/request';
-
 import { onMounted } from 'vue';
 
 const props = defineProps({

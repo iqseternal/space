@@ -8,11 +8,9 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, type Ref, watch } from 'vue';
-
 import { useDebounce } from '@renderer/hooks/useDebounce';
-
-import Card from './Card.vue';
 import { list as listData } from './data';
+import Card from './Card.vue';
 
 const list = ref<Source[]>(listData);
 const listRef = ref() as Ref<HTMLDivElement>;

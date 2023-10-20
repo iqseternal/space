@@ -166,8 +166,8 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, (e, type) => ipcR((ok
     targetPy = positionY + gapHeight / 2 * -1;
 
     // 取消这是因为当前使用的标题栏在屏幕上方, 如果按中心改变位置, 可能出现看不到标题栏从而无法拖动的情况
-    if (targetPx <= 0) targetPx = positionX;
-    if (targetPy <= 0) targetPy = positionY;
+    if (targetPx <= 10) targetPx = positionX;
+    if (targetPy <= 50) targetPy = positionY;
 
     window.setPosition(targetPx, targetPy);
     window.setSize(targetWidth, targetHeight);

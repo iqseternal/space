@@ -27,7 +27,7 @@
                 <div style="font-size: 14px;color: rgba(0, 0, 0, .6);max-width: 350px;">
                   To keep connected us please login with your personal information by emial address and password.
                 </div>
-                <LoginForm />
+                <Login />
               </Space>
             </template>
             <template v-else-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE">
@@ -58,8 +58,8 @@ import BlendedText from '@renderer/components/BlendedText/BlendedText.vue';
 import Header from '@pages/index/layout/header/index.vue';
 import Logo from '@renderer/components/Logo/Logo.vue';
 
-import LoginForm from './LoginForm.vue';
-import RegisterForm from './RegisterForm.vue';
+import Login from './Login.vue';
+import RegisterForm from './Register.vue';
 import RButton from '@renderer/components/RButton/RButton.vue';
 
 const [stage, preStageKey] = useStage();

@@ -13,11 +13,9 @@
 </template>
 
 <script lang="ts" setup>
-
 const props = defineProps({
   flex: { type: Number, default: 1 }
 })
-
 </script>
 
 <style lang="scss" scoped>

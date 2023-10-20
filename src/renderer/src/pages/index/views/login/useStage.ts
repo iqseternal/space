@@ -13,6 +13,10 @@ export type PropKeys = keyof typeof DEFINE_PROVIDE_PROP_KEYS;
 
 export type SetStageFn = (key: PropKeys) => void;
 
+/**
+ * 登录页状态管理 stage
+ * @returns
+ */
 export const useStage = (): [Ref<PropKeys>, PropKeys] => {
   let preStage: PropKeys = DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE;
 
