@@ -20,7 +20,6 @@ onMounted(() => {
   setCssVar(blended.value, '--spacing', parseInt(getCssVar(blended.value, 'font-size')) * -1 + 'px');
   setCssVar(blended.value, '--dist-spacing', props.distSpacing + 'px');
 });
-
 </script>
 
 <style lang="scss" scoped>

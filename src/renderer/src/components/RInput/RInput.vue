@@ -4,7 +4,7 @@ import { ref, onMounted, defineComponent, onBeforeUnmount } from 'vue';
 import { Input, InputProps } from 'ant-design-vue';
 import { useEventListener, useEventListenerForElement } from '@renderer/hooks/useEventListener';
 
-interface RInputProps extends InputProps, Record<string, any> {
+interface RInputProps extends InputProps {
 
 }
 
@@ -70,6 +70,7 @@ export default defineComponent<RInputProps>({
     color: rgba(0, 0, 0, .35);
     transform: translateY(-50%);
     transition: all .5s ease-out;
+    user-select: none;
     @include positionLt(absolute, 50%, 56px);
   }
 

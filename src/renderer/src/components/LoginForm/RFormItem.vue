@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import type { VNodeProps, AllowedComponentProps, ComponentCustomProps, SlotsType } from 'vue';
-import { defineComponent } from 'vue';
+import { defineComponent, watch } from 'vue';
 import type { FormItemProps, FormItemRest } from 'ant-design-vue';
 import { FormItem } from 'ant-design-vue';
 
@@ -22,7 +22,12 @@ export default defineComponent<RFormItemProps, {}, '', RFormItemSlots>({
   components: { FormItem },
   setup(props, { slots, emit, expose }) {
 
-    
+    if (props.validateStatus) {
+      watch(() => props.validateStatus, nv => {
+        console.log(nv);
+      })
+    }
+
   }
 })
 </script>

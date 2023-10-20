@@ -27,7 +27,6 @@
 
 <script lang="ts" setup>
 import type { Ref } from 'vue';
-
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
 import { Space, Progress, ProgressProps, Button } from 'ant-design-vue';
 import { DeleteOutlined, CloseCircleOutlined, CloseCircleFilled, CloseCircleTwoTone } from '@ant-design/icons-vue';
@@ -38,7 +37,7 @@ import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import SubfieldColumn from '@renderer/components/Subfield/SubfieldColumn.vue';
 import Logo from '@renderer/components/Logo/Logo.vue';
 
-const emits = defineEmits(['cancel'])
+const emits = defineEmits(['cancel']);
 
 const fake = reactive(new FakeProgress({
   timeConstant: 6000,  //timeConstant相当于分母，分母越大则加的越少
@@ -56,7 +55,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-
 .bar {
   margin-top: 20px;
   width: 100%;

@@ -6,7 +6,7 @@
   </Subfield>
   <Subfield style="margin-top: 18px;">
     <template #left><div /><RButton type="primary" @click="login">LoginNow</RButton><div /></template>
-    <template #center><RButton>CreateAccount</RButton><div /></template>
+    <template #center><RButton @click="() => setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE)">CreateAccount</RButton><div /></template>
   </Subfield>
 </template>
 

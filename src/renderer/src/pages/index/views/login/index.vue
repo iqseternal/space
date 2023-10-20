@@ -15,7 +15,7 @@
           <div />
         </Subfield>
 
-        <Subfield style="margin-top: 20px;">
+        <Subfield style="margin-top: 20px;height: 70%;">
           <template #left>
             <div />
             <img alt="" :src="loginTakeFilePng" />
@@ -31,7 +31,7 @@
               </Space>
             </template>
             <template v-else-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE">
-              `register`
+              <Register />
             </template>
           </template>
         </Subfield>
@@ -59,8 +59,7 @@ import Header from '@pages/index/layout/header/index.vue';
 import Logo from '@renderer/components/Logo/Logo.vue';
 
 import Login from './Login.vue';
-import RegisterForm from './Register.vue';
-import RButton from '@renderer/components/RButton/RButton.vue';
+import Register from './Register.vue';
 
 const [stage, preStageKey] = useStage();
 
@@ -92,7 +91,6 @@ onBeforeUnmount(() => {
   background-color: var(--s-main-frame-contain-color);
 
   .contain {
-
     height: calc(100vh - $sMainCaptionBarHeight);
   }
 }
