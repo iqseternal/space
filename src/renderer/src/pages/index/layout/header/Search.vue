@@ -7,11 +7,20 @@ import type { Ref } from 'vue';
 import { ref, onMounted } from 'vue';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 
+const emits = defineEmits(['search']);
+
 const searchInput = ref() as Ref<HTMLInputElement>;
 
-useMousetrap(['command+shift+k', 'ctrl+shift+k'], () => {
-  searchInput.value.focus();
-});
+useMousetrap(['command+shift+k', 'ctrl+shift+k'], () => searchInput.value.focus());
+
+useMousetrap(searchInput, [
+  ['esc', () => searchInput.value.blur()],
+  ['enter', () => emits('search')],
+  ['tab', () => {
+    // 可能通过网络查询一些选项
+    console.log('tab');
+  }]
+]);
 </script>
 
 <style lang="scss" scoped>

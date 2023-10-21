@@ -32,6 +32,10 @@ import RInput from '@renderer/components/RInput/RInput.vue';
 import RButton from '@renderer/components/RButton/RButton.vue';
 import RFormItem from './RFormItem.vue';
 
+const props = defineProps({
+  autoFill: { type: Boolean, default: () => false }
+});
+
 const lastInput = ref() as LoginFormRef['lastInput'];
 
 const form = reactive({

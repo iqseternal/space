@@ -1,7 +1,6 @@
 <template>
   <Subfield>
     <div />
-    
     <Space :size="8" style="margin-right: 8px;">
       <Tooltip title="最小化" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
         <WidgetSvg :src="windowMinSvg" @click="minWindow" class="widgetItem" />
