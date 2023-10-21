@@ -18,8 +18,9 @@
 </template>
 
 <script lang="ts" setup>
+import type { LoginFormRef } from './declare.d';
 import type { Ref } from 'vue';
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { Space, FormItem, Modal, Form, Input, InputPassword, notification, message, Checkbox, Radio } from 'ant-design-vue';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue';
@@ -31,7 +32,7 @@ import RInput from '@renderer/components/RInput/RInput.vue';
 import RButton from '@renderer/components/RButton/RButton.vue';
 import RFormItem from './RFormItem.vue';
 
-const lastInput = ref() as Ref<{ $el: HTMLDivElement; }>;
+const lastInput = ref() as LoginFormRef['lastInput'];
 
 const form = reactive({
   username: '',
@@ -58,6 +59,11 @@ const { validateMessage: pwdVaMessage, validateStatus: pwdVaStatus, validateFn: 
     return { message: '弱密码', status: 'warning' };
   }
   return { message: '密码只能包含字母或者数字的组合', status: 'error' };
+});
+
+defineExpose<LoginFormRef>({
+  form,
+  lastInput
 });
 </script>
 

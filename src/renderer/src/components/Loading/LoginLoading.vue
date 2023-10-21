@@ -40,8 +40,8 @@ import Logo from '@renderer/components/Logo/Logo.vue';
 const emits = defineEmits(['cancel']);
 
 const fake = reactive(new FakeProgress({
-  timeConstant: 6000,  //timeConstant相当于分母，分母越大则加的越少
-  autoStart: true //自动开始
+  timeConstant: 6000,  // timeConstant相当于分母, 分母越大则加的越少
+  autoStart: true // 自动开始
 }));
 
 onMounted(() => {

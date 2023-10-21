@@ -10,7 +10,6 @@ import 'ant-design-vue/dist/reset.css';
 import 'dayjs/locale/zh-cn';
 
 import '@suey/rocketry/index.css';
-
 import '@scss/index.scss';
 
 ;(async () => {

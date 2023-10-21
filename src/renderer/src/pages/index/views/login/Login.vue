@@ -1,5 +1,5 @@
 <template>
-  <LoginForm />
+  <LoginForm ref="loginForm" />
   <Subfield>
     <template #left><Checkbox v-model:checked="rememberMe">RememberMe</Checkbox></template>
     <template #right><div /><div /><a>忘记密码</a><div /></template>
@@ -19,7 +19,8 @@ import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue'
 import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 import { apiAuthPost, apiUrl, apiPost } from '@renderer/api';
-import { LoginForm } from '@renderer/components/LoginForm';
+import type { LoginFormRef } from '@renderer/components/Login';
+import { LoginForm } from '@renderer/components/Login';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
@@ -31,6 +32,8 @@ const [stage, setStage] = useStageInject();
 
 const rememberMe = ref(true);
 
+const loginForm = ref<LoginFormRef>();
+
 // const lastInput = ref() as Ref<{ $el: HTMLDivElement; }>;
 
 const login = async () => {
@@ -38,8 +41,8 @@ const login = async () => {
 
   apiPost(apiUrl.login, {
     data: {
-      username: 'admin',
-      password: '12345678'
+      username: loginForm.value?.form.username,
+      password: loginForm.value?.form.password
     },
     timeout: 2000
   }).then(res => {
