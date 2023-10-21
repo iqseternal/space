@@ -21,7 +21,7 @@
     "build:mac": "npm run build && electron-builder --mac --config",
     "build:linux": "npm run build && electron-builder --linux --config",
     "build:all": "pnpm build:win && pnpm build:mac && pnpm build:linux",
-    "depcheck": "depcheck"
+    "display:protocol": "ts-node ./scripts/protocol/index.ts --noEmitOnError --noImplicitAny false --isolatedModules false"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^2.0.0",
@@ -76,6 +76,7 @@
     "prettier": "^2.8.8",
     "puppeteer": "^20.9.0",
     "terser": "^5.19.2",
+    "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
     "vite": "^4.4.2",
     "vite-plugin-compression": "^0.5.1",

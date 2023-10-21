@@ -1,4 +1,4 @@
-# space
+# SPACE
 
 一款基于 Electron, Elecron-Vite, Vue, TypeScript, Socket, Animate, AntDesignVue, Mousetrap, AutoAnimate, Pako, Pinia 等的应用程序
 
