@@ -1,4 +1,3 @@
-
 import { print, toColor, printClear, type PrintTargetType, toPrintClear } from '@suey/printer';
 import { getCurDate, getCurFullDate, getCurTime } from '../core/common/common';
 import { AppConfigService } from './AppConfigService';

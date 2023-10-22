@@ -17,7 +17,7 @@ import { UserConfigService } from '#/code/service/UserConfigService';
 import { BrowserWindow } from 'electron';
 import { Printer } from '@suey/printer';
 
-import { setWindowCloseCaptionContextmenu } from '#code/core/common/window';
+import { setWindowCloseCaptionContextmenu, setWindowDevtoolsDetach } from '#code/core/common/window';
 
 export async function setupAppDataDownload() {
   const wallpaperSaveService = new AppDataService('userData', 'download');
@@ -39,6 +39,7 @@ export async function setupMainWindow() {
 
   windowService.window.setMenu(null);
   setWindowCloseCaptionContextmenu(windowService.window);
+  setWindowDevtoolsDetach(windowService.window);
 
   // windowService.window.setEnabled(false);
   // windowService.window.setMaximizable(false);

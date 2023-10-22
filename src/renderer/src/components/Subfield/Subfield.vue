@@ -1,6 +1,6 @@
 
 <template>
-  <div class="subfield" :style="{ flex: props.flex }">
+  <div class="subfield" :style="{ flex: props.flex, gap: props.gap + 'px' }">
     <template v-if="!$slots.left && !$slots.center && !$slots.right">
       <slot></slot>
     </template>
@@ -14,7 +14,8 @@
 
 <script lang="ts" setup>
 const props = defineProps({
-  flex: { type: Number, default: 1 }
+  flex: { type: Number, default: 1 },
+  gap: { type: Number, default: 0 }
 })
 </script>
 

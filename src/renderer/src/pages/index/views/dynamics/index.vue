@@ -25,8 +25,7 @@ import { Dayjs } from 'dayjs';
 import { Calendar, Card, Badge, Tag, Space, Avatar, Button } from 'ant-design-vue';
 import { shuffle } from 'lodash';
 import { vAutoAnimate, useAutoAnimate } from '@formkit/auto-animate/vue';
-
-import Subfield from '@renderer/components/Subfield/Subfield.vue';
+import { Subfield, SubfieldCloumn } from '@renderer/components/Subfield';
 
 const [parent] = useAutoAnimate({ duration: 500 });
 

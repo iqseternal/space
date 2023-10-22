@@ -41,7 +41,7 @@ export function useMousetrap(
   // 第三个重载
   else if (((Array.isArray(_1) && (_1 as string[]).every(e => typeof e === 'string')) || typeof _1 === 'string') && typeof _2 === 'function' && (typeof _3 === 'string' || _3 === void 0)) binds = [[_1 as (string | string[]), _2, _3]];
   // 第二个重载
-  else if ((_1 instanceof HTMLElement || isRef(_1)) && (Array.isArray(_2) && _2.every(e => e.length >= 2))) binds = _2 as MousetrapBinds;
+  else if ((_1 instanceof HTMLElement || isRef(_1)) && (Array.isArray(_2) && (_2 as string[]).every(e => e.length >= 2))) binds = _2 as MousetrapBinds;
   // 第一个重载
   else if ((_1 instanceof HTMLElement || isRef(_1)) && Array.isArray(_2) && (_2 as string[]).every(e => typeof e === 'string') && typeof _3 === 'function' && (typeof _4 === 'string' || _4 === void 0)) binds = [[_2 as (string | string[]), _3, _4]];
 

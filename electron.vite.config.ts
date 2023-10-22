@@ -9,7 +9,9 @@ import svgLoader from 'vite-svg-loader';
 
 export default defineConfig(() => ({
   main: {
-    plugins: [externalizeDepsPlugin(), bytecodePlugin()],
+    plugins: [externalizeDepsPlugin(), bytecodePlugin({
+      protectedStrings: ['ABC'] // 保护的字符串
+    })],
     resolve: {
       alias: nodeAlias
     },
@@ -21,6 +23,9 @@ export default defineConfig(() => ({
           drop_console: true,
           drop_debugger: true
         }
+      },
+      rollupOptions: {
+
       }
     }
   },

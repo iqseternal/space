@@ -1,5 +1,6 @@
 
-import { BrowserWindow } from 'electron';
+import { printWarn } from '@suey/printer';
+import { BrowserWindow, globalShortcut } from 'electron';
 import { app, screen, Tray, Menu, shell } from 'electron';
 
 /**
@@ -68,4 +69,25 @@ export const setWindowCloseCaptionContextmenu = (window: BrowserWindow) => {
     setTimeout(() => window.setEnabled(true), 100);
     return true;
   });
+}
+
+export const setWindowDevtoolsDetach = (window: BrowserWindow) => {
+  // if (globalShortcut.isRegistered('F12')) globalShortcut.unregister('F12');
+//
+  // globalShortcut.register('F12', () => {
+    // printWarn('设置了开发者工具打开方式 detach');
+
+    // window.webContents.devToolsWebContents?.openDevTools({ mode: 'detach' });
+
+    // const isDevToolsOpend = window.webContents.isDevToolsOpened();
+
+    // if (isDevToolsOpend) window.webContents.closeDevTools();
+    // else {
+// window.webContents.openDevTools({ mode: 'detach' });
+    // }
+  // });
+
+  // window.webContents.closeDevTools();
+
+  // window.on('')
 }

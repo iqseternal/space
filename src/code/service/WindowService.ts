@@ -2,7 +2,7 @@ import { join } from 'path';
 import { BrowserWindow, shell, type BrowserWindowConstructorOptions } from 'electron';
 import { is } from '@electron-toolkit/utils';
 import { Tray, Menu, app, screen } from 'electron';
-import { setWindowCross, setWindowMaxSize, setWindowMinSize, setWindowOpenHandler, setWindowCaption } from '../core/common/window';
+import { setWindowCross, setWindowMaxSize, setWindowMinSize, setWindowOpenHandler, setWindowCaption, setWindowDevtoolsDetach } from '../core/common/window';
 
 import { PAGES_WINDOW_SETTING, PAGES_WINDOW_MAIN } from '#/config';
 
@@ -40,11 +40,10 @@ export class WindowService {
         preload: join(__dirname, '../preload/index.js'),
         sandbox: false,
         devTools: true,
+
         webSecurity: true,
         nodeIntegration: true,
-
         contextIsolation: true,
-
         nodeIntegrationInSubFrames: true
       },
     }));
