@@ -1,4 +1,4 @@
-
+import { is } from '@electron-toolkit/utils';
 import { printWarn } from '@suey/printer';
 import { BrowserWindow, globalShortcut } from 'electron';
 import { app, screen, Tray, Menu, shell } from 'electron';
@@ -83,7 +83,8 @@ export const setWindowDevtoolsDetach = (window: BrowserWindow) => {
 
     // if (isDevToolsOpend) window.webContents.closeDevTools();
     // else {
-  window.webContents.openDevTools({ mode: 'detach' });
+
+  if (is.dev) window.webContents.openDevTools({ mode: 'detach' });
     // }
   // });
 
