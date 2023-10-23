@@ -1,5 +1,5 @@
-import { is } from "@electron-toolkit/utils";
-import { join } from "path";
+import { is } from '@electron-toolkit/utils';
+import { join } from 'path';
 
 /**
  * 静态 Config , 并不存储在 JSON 中, 不希望用户更改

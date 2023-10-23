@@ -12,6 +12,7 @@
 </template>
 
 <script lang="ts" setup>
+import type { Ref } from 'vue';
 import { ref } from 'vue';
 import { Space } from 'ant-design-vue';
 import { Subfield, SubfieldCloumn } from '#/renderer/src/components/Subfield';
