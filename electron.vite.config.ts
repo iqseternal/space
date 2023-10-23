@@ -9,9 +9,7 @@ import svgLoader from 'vite-svg-loader';
 
 export default defineConfig(() => ({
   main: {
-    plugins: [externalizeDepsPlugin(), bytecodePlugin({
-      protectedStrings: ['ABC'] // 保护的字符串
-    })],
+    plugins: [externalizeDepsPlugin(), bytecodePlugin()],
     resolve: {
       alias: nodeAlias
     },
@@ -57,10 +55,10 @@ export default defineConfig(() => ({
         minify: 'terser',
         manifest: true,
         terserOptions: {
-          // compress: {
-          //   drop_console: true,
-          //   drop_debugger: true
-          // }
+          compress: {
+            drop_console: true,
+            drop_debugger: true
+          }
         },
         rollupOptions: {
           input: {
