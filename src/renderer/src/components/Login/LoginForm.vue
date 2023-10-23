@@ -58,9 +58,11 @@ const { validateMessage: pwdVaMessage, validateStatus: pwdVaStatus, validateFn: 
   if (/ /.test(value)) return { message: '不能含有空格', status: 'error' };
   if (value.length < 6) return { message: '最少6位', status: 'error' };
   if (value.length > 16) return { message: '最大16位', status: 'error' };
+
   if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{6,16}$/) {
-    if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9~!@#$%^&*]{8,16}$/.test(value)) return { message: '', status: 'success' };
-    return { message: '弱密码', status: 'warning' };
+    // if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9~!@#$%^&*]{8,16}$/.test(value)) return { message: '', status: 'success' };
+    // return { message: '弱密码', status: 'warning' };
+    return { message: '', status: 'success' };
   }
   return { message: '密码只能包含字母或者数字的组合', status: 'error' };
 });

@@ -26,7 +26,6 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_MIN_SIZE, (e, id) => ipcR((ok, fail) => 
     fail(void 0, '找不到指定窗口');
     return;
   }
-
   window?.minimize();
   ok();
 }));
@@ -37,14 +36,12 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_REDUCTION, (e, id?: number) => ipcR((ok,
     fail(void 0, '找不到指定窗口');
     return;
   }
-
   if (window?.isMaximized()) {
     window.restore();
     sendToRenderer(window, IPC_RENDER_WINDOW.WINDOW_STATUS, new IpcResponseOk(false, '被还原了'));
     ok();
     return;
   }
-
   window?.maximize();
   sendToRenderer(window, IPC_RENDER_WINDOW.WINDOW_STATUS, new IpcResponseOk(true, '最大化了'));
   ok();
@@ -70,23 +67,18 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RELAUNCH, () => ipcR((ok, fail) => {
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SET_SIZE, (e, width, height) => ipcR((ok, fail) => {
   const window = BrowserWindow.fromId(e.frameId);
   if (!window) {
-
     fail(false, '找不到指定窗口');
     return;
   }
-
   if (window.isMaximized()) window.restore();
-
   window.setMinimumSize(0, 0);
   window.setSize(width, height);
-
   ok(true);
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SET_POSITION, (e, _1: number | 'center' | 'left' | 'right' | 'top' | 'bottom', _2?: number) => ipcR((ok, fail) => {
   const window = BrowserWindow.fromId(e.frameId);
   if (!window) {
-
     fail(false, '找不到指定窗口');
     return;
   }
@@ -114,7 +106,6 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SET_POSITION, (e, _1: number | 'center' 
     if (type === 'right') { targetPx += width; }
     if (type === 'top') { targetPy -= height; }
     if (type === 'bottom') { targetPy += height; }
-
     window.setPosition(targetPx, targetPy);
     ok(true);
     return;

@@ -1,13 +1,19 @@
 <template>
-  <LoginForm ref="loginForm" />
-  <Subfield>
-    <template #left><Checkbox v-model:checked="rememberMe">RememberMe</Checkbox></template>
-    <template #right><div /><div /><a>忘记密码</a><div /></template>
-  </Subfield>
-  <Subfield style="margin-top: 18px;">
-    <template #left><div /><RButton type="primary" @click="login">LoginNow</RButton><div /></template>
-    <template #center><RButton @click="() => setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE)">CreateAccount</RButton><div /></template>
-  </Subfield>
+  <Space direction="vertical" :size="4">
+    <div style="font-size: 40px;">Welcome Back :&rpar;</div>
+    <div style="font-size: 14px;color: rgba(0, 0, 0, .6);max-width: 350px;">
+      To keep connected us please login with your personal information by emial address and password.
+    </div>
+    <LoginForm ref="loginForm" />
+    <Subfield>
+      <template #left><Checkbox v-model:checked="rememberMe">RememberMe</Checkbox></template>
+      <template #right><div /><div /><a @click="() => setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_FORGET_PASSWORD)">忘记密码</a><div /></template>
+    </Subfield>
+    <Subfield style="margin-top: 18px;">
+      <template #left><div /><RButton type="primary" @click="login">LoginNow</RButton><div /></template>
+      <template #center><RButton @click="() => setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE)">CreateAccount</RButton><div /></template>
+    </Subfield>
+  </Space>
 </template>
 
 <script lang="ts" setup>

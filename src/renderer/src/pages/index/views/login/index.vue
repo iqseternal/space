@@ -15,24 +15,14 @@
           <div />
         </Subfield>
 
-        <Subfield style="margin-top: 20px;height: 70%;">
+        <Subfield style="margin-top: 10px;height: 70%;">
           <template #left>
             <div />
             <img alt="" :src="loginTakeFilePng" />
           </template>
           <template #right>
-            <template v-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE">
-              <Space direction="vertical" :size="10">
-                <div style="font-size: 40px;">Welcome Back :&rpar;</div>
-                <div style="font-size: 14px;color: rgba(0, 0, 0, .6);max-width: 350px;">
-                  To keep connected us please login with your personal information by emial address and password.
-                </div>
-                <Login />
-              </Space>
-            </template>
-            <template v-else-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE">
-              <Register />
-            </template>
+            <template v-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE"><Login /></template>
+            <template v-else-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE"><Register /></template>
           </template>
         </Subfield>
       </template>
