@@ -19,7 +19,7 @@ export default defineComponent<RInputProps>({
       focus: () => {
         if (isFocused.value) return;
         if (input.value.input.input.value === '') {
-          topic.value.style.transform = `translateY(-50%) translateY(-15px)`;
+          topic.value.style.transform = `translateY(-50%) translateY(-12px)`;
           topic.value.style.color = `rgba(0, 0, 255, .7)`;
           topic.value.style.cursor = 'default';
           isFocused.value = true;
@@ -98,11 +98,11 @@ export default defineComponent<RInputProps>({
       line-height: 18px;
       min-height: 28px !important;
       background: unset;
-      margin-top: 10px;
+      margin-top: 15px;
 
       &::placeholder {
-        font-size: 12px;
-        line-height: 18px;
+        font-size: 14px;
+        line-height: 18px !important;
         color: rgba(0, 0, 0, .2);
         opacity: 0;
         transition: opacity .5s ease-out;

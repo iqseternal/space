@@ -1,6 +1,6 @@
 
 
-export type { RegisterFormRef, LoginFormRef } from './declare.d';
+export type { RegisterFormRef, LoginFormRef, FormValidateRef, FormValidateRefResult } from './declare.d';
 
 export { default as RFormItem } from './RFormItem.vue';
 
