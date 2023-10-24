@@ -32,6 +32,11 @@ export interface LoginFormRef {
 }
 
 export interface RegisterFormRef {
-
-
+  form: UnwrapNestedRefs<{
+    username: string;
+    password: string;
+    code: string;
+  }>,
+  validate: ValidateRef;
+  lastInput: { $el: HTMLInputElement; };
 }

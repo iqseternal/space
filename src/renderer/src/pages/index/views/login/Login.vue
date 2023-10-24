@@ -41,6 +41,10 @@ const rememberMe = ref(true);
 const loginForm = ref<LoginFormRef>();
 
 const login = async () => {
+  /**
+   * Example Account: username: admin
+   *          password: 12345678
+   */
   loginForm.value?.validate().then(() => {
     setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE);
     apiPost(apiUrl.login, {
