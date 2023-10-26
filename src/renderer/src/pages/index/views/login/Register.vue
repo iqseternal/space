@@ -18,10 +18,21 @@ import { Space } from 'ant-design-vue';
 import { Subfield, SubfieldCloumn } from '#/renderer/src/components/Subfield';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 import { RegisterForm, RegisterFormRef } from '@renderer/components/Login';
+import { apiPost, apiAuthPost } from '#/renderer/src/api';
+import { rsaEncrypt } from '@renderer/utils/crypt';
 
 import RButton from '@renderer/components/RButton/RButton.vue';
 
 const [stage, SetStage] = useStageInject();
+
+apiPost('/user/register', {
+  data: {
+    username: 'admin',
+    password: rsaEncrypt('12345678'),
+    verificationCode: 'dasdad',
+    phone: 13684159536
+  }
+})
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 <template>
-   <Form :model="form">
+  <Form :model="form">
     <RFormItem name="username" hasFeedback :validateStatus="userVaStatus" :rules="{ validator: userVaFn }">
       <RInput v-model:value="form.username" placeholder="请输入用户名/邮箱" :maxlength="16">
         <template #prefix><MailOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
