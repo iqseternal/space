@@ -1,9 +1,15 @@
 <template>
   <Form :model="form">
     <RFormItem name="username" hasFeedback :validateStatus="userVaStatus" :rules="{ validator: userVaFn }">
-      <RInput v-model:value="form.username" placeholder="请输入用户名/邮箱" :maxlength="16">
+      <RInput v-model:value="form.username" placeholder="请输入邮箱" :maxlength="16">
         <template #prefix><MailOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
-        <template #topic>User/Email</template>
+        <template #topic>Email</template>
+      </RInput>
+    </RFormItem>
+    <RFormItem name="password" hasFeedback :validateStatus="pwdVaStatus" :rules="{ validator: pwdVaFn }">
+      <RInput v-model:value="form.password" type="password" placeholder="请输入用户密码" :maxlength="16">
+        <template #prefix><LockOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
+        <template #topic>Password</template>
       </RInput>
     </RFormItem>
     <RFormItem name="password" hasFeedback :validateStatus="pwdVaStatus" :rules="{ validator: pwdVaFn }">

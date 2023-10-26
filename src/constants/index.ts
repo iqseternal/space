@@ -10,6 +10,7 @@ export const CONFIG = {
   }
 };
 
+// don't modify it!
 export const RSA_PUBLIC_KEY = `
 -----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCS56315ZowpncDwXZhXb4j6BHK
@@ -18,4 +19,6 @@ BuLWKW9UjDCcTcno4MEhP1qrk3X0iiBeu09aJdiWogjbN4kaBq/KcKRQ5kvXdcTP
 hvcDZhJI/YiPgbRW9wIDAQAB
 -----END PUBLIC KEY-----
 `;
+
+// don't modify it!
 export const AES_KEY = `drawingbed`;

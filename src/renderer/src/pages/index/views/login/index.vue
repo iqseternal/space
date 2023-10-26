@@ -15,15 +15,19 @@
           <div />
         </Subfield>
 
-        <Subfield style="margin-top: 10px;height: 70%;">
+        <Subfield v-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE" style="margin-top: 10px;height: 70%;">
           <template #left>
             <div />
             <img alt="" :src="loginTakeFilePng" />
           </template>
           <template #right>
-            <template v-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE"><Login /></template>
-            <template v-else-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE"><Register /></template>
+            <Login />
           </template>
+        </Subfield>
+        <Subfield v-else-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE">
+          <div />
+          <Register />
+          <div />
         </Subfield>
       </template>
     </div>
