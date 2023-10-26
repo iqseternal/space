@@ -28,10 +28,11 @@ import { apiAuthPost, apiUrl, apiPost } from '@renderer/api';
 import type { LoginFormRef, FormValidateRefResult } from '@renderer/components/Login';
 import { LoginForm } from '@renderer/components/Login';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
-
+import { rsaEncrypt } from '@renderer/utils/crypt';
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import RInput from '@renderer/components/RInput/RInput.vue';
 import RButton from '@renderer/components/RButton/RButton.vue';
+
 
 const router = useRouter();
 const [stage, setStage] = useStageInject();
@@ -50,7 +51,7 @@ const login = async () => {
     apiPost(apiUrl.login, {
       data: {
         username: loginForm.value?.form.username,
-        password: loginForm.value?.form.password
+        password: rsaEncrypt(loginForm.value?.form.password ?? '')
       },
       timeout: 2000
     }).then(res => {
