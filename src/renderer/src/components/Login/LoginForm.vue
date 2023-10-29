@@ -7,7 +7,7 @@
       </RInput>
     </RFormItem>
     <RFormItem name="password" hasFeedback :validateStatus="pwdVaStatus" :rules="{ validator: pwdVaFn }">
-      <RInput v-model:value="form.password" type="password" ref="lastInput" placeholder="请输入用户密码" :maxlength="16">
+      <RInput v-model:value="form.password" type="password" ref="lastInput" placeholder="请输入用户密码" :maxlength="16" @pressEnter="() => emits('finish')">
         <template #prefix><LockOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
         <template #topic>Password</template>
       </RInput>
@@ -34,6 +34,8 @@ import RFormItem from './RFormItem.vue';
 const props = defineProps({
   autoFill: { type: Boolean, default: () => false }
 });
+
+const emits = defineEmits(['finish']);
 
 const form = reactive<LoginFormRef['form']>({ username: '', password: '' });
 const lastInput = ref() as Ref<LoginFormRef['lastInput']>;

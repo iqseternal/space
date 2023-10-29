@@ -35,6 +35,7 @@ export interface RegisterFormRef {
   form: UnwrapNestedRefs<{
     username: string;
     password: string;
+    confimPassword: string;
     code: string;
   }>,
   validate: ValidateRef;

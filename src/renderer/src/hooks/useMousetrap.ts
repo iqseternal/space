@@ -12,10 +12,10 @@ export type MousetrapBindFn = (e: Mousetrap.ExtendedKeyboardEvent, combo: string
 export type MousetrapBinds = [(string | string[]), MousetrapBindFn, MousetrapAction?][];
 
 // 为某个元素注册一个快捷方式
-export function useMousetrap(el: HTMLElement | Ref<HTMLElement>, keys: string | string[], callback: MousetrapBindFn, action?: MousetrapAction): Ref<MousetrapInstance>;
+export function useMousetrap<T extends HTMLElement>(el: T | Ref<T>, keys: string | string[], callback: MousetrapBindFn, action?: MousetrapAction): Ref<MousetrapInstance>;
 
 //
-export function useMousetrap(el: HTMLElement | Ref<HTMLElement>, binds?: MousetrapBinds): Ref<MousetrapInstance>;
+export function useMousetrap<T extends HTMLElement>(el: T | Ref<T>, binds?: MousetrapBinds): Ref<MousetrapInstance>;
 
 // 全局注册的单个事件
 export function useMousetrap(keys: string | string[], callback: MousetrapBindFn, action?: MousetrapAction): Ref<MousetrapInstance>;
@@ -23,8 +23,8 @@ export function useMousetrap(keys: string | string[], callback: MousetrapBindFn,
 //
 export function useMousetrap(binds: MousetrapBinds): Ref<MousetrapInstance>;
 
-export function useMousetrap(
-  _1: HTMLElement | Ref<HTMLElement> | string | string[] | MousetrapBinds,
+export function useMousetrap<T extends HTMLElement>(
+  _1: T | Ref<T> | string | string[] | MousetrapBinds,
   _2?: string | string[] | MousetrapBinds | (MousetrapBindFn),
   _3?: (MousetrapBindFn) | MousetrapAction,
   _4?: MousetrapAction

@@ -6,33 +6,50 @@
       <div />
     </Subfield>
 
-    <RegisterForm />
-    <RButton @click="() => SetStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE)">Login</RButton>
+    <RegisterForm ref="registerForm" />
+    <RButton @click="() => setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE)">Login</RButton>
+    <RButton @click="register">Create</RButton>
   </Space>
 </template>
 
 <script lang="ts" setup>
 import type { Ref } from 'vue';
-import { ref } from 'vue';
-import { Space } from 'ant-design-vue';
+import { ref, onMounted } from 'vue';
+import { Space, message } from 'ant-design-vue';
 import { Subfield, SubfieldCloumn } from '#/renderer/src/components/Subfield';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
-import { RegisterForm, RegisterFormRef } from '@renderer/components/Login';
-import { apiPost, apiAuthPost } from '#/renderer/src/api';
+import type { RegisterFormRef, FormValidateRefResult } from '@renderer/components/Login';
+import { RegisterForm } from '@renderer/components/Login';
+import { apiPost, apiAuthPost, apiUrl, registerReq } from '#/renderer/src/api';
 import { rsaEncrypt } from '@renderer/utils/crypt';
 
 import RButton from '@renderer/components/RButton/RButton.vue';
 
-const [stage, SetStage] = useStageInject();
+const [stage, setStage] = useStageInject();
 
-apiPost('/user/register', {
-  data: {
-    username: 'admin',
-    password: rsaEncrypt('12345678'),
-    verificationCode: 'dasdad',
-    phone: 13684159536
-  }
+const registerForm = ref<RegisterFormRef>();
+
+const register = () => {
+  registerForm.value?.validate().then(res => {
+    setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE);
+    const { username, password, code }  = registerForm.value?.form ?? {};
+    registerReq({ username, password, code }).then(res => {
+      if (stage.value !== DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE) return;
+      setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE);
+    }).catch(err => {
+      if (stage.value !== DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE) return;
+      message.error(err.descriptor);
+      setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE);
+    });
+  }).catch((err: FormValidateRefResult) => {
+    message.error(err.message);
+  })
+}
+
+onMounted(() => {
+  register();
 })
+
 </script>
 
 <style lang="scss" scoped>
