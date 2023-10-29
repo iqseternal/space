@@ -11,6 +11,9 @@ interface Result {
   message: string;
 }
 
+/**
+ * 创建 FormItem 的验证逻辑, 可以配合下面的函数导出自定义的表单 Ref
+ */
 export function useValidate<T>(validateF: (value: T) => (Result | Promise<Result>)) {
   const validateStatus = ref<ValidateStateMessage>('');
   const validateMessage = ref<string>('');
@@ -47,17 +50,15 @@ export interface ValidateRefResult {
 
 export type ValidateRef = () => Promise<ValidateRefResult>;
 
+/**
+ * Form 表单的 Expose Api
+ */
 export function useValidateRef<T extends Record<string, unknown>, Key extends keyof T, VaFn extends ReturnType<typeof useValidate<T[Key]>>['validateFn']>(
   form: T,
   fields: Partial<Record<Key, VaFn | [VaFn, Ref<string>]>> = {  }
 ): ValidateRef {
 
   return () => new Promise((resolve, reject) => {
-
-    interface Results {
-
-    }
-
     const arrPro: Promise<{ filed: string;value: T[Key];message: string; }>[] = [];
     for (const key in fields) {
       arrPro.push(new Promise((resolve, reject) => {
