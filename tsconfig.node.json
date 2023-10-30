@@ -17,8 +17,7 @@
     "electron.vite.config.*",
     "tsconfig.node.json",
     "tsconfig.web.json",
-    "alias.config.ts",
-    "proxy.config.ts",
+    "vite.config.util.ts",
     "src/@types/**/*.d.ts"
   ],
   "exclude": ["node_modules", "dist", "out"],

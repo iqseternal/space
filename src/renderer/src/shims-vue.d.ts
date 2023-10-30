@@ -7,7 +7,6 @@ declare module '*.vue' {
   export default component
 }
 
-
 declare module '*?asset' {
   const data: string;
   export default data;

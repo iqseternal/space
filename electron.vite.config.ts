@@ -1,5 +1,5 @@
 import { defineConfig, defineViteConfig, externalizeDepsPlugin, bytecodePlugin } from 'electron-vite';
-import { webAlias, nodeAlias } from './alias.config';
+import { webAlias, nodeAlias } from './vite.config.util';
 import { join } from 'path';
 import { obfuscator } from 'rollup-obfuscator';
 

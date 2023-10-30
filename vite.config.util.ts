@@ -1,7 +1,7 @@
+import { AliasOptions, Alias } from 'vite';
 import * as path from 'path'
 import * as webConfig from './tsconfig.web.json';
 import * as nodeConfig from './tsconfig.node.json';
-import { AliasOptions, Alias } from 'vite';
 
 const resolveAlias = (aliasPath: Record<string, string[]>): AliasOptions => {
   if (!aliasPath) return [];
