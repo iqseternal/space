@@ -23,7 +23,6 @@ import '@scss/index.scss';
 })();
 
 import Mousetrap from 'mousetrap';
-
 Mousetrap.bind(['ctrl+r', 'command+r', 'f5'], () => {
   window.location.reload();
 });
