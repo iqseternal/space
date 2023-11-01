@@ -34,7 +34,9 @@ div.compose {
   .sidebar {
     width: var(--s-main-frame-sidebar-width);
     height: calc(100%);
-    @include positionLt(absolute, 0px, 0px);
+    position: absolute;
+    top: 0px;
+    left: 0px;
   }
 
   .header {
@@ -42,7 +44,9 @@ div.compose {
     padding: var(--p) 0px;
     height: calc($sMainCaptionBarHeight + var(--p));
     min-height: $sMainCaptionBarHeight;
-    @include positionLt(absolute, 0px, var(--s-main-frame-sidebar-width));
+    position: absolute;
+    top: 0px;
+    left: var(--s-main-frame-sidebar-width);
   }
 
   main.container {
@@ -50,7 +54,9 @@ div.compose {
     width: calc(100% - calc(var(--s-main-frame-sidebar-width)));
     height: calc(100% - $sMainCaptionBarHeight);
     background-color: var(--s-main-frame-contain-color);
-    @include positionTr(absolute, calc($sMainCaptionBarHeight + var(--p)), 0px);
+    position: absolute;
+    top: calc($sMainCaptionBarHeight + var(--p));
+    left: var(--s-main-frame-sidebar-width);
     @include beautifulBar(auto);
     @include overflow(hidden);
   }

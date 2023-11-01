@@ -71,7 +71,9 @@ export default defineComponent<RInputProps>({
     transform: translateY(-50%);
     transition: all .5s ease-out;
     user-select: none;
-    @include positionLt(absolute, 50%, 56px);
+    position: absolute;
+    top: 50%;
+    left: 18%;
   }
 
   &:deep(.ant-input-affix-wrapper) {
