@@ -7,12 +7,8 @@
     <template #right>
       <div />
       <Space>
-        <Tooltip title="后退 Alt+LeftArrow" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
-          <span class="operator" @click="() => router.back()">&lt;</span>
-        </Tooltip>
-        <Tooltip title="前进 Alt+RightArrow" :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
-          <span class="operator" @click="() => router.forward()">&gt;</span>
-        </Tooltip>
+        <Widget title="后退 Alt+LeftArrow" :autoHover="false" @click="() => router.back()"><span class="operator">&lt;</span></Widget>
+        <Widget title="前进 Alt+RightArrow" :autoHover="false" @click="() => router.forward()"><span class="operator" >&gt;</span></Widget>
         <div />
       </Space>
     </template>
@@ -26,6 +22,8 @@ import { ConfigProvider, Tooltip, Space } from 'ant-design-vue';
 import { CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 import { useAutoAnimate, vAutoAnimate } from '@formkit/auto-animate/vue';
+
+import Widget from '@renderer/components/Widget';
 
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 

@@ -49,7 +49,7 @@ import { useStage, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 import { Subfield, SubfieldPlaceholder } from '@renderer/components/Subfield';
 import BlendedText from '@renderer/components/BlendedText/BlendedText.vue';
 
-import Header from '@pages/index/layout/header/index.vue';
+import Header from '@renderer/components/Header';
 import Logo from '@renderer/components/Logo/Logo.vue';
 
 import Login from './Login.vue';

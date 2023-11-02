@@ -1,8 +1,8 @@
 <template>
   <Subfield class="captionBar">
-    <template #left><Slogan v-if="props.isPane === false" /></template>
-    <template #center><Search v-if="props.isPane === false" /></template>
-    <template #right><Control :isPane="props.isPane" /></template>
+    <Slogan v-if="props.isPane === false" />
+    <Search v-if="props.isPane === false" />
+    <Control :isPane="props.isPane" />
   </Subfield>
 </template>
 

@@ -1,6 +1,6 @@
 <script lang="tsx">
 import type { Ref, Component, SlotsType, EmitsOptions } from 'vue';
-import { ref, onMounted, defineComponent, onBeforeUnmount } from 'vue';
+import { ref, onMounted, defineComponent, onBeforeUnmount, watch } from 'vue';
 import { Input, InputProps } from 'ant-design-vue';
 import { useEventListener, useEventListenerForElement } from '@renderer/hooks/useEventListener';
 
@@ -13,36 +13,37 @@ export default defineComponent<RInputProps>({
     const topic = ref() as Ref<HTMLDivElement>;
     const input = ref() as Ref<{ input: { input: HTMLInputElement; } }>;
 
-    const isFocused = ref(false);
+    const isFloat = ref(false);
 
-    onMounted(() => useEventListenerForElement(input.value.input.input, {
-      focus: () => {
-        if (isFocused.value) return;
-        if (input.value.input.input.value === '') {
+    watch(() => isFloat.value, nv => {
+      if (topic.value) {
+        if (nv === true) {
           topic.value.style.transform = `translateY(-50%) translateY(-12px)`;
           topic.value.style.color = `rgba(0, 0, 255, .7)`;
           topic.value.style.cursor = 'default';
-          isFocused.value = true;
         }
-      },
-      blur: () => {
-        if (!isFocused.value) return;
-        if (input.value.input.input.value === '') {
+        else {
+          if (!input.value) return;
+          if (input.value.input.input.value !== '') return;
+
           topic.value.style.transform = `translateY(-50%)`;
           topic.value.style.color = `rgba(0, 0, 0, .35)`;
           topic.value.style.cursor = 'text';
-          isFocused.value = false;
         }
+      }
+    });
+
+    if (attrs.value) onMounted(() => (isFloat.value = true));
+
+    onMounted(() => useEventListenerForElement(input.value.input.input, {
+      focus: () => { isFloat.value = true; },
+      blur: () => {
+        if (input.value.input.input.value === '') isFloat.value = false;
       }
     }));
 
     useEventListener(topic, 'click', () => {
-      if (isFocused.value) return;
-
-      if (input.value.input.input.value === '') {
-        input.value.input.input.focus();
-        isFocused.value = true;
-      }
+      if (input.value.input.input.value === '') input.value.input.input.focus();
     });
 
     return () => (
@@ -73,7 +74,7 @@ export default defineComponent<RInputProps>({
     user-select: none;
     position: absolute;
     top: 50%;
-    left: 18%;
+    left: 17%;
   }
 
   &:deep(.ant-input-affix-wrapper) {

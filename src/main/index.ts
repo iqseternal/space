@@ -1,6 +1,8 @@
 import '#/globalForNode';
 import '#/code/measure/unhandledWarning';
 
+import './setupHandles';
+
 import { setupApp } from './setupApp';
 import { setupMainWindow } from './setupService';
 import { setupUi } from './setupUi';

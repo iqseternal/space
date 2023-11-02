@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 
-import Header from './header/index.vue';
+import Header from '@renderer/components/Header';
 import Sidebar from './sidebar/index.vue';
 
 import { IPC_MAIN_WINDOW } from '#/constants';

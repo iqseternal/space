@@ -37,7 +37,7 @@ const props = defineProps({
 
 const emits = defineEmits(['finish']);
 
-const form = reactive<LoginFormRef['form']>({ username: '', password: '' });
+const form = reactive<LoginFormRef['form']>({ username: 'admin', password: '12345678' });
 const lastInput = ref() as Ref<LoginFormRef['lastInput']>;
 
 const { validateMessage: userVaMessage, validateStatus: userVaStatus, validateFn: userVaFn } = useValidate((value: string) => {

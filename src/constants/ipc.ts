@@ -1,4 +1,8 @@
 
+export class IPC_DEV {
+  public static readonly DEV_OPEN_TOOL = 'DEV_OPEN_TOOL'; // 打开 devtools
+}
+
 export class IPC_MAIN_WINDOW {
   public static readonly WINDOW_MAX_SIZE = 'WINDOW_MAX_SIZE'; // 最大化窗口
   public static readonly WINDOW_MIN_SIZE = 'WINDOW_MIN_SIZE'; // 最小化窗口
@@ -21,6 +25,11 @@ export class IPC_RENDER_WINDOW {
 }
 
 export type MainEventHandlers = {
+  [IPC_DEV.DEV_OPEN_TOOL]: (status: boolean, options?: {
+    mode: ('left' | 'right' | 'bottom' | 'undocked' | 'detach');
+    activate?: boolean;
+  }) => IpcResponse<boolean>;
+
   [IPC_MAIN_WINDOW.WINDOW_MAX_SIZE]: (id?: number) => IpcResponse<void>;
   [IPC_MAIN_WINDOW.WINDOW_MIN_SIZE]: (id?: number) => IpcResponse<void>;
   [IPC_MAIN_WINDOW.WINDOW_REDUCTION]: (id?: number) => IpcResponse<boolean>;

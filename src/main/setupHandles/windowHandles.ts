@@ -7,7 +7,7 @@ import { PAGES_WINDOW_SETTING, PAGES_WINDOW_MAIN } from '#/config/pages';
 import { AppConfigService } from '#/code/service/AppConfigService';
 import { UserConfigService } from '#/code/service/UserConfigService';
 import { Printer } from '@suey/printer';
-import { setupMainWindow, setupSettingWindow } from './setupService';
+import { setupMainWindow, setupSettingWindow } from '../setupService';
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_MAX_SIZE, (e, id) => ipcR((ok, fail) => {
   const window = BrowserWindow.fromId(id ?? e.frameId);
@@ -33,18 +33,18 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_MIN_SIZE, (e, id) => ipcR((ok, fail) => 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_REDUCTION, (e, id?: number) => ipcR((ok, fail) => {
   const window = BrowserWindow.fromId(id ?? e.frameId);
   if (!window) {
-    fail(void 0, '找不到指定窗口');
+    fail(false, '找不到指定窗口');
     return;
   }
   if (window?.isMaximized()) {
     window.restore();
     sendToRenderer(window, IPC_RENDER_WINDOW.WINDOW_STATUS, new IpcResponseOk(false, '被还原了'));
-    ok();
+    ok(true);
     return;
   }
   window?.maximize();
   sendToRenderer(window, IPC_RENDER_WINDOW.WINDOW_STATUS, new IpcResponseOk(true, '最大化了'));
-  ok();
+  ok(true);
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESIZE_ABLE, (e, able: boolean) => ipcR((ok, fail) => {
@@ -126,7 +126,7 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, (e, type) => ipcR((ok
   const window = BrowserWindow.fromId(e.frameId);
   if (!window) {
     reloadApp();
-    fail(false, '找不到指定窗口');
+    fail(void 0, '找不到指定窗口');
     return;
   }
 
@@ -166,7 +166,7 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, (e, type) => ipcR((ok
     return;
   }
 
-  fail(false, '传入了未指定类型 type');
+  fail(void 0, '传入了未指定类型 type');
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_OPEN, (e, type) => ipcR(async (ok, fail) => {

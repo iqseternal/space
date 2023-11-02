@@ -1,9 +1,25 @@
 import "vue-router";
+import * as icons from '@ant-design/icons-vue';
+
+export type IconRealKey =
+Exclude<
+  Exclude<
+    Exclude<
+      Exclude<
+        Exclude<
+          keyof typeof icons
+        , 'TwoToneColor'>
+      , 'setTwoToneColor'>
+    , 'getTwoToneColor'>
+  , 'createFromIconfontCN'>
+, 'default'>;
 
 declare module "vue-router" {
   interface RouteMeta {
     // 设置该路由在侧边栏和面包屑中展示的名字
     title?: string;
+
+    icon?: IconRealKey | `icon-${string}`;
 
     // 设置该路由的图标, 暂时是一个 path 路径
     svg?: string;
@@ -22,3 +38,6 @@ declare module "vue-router" {
     keepAlive?: boolean;
   }
 }
+
+
+export {};

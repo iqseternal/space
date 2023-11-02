@@ -84,6 +84,8 @@ export const setWindowDevtoolsDetach = (window: BrowserWindow) => {
     // if (isDevToolsOpend) window.webContents.closeDevTools();
     // else {
 
+  window.webContents.openDevTools({ mode: 'bottom' })
+
   if (is.dev) window.webContents.openDevTools({ mode: 'detach' });
     // }
   // });
