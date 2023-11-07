@@ -3,7 +3,7 @@
     <div />
     <Space :size="8" style="margin-right: 8px;" class="control">
       <Widget title="打开开发者工具" icon="BugFilled" @click="openDevTool" class="widgetItem" />
-      <Widget title="最小化" :src="windowMinSvg" @click="openDevTool" class="widgetItem" />
+      <Widget title="最小化" :src="windowMinSvg" @click="minWindow" class="widgetItem" />
       <template v-if="!props.isPane">
         <Widget title="还原窗口" :src="windowRegionSvg" @click="reductionWindow" class="widgetItem" />
       </template>

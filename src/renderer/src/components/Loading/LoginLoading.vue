@@ -45,7 +45,7 @@ const fake = reactive(new FakeProgress({
 }));
 
 onMounted(() => {
-  fake.progress = 0
+  fake.progress = 0;
   fake.start();
 });
 

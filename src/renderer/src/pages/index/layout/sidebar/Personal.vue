@@ -1,5 +1,5 @@
 <template>
-  <Space class="personal">
+  <Space class="personal" :size="14">
     <SidebarItem text="Profile">
       <Avatar :size="autoSize" style="background-color: #87d068">
         <template #icon>
@@ -7,18 +7,20 @@
         </template>
       </Avatar>
     </SidebarItem>
-    <SidebarItem :src="settingSvg" text="设置">
 
-    </SidebarItem>
+    <SidebarItem :src="settingSvg" text="设置" />
   </Space>
 </template>
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
-import { Avatar, Space } from 'ant-design-vue';
+import { Avatar, Space, Popover, Button } from 'ant-design-vue';
 import { UserOutlined } from '@ant-design/icons-vue';
 import { settingSvg } from '@renderer/assets';
+
+import { Subfield, SubfieldCloumn } from '@renderer/components/Subfield';
 import SidebarItem from './SidebarItem.vue';
+
 
 const autoSize = ref(0);
 
