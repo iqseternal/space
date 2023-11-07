@@ -16,7 +16,7 @@
 import type { Ref } from 'vue';
 import { ref, onMounted } from 'vue';
 import { Space, message } from 'ant-design-vue';
-import { Subfield, SubfieldCloumn } from '#/renderer/src/components/Subfield';
+import { Subfield } from '#/renderer/src/components/Subfield';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 import type { RegisterFormRef, FormValidateRefResult } from '@renderer/components/Login';
 import { RegisterForm } from '@renderer/components/Login';

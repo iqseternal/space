@@ -1,22 +1,30 @@
-
 <template>
-  <div class="subfield" :style="{ flex: props.flex, gap: props.gap + 'px' }">
+  <div class="subfield" :style="{ flex: props.flex, gap: props.gap + 'px', ...generatorStyle }">
     <template v-if="!$slots.left && !$slots.center && !$slots.right">
       <slot></slot>
     </template>
     <template v-else>
-      <div v-if="$slots.left" class="left"><slot name="left"></slot></div>
-      <div v-if="$slots.center" class="center"><slot name="center"></slot></div>
-      <div v-if="$slots.right" class="right"><slot name="right"></slot></div>
+      <div v-if="$slots.left" class="left" :style="generatorStyle"><slot name="left"></slot></div>
+      <div v-if="$slots.center" class="center" :style="generatorStyle"><slot name="center"></slot></div>
+      <div v-if="$slots.right" class="right" :style="generatorStyle"><slot name="right"></slot></div>
     </template>
   </div>
 </template>
 
 <script lang="ts" setup>
+import type { CSSProperties } from 'vue';
+import { computed } from 'vue';
+
 const props = defineProps({
   flex: { type: Number, default: 1 },
+  direction: { type: String as PropType<'row' | 'col'>, default: 'row' },
   gap: { type: Number, default: 0 }
-})
+});
+
+const generatorStyle = computed<CSSProperties>(() => ({
+  flexDirection: props.direction === 'row' ? 'row' : 'column'
+}));
+
 </script>
 
 <style lang="scss" scoped>

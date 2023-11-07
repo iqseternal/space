@@ -8,11 +8,9 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue';
-
+import { IPC_MAIN_WINDOW } from '#/constants';
 import Header from '@renderer/components/Header';
 import Sidebar from './sidebar/index.vue';
-
-import { IPC_MAIN_WINDOW } from '#/constants';
 
 onMounted(async () => {
   const target = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SHOW, true);

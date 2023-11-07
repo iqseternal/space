@@ -1,14 +1,13 @@
 <template>
-  <SubfieldCloumn class="sidebars">
+  <Subfield direction="col" class="sidebars">
     <Indicator />
     <Navigation />
     <Personal />
-  </SubfieldCloumn>
+  </Subfield>
 </template>
 
 <script lang="ts" setup>
-import SubfieldCloumn from '@renderer/components/Subfield/SubfieldColumn.vue';
-
+import { Subfield } from '@renderer/components/Subfield';
 import Indicator from './Indicator.vue';
 import Navigation from './Navigation.vue';
 import Personal from './Personal.vue';

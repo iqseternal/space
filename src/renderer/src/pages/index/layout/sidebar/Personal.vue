@@ -18,7 +18,7 @@ import { Avatar, Space, Popover, Button } from 'ant-design-vue';
 import { UserOutlined } from '@ant-design/icons-vue';
 import { settingSvg } from '@renderer/assets';
 
-import { Subfield, SubfieldCloumn } from '@renderer/components/Subfield';
+import { Subfield } from '@renderer/components/Subfield';
 import SidebarItem from './SidebarItem.vue';
 
 
