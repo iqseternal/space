@@ -1,22 +1,22 @@
 <template>
-  <Card>
+  <ACard>
     <Subfield>
       <template #left>
-        <Button @click="disturb">打乱</Button>
+        <AButton @click="disturb">打乱</AButton>
       </template>
       <template #center></template>
       <template #right>
-        <Space v-AutoAnimate class="dynamics">
+        <ASpace v-AutoAnimate class="dynamics">
           <template v-for="item in list" :key="item">
             <span>{{ item }}</span>
           </template>
-        </Space>
+        </ASpace>
       </template>
     </Subfield>
-  </Card>
-  <Card>
+  </ACard>
+  <ACard>
     `1`
-  </Card>
+  </ACard>
 </template>
 
 <script lang="ts" setup>

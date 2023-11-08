@@ -16,3 +16,5 @@ declare global {
   declare type PropType = VuePropType;
 }
 
+export {};
+

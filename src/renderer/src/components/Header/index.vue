@@ -7,7 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-import Subfield from '@renderer/components/Subfield/Subfield.vue';
+import { Subfield, SubfieldSpace } from '@renderer/components/Subfield';
+
 import Slogan from './Slogan.vue';
 import Search from './Search.vue';
 import Control from './Control.vue';
@@ -25,6 +26,7 @@ const props = defineProps({
 .captionBar {
   will-change: width;
   user-select: none;
+  background-color: var(--s-main-frame-bg-normal-color);
   @include appRegion;
 }
 </style>

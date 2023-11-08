@@ -18,7 +18,7 @@ import Personal from './Personal.vue';
 @import "@scss/var.scss";
 
 .sidebars {
-  background-color: var(--s-main-frame-contain-active-color);
+  background-color: var(--s-main-frame-bg-normal-color);
   user-select: none;
 }
 </style>

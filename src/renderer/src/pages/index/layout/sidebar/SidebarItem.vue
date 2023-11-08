@@ -18,12 +18,12 @@ export default defineComponent({
         { slots.default
           ? (
               props.text
-                ? (<Tooltip mouseEnterDelay={CONFIG.VIEW.TOOLTIP_ENTER_TIME} title={props.text} placement={props.placement}>{slots.default()}</Tooltip>)
+                ? (<Tooltip mouseEnterDelay={CONFIG.VIEW.TOOLTIP_ENTER_TIME} title={props.text} placement={props.placement} trigger={'hover'}>{slots.default()}</Tooltip>)
                 : (slots.default())
             )
           : (
               props.text
-                ? (<Tooltip mouseEnterDelay={CONFIG.VIEW.TOOLTIP_ENTER_TIME} title={props.text} placement={props.placement}><img src={props.src} alt="" /></Tooltip>)
+                ? (<Tooltip mouseEnterDelay={CONFIG.VIEW.TOOLTIP_ENTER_TIME} title={props.text} placement={props.placement}  trigger={'hover'}><img src={props.src} alt="" /></Tooltip>)
                 : (<img src={props.src} alt="" />)
             )
         }

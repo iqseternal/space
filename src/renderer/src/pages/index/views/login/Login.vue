@@ -1,5 +1,5 @@
 <template>
-  <Space direction="vertical" :size="4">
+  <ASpace direction="vertical" :size="4">
     <div style="font-size: 40px;">Welcome Back :&rpar;</div>
     <div style="font-size: 14px;color: rgba(0, 0, 0, .6);max-width: 350px;">
       To keep connected us please login with your personal information by emial address and password.
@@ -8,16 +8,16 @@
     <Subfield>
       <template #left>
         <div>
-          <Checkbox v-model:checked="rememberMe">RememberMe</Checkbox>
+          <ACheckbox v-model:checked="rememberMe">RememberMe</ACheckbox>
           <span>(R)</span>
         </div>
       </template>
       <template #right>
         <div />
-        <Space>
+        <ASpace>
           <a @click="forgetPassword">忘记密码</a>
           <span>(F)</span>
-        </Space>
+        </ASpace>
         <div />
       </template>
     </Subfield>
@@ -25,7 +25,7 @@
       <template #left><div /><RButton type="primary" @click="login">LoginNow</RButton><div /></template>
       <template #center><RButton @click="() => setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE)">CreateAccount</RButton><div /></template>
     </Subfield>
-  </Space>
+  </ASpace>
 </template>
 
 <script lang="ts" setup>
@@ -41,7 +41,7 @@ import type { LoginFormRef, FormValidateRefResult } from '@renderer/components/L
 import { LoginForm } from '@renderer/components/Login';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 import { rsaEncrypt } from '@renderer/utils/crypt';
-
+import { windowShow, windowRelaunch } from '@renderer/actions';
 
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import RInput from '@renderer/components/RInput/RInput.vue';
@@ -67,9 +67,7 @@ const login = async () => {
       setTimeout(() => {
         if (stage.value !== DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE) return;
         // 登录成功了
-        window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SHOW, false).catch(() => {
-          window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RELAUNCH);
-        });
+        windowShow(false).catch(() => windowRelaunch());
         router.push('/space/dynamics');
       }, 600);
     }).catch(err => {

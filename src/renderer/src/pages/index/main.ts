@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 
+import antd from 'ant-design-vue';
 import router from './router';
 import store from '@renderer/store';
 
@@ -14,6 +15,8 @@ import '@scss/index.scss';
 
 ;(async () => {
   const app = createApp(App);
+
+  app.use(antd);
 
   app.use(store).use(router);
 

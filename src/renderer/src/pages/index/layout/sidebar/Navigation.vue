@@ -1,10 +1,10 @@
 
 <template>
-  <Space style="display: flex;flex-direction: column;" :size="14">
+  <ASpace style="display: flex;flex-direction: column;" :size="14">
     <template v-for="item in controls" :key="item.svg">
       <SidebarItem :src="item.svg" @click="() => router.push(item.path)" />
     </template>
-  </Space>
+  </ASpace>
 </template>
 
 <script lang="ts" setup>

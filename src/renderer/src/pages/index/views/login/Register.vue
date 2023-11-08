@@ -1,5 +1,5 @@
 <template>
-  <Space direction="vertical" :size="4">
+  <ASpace direction="vertical" :size="4">
     <Subfield>
       <div />
       <div>Hello</div>
@@ -9,14 +9,14 @@
     <RegisterForm ref="registerForm" />
     <RButton @click="() => setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE)">Login</RButton>
     <RButton @click="register">Create</RButton>
-  </Space>
+  </ASpace>
 </template>
 
 <script lang="ts" setup>
 import type { Ref } from 'vue';
 import { ref, onMounted } from 'vue';
 import { Space, message } from 'ant-design-vue';
-import { Subfield } from '#/renderer/src/components/Subfield';
+import { Subfield } from '@renderer/components/Subfield';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 import type { RegisterFormRef, FormValidateRefResult } from '@renderer/components/Login';
 import { RegisterForm } from '@renderer/components/Login';

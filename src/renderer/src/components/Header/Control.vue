@@ -21,6 +21,8 @@ import { windowCloseSvg, windowMaxSvg, windowMinSvg, windowRegionSvg } from '@re
 import { CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 
+import { windowMax, windowMin, windowClose, windowReduction, windowDevtool } from '@renderer/actions';
+
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import Widget from '@renderer/components/Widget';
 
@@ -31,11 +33,11 @@ const props = defineProps({
 const isMaximized = ref(false);
 window.electron.ipcRenderer.on(IPC_RENDER_WINDOW.WINDOW_STATUS, (_, d) => (isMaximized.value = d.data));
 
-const openDevTool = () => window.electron.ipcRenderer.invoke(IPC_DEV.DEV_OPEN_TOOL, true, { mode: 'detach' });
-const maxWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_MAX_SIZE);
-const minWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_MIN_SIZE);
-const reductionWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_REDUCTION);
-const closeWindow = () => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_CLOSE);
+const openDevTool = () => windowDevtool(true, { mode: 'detach' });
+const maxWindow = () => windowMax();
+const minWindow = () => windowMin();
+const reductionWindow = () => windowReduction();
+const closeWindow = () => windowClose();
 
 useMousetrap(['ctrl+shift+i', 'command+shift+i'], () => openDevTool());
 </script>

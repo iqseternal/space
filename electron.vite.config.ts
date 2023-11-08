@@ -3,9 +3,14 @@ import { webAlias, nodeAlias } from './vite.config.util';
 import { join } from 'path';
 import { obfuscator } from 'rollup-obfuscator';
 
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import svgLoader from 'vite-svg-loader';
+
+import autoImport from 'unplugin-auto-import/vite';
+import components from 'unplugin-vue-components/vite';
 
 export default defineConfig(() => ({
   main: {
@@ -40,8 +45,34 @@ export default defineConfig(() => ({
   },
   renderer: defineViteConfig(() => {
     return {
-      resolve: { alias: webAlias },
-      plugins: [vue(), vueJsx(), svgLoader({ defaultImport: 'url' })],
+      resolve: {
+        alias: webAlias,
+      },
+      css: {
+        preprocessorOptions: {
+          less: {
+            javascriptEnabled: true
+          }
+        }
+      },
+      plugins: [
+        vue(),
+        vueJsx(),
+        svgLoader({ defaultImport: 'url' }),
+        components({
+          transformer: 'vue3',
+          extensions: ['vue', 'jsx', 'tsx'],
+          dirs: [],
+          dts: true,
+          globs: [],
+          resolvers: [
+            AntDesignVueResolver({
+              importStyle: false,
+              resolveIcons: true
+            })
+          ]
+        })
+      ],
       server: {
         hmr: true,
         host: '0.0.0.0',

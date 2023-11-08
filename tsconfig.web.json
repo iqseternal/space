@@ -2,7 +2,7 @@
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
   "include": [
     "src/renderer/src/shims-vue.d.ts",
-    "src/renderer/src/@types/**/*.d.ts",
+    "src/renderer/components.d.ts",
 
     "src/renderer/src/**/*.ts",
     "src/renderer/src/**/*.tsx",
@@ -11,8 +11,9 @@
     "src/constants/**/*.ts",
 
     "src/preload/*.d.ts",
-    "src/@types/**/*.d.ts"
-],
+    "src/@types/**/*.d.ts",
+    "src/rendererer/@types/**/*.d.ts"
+  ],
   "compilerOptions": {
     "target": "ESNext",
     "noEmit": true,
@@ -30,12 +31,12 @@
     "sourceMap": false,
     "baseUrl": ".",
     "paths": {
-      "#/*": ["src/*"],
-      "#constants/*": ["src/constants/*"],
-      "@/*": ["src/renderer/*"],
       "@renderer/*": ["src/renderer/src/*"],
       "@pages/*": ["src/renderer/src/pages/*"],
-      "@scss/*": ["src/renderer/src/styles/*"]
+      "@scss/*": ["src/renderer/src/styles/*"],
+      "@/*": ["src/renderer/*"],
+      "#/*": ["src/*"],
+      "#constants/*": ["src/constants/*"]
     }
   }
 }

@@ -16,17 +16,13 @@ export const IconFont = defineComponent({
 
     const Icon = isIcon.value ? icons[props.type] : void 0;
 
-    return () => <>
-      {
-        isIcon.value
-
-          ? (Icon && <Icon
-              style={{ color: props.color, ...((props.size && { fontSize: props.size + 'px' }) ?? {}) }}
-              class={props.className}
-              onClick={() => emit('click')}
-             />)
-          : (<></>)
-      }
-    </>
+    return () =>
+      isIcon.value
+        ? (Icon ? <Icon
+            style={{ color: props.color, ...((props.size && { fontSize: props.size + 'px' }) ?? {}) }}
+            class={props.className}
+            onClick={() => emit('click')}
+            /> : <div />)
+        : (<div></div>)
   }
 })

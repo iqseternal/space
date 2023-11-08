@@ -8,10 +8,10 @@
       <template v-else>
         <Subfield style="margin-top: 40px;">
           <div />
-          <Space>
+          <ASpace>
             <Logo style="display: inline-block;width: 40px;height: 40px;" />
             <BlendedText text="SPACE FOR YOUR PLATFORM" :distSpacing="4" style="display: inline-block;font-size: 40px;line-height: 40px;" />
-          </Space>
+          </ASpace>
           <div />
         </Subfield>
 
@@ -46,7 +46,9 @@ import { loginTakeFilePng } from '@renderer/assets';
 import { LoginLoading } from '@renderer/components/Loading';
 import { useStage, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 
-import { Subfield, SubfieldPlaceholder } from '@renderer/components/Subfield';
+import { windowSetSize, windowResizeAble, windowRelaunch, windowShow, windowSetPosition, windowResetCustomSize } from '@renderer/actions';
+
+import { Subfield, SubfieldSpace } from '@renderer/components/Subfield';
 import BlendedText from '@renderer/components/BlendedText/BlendedText.vue';
 
 import Header from '@renderer/components/Header';
@@ -58,20 +60,20 @@ import Register from './Register.vue';
 const [stage, preStageKey] = useStage();
 
 onBeforeMount(async() => {
-  const setSize = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SET_SIZE, 850, 550);
-  const setResizeable = await window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RESIZE_ABLE, false);
-  if (!setSize.data || !setResizeable.data) window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RELAUNCH);
+  const setSize = await windowSetSize(850, 550);
+  const setResizeable = await windowResizeAble(false);
+  if (!setSize.data || !setResizeable.data) windowRelaunch();
 });
 
 onMounted(() => {
   // 如果一切没有问题, 那么就准备就绪, 就可以展示页面了
-  // window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SET_POSITION, 'center');
-  window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SHOW, true);
+  // windowSetPosition('center');
+  windowShow(true);
 });
 
 onBeforeUnmount(() => {
-  window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RESIZE_ABLE, true);
-  window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, 'mainWindow');
+  windowResizeAble(true);
+  windowResetCustomSize('mainWindow');
 });
 </script>
 

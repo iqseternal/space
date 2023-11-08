@@ -1,6 +1,8 @@
 
 <template>
-  <div :style="{ flex: props.size }" />
+  <div :style="{ flex: props.size }">
+    <slot />
+  </div>
 </template>
 
 <script lang="ts" setup>

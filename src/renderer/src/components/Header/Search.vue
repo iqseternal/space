@@ -36,7 +36,8 @@ useMousetrap(searchInput, [
   font-size: 14px;
   text-align: center;
   border: 0.5px solid rgba(0, 0, 0, .1);
-  background-color: var(--s-main-frame-contain-active-color);
+  /* background-color: var(--s-main-frame-contain-active-color); */
+  background: unset;
   transition: border .2s ease-out;
   @include appRegionNo;
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Tooltip :title="props.title" :mouseEnterDelay="props.mouseEnterDelay">
+    <ATooltip :title="props.title" :mouseEnterDelay="props.mouseEnterDelay">
       <div class="widget" :class="props.className + ' ' + (props.autoHover  ? 'widget-hover' : '')" @click="() => emits('click')">
         <template v-if="$slots.default"><slot name="default"></slot></template>
 
@@ -12,7 +12,7 @@
           <img class="widgetImg" :src="props.src" alt="">
         </template>
       </div>
-    </Tooltip>
+    </ATooltip>
   </div>
 </template>
 
