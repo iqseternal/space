@@ -1,5 +1,5 @@
 <template>
-  <div class="subfield" :style="{ flex: props.flex, gap: props.gap + 'px', ...generatorStyle }">
+  <div class="subfield" :style="{ flex: props.flex, gap: typeof props.gap === 'number' ? props.gap + 'px' : props.gap, ...generatorStyle }">
     <template v-if="!$slots.left && !$slots.center && !$slots.right">
       <slot></slot>
     </template>
@@ -18,7 +18,7 @@ import { computed } from 'vue';
 const props = defineProps({
   flex: { type: Number, default: 1 },
   direction: { type: String as PropType<'row' | 'col'>, default: 'row' },
-  gap: { type: Number, default: 0 }
+  gap: { type: [Number, String] as PropType<number | `${number}${'px' | 'rem' | 'em' | 'rpx' | 'vw' | 'vh'}`>, default: 0 }
 });
 
 const generatorStyle = computed<CSSProperties>(() => ({

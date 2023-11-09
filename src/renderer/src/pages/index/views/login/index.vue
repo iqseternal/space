@@ -67,7 +67,7 @@ onBeforeMount(async() => {
 
 onMounted(() => {
   // 如果一切没有问题, 那么就准备就绪, 就可以展示页面了
-  // windowSetPosition('center');
+  windowSetPosition('center');
   windowShow(true);
 });
 

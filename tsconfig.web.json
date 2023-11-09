@@ -32,6 +32,7 @@
     "baseUrl": ".",
     "paths": {
       "@renderer/*": ["src/renderer/src/*"],
+      "@components/*": ["src/renderer/src/components/*"],
       "@pages/*": ["src/renderer/src/pages/*"],
       "@scss/*": ["src/renderer/src/styles/*"],
       "@/*": ["src/renderer/*"],

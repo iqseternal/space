@@ -3,3 +3,4 @@ dist
 out
 *.log*
 storage
+src/renderer/components.d.ts

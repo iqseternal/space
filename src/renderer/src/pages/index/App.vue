@@ -1,5 +1,7 @@
 <template>
-  <div id="frame_app"><RouterView /></div>
+  <div id="frame_app">
+    <RouterView />
+  </div>
 </template>
 
 <style lang="scss" scoped>

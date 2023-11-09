@@ -5,7 +5,7 @@
         <slot name="icon"></slot>
       </template>
       <template v-else>
-        <div />
+        <IconFont :type="props.icon" />
       </template>
     </template>
 
@@ -16,10 +16,13 @@
 </template>
 
 <script lang="ts" setup>
+import { UserOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 
+import IconFont from '../IconFont';
 
-
-
+const props = defineProps({
+  icon: { type: String as PropType<IconRealKey | `icon-${string}`>, default: 'icon-' }
+})
 
 </script>
 

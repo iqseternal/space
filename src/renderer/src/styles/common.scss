@@ -3,7 +3,7 @@
 // card 组件
 div.ant-card.css-dev-only-do-not-override-kqecok.ant-card-bordered {
   border: unset;
-  background-color: var(--s-main-frame-contain-active-color);
+  background-color: var(--s-main-frame-bg-normal-color);
 
   div.ant-card-body {
     padding: 12px;
@@ -14,7 +14,6 @@ div.ant-card.css-dev-only-do-not-override-kqecok.ant-card-bordered {
 div.ant-card.css-dev-only-do-not-override-kqecok.ant-card-bordered + div.ant-card.css-dev-only-do-not-override-kqecok.ant-card-bordered {
   margin-top: 10px;
 }
-
 
 // form 组件
 form.ant-form {

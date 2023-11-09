@@ -1,8 +1,6 @@
 <template>
   <div class="card">
-
     <img :src="props.src" alt="">
-
   </div>
 </template>
 

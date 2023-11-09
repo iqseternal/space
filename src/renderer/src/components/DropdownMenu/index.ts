@@ -5,8 +5,7 @@ import ComboBoxMenuVue from './ComboBoxMenu.vue';
 import SingleMenuVue from './SingleMenu.vue';
 import MenuDriverVue from './MenuDriver.vue';
 
-export const DropdownMenu: typeof Dropdown = DropdownMenuVue as (typeof Dropdown);
-export const ComboBoxMenu: typeof SubMenu = ComboBoxMenuVue as (typeof SubMenu);
-export const SingleMenu: typeof MenuItem = SingleMenuVue as (typeof MenuItem);
-export const MenuDriver: typeof Divider = MenuDriverVue as (typeof Divider);
-
+export const DropdownMenu: (typeof Dropdown | typeof DropdownMenuVue) = DropdownMenuVue;
+export const ComboBoxMenu: (typeof SubMenu | typeof ComboBoxMenuVue) = ComboBoxMenuVue;
+export const SingleMenu: ((typeof MenuItem) | (typeof SingleMenuVue)) = SingleMenuVue;
+export const MenuDriver: (typeof Divider | typeof MenuDriverVue) = MenuDriverVue;

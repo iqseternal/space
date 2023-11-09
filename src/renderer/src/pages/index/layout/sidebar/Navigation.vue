@@ -12,7 +12,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { Space } from 'ant-design-vue';
 import { terminalSvg, dashboardSvg, settingSvg } from '@renderer/assets';
 
-import SidebarItem from './SidebarItem.vue';
+import SidebarItem from '@renderer/components/SidebarItem';
 
 const router = useRouter(), route = useRoute();
 

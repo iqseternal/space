@@ -10,11 +10,11 @@
       </SidebarItem>
 
       <template #overlay>
-        <SingleMenu>切换账户</SingleMenu>
-        <SingleMenu>修改密码</SingleMenu>
+        <SingleMenu icon="AccountBookOutlined">切换账户</SingleMenu>
+        <SingleMenu icon="MonitorOutlined">修改密码</SingleMenu>
         <SingleMenu>注销账户</SingleMenu>
         <MenuDriver />
-        <SingleMenu @click="logout">退出登录</SingleMenu>
+        <SingleMenu icon="LogoutOutlined" @click="logout">退出登录</SingleMenu>
       </template>
     </DropdownMenu>
 
@@ -22,12 +22,12 @@
       <SidebarItem :src="settingSvg" text="设置2" />
 
       <template #overlay>
-        <SingleMenu>配置文件</SingleMenu>
+        <SingleMenu icon="FileOutlined">配置文件</SingleMenu>
         <MenuDriver />
-        <SingleMenu>设置</SingleMenu>
-        <SingleMenu>键盘快捷方式</SingleMenu>
+        <SingleMenu icon="SettingOutlined">设置</SingleMenu>
+        <SingleMenu icon="KeyOutlined">键盘快捷方式</SingleMenu>
         <ComboBoxMenu title="主题">
-          <SingleMenu>颜色主题</SingleMenu>
+          <SingleMenu icon="BgColorsOutlined">颜色主题</SingleMenu>
         </ComboBoxMenu>
         <MenuDriver />
         <SingleMenu>检查更新...</SingleMenu>
@@ -46,7 +46,7 @@ import { settingSvg } from '@renderer/assets';
 import { Subfield } from '@renderer/components/Subfield';
 import { DropdownMenu, ComboBoxMenu, SingleMenu, MenuDriver } from '@renderer/components/DropdownMenu';
 
-import SidebarItem from './SidebarItem.vue';
+import SidebarItem from '@renderer/components/SidebarItem';
 import IconFont from '@renderer/components/IconFont';
 
 const router = useRouter();

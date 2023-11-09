@@ -1,6 +1,6 @@
 <template>
   <Subfield direction="col" class="sidebars">
-    <Indicator />
+    <div />
     <Navigation />
     <Personal />
   </Subfield>
@@ -8,7 +8,6 @@
 
 <script lang="ts" setup>
 import { Subfield } from '@renderer/components/Subfield';
-import Indicator from './Indicator.vue';
 import Navigation from './Navigation.vue';
 import Personal from './Personal.vue';
 </script>

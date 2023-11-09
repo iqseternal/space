@@ -1,6 +1,22 @@
 <template>
   <Subfield>
-    <template #left></template>
+    <template #left>
+      <Subfield gap="10px" class="navMenu" style="justify-content: flex-start;">
+        <Indicator />
+        <DropdownMenu placement="bottom">
+          <span>开始</span>
+
+          <template #overlay>
+            <SingleMenu>开始</SingleMenu>
+
+            <ComboBoxMenu icon="SelectOutlined" title="首选项">
+
+              <SingleMenu icon="FileOutlined">配置文件</SingleMenu>
+            </ComboBoxMenu>
+          </template>
+        </DropdownMenu>
+      </Subfield>
+    </template>
     <template #center>
       <span class="slogan animate__animated animate__slideInLeft">{{ 'SPACE' }}</span>
     </template>
@@ -22,9 +38,10 @@ import { ConfigProvider, Tooltip, Space } from 'ant-design-vue';
 import { CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 import { useAutoAnimate, vAutoAnimate } from '@formkit/auto-animate/vue';
+import { DropdownMenu, ComboBoxMenu, SingleMenu, MenuDriver } from '@renderer/components/DropdownMenu';
 
 import Widget from '@renderer/components/Widget';
-
+import Indicator from './Indicator.vue';
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 
 const router = useRouter();
@@ -55,6 +72,16 @@ useMousetrap([
   transition: all .5s linear;
   user-select: none;
   font-size: 18px;
+  @include appRegionNo;
+
+  &:hover { color: rgba(0, 0, 0, 1); }
+}
+
+.navMenu {
+  color: rgba(0, 0, 0, .6);
+  font-size: 12px;
+  transition: all .5s linear;
+  user-select: none;
   @include appRegionNo;
 
   &:hover { color: rgba(0, 0, 0, 1); }

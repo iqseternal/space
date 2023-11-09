@@ -1,7 +1,12 @@
 @import './var.scss';
+@import './animation.scss';
 @import './mixin.scss';
 
+// 浮动级联菜单的样式
 div.dropdown-menu.ant-dropdown, div.dropdown-sub-menu.ant-dropdown-menu-submenu {
+  transition: none !important;
+  animation: none !important;
+
   ul.ant-dropdown-menu {
     padding: 5px 2px;
 
@@ -9,20 +14,28 @@ div.dropdown-menu.ant-dropdown, div.dropdown-sub-menu.ant-dropdown-menu-submenu 
       margin: unset;
     }
 
-    .dropdown-sub-menu.ant-dropdown-menu-submenu {
+    .ant-dropdown-menu-submenu {
       .ant-dropdown-menu-submenu-arrow {
         margin-left: 10px;
         inset-inline-end: 4px;
       }
     }
 
+    .ant-dropdown-menu-submenu-title { margin-left: 3px; } // 子级列表菜单错位
+
     .dropdown-menu-single.ant-dropdown-menu-item {
       padding: 5px 15px;
     }
 
+    .ant-dropdown-menu-item-icon {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+    }
     .ant-dropdown-menu-title-content {
       padding: 0 10px;
       text-align: left;
     }
   }
 }
+
