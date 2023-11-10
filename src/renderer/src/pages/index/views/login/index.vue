@@ -43,16 +43,16 @@ import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 import { loginTakeFilePng } from '@renderer/assets';
 
-import { LoginLoading } from '@renderer/components/Loading';
+import { LoginLoading } from '@components/Loading';
 import { useStage, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 
 import { windowSetSize, windowResizeAble, windowRelaunch, windowShow, windowSetPosition, windowResetCustomSize } from '@renderer/actions';
 
-import { Subfield, SubfieldSpace } from '@renderer/components/Subfield';
-import BlendedText from '@renderer/components/BlendedText/BlendedText.vue';
+import { Subfield, SubfieldSpace } from '@components/Subfield';
+import BlendedText from '@components/BlendedText/BlendedText.vue';
 
-import Header from '@renderer/components/Header';
-import Logo from '@renderer/components/Logo/Logo.vue';
+import Header from '@components/Header';
+import Logo from '@components/Logo/Logo.vue';
 
 import Login from './Login.vue';
 import Register from './Register.vue';

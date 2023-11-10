@@ -7,11 +7,9 @@
           <span>开始</span>
 
           <template #overlay>
-            <SingleMenu>开始</SingleMenu>
-
-            <ComboBoxMenu icon="SelectOutlined" title="首选项">
-
-              <SingleMenu icon="FileOutlined">配置文件</SingleMenu>
+            <SingleMenu disabled>开始</SingleMenu>
+            <ComboBoxMenu mark="SelectOutlined" title="首选项">
+              <SingleMenu mark="FileOutlined" disabled>配置文件</SingleMenu>
             </ComboBoxMenu>
           </template>
         </DropdownMenu>

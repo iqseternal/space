@@ -50,6 +50,7 @@
     "utf-8-validate": "^6.0.3",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
+    "vue3-menus": "^1.1.2",
     "ws": "^8.13.0"
   },
   "devDependencies": {

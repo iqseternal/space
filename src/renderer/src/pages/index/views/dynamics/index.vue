@@ -15,7 +15,7 @@
     </Subfield>
   </ACard>
   <ACard>
-    `1`
+    <div>`1`</div>
   </ACard>
 </template>
 
@@ -26,6 +26,8 @@ import { Calendar, Card, Badge, Tag, Space, Avatar, Button } from 'ant-design-vu
 import { shuffle } from 'lodash';
 import { vAutoAnimate, useAutoAnimate } from '@formkit/auto-animate/vue';
 import { Subfield } from '@renderer/components/Subfield';
+import { copyText } from '@renderer/actions';
+import { DropdownMenu, SingleMenu } from '@components/DropdownMenu';
 
 const [parent] = useAutoAnimate({ duration: 500 });
 

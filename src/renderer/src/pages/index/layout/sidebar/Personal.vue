@@ -10,11 +10,11 @@
       </SidebarItem>
 
       <template #overlay>
-        <SingleMenu icon="AccountBookOutlined">切换账户</SingleMenu>
-        <SingleMenu icon="MonitorOutlined">修改密码</SingleMenu>
-        <SingleMenu>注销账户</SingleMenu>
+        <SingleMenu mark="AccountBookOutlined" disabled>切换账户</SingleMenu>
+        <SingleMenu mark="MonitorOutlined" disabled>修改密码</SingleMenu>
+        <SingleMenu disabled>注销账户</SingleMenu>
         <MenuDriver />
-        <SingleMenu icon="LogoutOutlined" @click="logout">退出登录</SingleMenu>
+        <SingleMenu mark="LogoutOutlined" @click="logout">退出登录</SingleMenu>
       </template>
     </DropdownMenu>
 
@@ -22,41 +22,42 @@
       <SidebarItem :src="settingSvg" text="设置2" />
 
       <template #overlay>
-        <SingleMenu icon="FileOutlined">配置文件</SingleMenu>
+        <SingleMenu mark="FileOutlined" disabled>配置文件</SingleMenu>
         <MenuDriver />
-        <SingleMenu icon="SettingOutlined">设置</SingleMenu>
-        <SingleMenu icon="KeyOutlined">键盘快捷方式</SingleMenu>
+        <SingleMenu mark="SettingOutlined" disabled>设置</SingleMenu>
+        <SingleMenu mark="KeyOutlined" disabled>键盘快捷方式</SingleMenu>
         <ComboBoxMenu title="主题">
-          <SingleMenu icon="BgColorsOutlined">颜色主题</SingleMenu>
+          <SingleMenu mark="BgColorsOutlined" disabled>颜色主题</SingleMenu>
         </ComboBoxMenu>
         <MenuDriver />
-        <SingleMenu>检查更新...</SingleMenu>
+        <SingleMenu disabled>检查更新...</SingleMenu>
       </template>
     </DropdownMenu>
   </ASpace>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 import { Dropdown, Avatar, Space, Popover, Button, Menu, MenuItem, SubMenu } from 'ant-design-vue';
 import { UserOutlined } from '@ant-design/icons-vue';
 import { settingSvg } from '@renderer/assets';
 
-import { Subfield } from '@renderer/components/Subfield';
-import { DropdownMenu, ComboBoxMenu, SingleMenu, MenuDriver } from '@renderer/components/DropdownMenu';
+import { Subfield } from '@components/Subfield';
+import { DropdownMenu, ComboBoxMenu, SingleMenu, MenuDriver } from '@components/DropdownMenu';
+import { windowShow } from '@renderer/actions';
 
-import SidebarItem from '@renderer/components/SidebarItem';
-import IconFont from '@renderer/components/IconFont';
+import SidebarItem from '@components/SidebarItem';
+import IconFont from '@components/IconFont';
 
 const router = useRouter();
 
 const autoSize = ref(0);
 
 const logout = () => {
+  windowShow(false);
   router.push('/login');
 }
-
 
 onMounted(() => {
   const r = getComputedStyle(document.querySelector(':root') as Element).getPropertyValue('--s-main-frame-sidebar-width');

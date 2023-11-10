@@ -24,8 +24,3 @@ import '@scss/index.scss';
     app.mount('#app');
   });
 })();
-
-// import Mousetrap from 'mousetrap';
-// Mousetrap.bind(['ctrl+r', 'command+r', 'f5'], () => {
-//   window.location.reload();
-// });

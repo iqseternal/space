@@ -37,15 +37,15 @@ import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue'
 import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 import { apiAuthPost, apiUrl, apiPost, loginReq } from '@renderer/api';
-import type { LoginFormRef, FormValidateRefResult } from '@renderer/components/Login';
-import { LoginForm } from '@renderer/components/Login';
+import type { LoginFormRef, FormValidateRefResult } from '@components/Login';
+import { LoginForm } from '@components/Login';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 import { rsaEncrypt } from '@renderer/utils/crypt';
 import { windowShow, windowRelaunch } from '@renderer/actions';
+import { Subfield } from '@components/Subfield';
 
-import Subfield from '@renderer/components/Subfield/Subfield.vue';
-import RInput from '@renderer/components/RInput/RInput.vue';
-import RButton from '@renderer/components/RButton/RButton.vue';
+import RInput from '@components/RInput/RInput.vue';
+import RButton from '@components/RButton/RButton.vue';
 
 const router = useRouter();
 const [stage, setStage] = useStageInject();

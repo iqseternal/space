@@ -72,25 +72,5 @@ export const setWindowCloseCaptionContextmenu = (window: BrowserWindow) => {
 }
 
 export const setWindowDevtoolsDetach = (window: BrowserWindow) => {
-  // if (globalShortcut.isRegistered('F12')) globalShortcut.unregister('F12');
-//
-  // globalShortcut.register('F12', () => {
-    // printWarn('设置了开发者工具打开方式 detach');
-
-    // window.webContents.devToolsWebContents?.openDevTools({ mode: 'detach' });
-
-    // const isDevToolsOpend = window.webContents.isDevToolsOpened();
-
-    // if (isDevToolsOpend) window.webContents.closeDevTools();
-    // else {
-
-  window.webContents.openDevTools({ mode: 'bottom' })
-
   if (is.dev) window.webContents.openDevTools({ mode: 'detach' });
-    // }
-  // });
-
-  // window.webContents.closeDevTools();
-
-  // window.on('')
 }

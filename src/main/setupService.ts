@@ -1,15 +1,10 @@
-
 import { WindowService } from '#code/service/WindowService';
 import { WallpaperService } from '#/code/service/WallpaperService';
-
 import { ReptileService } from '#/code/service/ReptileService';
 import { DownloadService } from '#/code/service/DownloadService';
 import { AppDataService } from '#/code/service/AppDataService';
-
 import { setIpcMainHandle } from '#/code/core/common/ipcR';
-
 import { IPC_MAIN_WINDOW } from '#/constants';
-
 import { AppConfigService } from '#/code/service/AppConfigService';
 import { PrinterService } from '#/code/service/PrinterService';
 import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
@@ -21,12 +16,9 @@ import { setWindowCloseCaptionContextmenu, setWindowDevtoolsDetach } from '#code
 
 export async function setupAppDataDownload() {
   const wallpaperSaveService = new AppDataService('userData', 'download');
-
   const downloadService = new DownloadService();
-
   return { wallpaperSaveService, downloadService };
 }
-
 
 export async function setupMainWindow() {
   PrinterService.printInfo('窗口构建');
@@ -40,10 +32,6 @@ export async function setupMainWindow() {
   windowService.window.setMenu(null);
   setWindowCloseCaptionContextmenu(windowService.window);
   setWindowDevtoolsDetach(windowService.window);
-
-  // windowService.window.setEnabled(false);
-  // windowService.window.setMaximizable(false);
-  // windowService.window.setResizable(false);
   return windowService;
 }
 

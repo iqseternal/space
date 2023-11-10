@@ -83,6 +83,9 @@ dependencies:
   vue-router:
     specifier: ^4.2.4
     version: 4.2.4(vue@3.3.4)
+  vue3-menus:
+    specifier: ^1.1.2
+    version: 1.1.2
   ws:
     specifier: ^8.13.0
     version: 8.13.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)
@@ -7983,6 +7986,10 @@ packages:
     dependencies:
       is-plain-object: 3.0.1
       vue: 3.3.4
+    dev: false
+
+  /vue3-menus@1.1.2:
+    resolution: {integrity: sha512-MoX87TH25fbKmmE8PwC+c2kJOSGJheP4pBR2we0RkOrfUDQg7sK+akAZSmQU8o+7dF+xVF2NfKPhoVHOhlX9wQ==}
     dev: false
 
   /vue@3.3.4:
