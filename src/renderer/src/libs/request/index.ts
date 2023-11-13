@@ -1,5 +1,5 @@
 import { createApiRequest } from '@suey/pkg-utils';
-import { getToken } from './storage';
+import { getToken } from '@libs/storage';
 import { inflate } from 'pako';
 
 const isOkStatus = (status: number): boolean => {
@@ -13,18 +13,9 @@ const isOkStatus = (status: number): boolean => {
 
 export { REQ_METHODS, type RequestConfig } from '@suey/pkg-utils';
 
-export interface HConfig {
-  needAuth?: boolean;
-}
-
-export const { apiGet, apiPost, request, createApi } = createApiRequest<HConfig, {
-  status: number;
-  flag: string;
-  data: any;
-  more?: {
-    pako?: boolean;
-  }
-}>('https://www.oupro.cn:3000/api/v1.0.0/', {}, {
+export const { apiGet, apiPost, request, createApi } = createApiRequest<HConfig, BasicResponse>('https://www.oupro.cn:3000/api/v1.0.0/', {
+  // timeout: +import.meta.env.SPACE_API_TIMEOUT
+}, {
   onFulfilled: config => {
     if (config.hConfig?.needAuth) {
       if (!config.headers) config.headers = {};

@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "dev": "nodemon -e ts --exec (ts-node ./index.ts -h)",
+    "build": "tsc --rootDir . --outDir . --module CommonJS --declaration false --removeComments true"
+  }
+}

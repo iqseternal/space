@@ -1,5 +1,6 @@
 import "vue-router";
 import * as icons from '@ant-design/icons-vue';
+import * as assrtUrls from '@renderer/assets';
 
 export type IconRealKey =
 Exclude<

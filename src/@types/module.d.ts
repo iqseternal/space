@@ -11,9 +11,6 @@ declare global {
   var ipcR: typeof ipcResponseFn;
 
   var appStore: ElectronStore<StoreKeyMap>;
-
-  // 渲染进程
-  declare type PropType = VuePropType;
 }
 
 export {};

@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue';
 import { onMounted, ref } from 'vue';
-import { getCssVar, setCssVar, setCssVars, getStyleProperty } from '@renderer/utils/dom';
+import { getCssVar, setCssVar, setCssVars, getStyleProperty } from '@libs/common';
 import { useCssVar } from '@renderer/hooks/useCssVar';
 
 // 交融文字

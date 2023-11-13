@@ -3,7 +3,9 @@ import type { Ref } from 'vue';
 
 import { onBeforeMount, onMounted, onBeforeUnmount } from 'vue';
 
+/** 为某个元素添加单个监听事件 */
 export function useEventListenerForElement<K extends keyof HTMLElementEventMap>(dom: HTMLElement, evtKey: K, listener: (ev: HTMLElementEventMap[K]) => any): void;
+/** 为某个元素添加一组监听事件 */
 export function useEventListenerForElement<K extends keyof HTMLElementEventMap>(dom: HTMLElement, props: Record<K, (ev: HTMLElementEventMap[K]) => any>): void;
 export function useEventListenerForElement<K extends keyof HTMLElementEventMap>(dom: HTMLElement, props: K | Record<K, (ev: HTMLElementEventMap[K]) => any>, listener?: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any) {
   if (typeof props === 'string' && listener) {
@@ -26,7 +28,9 @@ export function useEventListenerForElement<K extends keyof HTMLElementEventMap>(
   });
 }
 
+/** 为某个Ref dom元素添加单个监听事件 */
 export function useEventListener<K extends keyof HTMLElementEventMap>(dom: Ref<HTMLElement>, evtKey: K, listener: (ev: HTMLElementEventMap[K]) => any): void;
+/** 为某个Ref dom元素添加一组监听事件 */
 export function useEventListener<K extends keyof HTMLElementEventMap>(dom: Ref<HTMLElement>, props: Record<K, (ev: HTMLElementEventMap[K]) => any>): void;
 export function useEventListener<K extends keyof HTMLElementEventMap>(dom: Ref<HTMLElement>, props: K | Record<K, (ev: HTMLElementEventMap[K]) => any>, listener?: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any) {
   if (typeof props === 'string' && listener) {

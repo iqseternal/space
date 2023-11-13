@@ -2,7 +2,7 @@ import { is } from '@electron-toolkit/utils';
 import { join } from 'path';
 
 /**
- * 静态 Config , 并不存储在 JSON 中, 不希望用户更改
+ * Config , 并不存储在 JSON 中, 不希望用户更改
  */
 const makeStartUrl = (url: string) => {
   if (is.dev && process.env['ELECTRON_RENDERER_URL'])

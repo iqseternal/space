@@ -14,13 +14,13 @@ export type MousetrapBinds = [(string | string[]), MousetrapBindFn, MousetrapAct
 // 为某个元素注册一个快捷方式
 export function useMousetrap<T extends HTMLElement>(el: T | Ref<T>, keys: string | string[], callback: MousetrapBindFn, action?: MousetrapAction): Ref<MousetrapInstance>;
 
-//
+// 为某个元素注册一组快捷方式
 export function useMousetrap<T extends HTMLElement>(el: T | Ref<T>, binds?: MousetrapBinds): Ref<MousetrapInstance>;
 
 // 全局注册的单个事件
 export function useMousetrap(keys: string | string[], callback: MousetrapBindFn, action?: MousetrapAction): Ref<MousetrapInstance>;
 
-//
+// 全局注册的一组事件
 export function useMousetrap(binds: MousetrapBinds): Ref<MousetrapInstance>;
 
 export function useMousetrap<T extends HTMLElement>(

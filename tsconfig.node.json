@@ -8,7 +8,7 @@
     "src/code/**/*",
     "src/constants/**/*.ts",
     "src/config/**/*.ts",
-    "src/globalForNode/**/*.ts",
+    "src/global/**/*.ts",
 
     "./test.config.json",
     "./user.config.json",

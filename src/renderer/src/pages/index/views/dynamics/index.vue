@@ -25,7 +25,7 @@ import { Dayjs } from 'dayjs';
 import { Calendar, Card, Badge, Tag, Space, Avatar, Button } from 'ant-design-vue';
 import { shuffle } from 'lodash';
 import { vAutoAnimate, useAutoAnimate } from '@formkit/auto-animate/vue';
-import { Subfield } from '@renderer/components/Subfield';
+import { Subfield } from '@components/Subfield';
 import { copyText } from '@renderer/actions';
 import { DropdownMenu, SingleMenu } from '@components/DropdownMenu';
 

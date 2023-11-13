@@ -12,6 +12,13 @@ interface Result {
 }
 
 /**
+ * ================================
+ * 可参考 @components/Login 组件的使用
+ * ================================
+ */
+
+
+/**
  * 创建 FormItem 的验证逻辑, 可以配合下面的函数导出自定义的表单 Ref
  */
 export function useValidate<T>(validateF: (value: T) => (Result | Promise<Result>)) {

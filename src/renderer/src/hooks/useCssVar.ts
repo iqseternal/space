@@ -3,7 +3,7 @@ import type { Ref } from 'vue';
 
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
-import { setCssVar, setCssVarForRoot, getCssVar, getCssVarForRoot, cssRoot } from '@renderer/utils/dom';
+import { setCssVar, setCssVarForRoot, getCssVar, getCssVarForRoot, cssRoot } from '@libs/common';
 
 interface USE_CSS_VAR_OPTIONS<T> {
   defaultValue?: string; // 维护默认值

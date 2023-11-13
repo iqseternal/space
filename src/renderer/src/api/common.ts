@@ -1,7 +1,7 @@
 
-import { apiGet, apiPost, apiAuthGet, apiAuthPost } from './api';
+import { apiGet, apiPost } from './api';
 
-import { rsaEncrypt } from '@renderer/utils/crypt';
+import { rsaEncrypt } from '@libs/crypt';
 
 import { userApiUrl } from './url';
 
