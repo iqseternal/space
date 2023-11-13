@@ -29,6 +29,12 @@ const mainConfig: UserConfig['main'] = {
     },
     rollupOptions: {
 
+    },
+    // reportCompressedSize: false,
+    sourcemap: false,
+    commonjsOptions: {
+      sourceMap: false,
+      strictRequires: false
     }
   }
 };
@@ -39,8 +45,16 @@ const preloadConfig: UserConfig['preload'] = {
     alias: nodeAlias
   },
   build: {
+    minify: 'terser',
     rollupOptions: {
 
+
+    },
+    // reportCompressedSize: false,
+    sourcemap: false,
+    commonjsOptions: {
+      sourceMap: false,
+      strictRequires: false
     }
   }
 };

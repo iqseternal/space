@@ -16,6 +16,7 @@ export const webAlias = resolveAlias(webConfig.compilerOptions.paths);
 
 export const nodeAlias = resolveAlias(nodeConfig.compilerOptions.paths);
 
+// 没有作用
 export const webProxy = (mode: string): Record<string, string | ProxyOptions> => {
   const env = loadEnv(mode, __dirname, ['SPACE_', 'VITE_']);
   return {

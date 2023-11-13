@@ -1,6 +1,16 @@
 {
+  "bin": "./index.js",
+  "pkg": {
+    "scripts": [],
+    "assets": [
+
+    ]
+  },
+  "name": "scripts",
   "scripts": {
     "dev": "nodemon -e ts --exec (ts-node ./index.ts -h)",
-    "build": "tsc --rootDir . --outDir . --module CommonJS --declaration false --removeComments true"
+    "build": "pnpm build:commonjs && pnpm build:node",
+    "build:commonjs": "tsc --rootDir . --outDir . --module CommonJS --declaration false --removeComments true",
+    "build:node": "pkg . -t win --out-path=/ --debug"
   }
 }

@@ -4,4 +4,5 @@ node_modules
 *.log*
 /storage
 /scripts/*.js
+/scripts/*.node
 /src/renderer/components.d.ts
