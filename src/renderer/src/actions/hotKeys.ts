@@ -9,7 +9,10 @@ function makeHotKeys<
   T extends Record<string, ShortcutKey>,
   K extends string | number | symbol = keyof T
 >(hotkeys: T): T & (Record<K, { allKey: Required<ShortcutKey>['allKey']; }>) {
-  for (const key in hotkeys) hotkeys[key].allKey = [hotkeys[key].key, ...(hotkeys[key].moreKey ?? [])]
+  for (const key in hotkeys) {
+    hotkeys[key].allKey = [hotkeys[key].key, ...(hotkeys[key].moreKey ?? [])].map(key => key.toLocaleLowerCase());
+  }
+
   return hotkeys as any;
 }
 

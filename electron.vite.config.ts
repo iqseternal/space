@@ -1,9 +1,8 @@
-import type { UserConfig } from 'electron-vite';
-import { defineConfig, defineViteConfig, externalizeDepsPlugin, bytecodePlugin, loadEnv } from 'electron-vite';
-import { webAlias, nodeAlias, webProxy } from './vite.config.util';
+import type { UserConfig, UserConfigExport } from 'electron-vite';
+import { defineConfig, defineViteConfig, externalizeDepsPlugin, bytecodePlugin } from 'electron-vite';
+import { webAlias, nodeAlias } from './vite.config.util';
 import { join } from 'path';
 import { obfuscator } from 'rollup-obfuscator';
-
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
 import vue from '@vitejs/plugin-vue';
@@ -13,7 +12,7 @@ import svgLoader from 'vite-svg-loader';
 import autoImport from 'unplugin-auto-import/vite';
 import components from 'unplugin-vue-components/vite';
 
-const mainConfig: UserConfig['main'] = {
+const mainConfig = (userconfig?: UserConfigExport): UserConfig['main'] => ({
   plugins: [externalizeDepsPlugin(), bytecodePlugin()],
   resolve: {
     alias: nodeAlias
@@ -29,37 +28,24 @@ const mainConfig: UserConfig['main'] = {
     },
     rollupOptions: {
 
-    },
-    // reportCompressedSize: false,
-    sourcemap: false,
-    commonjsOptions: {
-      sourceMap: false,
-      strictRequires: false
     }
   }
-};
+});
 
-const preloadConfig: UserConfig['preload'] = {
+const preloadConfig = (userconfig?: UserConfigExport): UserConfig['main'] => ({
   plugins: [externalizeDepsPlugin(), bytecodePlugin()],
   resolve: {
     alias: nodeAlias
   },
   build: {
-    minify: 'terser',
     rollupOptions: {
 
-
-    },
-    // reportCompressedSize: false,
-    sourcemap: false,
-    commonjsOptions: {
-      sourceMap: false,
-      strictRequires: false
     }
   }
-};
+});
 
-const rendererConfig = defineViteConfig(({ mode }) => {
+
+const rendererConfig = defineViteConfig(() => {
   return {
     resolve: {
       alias: webAlias,
@@ -92,7 +78,9 @@ const rendererConfig = defineViteConfig(({ mode }) => {
     server: {
       hmr: true,
       host: '0.0.0.0',
-      proxy: webProxy(mode)
+      proxy: {
+
+      }
     },
     build: {
       chunkSizeWarningLimit: 2000,
@@ -123,9 +111,13 @@ const rendererConfig = defineViteConfig(({ mode }) => {
       outDir: join(__dirname, './out/renderer')
     },
   }
-});
+})
 
-export default defineConfig(() => ({ main: mainConfig, preload: preloadConfig, renderer: rendererConfig }));
+export default defineConfig(() => ({
+  main: mainConfig(),
+  preload: preloadConfig(),
+  renderer: rendererConfig
+}));
 
 
 

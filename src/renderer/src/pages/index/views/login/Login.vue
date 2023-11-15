@@ -68,7 +68,7 @@ const login = async () => {
         if (stage.value !== DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE) return;
         // 登录成功了
         windowShow(false).catch(() => windowRelaunch());
-        router.push('/space/dynamics');
+        router.replace('/space/dynamics');
       }, 600);
     }).catch(err => {
       if (stage.value !== DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE) return;

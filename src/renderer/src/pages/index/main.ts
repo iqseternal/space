@@ -3,7 +3,7 @@ import { createApp } from 'vue';
 import antd from 'ant-design-vue';
 import router from './router';
 import store from '@renderer/store';
-56
+
 import App from './App.vue';
 
 import 'animate.css';

@@ -11,3 +11,8 @@ declare module '*?asset' {
   const data: string;
   export default data;
 }
+
+declare module '*?url' {
+  const data: string;
+  export default data;
+}

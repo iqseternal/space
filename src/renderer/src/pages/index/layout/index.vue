@@ -11,20 +11,15 @@
         <SingleMenu mark="FolderViewOutlined" disabled>查看</SingleMenu>
         <SingleMenu disabled>排序方式</SingleMenu>
         <SingleMenu mark="CopyOutlined" :shortcut="hotKeys.copy.key" @click="() => copyText()">复制</SingleMenu>
-        <SingleMenu mark="ReloadOutlined" shortcut="Ctrl+R" @click="() => windowReload()">
-          重新加载
-        </SingleMenu>
+        <SingleMenu shortcut="Ctrl+V">粘贴</SingleMenu>
+        <SingleMenu mark="ReloadOutlined" shortcut="Ctrl+R" @click="() => windowReload()">重新加载</SingleMenu>
         <SingleMenu mark="BugOutlined" :shortcut="hotKeys.openDevTool.key" @click="() => windowDevtool(true, { mode: 'detach' })">
           打开开发者工具
         </SingleMenu>
         <MenuDriver />
         <ComboBoxMenu mark="WindowsOutlined" title="窗口">
-          <SingleMenu mark="FullscreenOutlined" @click="() => windowMax()">
-            最大化
-          </SingleMenu>
-          <SingleMenu mark="MinusOutlined" @click="() => windowMin()">
-            最小化
-          </SingleMenu>
+          <SingleMenu mark="FullscreenOutlined" @click="() => windowMax()">最大化</SingleMenu>
+          <SingleMenu mark="MinusOutlined" @click="() => windowMin()"> 最小化</SingleMenu>
           <SingleMenu @click="() => windowReduction()">还原窗口</SingleMenu>
           <SingleMenu mark="CloseOutlined" :shortcut="hotKeys.closeWindow.key" @click="() => windowClose()">
             关闭窗口

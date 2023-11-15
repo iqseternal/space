@@ -1,4 +1,4 @@
-import '#/globalForNode';
+import '#/global';
 import '#/code/measure/unhandledWarning';
 import './setupHandles';
 import { setupApp } from './setupApp';
