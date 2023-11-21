@@ -20,6 +20,16 @@ declare module "vue-router" {
     // 设置该路由在侧边栏和面包屑中展示的名字
     title?: string;
 
+    fullpath?: string;
+
+    // 面包屑对应的标题 -> 展示的描述
+    crumbsTitle?: string;
+    // 面包屑name -> 简短精简的name, 默认是 title
+    crumbsName?: string;
+    // 面包屑路径
+    curmbsMeta?: Required<RouteMeta & { name: string; }>[]; // { name: string; } 补充 route.name 用户展开菜单, 这样展开标识每一项
+
+
     icon?: IconRealKey | `icon-${string}`;
 
     // 设置该路由的图标, 暂时是一个 path 路径
@@ -34,9 +44,6 @@ declare module "vue-router" {
     // 权限, 取决于采用哪种形式, 如果使用下面这种形式, 那么就是动态叠加的权限
     // 采用二进制, 每一位对应一种权限, 如果查看是否拥有用 | 运算, 如果要添加权限, 使用 & 运算
     permission?: number;
-
-    // 是否缓存该路由页面 默认为 false，为 true 时代表需要缓存，此时该路由和该页面都需要设置一致的 Name
-    keepAlive?: boolean;
   }
 }
 

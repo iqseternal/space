@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import { terminalSvg, dashboardSvg, settingSvg } from '@renderer/assets';
-import { makeRoute } from '../utils';
+import { makeRoute } from '@libs/router';
 import Layout from '@renderer/pages/index/layout/index.vue';
 
 export const loginRoute = makeRoute({

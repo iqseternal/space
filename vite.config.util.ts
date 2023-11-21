@@ -23,7 +23,7 @@ export const webProxy = (mode: string): Record<string, string | ProxyOptions> =>
     [env.SPACE_API_BASE_URL]: {
       target: 'https://www.oupro.cn:3000/api/v1.0.0',
       ws: true,
-      secure: false,
+      secure: true,
       changeOrigin: true,
       rewrite: path => path.replace(env.SPACE_API_BASE_URL, '')
     }

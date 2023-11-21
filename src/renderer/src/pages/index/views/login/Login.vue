@@ -36,11 +36,11 @@ import { Space, FormItem, Modal, Form, Input, InputPassword, notification, messa
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue';
 import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
-import { apiAuthPost, apiUrl, apiPost, loginReq } from '@renderer/api';
+import { apiUrl, apiPost, loginReq } from '@renderer/api';
 import type { LoginFormRef, FormValidateRefResult } from '@components/Login';
 import { LoginForm } from '@components/Login';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
-import { rsaEncrypt } from '@renderer/utils/crypt';
+import { rsaEncrypt } from '@libs/crypt';
 import { windowShow, windowRelaunch } from '@renderer/actions';
 import { Subfield } from '@components/Subfield';
 
