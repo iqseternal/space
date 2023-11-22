@@ -31,7 +31,7 @@
     "@suey/packages": "1.1.17",
     "@suey/pkg-utils": "^0.0.6",
     "@suey/pkg-web": "^0.0.3",
-    "@suey/printer": "^1.1.0",
+    "@suey/printer": "^1.1.5",
     "@suey/rocketry": "^0.0.4",
     "animate.css": "^4.1.1",
     "ant-design-vue": "4.x",
