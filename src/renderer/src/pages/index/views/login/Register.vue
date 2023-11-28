@@ -20,8 +20,8 @@ import { Subfield } from '@components/Subfield';
 import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 import type { RegisterFormRef, FormValidateRefResult } from '@components/Login';
 import { RegisterForm } from '@components/Login';
-import { apiPost, apiAuthPost, apiUrl, registerReq } from '#/renderer/src/api';
-import { rsaEncrypt } from '@renderer/utils/crypt';
+import { apiPost, apiUrl, registerReq } from '#/renderer/src/api';
+import { rsaEncrypt } from '@libs/crypt';
 import RButton from '@components/RButton/RButton.vue';
 
 const [stage, setStage] = useStageInject();

@@ -11,7 +11,7 @@ div.ant-card.css-dev-only-do-not-override-kqecok.ant-card-bordered {
   }
 }
 
-div.ant-card.css-dev-only-do-not-override-kqecok.ant-card-bordered + div.ant-card.css-dev-only-do-not-override-kqecok.ant-card-bordered {
+div.ant-card.ant-card-bordered ~ div.ant-card.ant-card-bordered {
   margin-top: 10px;
 }
 

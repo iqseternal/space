@@ -40,6 +40,7 @@ const emits = defineEmits(['click']);
   display: flex;
   justify-content: center;
   align-items: center;
+
   img.widgetImg {
     width: 60%;
     height: 60%;

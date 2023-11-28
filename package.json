@@ -29,9 +29,9 @@
     "@element-plus/icons-vue": "^2.1.0",
     "@formkit/auto-animate": "^0.8.0",
     "@suey/packages": "1.1.17",
-    "@suey/pkg-utils": "^0.0.5",
+    "@suey/pkg-utils": "^0.0.6",
     "@suey/pkg-web": "^0.0.3",
-    "@suey/printer": "^1.1.0",
+    "@suey/printer": "^1.1.5",
     "@suey/rocketry": "^0.0.4",
     "animate.css": "^4.1.1",
     "ant-design-vue": "4.x",
@@ -86,6 +86,7 @@
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.2",
     "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-style-import": "^2.0.0",
     "vite-svg-loader": "^4.0.0",
     "vue-tsc": "^1.8.4"
   }

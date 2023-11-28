@@ -10,3 +10,12 @@ export { useTimeout } from './useTimeout';
 
 export type { ValidateRef, ValidateRefResult } from './useValidate';
 export { useValidate, useValidateRef } from './useValidate';
+
+
+export type { ModalMode, ModalHookEmits } from './useModalAttrs';
+export { useModalAttrs } from './useModalAttrs';
+
+export type { usePagination } from './usePaginationAttrs';
+
+export type { InitTableFn } from './useTableProps';
+export { useTableAttrs } from './useTableProps';

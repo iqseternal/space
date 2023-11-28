@@ -17,13 +17,13 @@ function makePrintMessage(
     ms,
     typeMs: [
       appColor, `[${appConfigService.config.appName.toUpperCase()}]`,
-      toPrintClear(), ' ',
+      toPrintClear(),
       timeColor, `[${getCurFullDate()}]`,
-      toPrintClear(), ' ',
+      toPrintClear(),
       typeColor, `${typeMessage}`,
-      toPrintClear(), ' ',
+      toPrintClear(),
       toColor(['cyan']), `[${thread}]:`,
-      toPrintClear(), ' ',
+      toPrintClear(),
       messageColor, ...message,
       toPrintClear()
     ]

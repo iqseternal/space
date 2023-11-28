@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import store from "@renderer/store";
 import { defineStore } from 'pinia';
-import { getToken, removeToken, setToken } from '@renderer/utils/storage';
+import { getToken, removeToken, setToken } from '@libs/storage';
 
 import { apiUrl, apiPost } from '@renderer/api';
 

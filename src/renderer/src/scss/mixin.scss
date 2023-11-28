@@ -1,3 +1,15 @@
+@import './var.scss';
+
+@mixin forMobile {
+  @media screen and (max-width: ($mobileSize - 1px)) { @content; }
+}
+@mixin forPad {
+  @media screen and (min-width: $mobileSize) and (max-width: ($padSize - 1)) { @content; }
+}
+@mixin forPC {
+  @media screen and (min-width: $pcSize) { @content; }
+}
+
 @mixin overflow($scroll: scroll) {
   overflow-x: hidden;
   overflow-y: $scroll !important;
