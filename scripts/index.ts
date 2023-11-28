@@ -1,10 +1,11 @@
 
-import { rsaGetKey } from '@suey/pkg-utils';
+import { rsaGetKey, aesEncrypt, aesDecrypt } from '@suey/pkg-utils';
+import { printClear, printError, Printer, printInfo, printWarn } from '@suey/printer';
 
 
-const [pubKey, priKey] = rsaGetKey({
+const [pubKey] = rsaGetKey({
   bytes: 1024
-});
+})
 
 
-console.log(pubKey, priKey);
+printInfo(pubKey, pubKey);
