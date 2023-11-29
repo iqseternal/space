@@ -19,3 +19,6 @@ export type { usePagination } from './usePaginationAttrs';
 
 export type { InitTableFn } from './useTableProps';
 export { useTableAttrs } from './useTableProps';
+
+export type { FadeOptions, FadeCallback } from './useFade';
+export { useFadeIn, useFadeOut } from './useFade';

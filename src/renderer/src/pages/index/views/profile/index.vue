@@ -12,7 +12,6 @@ import { message } from 'ant-design-vue';
 const props = defineProps({
   loadData: { type: Function as PropType<() => Promise<void>>, default: () => Promise.resolve() }
 })
-
 </script>
 
 <style lang="scss" scoped>

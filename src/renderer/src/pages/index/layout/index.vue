@@ -33,22 +33,22 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue';
+import { onMounted, nextTick, onBeforeMount } from 'vue';
 import { IPC_MAIN_WINDOW } from '#/constants';
 import { DropdownMenu, MenuDriver, SingleMenu, ComboBoxMenu } from '@renderer/components/DropdownMenu';
 import { UserOutlined, ReloadOutlined, BugOutlined } from '@ant-design/icons-vue';
-import { hotKeys, windowReload, windowShow, windowRelaunch, windowMax, windowMin, windowClose, windowReduction, windowDevtool, copyText } from '@renderer/actions';
+import { hotKeys, windowReload, windowShow, windowRelaunch, windowMax, windowMin, windowClose, windowReduction, windowDevtool, copyText, windowResizeAble, windowResetCustomSize } from '@renderer/actions';
 import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
 
-import { useMousetrap } from '@renderer/hooks/useMousetrap';
+import { useMousetrap, useFadeIn } from '@renderer/hooks';
 
 import Header from '@renderer/components/Header';
 import Sidebar from './sidebar/index.vue';
-import IconFont from '@renderer/components/IconFont';
+import IconFont from '@components/IconFont';
 
-onMounted(async () => {
-  const target = await windowShow(true);
-  if (!target.data) windowRelaunch();
+useFadeIn(() => {
+  windowResizeAble(true);
+  windowResetCustomSize('mainWindow');
 });
 
 useMousetrap(hotKeys.reload.allKey, windowReload);

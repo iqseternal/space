@@ -47,6 +47,8 @@ import { Subfield } from '@components/Subfield';
 import { DropdownMenu, ComboBoxMenu, SingleMenu, MenuDriver } from '@components/DropdownMenu';
 import { windowShow } from '@renderer/actions';
 
+import { useFadeOut } from '@renderer/hooks';
+
 import SidebarItem from '@components/SidebarItem';
 import IconFont from '@components/IconFont';
 
@@ -55,8 +57,10 @@ const router = useRouter();
 const autoSize = ref(0);
 
 const logout = () => {
-  windowShow(false);
-  router.push('/login');
+  // windowShow(false);
+  useFadeOut(() => {
+    router.push('/login');
+  });
 }
 
 onMounted(() => {

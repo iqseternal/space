@@ -22,7 +22,7 @@ import type { RegisterFormRef, FormValidateRefResult } from '@components/Login';
 import { RegisterForm } from '@components/Login';
 import { apiPost, apiUrl, registerReq } from '#/renderer/src/api';
 import { rsaEncrypt } from '@libs/crypt';
-import RButton from '@components/RButton/RButton.vue';
+import RButton from '@components/RButton';
 
 const [stage, setStage] = useStageInject();
 
@@ -48,7 +48,6 @@ const register = () => {
 onMounted(() => {
   register();
 })
-
 </script>
 
 <style lang="scss" scoped>

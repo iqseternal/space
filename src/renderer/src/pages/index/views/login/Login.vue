@@ -30,12 +30,12 @@
 
 <script lang="ts" setup>
 import type { Ref } from 'vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import { Space, FormItem, Modal, Form, Input, InputPassword, notification, message, Checkbox, Radio } from 'ant-design-vue';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue';
 import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
-import { useMousetrap } from '@renderer/hooks/useMousetrap';
+import { useMousetrap, useFadeOut } from '@renderer/hooks';
 import { apiUrl, apiPost, loginReq } from '@renderer/api';
 import type { LoginFormRef, FormValidateRefResult } from '@components/Login';
 import { LoginForm } from '@components/Login';
@@ -44,8 +44,8 @@ import { rsaEncrypt } from '@libs/crypt';
 import { windowShow, windowRelaunch } from '@renderer/actions';
 import { Subfield } from '@components/Subfield';
 
-import RInput from '@components/RInput/RInput.vue';
-import RButton from '@components/RButton/RButton.vue';
+import RInput from '@components/RInput';
+import RButton from '@components/RButton';
 
 const router = useRouter();
 const [stage, setStage] = useStageInject();
@@ -64,11 +64,12 @@ const login = async () => {
     setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE);
     const { username, password } = loginForm.value?.form ?? {};
     loginReq({ username, password }).then(res => {
-      setTimeout(() => {
+      setTimeout(async () => {
         if (stage.value !== DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE) return;
         // 登录成功了
-        windowShow(false).catch(() => windowRelaunch());
-        router.replace('/space/dynamics');
+        useFadeOut(() => {
+          router.replace('/space/dynamics');
+        });
       }, 600);
     }).catch(err => {
       if (stage.value !== DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE) return;
