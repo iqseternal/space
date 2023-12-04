@@ -12,4 +12,6 @@ export type ModalEmits = Record<
   () => void
 >;
 
+export { Modal };
+
 export default Modal;

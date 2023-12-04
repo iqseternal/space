@@ -19,7 +19,6 @@ import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
 import { webContents } from 'electron/main';
 
 setupApp(async () => {
-  // const { windowService } = await setupService();
   const mainWindow = await setupMainWindow();
 
   mainWindow.open();

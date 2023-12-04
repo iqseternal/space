@@ -19,3 +19,13 @@ export const copySelectionText = () => {
 export const copySpecifiedText = (text: string) => {
   if (text) window.navigator.clipboard.writeText(text);
 }
+
+/**
+ * 是否可以复制文本
+ * @returns
+ */
+export const canCopyText = () => {
+  const selection = window.getSelection();
+  if (!selection) return false;
+  return selection.toString() !== '';
+}

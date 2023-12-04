@@ -56,12 +56,10 @@ const router = useRouter();
 
 const autoSize = ref(0);
 
-const logout = () => {
-  // windowShow(false);
-  useFadeOut(() => {
-    router.push('/login');
-  });
-}
+const logout = () => useFadeOut(() => {
+  router.push('/login');
+});
+
 
 onMounted(() => {
   const r = getComputedStyle(document.querySelector(':root') as Element).getPropertyValue('--s-main-frame-sidebar-width');
