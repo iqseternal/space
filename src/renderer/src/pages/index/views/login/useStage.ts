@@ -16,16 +16,16 @@ export type SetStageFn = (key: PropKeys) => void;
 
 /**
  * 登录页状态管理 stage
- * @returns
+ * @return {[Ref<PropKeys>, PropKeys]}
  */
-export const useStage = (): [Ref<PropKeys>, PropKeys] => {
-  let preStage: PropKeys = DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE;
+export const useStage = (): [Ref<PropKeys>, Ref<PropKeys>] => {
+  const preStage = ref(DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE) as Ref<PropKeys>;
 
   const stage = ref(DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE) as Ref<PropKeys>;
 
   provide(DEFINE_PROVIDE_KEY, [stage, (key: PropKeys) => {
 
-    preStage = stage.value;
+    preStage.value = stage.value;
 
     stage.value = key;
   }]);

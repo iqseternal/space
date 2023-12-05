@@ -46,7 +46,7 @@ const register = () => {
 }
 
 onMounted(() => {
-  register();
+  // register();
 })
 </script>
 

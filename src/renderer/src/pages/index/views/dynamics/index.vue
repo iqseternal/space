@@ -16,6 +16,8 @@
   </ACard>
   <ACard>
     <div>`1`</div>
+
+    <AInput></AInput>
   </ACard>
 </template>
 

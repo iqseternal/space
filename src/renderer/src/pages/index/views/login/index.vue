@@ -64,7 +64,17 @@ useFadeIn(async () => {
   const setResizeable = await windowResizeAble(false);
   if (!setSize.data || !setResizeable.data) windowRelaunch();
   // 如果一切没有问题, 那么就准备就绪, 就可以展示页面了
+<<<<<<< Updated upstream
   windowSetPosition('center');
+=======
+  // windowSetPosition('center');
+  windowShow(true);
+});
+
+onBeforeUnmount(() => {
+  windowResizeAble(true);
+  windowResetCustomSize('mainWindow');
+>>>>>>> Stashed changes
 });
 </script>
 

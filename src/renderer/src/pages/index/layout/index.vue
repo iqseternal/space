@@ -10,6 +10,7 @@
       <template #overlay>
         <SingleMenu mark="FolderViewOutlined" disabled>查看</SingleMenu>
         <SingleMenu disabled>排序方式</SingleMenu>
+<<<<<<< Updated upstream
         <SingleMenu
           mark="CopyOutlined"
           :shortcut="hotKeys.copy.key"
@@ -19,6 +20,10 @@
           复制
         </SingleMenu>
         <SingleMenu shortcut="Ctrl+V">粘贴</SingleMenu>
+=======
+        <SingleMenu mark="CopyOutlined" :shortcut="hotKeys.copy.key" @click="() => copyText()">复制</SingleMenu>
+        <!-- <SingleMenu shortcut="Ctrl+V">粘贴</SingleMenu> -->
+>>>>>>> Stashed changes
         <SingleMenu mark="ReloadOutlined" shortcut="Ctrl+R" @click="() => windowReload()">重新加载</SingleMenu>
         <SingleMenu mark="BugOutlined" :shortcut="hotKeys.openDevTool.key" @click="() => windowDevtool(true, { mode: 'detach' })">
           打开开发者工具
@@ -44,8 +49,12 @@ import { onMounted, nextTick, onBeforeMount } from 'vue';
 import { IPC_MAIN_WINDOW } from '#/constants';
 import { DropdownMenu, MenuDriver, SingleMenu, ComboBoxMenu } from '@renderer/components/DropdownMenu';
 import { UserOutlined, ReloadOutlined, BugOutlined } from '@ant-design/icons-vue';
+<<<<<<< Updated upstream
 import { hotKeys, windowReload, windowShow, windowRelaunch, windowMax, windowMin, windowClose, windowReduction, windowDevtool, copyText, windowResizeAble, windowResetCustomSize } from '@renderer/actions';
 import { canCopyText } from '@libs/common';
+=======
+import { hotKeys, windowReload, windowShow, windowRelaunch, windowMax, windowMin, windowClose, windowReduction, windowDevtool, copyText, pasteText } from '@renderer/actions';
+>>>>>>> Stashed changes
 import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
 
 import { useMousetrap, useFadeIn } from '@renderer/hooks';

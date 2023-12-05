@@ -1,17 +1,4 @@
 
-
-
-
-/**
- * 复制选中的文字
- * @returns
- */
-export const copySelectionText = () => {
-  const context = window.getSelection()?.toString();
-  if (context) window.navigator.clipboard.writeText(context);
-}
-
-
 /**
  * 复制某段指定文字
  * @param text
@@ -28,4 +15,33 @@ export const canCopyText = () => {
   const selection = window.getSelection();
   if (!selection) return false;
   return selection.toString() !== '';
+}
+
+/*
+ * 复制选中的文字
+ * @returns
+ */
+export const copySelectionText = () => {
+  const context = window.getSelection()?.toString();
+  if (context) copySpecifiedText(context);
+}
+
+/**
+ * 粘贴指定文字
+ * @param text
+ */
+export const pasteSpecifiedText = (text: string) => {
+  const activeElement = document.activeElement;
+
+  console.log(document.activeElement);
+
+  console.log(activeElement, text);
+}
+
+/**
+ * 粘贴剪贴板中的文字
+ */
+export const pasteSelectionText = async () => {
+  const text = await window.navigator.clipboard.readText();
+  if (text) pasteSpecifiedText(text);
 }
