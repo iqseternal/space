@@ -23,7 +23,7 @@ export const useUserStore = defineStore("user", () => {
   /** 获取用户详情 */
   const getInfo = () => {
     return new Promise((resolve, reject) => {
-      apiPost(apiUrl.getUserinfo)
+      apiPost<any>(apiUrl.getUserinfo)
         .then((res) => {
           const data = res.data
           username.value = data.username
@@ -39,7 +39,7 @@ export const useUserStore = defineStore("user", () => {
   /** 登录 */
   const login = (loginData) => {
     return new Promise((resolve, reject) => {
-      apiPost(apiUrl.login, {
+      apiPost<any>(apiUrl.login, {
         data: {
           username: loginData.username,
           password: loginData.password,

@@ -13,7 +13,6 @@ declare module 'vue' {
     ACheckbox: typeof import('ant-design-vue/es')['Checkbox']
     ADivider: typeof import('ant-design-vue/es')['Divider']
     ADropdown: typeof import('ant-design-vue/es')['Dropdown']
-    AInput: typeof import('ant-design-vue/es')['Input']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     ASpace: typeof import('ant-design-vue/es')['Space']

@@ -1,6 +1,10 @@
 <template>
   <div class="loginPage">
-    <Header isPane />
+    <Header isPane>
+      <template #control>
+        <Widget title="设置" icon='SettingOutlined' @click="() => openSettingPage()" />
+      </template>
+    </Header>
     <div class="contain">
       <template v-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE">
         <LoginLoading @cancel="() => (stage = preStageKey)" />
@@ -46,9 +50,11 @@ import { loginTakeFilePng } from '@renderer/assets';
 import { LoginLoading } from '@components/Loading';
 import { useStage, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 
-import { windowSetSize, windowResizeAble, windowRelaunch, windowShow, windowSetPosition, windowResetCustomSize } from '@renderer/actions';
+import { windowSetSize, windowResizeAble, windowRelaunch, windowShow, windowSetPosition, windowResetCustomSize, hotKeys, windowReload, openSettingPage } from '@renderer/actions';
 
 import { Subfield, SubfieldSpace } from '@components/Subfield';
+import Widget from '@components/Widget';
+import IconFont from '@components/IconFont';
 import BlendedText from '@components/BlendedText/BlendedText.vue';
 
 import Header from '@components/Header';
@@ -72,6 +78,8 @@ onBeforeUnmount(() => {
   windowResizeAble(true);
   windowResetCustomSize('mainWindow');
 });
+
+useMousetrap(hotKeys.reload.allKey, windowReload);
 </script>
 
 <style lang="scss" scoped>

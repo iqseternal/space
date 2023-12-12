@@ -34,12 +34,20 @@ const emits = defineEmits(['click']);
 </script>
 
 <style lang="scss" scoped>
+@import "@scss/mixin.scss";
+@import "@scss/var.scss";
+
 .widget {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: calc($sMainCaptionBarHeight);
+  height: $sMainCaptionBarHeight;
+  cursor: default;
+  @include appRegionNo;
 
   img.widgetImg {
     width: 60%;

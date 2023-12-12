@@ -24,7 +24,7 @@
       <template #overlay>
         <SingleMenu mark="FileOutlined" disabled>配置文件</SingleMenu>
         <MenuDriver />
-        <SingleMenu mark="SettingOutlined" disabled>设置</SingleMenu>
+        <SingleMenu mark="SettingOutlined" @click="() => openSettingPage()">设置</SingleMenu>
         <SingleMenu mark="KeyOutlined" disabled>键盘快捷方式</SingleMenu>
         <ComboBoxMenu title="主题">
           <SingleMenu mark="BgColorsOutlined" disabled>颜色主题</SingleMenu>
@@ -45,7 +45,7 @@ import { settingSvg } from '@renderer/assets';
 
 import { Subfield } from '@components/Subfield';
 import { DropdownMenu, ComboBoxMenu, SingleMenu, MenuDriver } from '@components/DropdownMenu';
-import { windowShow } from '@renderer/actions';
+import { windowShow, openSettingPage } from '@renderer/actions';
 
 import { useFadeOut } from '@renderer/hooks';
 

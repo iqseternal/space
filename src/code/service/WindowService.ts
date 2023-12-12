@@ -5,8 +5,9 @@ import { Tray, Menu, app, screen } from 'electron';
 import { setWindowCross, setWindowMaxSize, setWindowMinSize, setWindowOpenHandler, setWindowCaption, setWindowDevtoolsDetach } from '../core/common/window';
 
 import { PAGES_WINDOW_SETTING, PAGES_WINDOW_MAIN } from '#/config';
-
+import { CONFIG } from '#/constants';
 import icon from '#/../resources/icon.png?asset';
+
 
 const DEFAILT_OPTIONS: Partial<BrowserWindowConstructorOptions> = {
   show: false,
@@ -53,7 +54,7 @@ export class WindowService {
 
     if (this.options.autoShow) this.window.on('ready-to-show', () => this.window.show());
 
-    setWindowCaption(this.window, icon, 'Percious');
+    setWindowCaption(this.window, icon, CONFIG.PROJECT);
 
     setWindowOpenHandler(this.window);
   }

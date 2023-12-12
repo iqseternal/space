@@ -39,7 +39,7 @@ export async function setupSettingWindow() {
   Printer.printInfo('构建设置页面');
 
   const appConfigService = AppConfigService.getInstance();
-  const windowService = new WindowService(appConfigService.config.windows.largePopupWindow as Electron.BrowserWindowConstructorOptions, {
+  const windowService = new WindowService(appConfigService.config.windows.mediumPopupWindow as Electron.BrowserWindowConstructorOptions, {
     url: PAGES_WINDOW_SETTING,
     autoShow: true
   });

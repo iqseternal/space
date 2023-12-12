@@ -2,12 +2,13 @@
   <Subfield>
     <div />
     <Space :size="8" style="margin-right: 8px;" class="control">
-      <Widget title="打开开发者工具" icon="BugFilled" @click="openDevTool" class="widgetItem" />
-      <Widget title="最小化" :src="windowMinSvg" @click="minWindow" class="widgetItem" />
+      <slot name="control"></slot>
+      <Widget title="打开开发者工具" icon="BugFilled" @click="openDevTool" />
+      <Widget title="最小化" :src="windowMinSvg" @click="minWindow" />
       <template v-if="!props.isPane">
-        <Widget title="还原窗口" :src="windowRegionSvg" @click="reductionWindow" class="widgetItem" />
+        <Widget title="还原窗口" :src="windowRegionSvg" @click="reductionWindow" />
       </template>
-      <Widget title="关闭窗口" :src="windowCloseSvg" @click="closeWindow" class="widgetItem" />
+      <Widget title="关闭窗口" :src="windowCloseSvg" @click="closeWindow" />
     </Space>
   </Subfield>
 </template>
@@ -45,11 +46,4 @@ useMousetrap(['ctrl+shift+i', 'command+shift+i'], () => openDevTool());
 <style lang="scss" scoped>
 @import "@scss/mixin.scss";
 @import "@scss/var.scss";
-
-.widgetItem {
-  width: calc($sMainCaptionBarHeight);
-  height: $sMainCaptionBarHeight;
-  cursor: default;
-  @include appRegionNo;
-}
 </style>

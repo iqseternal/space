@@ -35,7 +35,7 @@ export const windowSetSize = (width: number, height: number) => window.electron.
  * @param args
  * @returns
  */
-export const windowSetPosition = (...args: Parameters<MainEventHandlers['WINDOW_SET_POSITION']>) => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SET_POSITION, ...args)
+export const windowSetPosition = (...args: Parameters<MainEventHandlers[typeof IPC_MAIN_WINDOW.WINDOW_SET_POSITION]>) => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_SET_POSITION, ...args)
 
 /**
  * 重启应用
@@ -48,8 +48,7 @@ export const windowRelaunch = () => window.electron.ipcRenderer.invoke(IPC_MAIN_
  * @param type
  * @returns
  */
-export const windowResetCustomSize = (type: Parameters<MainEventHandlers['WINDOW_CUSTOM_SIZE']>[0]) => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, type);
-
+export const windowResetCustomSize = (type: Parameters<MainEventHandlers[typeof IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE]>[0]) => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, type);
 
 /**
  * 最大化窗口
@@ -84,4 +83,4 @@ export const windowClose = (id?: number) => window.electron.ipcRenderer.invoke(I
  * @param args
  * @returns
  */
-export const windowDevtool = (...args: Parameters<MainEventHandlers['DEV_OPEN_TOOL']>) => window.electron.ipcRenderer.invoke(IPC_DEV.DEV_OPEN_TOOL, ...args);
+export const windowDevtool = (...args: Parameters<MainEventHandlers[typeof IPC_DEV.DEV_OPEN_TOOL]>) => window.electron.ipcRenderer.invoke(IPC_DEV.DEV_OPEN_TOOL, ...args);

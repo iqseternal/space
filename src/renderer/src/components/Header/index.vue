@@ -5,7 +5,12 @@
     <template v-if="$slots.center"><slot name="center" /></template>
     <template v-else><Search v-if="props.isPane === false" /></template>
 
-    <Control :isPane="props.isPane" />
+
+    <Control :isPane="props.isPane">
+      <template v-if="$slots.control" #control>
+        <slot name="control" />
+      </template>
+    </Control>
   </Subfield>
 </template>
 

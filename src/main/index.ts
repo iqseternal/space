@@ -16,11 +16,9 @@ import { execShell } from '#code/core/shell/execShell';
 import { spawn } from 'child_process';
 import { print, printClear, toColor } from '@suey/printer';
 import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
-import { webContents } from 'electron/main';
 
 setupApp(async () => {
   const mainWindow = await setupMainWindow();
 
   mainWindow.open();
 });
-

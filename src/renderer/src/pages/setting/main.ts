@@ -1,7 +1,10 @@
 import { createApp } from 'vue';
 
-import App from './App';
+import App from './App.vue';
 
 ;(async () => {
-  const app = createApp(App).mount('#app');
+  const app = createApp(App)
+
+
+  app.mount('#app');
 })();
