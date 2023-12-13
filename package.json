@@ -29,7 +29,7 @@
     "@element-plus/icons-vue": "^2.1.0",
     "@formkit/auto-animate": "^0.8.0",
     "@suey/packages": "1.1.17",
-    "@suey/pkg-utils": "^0.0.6",
+    "@suey/pkg-utils": "^0.0.11",
     "@suey/pkg-web": "^0.0.3",
     "@suey/printer": "^1.1.5",
     "@suey/rocketry": "^0.0.4",

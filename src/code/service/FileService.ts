@@ -108,8 +108,8 @@ export class FileService {
    * @param bin
    * @param distPath
    */
-  static saveFile(bin: BinaryLike, distPath: string);
-  static saveFile(distSource: Source, distPath: string);
+  static saveFile(bin: BinaryLike, distPath: string): Promise<string>;
+  static saveFile(distSource: Source, distPath: string): Promise<string>;
   static saveFile(_1: BinaryLike | Source, distPath: string) {
     return new Promise((resolve, reject) => {
       if (typeof _1 === 'string' || _1 instanceof ArrayBuffer || ArrayBuffer.isView(_1)) {
