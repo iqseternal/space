@@ -2,7 +2,7 @@ import '#/global';
 import '#/code/measure/unhandledWarning';
 import './setupHandles';
 import { setupApp } from './setupApp';
-import { setupMainWindow } from './setupService';
+import { setupMainWindow,setupSettingWindow } from './setupService';
 import { setupUi } from './setupUi';
 import { dialog, ipcMain, app, BrowserWindow } from 'electron';
 import { FileService } from '#service/FileService';
@@ -18,7 +18,7 @@ import { print, printClear, toColor } from '@suey/printer';
 import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
 
 setupApp(async () => {
-  const mainWindow = await setupMainWindow();
+  const mainWindow = await setupSettingWindow();
 
   mainWindow.open();
 });

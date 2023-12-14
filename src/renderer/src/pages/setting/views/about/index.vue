@@ -1,9 +1,11 @@
 <template>
-  <RouterView></RouterView>
+  about
 </template>
 
 <script lang="ts" setup>
+
 </script>
+
 
 <style lang="scss" scoped>
 
