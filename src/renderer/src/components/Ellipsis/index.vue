@@ -11,29 +11,23 @@
 
 <script lang="ts" setup>
 import { nextTick, ref, watch, onMounted } from 'vue';
-const props = defineProps({
-  tag: {
-    type: String,
-    default: 'span'
-  },
-  text: {
-    type: String,
-    default: ''
-  }
-})
 
-const show = ref(false)
-const ellipsis = ref<HTMLElement | null>(null)
+const props = defineProps({
+  tag: { type: String, default: 'span' },
+  text: { type: String, default: '' }
+});
+
+const show = ref(false);
+const ellipsis = ref<HTMLElement | null>(null);
 
 const resizeWidth = () => {
-  const fatherWidth = ellipsis.value?.offsetWidth ?? 0
-  const childWidth = (ellipsis.value?.firstChild as HTMLElement).offsetWidth
-
-  show.value = fatherWidth < childWidth
+  const fatherWidth = ellipsis.value?.offsetWidth ?? 0;
+  const childWidth = (ellipsis.value?.firstChild as HTMLElement).offsetWidth;
+  show.value = fatherWidth < childWidth;
 }
 
 onMounted(()=>{
-  resizeWidth()
+  resizeWidth();
 })
 
 watch(() => props.text,
@@ -41,7 +35,6 @@ watch(() => props.text,
     nextTick(() => {
       resizeWidth()
     })
-    console.log(1111)
   })
 </script>
 

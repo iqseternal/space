@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import '@scss/index.scss'
 import App from './App.vue';
-import './App.scss'
+import './styles.scss'
 import router from '@pages/setting/router';
 
 ;(async () => {
