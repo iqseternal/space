@@ -1,3 +1,8 @@
+/**
+ * ==========================================
+ * 创建通用型 Api 函数
+ * ==========================================
+ */
 import { request, apiGet, apiPost, createApi, REQ_METHODS, type RequestConfig } from '@libs/request';
 
 export { request, apiGet, apiPost };

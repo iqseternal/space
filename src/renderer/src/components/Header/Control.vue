@@ -1,7 +1,7 @@
 <template>
   <Subfield>
     <div />
-    <Space :size="8" style="margin-right: 8px;" class="control">
+    <ASpace :size="8" style="margin-right: 8px;" class="control">
       <slot name="control"></slot>
       <Widget title="打开开发者工具" icon="BugFilled" @click="openDevTool" />
       <Widget title="最小化" :src="windowMinSvg" @click="minWindow" />
@@ -9,22 +9,20 @@
         <Widget title="还原窗口" :src="windowRegionSvg" @click="reductionWindow" />
       </template>
       <Widget title="关闭窗口" :src="windowCloseSvg" @click="closeWindow" />
-    </Space>
+    </ASpace>
   </Subfield>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { IPC_DEV, IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
-import { Space, Tooltip } from 'ant-design-vue';
-import { BugFilled } from '@ant-design/icons-vue';
 import { windowCloseSvg, windowMaxSvg, windowMinSvg, windowRegionSvg } from '@renderer/assets';
 import { CONFIG } from '#/constants';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 
 import { windowMax, windowMin, windowClose, windowReduction, windowDevtool } from '@renderer/actions';
 
-import Subfield from '@renderer/components/Subfield/Subfield.vue';
+import Subfield from '@renderer/components/Subfield';
 import Widget from '@renderer/components/Widget';
 
 const props = defineProps({

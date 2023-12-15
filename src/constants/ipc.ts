@@ -1,3 +1,8 @@
+/**
+ * ==========================================
+ * IPC 常量编写, 多关于窗口
+ * ==========================================
+ */
 
 export class IPC_DEV {
   public static readonly DEV_OPEN_TOOL = 'DEV_OPEN_TOOL'; // 打开 devtools

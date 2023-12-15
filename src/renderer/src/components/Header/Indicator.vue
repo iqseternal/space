@@ -5,12 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import { Avatar, Space } from 'ant-design-vue';
-import { UserOutlined } from '@ant-design/icons-vue';
-
-import SidebarItem from '@renderer/components/SidebarItem';
-import Logo from '@renderer/components/Logo/Logo.vue';
-
+import SidebarItem from '@components/SidebarItem';
+import Logo from '@components/Logo/Logo.vue';
 </script>
 
 <style lang="scss" scoped>

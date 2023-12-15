@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Subfield, SubfieldSpace } from '@renderer/components/Subfield';
+import { Subfield, SubfieldSpace } from '@components/Subfield';
 
 import Slogan from './Slogan.vue';
 import Search from './Search.vue';

@@ -28,14 +28,13 @@ const resizeWidth = () => {
 
 onMounted(()=>{
   resizeWidth();
-})
+});
 
-watch(() => props.text,
-  () => {
-    nextTick(() => {
-      resizeWidth()
-    })
+watch(() => props.text, () => {
+  nextTick(() => {
+    resizeWidth();
   })
+})
 </script>
 
 

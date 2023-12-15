@@ -1,14 +1,14 @@
+/**
+ * ==========================================
+ * 用于处理自定义组件样式
+ * 当使用了组件库, 需要处理单独的样式, 但又不希望直接覆盖组件库的所有样式时处理
+ * ==========================================
+ */
 @import './var.scss';
 @import './animation.scss';
 @import './mixin.scss';
 
-body {
-  overflow: hidden;
-}
 
-.hidden {
-  display: none;
-}
 
 // 浮动级联菜单的样式
 div.dropdown-menu.ant-dropdown, div.ant-dropdown-menu-submenu {

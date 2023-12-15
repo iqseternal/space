@@ -1,16 +1,16 @@
 import { app } from 'electron';
 import { FileService } from './FileService';
 import { SingleInstanceService } from './SingleInstanceService';
-import userConfigJson from '#/../user.config.json';
 import { join } from 'path';
 import { PrinterService } from './PrinterService';
 import { AppConfigService } from './AppConfigService';
+import type { UserJsonType } from 'user.config.json';
 
 /**
  * 维护 UserConfig 的内容信息
  */
 export class UserConfigService extends SingleInstanceService<UserConfigService> {
-  public config: typeof userConfigJson = require(join(__dirname, '../../user.config.json'));
+  public config: UserJsonType = require(join(__dirname, '../../user.config.json'));
 
   static getInstance<T = UserConfigService>() {
     return super.getInstance<T>();

@@ -36,7 +36,7 @@ export async function setupMainWindow() {
 }
 
 export async function setupSettingWindow() {
-  Printer.printInfo('构建设置页面');
+  PrinterService.printInfo('构建设置页面');
 
   const appConfigService = AppConfigService.getInstance();
   const windowService = new WindowService({width: 690, height: 580, titleBarStyle:'hidden'}, {

@@ -20,3 +20,4 @@ import '@scss/index.scss';
     app.mount('#app');
   });
 })();
+

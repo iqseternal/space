@@ -18,7 +18,8 @@
     "tsconfig.node.json",
     "tsconfig.web.json",
     "vite.config.util.ts",
-    "src/@types/**/*.d.ts"
+    "src/@types/**/*.d.ts",
+    "src/env.d.ts"
   ],
   "exclude": ["node_modules", "dist", "out"],
   "compilerOptions": {

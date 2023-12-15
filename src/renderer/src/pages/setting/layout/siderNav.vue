@@ -1,8 +1,8 @@
 <template>
   <div class="sider-menu">
-    <div class="person">
+    <div class="flex-center" style="padding: 10px;">
       <AAvatar src="https://www.antdv.com/assets/logo.1ef800a8.svg" :size="32" shape="square" />
-      <div class="person-msg">
+      <div class="overflow-x-hidden flex-col" style="align-items: flex-start;font-size: 12px;margin-left: 8px;">
         <Ellipsis text="严旭" />
         <Ellipsis text="xun.yan@dbounce.com" />
       </div>
@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { settingChild } from '../router/modules/childRoutes';
 import type { MenuProps } from 'ant-design-vue';
+import { ref } from 'vue';
+import { settingChildrenRoutes } from '@pages/setting/router/modules';
 import { useRouter, useRoute } from 'vue-router';
 import Ellipsis from '@components/Ellipsis';
 
-const routes: MenuProps['items'] = settingChild.children?.map((item) => {
+const routes: MenuProps['items'] = settingChildrenRoutes.map((item) => {
   return {
     key: item.meta?.fullpath ?? '',
     label: item.meta?.title,
@@ -45,20 +45,5 @@ const handlePath = ({ selectedKeys }: Parameters<Required<MenuProps>['onSelect']
   height: 100vh;
   background: #f5f5f5;
   @include appRegion;
-
-  & > .person {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-
-    & > div.person-msg {
-      margin-left: 8px;
-      overflow: hidden;
-      width: calc(100% - 32px);
-      display: flex;
-      flex-direction: column;
-      font-size: 12px;
-    }
-  }
 }
 </style>

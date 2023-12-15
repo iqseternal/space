@@ -87,7 +87,3 @@ useMousetrap('f', () => forgetPassword());
 
 onMounted(() => loginForm.value?.lastInput.$el && useMousetrap(loginForm.value.lastInput.$el, 'enter', () => login()));
 </script>
-
-<style lang="scss" scoped>
-
-</style>

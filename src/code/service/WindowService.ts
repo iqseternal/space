@@ -45,7 +45,8 @@ export class WindowService {
         webSecurity: true,
         nodeIntegration: true,
         contextIsolation: true,
-        nodeIntegrationInSubFrames: true
+        nodeIntegrationInSubFrames: true,
+        nodeIntegrationInWorker: true
       },
     }));
     setWindowMaxSize(this.window);

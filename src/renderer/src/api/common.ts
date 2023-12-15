@@ -1,4 +1,8 @@
-
+/**
+ * ==========================================
+ * 创建复用型 Api 接口函数
+ * ==========================================
+ */
 import { apiGet, apiPost } from './api';
 
 import { rsaEncrypt } from '@libs/crypt';
