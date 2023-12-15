@@ -13,7 +13,7 @@ export const getCurDate = () => {
  */
 export const getCurTime = () => {
   const date = new Date();
-  return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+  return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 }
 
 /**

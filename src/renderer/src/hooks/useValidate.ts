@@ -29,7 +29,7 @@ export function useValidate<T>(validateF: (value: T) => (Result | Promise<Result
     validateStatus.value = 'validating';
     const result = validateF(value);
 
-    if (isPromise(result)) {
+    if (isPromise(result as unknown as Promise<void>)) {
       return new Promise<void>((resolve, reject) => {
         (result as Promise<Result>).then(res => {
           validateMessage.value = res.message;
