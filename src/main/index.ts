@@ -27,7 +27,4 @@ setupApp(async () => {
 
   const settingWindow = await setupSettingWindow();
   settingWindow.open();
-
-
-  NotificationService.showNotificationInfo();
 });

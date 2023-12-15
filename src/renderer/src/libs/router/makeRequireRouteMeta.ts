@@ -1,4 +1,3 @@
-
 import type { RouteRecordRaw, RouteMeta, _RouteRecordBase } from 'vue-router';
 
 export const DEFAULT_META: Required<RouteMeta> = {

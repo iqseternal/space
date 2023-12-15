@@ -12,6 +12,8 @@ import svgLoader from 'vite-svg-loader';
 
 import autoImport from 'unplugin-auto-import/vite';
 import styleImport from 'vite-plugin-style-import';
+
+import eslintPlugin from 'vite-plugin-eslint';
 import components from 'unplugin-vue-components/vite';
 
 
@@ -54,6 +56,15 @@ const rendererConfig = defineViteConfig(() => {
     },
     plugins: [
       vue(),
+      // eslintPlugin({
+      //   include: [
+      //     'src/**/*.ts',
+      //     'src/**/*.vue',
+      //     "src/*.ts",
+      //     "src/*.vue"
+      //   ],
+      //   rulePaths:['./']
+      // }),
       vueJsx(),
       svgLoader({ defaultImport: 'url' }),
       components({

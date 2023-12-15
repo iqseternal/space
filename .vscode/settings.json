@@ -1,5 +1,9 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "editor.mouseWheelZoom": true,
-  "terminal.integrated.altClickMovesCursor": true
+  "terminal.integrated.altClickMovesCursor": true,
+  "eslint.enable": true,
+  "eslint.options": {
+    "configFile": ".eslint.js"
+  }
 }
