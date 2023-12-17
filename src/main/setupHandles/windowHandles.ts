@@ -8,6 +8,7 @@ import { AppConfigService } from '#/code/service/AppConfigService';
 import { UserConfigService } from '#/code/service/UserConfigService';
 import { Printer } from '@suey/printer';
 import { setupMainWindow, setupSettingWindow } from '../setupService';
+import { PrinterService } from '#/code/service/PrinterService';
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_MAX_SIZE, (e, id) => ipcR((ok, fail) => {
   const window = BrowserWindow.fromId(id ?? e.frameId);
@@ -177,10 +178,10 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_OPEN, (e, type) => ipcR(async (ok, fail)
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_CLOSE, (e, id?: number) => ipcR((ok, fail) => {
   const window = BrowserWindow.fromId(id ?? e.frameId);
-  if (!window) {
-    fail(false, '找不到指定窗口');
-    return;
-  }
+
+  PrinterService.printWarn(window?.id);
+
+  if (!window) return fail(false, '找不到指定窗口');
 
   window?.close();
   ok(true);

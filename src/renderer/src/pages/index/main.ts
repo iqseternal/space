@@ -11,7 +11,7 @@ import 'dayjs/locale/zh-cn';
 
 import '@scss/index.scss';
 
-;(async () => {
+(async () => {
   const app = createApp(App);
 
   app.use(store).use(router);

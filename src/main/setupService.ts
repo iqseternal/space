@@ -32,6 +32,8 @@ export async function setupMainWindow() {
   windowService.window.setMenu(null);
   setWindowCloseCaptionContextmenu(windowService.window);
   setWindowDevtoolsDetach(windowService.window);
+
+  PrinterService.printInfo('主窗口ID, ', windowService.window.id);
   return windowService;
 }
 
@@ -49,5 +51,6 @@ export async function setupSettingWindow() {
 
   setWindowCloseCaptionContextmenu(windowService.window);
 
+  PrinterService.printInfo('设置窗口ID, ', windowService.window.id);
   return windowService;
 }

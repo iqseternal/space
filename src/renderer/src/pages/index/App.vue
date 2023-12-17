@@ -5,8 +5,8 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@scss/var.scss";
-@import "@scss/mixin.scss";
+@import '@scss/var.scss';
+@import '@scss/mixin.scss';
 
 #frame_app {
   width: 100vw;
