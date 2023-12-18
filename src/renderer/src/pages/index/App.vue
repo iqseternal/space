@@ -4,6 +4,15 @@
   </div>
 </template>
 
+<script lang="ts" setup>
+
+const f = () => {
+
+}
+
+const a = void 0;
+</script>
+
 <style lang="scss" scoped>
 @import '@scss/var.scss';
 @import '@scss/mixin.scss';

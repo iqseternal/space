@@ -6,7 +6,7 @@ import * as webConfig from './tsconfig.web.json';
 import * as nodeConfig from './tsconfig.node.json';
 
 const START_OPTIONS = {
-  LINT_ON_DEV: true // dev 模式下启用 lint
+  LINT_ON_DEV: false // dev 模式下启用 lint
 }
 
 
@@ -45,7 +45,7 @@ export function vitecheckVueNamePlugin(): Plugin {
 
       const filename = id.substring(id.lastIndexOf('/'));
 
-      if (/^((?=^.*\.vue$)((index)|([A-Z].*))\.vue)|(^.*(?<!\.vue$))$/.test(filename)) return { code };
+      if (/^((?=^.*\/.*\.vue$)(.*\/)((index)|([A-Z].*))\.vue$)|(^.*(?<!\.vue$))$/.test(filename)) return { code };
 
       throw new Error('错误的文件名称, Vue文件名应该大驼峰或者为index.vue');
     }
@@ -54,7 +54,7 @@ export function vitecheckVueNamePlugin(): Plugin {
 
 
 export function loadDevPlugin(): Plugin[] {
-  if (START_OPTIONS.LINT_ON_DEV) return [];
+  if (!START_OPTIONS.LINT_ON_DEV) return [];
 
   return [
     vitecheckVueNamePlugin(),
