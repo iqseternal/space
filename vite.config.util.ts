@@ -1,5 +1,6 @@
-import type { ProxyOptions, AliasOptions, Alias } from 'vite';
+import type { ProxyOptions, AliasOptions, Alias, Plugin } from 'vite';
 import { loadEnv } from 'vite';
+import eslintPlugin from 'vite-plugin-eslint';
 import * as path from 'path'
 import * as webConfig from './tsconfig.web.json';
 import * as nodeConfig from './tsconfig.node.json';
@@ -29,3 +30,36 @@ export const webProxy = (mode: string): Record<string, string | ProxyOptions> =>
     }
   }
 };
+
+
+export function vitecheckVueNamePlugin(): Plugin {
+  return {
+    name: 'vite-plugin-check-file-name',
+    transform(code, id) {
+      if (!id.endsWith('vue')) return { code };
+
+      const filename = id.substring(id.lastIndexOf('/'));
+
+      if (/^((?=^.*\.vue$)((index)|([A-Z].*))\.vue)|(^.*(?<!\.vue$))$/.test(filename)) return { code };
+
+      throw new Error('错误的文件名称, Vue文件名应该大驼峰或者为index.vue');
+    }
+  }
+}
+
+
+export function loadDevPlugin(): Plugin[] {
+  return [
+    vitecheckVueNamePlugin(),
+    eslintPlugin({
+      include: [
+        'src/**/*.ts',
+        'src/**/*.vue'
+      ],
+      overrideConfigFile: './.eslintrc.js',
+      useEslintrc: true,
+      cache: true,
+      fix: false
+    })
+  ]
+}

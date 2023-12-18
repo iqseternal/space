@@ -4,7 +4,7 @@
       <template #left>
         <AButton @click="disturb">打乱</AButton>
       </template>
-      <template #center></template>
+      <template #center />
       <template #right>
         <ASpace v-AutoAnimate class="dynamics">
           <template v-for="item in list" :key="item">
@@ -37,13 +37,16 @@ const disturb = () => list.value = shuffle(list.value);
 
 onMounted(() => {
   let idx = 0;
-  let timer = setInterval(() => {
+  let timer: undefined | NodeJS.Timer = setInterval(() => {
 
     list.value.push('' + idx);
 
     idx ++;
 
-    if (idx >= 20) clearInterval(timer);
+    if (idx >= 20) {
+      clearInterval(timer);
+      timer = void 0;
+    }
 
   }, 400);
 });

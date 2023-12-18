@@ -1,6 +1,6 @@
 import type { UserConfig, UserConfigExport } from 'electron-vite';
 import { defineConfig, defineViteConfig, externalizeDepsPlugin, bytecodePlugin } from 'electron-vite';
-import { webAlias, nodeAlias } from './vite.config.util';
+import { webAlias, nodeAlias, loadDevPlugin } from './vite.config.util';
 import { join } from 'path';
 import { obfuscator } from 'rollup-obfuscator';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
@@ -11,7 +11,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import svgLoader from 'vite-svg-loader';
 
 import autoImport from 'unplugin-auto-import/vite';
-import styleImport from 'vite-plugin-style-import';
 
 import eslintPlugin from 'vite-plugin-eslint';
 import components from 'unplugin-vue-components/vite';
@@ -21,16 +20,7 @@ const mainConfig: UserConfig['main'] = {
   plugins: [
     externalizeDepsPlugin(),
     bytecodePlugin(),
-    eslintPlugin({
-      include: [
-        'src/**/*.ts',
-        'src/**/*.vue'
-      ],
-      overrideConfigFile: './.eslintrc.js',
-      useEslintrc: true,
-      cache: true,
-      fix: false
-    })
+    ...loadDevPlugin()
   ],
   resolve: {
     alias: nodeAlias
@@ -51,16 +41,7 @@ const preloadConfig: UserConfig['main'] = {
   plugins: [
     externalizeDepsPlugin(),
     bytecodePlugin(),
-    eslintPlugin({
-      include: [
-        'src/**/*.ts',
-        'src/**/*.vue'
-      ],
-      overrideConfigFile: './.eslintrc.js',
-      useEslintrc: true,
-      cache: true,
-      fix: false
-    })
+    ...loadDevPlugin()
   ],
   resolve: {
     alias: nodeAlias
@@ -82,16 +63,6 @@ const rendererConfig = defineViteConfig(() => {
     },
     plugins: [
       vue(),
-      eslintPlugin({
-        include: [
-          'src/**/*.ts',
-          'src/**/*.vue'
-        ],
-        overrideConfigFile: './.eslintrc.js',
-        useEslintrc: true,
-        cache: true,
-        fix: false
-      }),
       vueJsx(),
       svgLoader({ defaultImport: 'url' }),
       components({
@@ -106,7 +77,8 @@ const rendererConfig = defineViteConfig(() => {
             cjs: false
           })
         ]
-      })
+      }),
+      ...loadDevPlugin()
     ],
     server: {
       hmr: true,

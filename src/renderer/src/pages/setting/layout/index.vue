@@ -10,8 +10,7 @@
 
 <script lang="ts" setup>
 import { useMousetrap, useFadeIn } from '@renderer/hooks';
-import { hotKeys } from '@renderer/actions';
-import { windowReload } from '@renderer/actions';
+import { hotKeys, windowReload } from '@renderer/actions';
 import Header from '@renderer/components/Header';
 import SiderNav from './SiderNav.vue';
 

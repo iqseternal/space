@@ -11,7 +11,8 @@ module.exports = {
   plugins: [
     'vue',
     '@typescript-eslint',
-    'prettier'
+    'prettier',
+    'filenames'
   ],
   extends: [
     'eslint:recommended',
@@ -33,7 +34,6 @@ module.exports = {
     'comma-dangle': 'off',
     'arrow-parens': 'off',
     "function-paren-newline": 'off',
-    "multiline-ternary": ["error", "always-multiline"],
     "no-multiple-empty-lines": 'off',
     'no-unused-vars': 'off',
 
@@ -41,7 +41,6 @@ module.exports = {
     camelcase: ['error', { properties: 'never' }],
     'no-console': 'off',
     'no-debugger': 'warn',
-    'no-constant-condition': ['error', { checkLoops: false }],
     'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
     'no-return-await': 'error',
     'no-var': 'error',
@@ -61,7 +60,6 @@ module.exports = {
     ],
     'prefer-rest-params': 'error',
     'prefer-spread': 'error',
-    'prefer-template': 'error',
 
     'no-redeclare': 'off',
     '@typescript-eslint/no-redeclare': 'error',
@@ -81,6 +79,8 @@ module.exports = {
     '@typescript-eslint/prefer-as-const': 'off',
     '@typescript-eslint/consistent-type-imports': 'off',
     'no-async-promise-executor': 'off',
+    'no-useless-escape': 'off',
+    'filenames/match-regex': ['error', '^((?=^.*\/.*\.vue$)(.*\/)((index)|([A-Z].*))\.vue$)|(^.*(?<!^.*\/.*\.vue$))$'],
 
     // best-practice
     'array-callback-return': 'error',
@@ -139,5 +139,5 @@ module.exports = {
     'import/no-named-as-default': 'off',
     'import/no-named-as-default-member': 'off',
     'import/named': 'off',
-  },
+  }
 }
