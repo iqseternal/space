@@ -5,6 +5,11 @@ import * as path from 'path'
 import * as webConfig from './tsconfig.web.json';
 import * as nodeConfig from './tsconfig.node.json';
 
+const START_OPTIONS = {
+  LINT_ON_DEV: true // dev 模式下启用 lint
+}
+
+
 const resolveAlias = (aliasPath: Record<string, string[]>): AliasOptions => {
   if (!aliasPath) return [];
   const alias: Alias[] = [];
@@ -49,6 +54,8 @@ export function vitecheckVueNamePlugin(): Plugin {
 
 
 export function loadDevPlugin(): Plugin[] {
+  if (START_OPTIONS.LINT_ON_DEV) return [];
+
   return [
     vitecheckVueNamePlugin(),
     eslintPlugin({

@@ -11,8 +11,7 @@ module.exports = {
   plugins: [
     'vue',
     '@typescript-eslint',
-    'prettier',
-    'filenames'
+    'prettier'
   ],
   extends: [
     'eslint:recommended',
@@ -80,7 +79,6 @@ module.exports = {
     '@typescript-eslint/consistent-type-imports': 'off',
     'no-async-promise-executor': 'off',
     'no-useless-escape': 'off',
-    'filenames/match-regex': ['error', '^((?=^.*\/.*\.vue$)(.*\/)((index)|([A-Z].*))\.vue$)|(^.*(?<!^.*\/.*\.vue$))$'],
 
     // best-practice
     'array-callback-return': 'error',

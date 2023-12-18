@@ -1,7 +1,4 @@
 #!/usr/bin/env sh
-# pnpm run test
-
 . "$(dirname -- "$0")/_/husky.sh"
 
-pnpm exec lint-staged
-# pnpm lint
+npx --no-install commitlint --edit
