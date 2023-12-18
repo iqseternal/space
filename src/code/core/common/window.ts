@@ -1,7 +1,9 @@
+import type { IpcMainInvokeEvent, IpcMainEvent } from 'electron';
 import { is } from '@electron-toolkit/utils';
 import { printWarn } from '@suey/printer';
 import { BrowserWindow, globalShortcut } from 'electron';
 import { app, screen, Tray, Menu, shell } from 'electron';
+import { isNumber } from '@suey/pkg-utils';
 
 /**
  * 设置浏览器窗口允许跨域的设置
@@ -73,4 +75,18 @@ export const setWindowCloseCaptionContextmenu = (window: BrowserWindow) => {
 
 export const setWindowDevtoolsDetach = (window: BrowserWindow) => {
   if (is.dev) window.webContents.openDevTools({ mode: 'detach' });
+}
+
+
+export function getWindowFromIpcEvt(evt: IpcMainEvent | IpcMainInvokeEvent) {
+  return BrowserWindow.fromWebContents(evt.sender);
+}
+
+export function getWindowFromId(id: number) {
+  return BrowserWindow.fromId(id);
+}
+
+export function getWindowFrom(arg: number | IpcMainEvent | IpcMainInvokeEvent): BrowserWindow | null {
+  if (isNumber(arg)) return getWindowFromId(arg);
+  else return getWindowFromIpcEvt(arg);
 }

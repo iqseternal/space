@@ -4,5 +4,4 @@
  * ==========================================
  */
 
-import './devHandles';
-import './windowHandles';
+import './mainHandles';

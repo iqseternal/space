@@ -16,9 +16,6 @@ export class AppConfigService extends SingleInstanceService<AppConfigService> {
   }
 
   distory(): void {
-
-    this.config.windows.mainWindow
-
     if (this.config.miscellaneous.appJson.overwrite) {
       PrinterService.printWarn(`当前开启了 AppConfigJson 的覆写, 但是不建议开启, 它应该是开发者配置选项`);
 

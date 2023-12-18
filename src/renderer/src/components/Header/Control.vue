@@ -4,7 +4,9 @@
     <ASpace :size="8" style="margin-right: 8px;" class="control">
       <slot name="control"></slot>
       <Widget title="打开开发者工具" icon="BugFilled" @click="() => openDevTool()" />
-      <Widget title="最小化" :src="windowMinSvg" @click="() => minWindow()" />
+      <template v-if="!$props.isDialog">
+        <Widget title="最小化" :src="windowMinSvg" @click="() => minWindow()" />
+      </template>
       <template v-if="!props.isPane">
         <Widget title="还原窗口" :src="windowRegionSvg" @click="() => reductionWindow()" />
       </template>
@@ -26,7 +28,8 @@ import Subfield from '@renderer/components/Subfield';
 import Widget from '@renderer/components/Widget';
 
 const props = defineProps({
-  isPane: { type: Boolean, default: false }
+  isPane: { type: Boolean, default: false },
+  isDialog: { type: Boolean, default: false } // 弹窗, 警告类型
 });
 
 const isMaximized = ref(false);

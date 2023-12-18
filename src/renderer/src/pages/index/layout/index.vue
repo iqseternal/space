@@ -1,7 +1,11 @@
 <template>
   <div class="compose">
     <Sidebar class="sidebar" />
-    <Header class="header" />
+    <Header class="header">
+      <template #control>
+        <Widget title="打开设置页面" icon="DingtalkCircleFilled" />
+      </template>
+    </Header>
     <DropdownMenu trigger="contextmenu">
       <main class="container">
         <RouterView />
@@ -52,6 +56,7 @@ import { useMousetrap, useFadeIn } from '@renderer/hooks';
 import Header from '@renderer/components/Header';
 import Sidebar from './sidebar/index.vue';
 import IconFont from '@components/IconFont';
+import Widget from '@components/Widget';
 
 useFadeIn(() => {
   windowResizeAble(true);

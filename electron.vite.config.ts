@@ -28,7 +28,7 @@ const mainConfig: UserConfig['main'] = {
     terserOptions: {
       compress: {
         drop_console: true,
-        drop_debugger: true,
+        drop_debugger: true
       }
     }
   }
@@ -106,7 +106,7 @@ const rendererConfig = defineViteConfig(() => {
         }
       },
       outDir: join(__dirname, './out/renderer')
-    },
+    }
   }
 })
 
@@ -115,7 +115,3 @@ export default defineConfig(() => ({
   preload: preloadConfig,
   renderer: rendererConfig
 }));
-
-
-
-

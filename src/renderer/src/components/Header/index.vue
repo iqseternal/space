@@ -6,7 +6,7 @@
     <template v-else><Search v-if="props.isPane === false" /></template>
 
 
-    <Control :isPane="props.isPane">
+    <Control :isPane="props.isPane" :isDialog="props.isDialog">
       <template v-if="$slots.control" #control>
         <slot name="control" />
       </template>
@@ -22,7 +22,8 @@ import Search from './Search.vue';
 import Control from './Control.vue';
 
 const props = defineProps({
-  isPane: { type: Boolean, default: false }
+  isPane: { type: Boolean, default: false }, // 面板
+  isDialog: { type: Boolean, default: false } // 弹窗, 警告类型
 });
 
 </script>

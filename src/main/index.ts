@@ -2,7 +2,7 @@ import '#/global';
 import '#/code/measure/unhandledWarning';
 import './setupHandles';
 import { setupApp } from './setupApp';
-import { setupMainWindow,setupSettingWindow } from './setupService';
+import { setupMainWindow, setupSettingWindow, setupDialogWindow } from './setupService';
 import { setupUi } from './setupUi';
 import { dialog, ipcMain, app, BrowserWindow, Notification } from 'electron';
 import { FileService } from '#service/FileService';
@@ -20,11 +20,19 @@ import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
 import { CONFIG } from '#/constants';
 
 setupApp(async () => {
-  const mainWindow = await setupMainWindow();
-  mainWindow.open();
+  // const mainWindow = await setupMainWindow();
+  // mainWindow.open();
 
   // mainWindow.open();
 
   // const settingWindow = await setupSettingWindow();
   // settingWindow.open();
+
+  const dialog = await setupDialogWindow({
+    type: 'info'
+  });
+
+
+  dialog.open();
+
 });

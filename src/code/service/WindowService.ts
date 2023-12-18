@@ -26,6 +26,9 @@ interface Options {
 
 export class WindowService {
   public readonly window: BrowserWindow;
+  private openBeforeCbs: WindowCb[] = [];
+  private openThenCbs: BaseCb[] = [];
+  private openCatchCbs: BaseCb[] = [];
 
   constructor(
     windowOptions: Partial<BrowserWindowConstructorOptions>,
@@ -60,9 +63,31 @@ export class WindowService {
     setWindowOpenHandler(this.window);
   }
 
-  open(url?: string) {
-    if (is.dev && process.env['ELECTRON_RENDERER_URL']) this.window.loadURL(url ?? this.options.url);
-    else this.window.loadFile(PAGES_WINDOW_MAIN);
+  addOpenBeforeCb(cb: WindowCb) { this.openBeforeCbs.push(cb); }
+  addOpenThenCb(cb: BaseCb) { this.openThenCbs.push(cb); }
+  addOpenCatchCb(cb: BaseCb) { this.openCatchCbs.push(cb); }
+
+  open(beforeCb?: WindowCb, ok?: BaseCb, fail?: BaseCb) {
+    return new Promise<void>(async (resolve, reject) => {
+      let p: undefined | Promise<void> = undefined;
+
+      beforeCb && await beforeCb(this.window);
+
+      await this.openBeforeCbs.forEach(cb => cb(this.window));
+
+      if (is.dev && process.env['ELECTRON_RENDERER_URL']) p = this.window.loadURL(this.options.url);
+      else p = this.window.loadFile(PAGES_WINDOW_MAIN);
+
+      p.then(async () => {
+        ok && ok();
+        this.openThenCbs.forEach(cb => cb());
+        resolve();
+      }).catch(async () => {
+        fail && fail();
+        this.openCatchCbs.forEach(cb => cb());
+        reject();
+      });
+    });
   }
 
   async close(): Promise<boolean> {

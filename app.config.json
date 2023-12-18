@@ -18,19 +18,24 @@
     "largePopupWindow": {
       "type": "pop",
       "icon": "/resources/icon.png",
+      "titleBarStyle": "hidden",
       "descriptor": "大型弹窗"
     },
     "mediumPopupWindow": {
       "type": "pop",
       "icon": "/resources/icon.png",
-      "width": 450,
-      "heiht": 200,
+      "width": 690,
+      "height": 580,
       "resizable": false,
+      "titleBarStyle": "hidden",
       "descriptor": "中型弹窗"
     },
     "smallPopupWindow": {
       "type": "pop",
+      "width": 300,
+      "height": 200,
       "icon": "/resources/icon.png",
+      "titleBarStyle": "hidden",
       "descriptor": "小型弹窗"
     }
   },

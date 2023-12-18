@@ -3,6 +3,7 @@
  * IPC 常量编写, 多关于窗口
  * ==========================================
  */
+import { CONFIG } from './config';
 
 export class IPC_DEV {
   public static readonly DEV_OPEN_TOOL = 'DEV_OPEN_TOOL'; // 打开 devtools
@@ -29,6 +30,10 @@ export class IPC_RENDER_WINDOW {
   public static readonly WINDOW_STATUS = 'WINDOW_STATUS'; // 当前窗口的窗台, true => 最大化, false => 正常
 }
 
+export class IPC_RENDER_DIALOG_WINDOW {
+  public static readonly DIALOG_TYPE = 'DIALOG_TYPE';
+}
+
 export type MainEventHandlers = {
   [IPC_DEV.DEV_OPEN_TOOL]: (status: boolean, options?: {
     mode: ('left' | 'right' | 'bottom' | 'undocked' | 'detach');
@@ -53,4 +58,6 @@ export type MainEventHandlers = {
 
 export type RendererEventHandlers = {
   [IPC_RENDER_WINDOW.WINDOW_STATUS]: () => IpcResponse<boolean>;
+
+  [IPC_RENDER_DIALOG_WINDOW.DIALOG_TYPE]: () => IpcResponse<typeof CONFIG.DIALOG[keyof typeof CONFIG.DIALOG]['NAME']>;
 }
