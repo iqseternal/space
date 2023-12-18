@@ -1,5 +1,6 @@
 /** @type {import("prettier").Config} */
 module.exports = {
+	trailingComma: 'none',
 	// 指定每个缩进级别的空格数
 	tabWidth: 2,
 	// 使用制表符而不是空格缩进行
@@ -14,8 +15,6 @@ module.exports = {
 	trailingComma: 'none',
 	// 在对象文字中的括号之间打印空格
 	bracketSpacing: true,
-  bracketLine: true,
-	jsxBracketSameLine: true,
 	requirePragma: false,
 
 	htmlWhitespaceSensitivity: 'ignore',

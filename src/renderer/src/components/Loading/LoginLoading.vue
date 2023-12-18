@@ -4,7 +4,7 @@
     <div style="max-width: 150px;">
       <Logo />
       <div class="bar">
-        <div class="client" :style="{ width: 150 * (fake.progress) + 'px' }"></div>
+        <div class="client" :style="{ width: 150 * (fake.progress) + 'px' }" />
       </div>
       <Subfield style="margin-top: 18px;">
         <template #center>

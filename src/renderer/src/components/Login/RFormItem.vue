@@ -1,7 +1,7 @@
 <template>
   <FormItem v-bind="$attrs">
     <template v-for="(value, name) in $slots" #[name]="scopeData">
-      <slot :name="name" v-bind="scopeData || {}"></slot>
+      <slot :name="name" v-bind="scopeData || {}" />
     </template>
   </FormItem>
 </template>

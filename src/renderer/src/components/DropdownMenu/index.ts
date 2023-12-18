@@ -1,6 +1,6 @@
 // 包裹一层的原因为需要定制化样式, 但是又不想污染原来的组件库
 import type { DefineComponent } from 'vue';
-import { Dropdown, Menu, SubMenu, MenuItem, Divider } from 'ant-design-vue';
+import type { Dropdown, Menu, SubMenu, MenuItem, Divider } from 'ant-design-vue';
 import DropdownMenuVue from './DropdownMenu.vue';
 import ComboBoxMenuVue from './ComboBoxMenu.vue';
 import SingleMenuVue from './SingleMenu.vue';

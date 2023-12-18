@@ -1,4 +1,4 @@
 
 
 import './devHandles';
-import './windowHandles';
+import '../rendererHandles/windowHandles';

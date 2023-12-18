@@ -45,7 +45,7 @@ export function useMousetrap<T extends HTMLElement>(
   // 第一个重载
   else if ((_1 instanceof HTMLElement || isRef(_1)) && Array.isArray(_2) && (_2 as string[]).every(e => typeof e === 'string') && typeof _3 === 'function' && (typeof _4 === 'string' || _4 === void 0)) binds = [[_2 as (string | string[]), _3, _4]];
 
-  let mousetrap = ref() as Ref<MousetrapInstance>;
+  const mousetrap = ref() as Ref<MousetrapInstance>;
 
   onMounted(() => {
     mousetrap.value = (dom.value instanceof HTMLElement) ? new Mousetrap(dom.value) : new Mousetrap();

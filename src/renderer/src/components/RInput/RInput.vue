@@ -1,7 +1,8 @@
 <script lang="tsx">
 import type { Ref, Component, SlotsType, EmitsOptions } from 'vue';
 import { ref, onMounted, defineComponent, onBeforeUnmount, watch } from 'vue';
-import { Input, InputProps } from 'ant-design-vue';
+import type { InputProps } from 'ant-design-vue';
+import { Input } from 'ant-design-vue';
 import { useEventListener, useEventListenerForElement } from '@renderer/hooks/useEventListener';
 
 interface RInputProps extends InputProps {

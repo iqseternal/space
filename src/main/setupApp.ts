@@ -28,7 +28,7 @@ export const setupApp = async (startApp: () => void, ops?: Partial<AppOptions>):
     }
     else startApp();
 
-    app.on('activate', function () {
+    app.on('activate', () => {
       if (BrowserWindow.getAllWindows().length === 0) {
         try { startApp(); }
         catch { app.quit(); }

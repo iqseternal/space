@@ -129,7 +129,7 @@ export class FileService {
    */
   static saveBinToFile(bin: BinaryLike, distPath: string) {
     return new Promise<string>((resolve, reject) => {
-      let writeStream = fs.createWriteStream(distPath);
+      const writeStream = fs.createWriteStream(distPath);
 
       writeStream.write(bin, 'binary', (err) => {
         writeStream.close();

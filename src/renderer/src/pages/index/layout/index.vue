@@ -14,12 +14,7 @@
       <template #overlay>
         <SingleMenu mark="FolderViewOutlined" disabled>查看</SingleMenu>
         <SingleMenu disabled>排序方式</SingleMenu>
-        <SingleMenu
-          mark="CopyOutlined"
-          :shortcut="hotKeys.copy.key"
-          @click="() => copyText()"
-          :disabled="!canCopyText()"
-        >
+        <SingleMenu mark="CopyOutlined" :shortcut="hotKeys.copy.key" :disabled="!canCopyText()" @click="() => copyText()">
           复制
         </SingleMenu>
         <SingleMenu shortcut="Ctrl+V">粘贴</SingleMenu>
@@ -108,5 +103,4 @@ div.compose {
     @include overflow(hidden);
   }
 }
-
 </style>

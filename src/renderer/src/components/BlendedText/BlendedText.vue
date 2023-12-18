@@ -1,5 +1,5 @@
 <template>
-  <div class="blended" ref="blended">{{ props.text }}</div>
+  <div ref="blended" class="blended">{{ props.text }}</div>
 </template>
 
 <script lang="ts" setup>

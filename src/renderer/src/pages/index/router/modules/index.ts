@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router';
 import { terminalSvg, dashboardSvg, settingSvg } from '@renderer/assets';
 import { makeRoute } from '@libs/router';
 import Layout from '@renderer/pages/index/layout/index.vue';

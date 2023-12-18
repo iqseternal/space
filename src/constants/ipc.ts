@@ -3,7 +3,7 @@
  * IPC 常量编写, 多关于窗口
  * ==========================================
  */
-import { CONFIG } from './config';
+import type { CONFIG } from './config';
 
 export class IPC_DEV {
   public static readonly DEV_OPEN_TOOL = 'DEV_OPEN_TOOL'; // 打开 devtools

@@ -5,5 +5,7 @@
   "eslint.enable": true,
   "eslint.options": {
     "configFile": ".eslint.js"
-  }
+  },
+  // 在保存时运行 ESLint 和 Prettier
+  "editor.formatOnSave": false
 }

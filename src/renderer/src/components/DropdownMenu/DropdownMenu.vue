@@ -2,12 +2,12 @@
   <ADropdown v-model:open="open" v-bind="$attrs" :arrow="false" trigger="click" overlayClassName="dropdown-menu">
     <template v-for="name in Object.keys($slots)" #[name]>
       <template v-if="name === 'overlay'">
-        <AMenu :subMenuOpenDelay="0" triggerSubMenuAction="click" class="dropdown-menu-main">
-          <slot :name="name"></slot>
+        <AMenu :key="name" :subMenuOpenDelay="0" triggerSubMenuAction="click" class="dropdown-menu-main">
+          <slot :name="name" />
         </AMenu>
       </template>
       <template v-else>
-        <slot :name="name"></slot>
+        <slot :name="name" />
       </template>
     </template>
   </ADropdown>

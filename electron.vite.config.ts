@@ -4,7 +4,7 @@ import { webAlias, nodeAlias } from './vite.config.util';
 import { join } from 'path';
 import { obfuscator } from 'rollup-obfuscator';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-import { AndDesignVueResolve  } from 'vite-plugin-style-import';
+import { AndDesignVueResolve } from 'vite-plugin-style-import';
 
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
@@ -18,7 +18,20 @@ import components from 'unplugin-vue-components/vite';
 
 
 const mainConfig: UserConfig['main'] = {
-  plugins: [externalizeDepsPlugin(), bytecodePlugin()],
+  plugins: [
+    externalizeDepsPlugin(),
+    bytecodePlugin(),
+    eslintPlugin({
+      include: [
+        'src/**/*.ts',
+        'src/**/*.vue'
+      ],
+      overrideConfigFile: './.eslintrc.js',
+      useEslintrc: true,
+      cache: true,
+      fix: false
+    })
+  ],
   resolve: {
     alias: nodeAlias
   },
@@ -35,7 +48,20 @@ const mainConfig: UserConfig['main'] = {
 };
 
 const preloadConfig: UserConfig['main'] = {
-  plugins: [externalizeDepsPlugin(), bytecodePlugin()],
+  plugins: [
+    externalizeDepsPlugin(),
+    bytecodePlugin(),
+    eslintPlugin({
+      include: [
+        'src/**/*.ts',
+        'src/**/*.vue'
+      ],
+      overrideConfigFile: './.eslintrc.js',
+      useEslintrc: true,
+      cache: true,
+      fix: false
+    })
+  ],
   resolve: {
     alias: nodeAlias
   }
@@ -56,15 +82,16 @@ const rendererConfig = defineViteConfig(() => {
     },
     plugins: [
       vue(),
-      // eslintPlugin({
-      //   include: [
-      //     'src/**/*.ts',
-      //     'src/**/*.vue',
-      //     "src/*.ts",
-      //     "src/*.vue"
-      //   ],
-      //   rulePaths:['./']
-      // }),
+      eslintPlugin({
+        include: [
+          'src/**/*.ts',
+          'src/**/*.vue'
+        ],
+        overrideConfigFile: './.eslintrc.js',
+        useEslintrc: true,
+        cache: true,
+        fix: false
+      }),
       vueJsx(),
       svgLoader({ defaultImport: 'url' }),
       components({
@@ -102,7 +129,8 @@ const rendererConfig = defineViteConfig(() => {
       rollupOptions: {
         input: {
           index: join(__dirname, './src/renderer/index.html'),
-          setting: join(__dirname, './src/renderer/setting.html')
+          setting: join(__dirname, './src/renderer/setting.html'),
+          dialog: join(__dirname, './src/renderer/dialog.html')
         }
       },
       outDir: join(__dirname, './out/renderer')

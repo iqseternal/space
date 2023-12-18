@@ -1,12 +1,12 @@
 <template>
   <div class="subfield" :style="{ flex: props.flex, gap: typeof props.gap === 'number' ? props.gap + 'px' : props.gap, ...generatorStyle }">
     <template v-if="!$slots.left && !$slots.center && !$slots.right">
-      <slot></slot>
+      <slot />
     </template>
     <template v-else>
-      <div v-if="$slots.left" class="left" :style="generatorStyle"><slot name="left"></slot></div>
-      <div v-if="$slots.center" class="center" :style="generatorStyle"><slot name="center"></slot></div>
-      <div v-if="$slots.right" class="right" :style="generatorStyle"><slot name="right"></slot></div>
+      <div v-if="$slots.left" class="left" :style="generatorStyle"><slot name="left" /></div>
+      <div v-if="$slots.center" class="center" :style="generatorStyle"><slot name="center" /></div>
+      <div v-if="$slots.right" class="right" :style="generatorStyle"><slot name="right" /></div>
     </template>
   </div>
 </template>

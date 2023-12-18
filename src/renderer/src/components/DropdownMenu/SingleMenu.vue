@@ -2,23 +2,23 @@
   <AMenuItem v-bind="$attrs" class="dropdown-menu-single" @click="itemClick">
     <template #icon>
       <template v-if="$slots.icon">
-        <slot name="icon"></slot>
+        <slot name="icon" />
       </template>
       <template v-else>
-        <IconFont :type="props.mark"></IconFont>
+        <IconFont :type="props.mark" />
       </template>
     </template>
 
     <template #default>
       <Subfield class="dropdown-menu-single-text" gap="15px">
-        <slot name="default"></slot>
+        <slot name="default" />
 
         <span class="dropdown-menu-single-text-shortcut" style="min-width: 50px;text-align: right;">{{ props.shortcut }}</span>
       </Subfield>
     </template>
 
     <template v-for="name in Object.keys($slots).filter(slotName => !['default', 'icon'].includes(slotName))" #[name]>
-      <slot :name="name"></slot>
+      <slot :name="name" />
     </template>
   </AMenuItem>
 </template>

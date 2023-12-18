@@ -69,7 +69,7 @@ export class WindowService {
 
   open(beforeCb?: WindowCb, ok?: BaseCb, fail?: BaseCb) {
     return new Promise<void>(async (resolve, reject) => {
-      let p: undefined | Promise<void> = undefined;
+      let p: undefined | Promise<void> = void 0;
 
       beforeCb && await beforeCb(this.window);
 

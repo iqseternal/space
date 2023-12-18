@@ -1,5 +1,5 @@
 <template>
-  <input ref="searchInput" class="search" placeholder="搜索🔍(Command+Shift+K)">
+  <input ref="searchInput" class="search" placeholder="搜索🔍(Command+Shift+K)" />
 </template>
 
 <script lang="ts" setup>

@@ -1,3 +1,4 @@
+
 /** @type {import("eslint").ESLint.ConfigData} */
 module.exports = {
   root: true,
@@ -29,16 +30,22 @@ module.exports = {
     },
   },
   rules: {
+    'comma-dangle': 'off',
+    'arrow-parens': 'off',
+    "function-paren-newline": 'off',
+    "multiline-ternary": ["error", "always-multiline"],
+    "no-multiple-empty-lines": 'off',
+    'no-unused-vars': 'off',
+
     // js/ts
     camelcase: ['error', { properties: 'never' }],
-    'no-console': ['warn', { allow: ['error'] }],
+    'no-console': 'off',
     'no-debugger': 'warn',
     'no-constant-condition': ['error', { checkLoops: false }],
     'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
     'no-return-await': 'error',
     'no-var': 'error',
     'no-empty': ['error', { allowEmptyCatch: true }],
-    "function-paren-newline": ["error", "never"],
     'prefer-const': [
       'warn',
       { destructuring: 'all', ignoreReadBeforeAssign: true },
@@ -58,6 +65,22 @@ module.exports = {
 
     'no-redeclare': 'off',
     '@typescript-eslint/no-redeclare': 'error',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'no-undef': 'off',
+    'vue/attribute-hyphenation': ['error', 'never'],
+    'multiline-ternary': 'off',
+    '@typescript-eslint/no-unnecessary-type-constraint': 'off',
+    'no-void': 'off',
+    'no-undefined': 'error',
+    'vue/no-ref-as-operand': 'off',
+    'prefer-template': 'off',
+    'vue/v-on-event-hyphenation': 'off',
+    'no-constant-condition': 'off',
+    'non-nullis': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/prefer-as-const': 'off',
+    '@typescript-eslint/consistent-type-imports': 'off',
+    'no-async-promise-executor': 'off',
 
     // best-practice
     'array-callback-return': 'error',
@@ -66,7 +89,6 @@ module.exports = {
     'no-case-declarations': 'error',
     'no-multi-str': 'error',
     'no-with': 'error',
-    'no-void': 'error',
 
     'sort-imports': [
       'warn',
@@ -83,10 +105,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
-    '@typescript-eslint/consistent-type-imports': [
-      'error',
-      { disallowTypeAnnotations: false },
-    ],
     '@typescript-eslint/ban-ts-comment': ['off', { 'ts-ignore': false }],
 
     // vue
@@ -110,7 +128,7 @@ module.exports = {
     ],
 
     // prettier
-    'prettier/prettier': 'error',
+    'prettier/prettier': 'off',
 
     // import
     'import/first': 'error',

@@ -1,5 +1,5 @@
 <template>
-  <Form :model="form" v-AutoAnimate>
+  <Form v-AutoAnimate :model="form">
     <RFormItem name="username" hasFeedback :validateStatus="userVaStatus" :rules="{ validator: userVaFn }">
       <RInput v-model:value="form.username" placeholder="请输入邮箱" :maxlength="16">
         <template #prefix><MailOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
@@ -7,7 +7,7 @@
       </RInput>
     </RFormItem>
     <RFormItem name="code" hasFeedback :validateStatus="codeVaStatus" :rules="{ validator: codeVaFn }">
-      <RInput v-model:value="form.code" ref="lastInput" placeholder="验证码" :maxlength="16">
+      <RInput ref="lastInput" v-model:value="form.code" placeholder="验证码" :maxlength="16">
         <template #prefix><LockOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
         <template #topic>验证码</template>
       </RInput>

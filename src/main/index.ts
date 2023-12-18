@@ -20,19 +20,15 @@ import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
 import { CONFIG } from '#/constants';
 
 setupApp(async () => {
-  // const mainWindow = await setupMainWindow();
-  // mainWindow.open();
-
-  // mainWindow.open();
+  const mainWindow = await setupMainWindow();
+  mainWindow.open();
 
   // const settingWindow = await setupSettingWindow();
   // settingWindow.open();
 
-  const dialog = await setupDialogWindow({
-    type: 'info'
-  });
+  // const dialog = await setupDialogWindow({
+  //   type: 'info'
+  // });
 
-
-  dialog.open();
-
+  // dialog.open();
 });

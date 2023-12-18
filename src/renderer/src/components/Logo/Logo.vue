@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <img :src="logoSvg" :alt="CONFIG.PROJECT">
+    <img :src="logoSvg" :alt="CONFIG.PROJECT" />
   </div>
 </template>
 
@@ -12,6 +12,7 @@ import { logoSvg } from '@renderer/assets';
 <style lang="scss" scoped>
 .logo {
   overflow: hidden;
+
   img {
     width: 100%;
     height: 100%;

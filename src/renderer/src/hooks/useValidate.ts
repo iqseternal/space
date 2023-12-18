@@ -1,4 +1,5 @@
-import { Ref, reactive, ref } from 'vue';
+import type { Ref } from 'vue';
+import { reactive, ref } from 'vue';
 import type { FormItemProps, FormInstance } from 'ant-design-vue';
 import type { RuleObject } from 'ant-design-vue/es/form/interface';
 import { FormItem } from 'ant-design-vue';

@@ -7,7 +7,7 @@
       </RInput>
     </RFormItem>
     <RFormItem name="password" hasFeedback :validateStatus="pwdVaStatus" :rules="{ validator: pwdVaFn }">
-      <RInput v-model:value="form.password" type="password" ref="lastInput" placeholder="请输入用户密码" :maxlength="16" @pressEnter="() => emits('finish')">
+      <RInput ref="lastInput" v-model:value="form.password" type="password" placeholder="请输入用户密码" :maxlength="16" @pressEnter="() => emits('finish')">
         <template #prefix><LockOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
         <template #topic>Password</template>
       </RInput>

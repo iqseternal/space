@@ -68,7 +68,7 @@ export async function setupDialogWindow(options: DialogWindowOptions) {
   windowService.window.setMenu(null);
 
   setWindowCloseCaptionContextmenu(windowService.window);
-  setWindowDevtoolsDetach(windowService.window);
+  // setWindowDevtoolsDetach(windowService.window);
 
   windowService.addOpenThenCb(() => {
     PrinterService.printWarn(`弹窗打开成功了`);
