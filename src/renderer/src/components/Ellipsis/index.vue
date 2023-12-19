@@ -1,5 +1,5 @@
 <template>
-  <ATooltip>
+  <ATooltip :mouseEnterDelay="CONFIG.VIEW.TOOLTIP_ENTER_TIME">
     <template v-if="show" #title>
       <span>{{ text }}</span>
     </template>
@@ -11,6 +11,7 @@
 
 <script lang="ts" setup>
 import { nextTick, ref, watch, onMounted } from 'vue';
+import { CONFIG } from '#/constants';
 
 const props = defineProps({
   tag: { type: String, default: 'span' },

@@ -27,7 +27,7 @@ const props = defineProps({
   autoHover: { type: Boolean, default: true },
   icon: { type: String as PropType<IconRealKey | `icon-${string}`> },
   title: { type: String },
-  mouseEnterDelay: { type: Number, default: CONFIG.VIEW.TOOLTIP_ENTER_TIME },
+  mouseEnterDelay: { type: Number, default: CONFIG.VIEW.WIDGET_TOOLTIP_ENTER_TIME },
   className: { type: String, default: '' }
 });
 const emits = defineEmits(['click']);

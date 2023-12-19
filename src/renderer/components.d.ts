@@ -16,6 +16,8 @@ declare module 'vue' {
     AFloatButton: typeof import('ant-design-vue/es')['FloatButton']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
+    ARadio: typeof import('ant-design-vue/es')['Radio']
+    ARadioGroup: typeof import('ant-design-vue/es')['RadioGroup']
     ASpace: typeof import('ant-design-vue/es')['Space']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']

@@ -46,25 +46,6 @@ export async function setupSettingWindow() {
     autoShow: false
   });
 
-
-  windowService.window.setResizable(false);
-  windowService.window.setMenu(null);
-  return windowService;
-}
-
-export interface DialogWindowOptions {
-  type: typeof CONFIG.DIALOG[keyof typeof CONFIG.DIALOG]['NAME'];
-}
-
-export async function setupDialogWindow(options: DialogWindowOptions) {
-  PrinterService.printInfo('构建弹窗');
-
-  const appConfigService = AppConfigService.getInstance();
-  const windowService = new WindowService(appConfigService.config.windows.smallPopupWindow as Electron.BrowserWindowConstructorOptions, {
-    url: PAGES_WINDOW_DIALOG,
-    autoShow: true
-  });
-
   windowService.window.setResizable(false);
   windowService.window.setMenu(null);
 

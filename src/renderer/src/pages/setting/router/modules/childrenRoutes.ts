@@ -28,7 +28,7 @@ export const settingChildrenRoutes: RouteRecordRaw[] = [
   {
     name: 'Advanced',
     path: 'advanced',
-    meta: { title: '快捷键' },
+    meta: { title: '高级' },
     component: () => import('@pages/setting/views/advanced/index.vue')
   },
   {

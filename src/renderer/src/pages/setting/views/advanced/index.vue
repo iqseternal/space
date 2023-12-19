@@ -1,8 +1,11 @@
 <template>
-  清理缓存
+<SettingContent title="">
+
+</SettingContent>
 </template>
 
 <script lang="ts" setup>
+import SettingContent from '@pages/setting/components/SettingContent';
 
 </script>
 

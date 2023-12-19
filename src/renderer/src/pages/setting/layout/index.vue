@@ -3,7 +3,10 @@
     <SiderNav />
     <div class="content">
       <Header isPane />
-      <RouterView />
+      <div class="main">
+        <h1>{{ route.meta.crumbsTitle }}</h1>
+        <RouterView />
+      </div>
     </div>
   </div>
 </template>
@@ -13,6 +16,9 @@ import { useMousetrap, useFadeIn } from '@renderer/hooks';
 import { hotKeys, windowReload } from '@renderer/actions';
 import Header from '@renderer/components/Header';
 import SiderNav from './SiderNav.vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 useFadeIn(() => {
 
@@ -27,6 +33,15 @@ useMousetrap(hotKeys.reload.allKey, windowReload);
 
   .content {
     flex: 1;
+
+    .main {
+      padding: 0px 20px;
+
+      & > h1 {
+        margin-bottom: 20px;
+        font-size: 18px;
+      }
+    }
   }
 }
 </style>
