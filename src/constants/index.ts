@@ -23,6 +23,20 @@ export const CONFIG = {
     FADE_OUT: {
       TIMER: 30
     }
+  },
+  DIALOG: {
+    INFO: {
+      NAME: 'info',
+      SVG: ''
+    },
+    WARN: {
+      NAME: 'warn',
+      SVG: ''
+    },
+    ERROR: {
+      NAME: 'error',
+      SVG: ''
+    }
   }
 };
 
