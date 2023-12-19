@@ -46,6 +46,7 @@ export async function setupSettingWindow() {
     autoShow: false
   });
 
+
   windowService.window.setResizable(false);
   windowService.window.setMenu(null);
   return windowService;

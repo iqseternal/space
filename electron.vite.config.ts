@@ -1,6 +1,6 @@
 import type { UserConfig, UserConfigExport } from 'electron-vite';
 import { defineConfig, defineViteConfig, externalizeDepsPlugin, bytecodePlugin } from 'electron-vite';
-import { webAlias, nodeAlias, loadDevPlugin } from './vite.config.util';
+import { webAlias, nodeAlias, loadLintDevPlugins } from './vite.config.util';
 import { join } from 'path';
 import { obfuscator } from 'rollup-obfuscator';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
@@ -20,7 +20,7 @@ const mainConfig: UserConfig['main'] = {
   plugins: [
     externalizeDepsPlugin(),
     bytecodePlugin(),
-    ...loadDevPlugin()
+    ...loadLintDevPlugins()
   ],
   resolve: {
     alias: nodeAlias
@@ -41,7 +41,7 @@ const preloadConfig: UserConfig['main'] = {
   plugins: [
     externalizeDepsPlugin(),
     bytecodePlugin(),
-    ...loadDevPlugin()
+    ...loadLintDevPlugins()
   ],
   resolve: {
     alias: nodeAlias
@@ -78,7 +78,7 @@ const rendererConfig = defineViteConfig(() => {
           })
         ]
       }),
-      ...loadDevPlugin()
+      ...loadLintDevPlugins()
     ],
     server: {
       hmr: true,

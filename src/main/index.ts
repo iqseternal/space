@@ -13,6 +13,7 @@ import { WindowService } from '#service/WindowService';
 import { PrinterService } from '#service/PrinterService';
 import { ReptileService } from '#service/ReptileService';
 import { NotificationService } from '#service/NotificationService';
+import { WindowStateService } from '#service/WindowStateService';
 import { execShell } from '#code/core/shell/execShell';
 import { spawn } from 'child_process';
 import { print, printClear, toColor } from '@suey/printer';
@@ -20,9 +21,13 @@ import { PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
 import { CONFIG } from '#/constants';
 
 setupApp(async () => {
-  const mainWindow = await setupMainWindow();
-  mainWindow.open();
+  const windowStateService = WindowStateService.getInstance();
 
+
+  windowStateService.appendMainWindow(await setupMainWindow());
+
+
+  windowStateService.startMainWindow();
   // const settingWindow = await setupSettingWindow();
   // settingWindow.open();
 

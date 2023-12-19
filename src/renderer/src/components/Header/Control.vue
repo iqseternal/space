@@ -1,9 +1,10 @@
 <template>
-  <Subfield>
+  <Subfield class="overflow-hidden">
     <div />
-    <ASpace :size="8" style="margin-right: 8px;" class="control">
+    <Subfield :gap="4" style="margin: 0 8px;justify-content: flex-end;" class="control overflow-hidden">
       <slot name="control" />
       <Widget title="打开开发者工具" icon="BugFilled" @click="() => openDevTool()" />
+      <Widget title="悬浮" icon="PushpinOutlined" @click="() => {}" />
       <template v-if="!$props.isDialog">
         <Widget title="最小化" :src="windowMinSvg" @click="() => minWindow()" />
       </template>
@@ -11,7 +12,7 @@
         <Widget title="还原窗口" :src="windowRegionSvg" @click="() => reductionWindow()" />
       </template>
       <Widget title="关闭窗口" :src="windowCloseSvg" @click="() => closeWindow()" />
-    </ASpace>
+    </Subfield>
   </Subfield>
 </template>
 

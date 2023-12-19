@@ -37,10 +37,10 @@
     "types": ["electron-vite/node"],
     "baseUrl": ".",
     "paths": {
-      "#/*": ["src/*"],
       "#code/*": ["src/code/*"],
       "#service/*": ["src/code/service/*"],
-      "#constants/*": ["src/constants/*"]
+      "#constants/*": ["src/constants/*"],
+      "#/*": ["src/*"]
     }
   }
 }

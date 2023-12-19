@@ -53,7 +53,7 @@ export function vitecheckVueNamePlugin(): Plugin {
 }
 
 
-export function loadDevPlugin(): Plugin[] {
+export function loadLintDevPlugins(): Plugin[] {
   if (!START_OPTIONS.LINT_ON_DEV) return [];
 
   return [

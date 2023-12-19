@@ -6,6 +6,7 @@
         <Widget title="打开设置页面" icon="DingtalkCircleFilled" />
       </template>
     </Header>
+    <AFloatButton />
     <DropdownMenu trigger="contextmenu">
       <main class="container">
         <RouterView />
