@@ -76,7 +76,7 @@ export class WindowService {
       await this.openBeforeCbs.forEach(cb => cb(this.window));
 
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) p = this.window.loadURL(this.options.url);
-      else p = this.window.loadFile(PAGES_WINDOW_MAIN);
+      else p = this.window.loadFile(this.options.url);
 
       p.then(async () => {
         ok && ok();

@@ -151,8 +151,10 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, (e, type) => ipcR((ok
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_OPEN, (e, type) => ipcR(async (ok, fail) => {
-  const settingWindow = await setupSettingWindow();
-  settingWindow.open();
+  if (type === 'windowSetting') {
+    const settingWindow = await setupSettingWindow();
+    settingWindow.open();
+  }
   return ok(true);
 }));
 
