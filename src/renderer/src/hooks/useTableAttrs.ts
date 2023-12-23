@@ -6,30 +6,31 @@ import type { TableProps } from 'ant-design-vue';
 import { usePagination } from './usePaginationAttrs';
 import { useModalAttrs } from './useModalAttrs';
 
-export type InitTableFn = (
-  params: ReturnType<typeof usePagination>['paginParams'],
+export type InitTableFn<R> = (
+  next: BaseCb,
   refent: {
+    params: ReturnType<typeof usePagination>['paginParams'],
     pagination: ReturnType<typeof usePagination>,
-    modal: ReturnType<typeof useModalAttrs>,
-    tableAttrs: UnwrapNestedRefs<Partial<TableProps>>
+    modal: ReturnType<typeof useModalAttrs<R>>,
+    tableAttrs: UnwrapNestedRefs<Partial<TableProps<R>>>
   }
-) => void;
+) => void | R[] | Promise<void> | Promise<R[]>;
 
 export function useTableAttrs<
-  T extends Partial<TableProps>,
-  FN extends InitTableFn
+  R,
+  T = Partial<TableProps<R>>,
+  FN extends InitTableFn<R> = InitTableFn<R>
 >(
   props: T,
   /** 数据的初始化函数, 返回一个 Promise */
   loadDataFn: FN,
   /** 加载一个 Modal */
-  loadModal?: (loadData: () => void | Promise<void>) => ReturnType<typeof useModalAttrs>,
+  loadModal?: (loadData: () => void | Promise<void>) => ReturnType<typeof useModalAttrs<R>>,
   /** 加载一个 Pagination */
   loadPagination?: (loadData: () => void | Promise<void>) => ReturnType<typeof usePagination>
 ) {
   const pagination = loadPagination ? loadPagination(loadData) : usePagination({}, loadData);
-
-  const modal = loadModal ? loadModal(loadData) : useModalAttrs({}, {
+  const modal = loadModal ? loadModal(loadData) : useModalAttrs<R>({}, {
     ok: loadData
   });
 
@@ -41,8 +42,15 @@ export function useTableAttrs<
 
   async function loadData() {
     tableAttrs.loading = true;
-    await loadDataFn(pagination.paginParams, { pagination, modal, tableAttrs });
-    tableAttrs.loading = false;
+    const next = () => { tableAttrs.loading = false; }
+    const res = await loadDataFn(next, {
+      params: pagination.paginParams,
+      pagination,
+      modal,
+      tableAttrs
+    }) as unknown as Promise<void>;
+
+    return res;
   }
 
   return {

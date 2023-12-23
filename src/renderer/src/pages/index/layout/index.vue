@@ -6,7 +6,7 @@
         <Widget title="打开设置页面" icon="DingtalkCircleFilled" />
       </template>
     </Header>
-    <AFloatButton />
+    <!-- <AFloatButton /> -->
     <DropdownMenu trigger="contextmenu">
       <main class="container">
         <RouterView />
@@ -101,7 +101,7 @@ div.compose {
     left: var(--s-main-frame-sidebar-width);
     padding-top: var(--p);
     @include beautifulBar(auto);
-    @include overflow(hidden);
+    @include overflow;
   }
 }
 </style>

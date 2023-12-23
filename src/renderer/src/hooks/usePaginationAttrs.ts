@@ -3,10 +3,10 @@ import { reactive, onBeforeMount } from 'vue';
 
 import type { PaginationProps } from 'ant-design-vue';
 
-export function usePagination<T extends Partial<PaginationProps>>(props?: T, callbackFn?: () => void, autoload = true) {
+export function usePagination<T extends Partial<PaginationProps>>(props?: T, callbackFn?: () => void | Promise<void>, autoload = true) {
 
   const callback = {
-    onChange: [] as ((page: number, pageSize: number) => void)[],
+    // onChange: [] as ((page: number, pageSize: number) => void)[],
     beforeCb: [] as  (() => void)[],
     afterCb: [] as (() => void)[]
   };
@@ -27,19 +27,23 @@ export function usePagination<T extends Partial<PaginationProps>>(props?: T, cal
     showQuickJumper: true,
     showTotal: (total: number, range: [number, number]) => `共 ${total} 条`,
     async onChange(page: number, pageSize: number) {
-      paginAttrs.current = page;
-      paginAttrs.pageSize = pageSize;
-
       paginParams.limit = pageSize;
       paginParams.offset = pageSize * (page - 1);
 
-      callback.onChange.forEach(cb => cb(page, pageSize));
+      // callback.onChange.forEach(cb => cb(page, pageSize));
+      const next = () => {
+        paginAttrs.current = page;
+        paginAttrs.pageSize = pageSize;
+      }
 
       if (callbackFn) {
         callback.beforeCb.forEach(cb => cb());
         await callbackFn();
+
+        next();
         callback.afterCb.forEach(cb => cb());
       }
+      else next();
     },
     ...props
   });

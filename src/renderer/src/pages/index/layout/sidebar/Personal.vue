@@ -38,7 +38,7 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, onBeforeMount } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { Dropdown, Avatar, Space, Popover, Button, Menu, MenuItem, SubMenu } from 'ant-design-vue';
 import { UserOutlined } from '@ant-design/icons-vue';
 import { settingSvg } from '@renderer/assets';
@@ -53,13 +53,13 @@ import SidebarItem from '@components/SidebarItem';
 import IconFont from '@components/IconFont';
 
 const router = useRouter();
+const route = useRoute();
 
 const autoSize = ref(0);
 
 const logout = () => useFadeOut(() => {
-  router.push('/login');
+  router.replace({ path: '/login' });
 });
-
 
 onMounted(() => {
   const r = getComputedStyle(document.querySelector(':root') as Element).getPropertyValue('--s-main-frame-sidebar-width');

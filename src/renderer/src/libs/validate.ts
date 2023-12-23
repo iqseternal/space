@@ -1,3 +1,12 @@
+import { isDef, isString } from '@suey/pkg-utils';
+
+/**
+ * 验证当前是否是一个空字符串
+ * @param val
+ * @returns
+ */
+export const validateSpaceStr = (val: string) => val.trim() === '';
+
 /**
  * 验证邮箱是否有效
  * @param val

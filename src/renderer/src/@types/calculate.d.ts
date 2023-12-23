@@ -68,7 +68,7 @@ declare type ComponentsProps<T extends unknown> = Exclude<Required<T['__defaults
 declare type CustomColumn<T, K> =
   (T & { dataIndex: (keyof K) | ObjKeyToArr<K> })
   |
-  (T & { dataIndex: string | (string | number)[] } )
+  (T & { dataIndex: string | ObjKeyToArr<K> } )
 ;
 
 /**

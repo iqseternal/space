@@ -1,9 +1,9 @@
 <template>
-<div>
-  <div v-if="title" class="title">{{ title }}</div>
-  <slot />
-  <ADivider v-if="showLine"></ADivider>
-</div>
+  <div>
+    <div v-if="title" class="title">{{ title }}</div>
+    <slot />
+    <ADivider v-if="showLine" />
+  </div>
 </template>
 
 <script lang="ts" setup>

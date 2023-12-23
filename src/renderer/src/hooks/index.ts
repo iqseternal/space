@@ -16,13 +16,17 @@ export type { ValidateRef, ValidateRefResult } from './useValidate';
 export { useValidate, useValidateRef } from './useValidate';
 
 
-export type { ModalMode, ModalHookEmits } from './useModalAttrs';
-export { useModalAttrs } from './useModalAttrs';
+export type { ModalMode, ModalHookEmits, ModalEvt, ModalAllAttrs } from './useModalAttrs';
+export { useModalAttrs, useModalEvt } from './useModalAttrs';
 
-export type { usePagination } from './usePaginationAttrs';
+export { usePagination } from './usePaginationAttrs';
 
-export type { InitTableFn } from './useTableProps';
-export { useTableAttrs } from './useTableProps';
+export type { InitTableFn } from './useTableAttrs';
+export { useTableAttrs } from './useTableAttrs';
 
 export type { FadeOptions, FadeCallback } from './useFade';
 export { useFadeIn, useFadeOut } from './useFade';
+
+export { useColumns } from './useColumns';
+
+export { useRules } from './useRules';
