@@ -43,6 +43,7 @@ import { useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 import { rsaEncrypt } from '@libs/crypt';
 import { windowShow, windowRelaunch } from '@renderer/actions';
 import { Subfield } from '@components/Subfield';
+import { spaceRoutes } from '@pages/index/router/modules';
 
 import RInput from '@components/RInput';
 import RButton from '@components/RButton';
@@ -68,7 +69,7 @@ const login = async () => {
         if (stage.value !== DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE) return;
         // 登录成功了
         useFadeOut(() => {
-          router.replace('/space/dynamics');
+          router.replace(spaceRoutes.meta.fullpath);
         });
       }, 600);
     }).catch(err => {

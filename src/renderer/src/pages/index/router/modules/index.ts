@@ -36,7 +36,7 @@ export const spaceRoutes = makeRoute({
   ]
 });
 
-export const routes: Array<RouteRecordRaw> = [
+export const routes = [
   {
     name: 'root',
     path: '/',

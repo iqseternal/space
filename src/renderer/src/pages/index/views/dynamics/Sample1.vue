@@ -43,6 +43,10 @@ const columns: TableColumnType[] = [
   { title: '操作', dataIndex: 'operator' }
 ];
 const visiable = ref(false);
+
+const selectedKeys = ref([]);
+const selectedRowKeys = ref([]);
+
 const mode = ref('create');
 
 const loadData = () => {

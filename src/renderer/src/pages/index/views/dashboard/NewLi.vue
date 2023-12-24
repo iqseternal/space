@@ -15,20 +15,25 @@
 <script lang="ts" setup>
 import { reactive, watch, ref } from 'vue';
 import type { FormInstance, FormProps } from 'ant-design-vue';
-import { useModalEvt, useRules } from '@renderer/hooks';
+import type { Response } from './api';
+import { useModalEvt, useRules, useModalProps } from '@renderer/hooks';
 import { message } from 'ant-design-vue';
 import Modal from '@components/Modal';
 
-const form = reactive({
+const form = reactive<Response>({
   name: '',
-  age: ''
+  age: '',
+  data: {
+    s_addr: '',
+    d_addr: ''
+  }
 });
 const formRef = ref<FormInstance>();
 
 const rules = useRules<Response>({
   name: {
     required: true,
-    validator: (_, value) => new Promise((resolve, reject) => {
+    validator: (_, value) => new Promise<void>((resolve, reject) => {
       if (!value || (value as string).trim() === '') return reject('请输入名称');
       return resolve();
     })
@@ -45,11 +50,11 @@ const handleOk: ModalEvtCallBack = (next) => {
   })
 }
 
-useModalEvt({
-  reset: ({ sourceData, mode }) => {
+useModalEvt<Response>({
+  init: ({ sourceData, mode }) => {
 
   },
-  init: ({ sourceData }) => {
+  reset: ({ sourceData, mode }) => {
 
   }
 })

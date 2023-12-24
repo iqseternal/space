@@ -1,6 +1,6 @@
 
-import type { UnwrapNestedRefs, Ref } from 'vue';
-import { reactive, ref, toRefs, computed, getCurrentInstance, watch } from 'vue';
+import type { UnwrapNestedRefs, Ref, ComponentPublicInstance } from 'vue';
+import { reactive, ref, toRefs, computed, getCurrentInstance, watch, ToRefs, toValue } from 'vue';
 
 import type { ModalEmits, ModalProps } from '@components/Modal';
 
@@ -86,25 +86,36 @@ export function useModalAttrs<
 }
 
 
-export type ModalAllAttrs = ReturnType<typeof useModalAttrs>['modalAllAttrs'];
+export type ModalAllAttrs<R> = ReturnType<typeof useModalAttrs<R>>['modalAllAttrs'];
 
 export interface ModalEvt<SourceDataType> {
-  reset: (modeAttrs: Omit<ModalAllAttrs['value'], 'sourceData'> & { sourceData: SourceDataType }) => void;
-  init: (modeAttrs: Omit<ModalAllAttrs['value'], 'sourceData'> & { sourceData: SourceDataType }) => void;
+  reset: (modeAttrs: ModalAllAttrs<SourceDataType>['value']) => void;
+  init: (modeAttrs: ModalAllAttrs<SourceDataType>['value']) => void;
 }
 
-export function useModalEvt<T extends Record<string, unknown>>(evts: Partial<ModalEvt<Partial<T>>>) {
+export function useModalEvt<R>(evts: Partial<ModalEvt<Partial<R>>>) {
   const instance = getCurrentInstance();
 
   if (!instance) return;
 
   const attrs = computed(() => ({
-    ...(instance.attrs ?? {}),
-    ...(instance.props)
-  })) as ModalAllAttrs;
+    ...(instance.props),
+    ...((instance as any).setupContext.attrs ?? {})
+  })) as ModalAllAttrs<R>;
 
   watch(() => attrs.value.visible, nv => {
     if (nv) evts.init && evts.init(attrs.value);
     else evts.reset && evts.reset(attrs.value);
   })
+}
+
+
+export function useModalProps<R>() {
+  const instance = getCurrentInstance();
+
+  const attrs = computed(() => ({
+    ...(instance?.props ?? {}),
+    ...((instance as any).setupContext.attrs ?? {})
+  })) as ModalAllAttrs<R>;
+  return attrs;
 }

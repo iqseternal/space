@@ -7,7 +7,7 @@ import { isPromise } from '@suey/pkg-utils';
 
 type ValidateStateMessage = 'success' | 'warning' | 'error' | 'validating' | '';
 
-interface Result {
+export interface Result {
   status: Exclude<ValidateStateMessage, 'validating'>;
   message: string;
 }

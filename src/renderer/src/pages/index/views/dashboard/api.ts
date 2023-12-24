@@ -9,7 +9,7 @@ const randomStr = (len: number) => [...new Array(len)].map(() => randomChar()).j
 
 export interface Response {
   name: string;
-  age: string;
+  age: string | number;
   data: {
     s_addr: string;
     d_addr: string;
@@ -17,16 +17,18 @@ export interface Response {
 }
 
 export async function getListApi() {
-  return new Promise<Response[]>((resolve, reject) => {
+  return new Promise<Response[]>(async (resolve, reject) => {
     const data: Response[] = [];
+
+    const randomIp = () => `${randomRegionForInt(0, 255)}.${randomRegionForInt(0, 255)}.${randomRegionForInt(0, 255)}.${randomRegionForInt(0, 255)}`;
 
     for (let i = 0;i < 100;i ++) {
       data.push({
         name: randomStr(randomRegionForInt(3, 7)),
         age: i.toString(),
         data: {
-          s_addr: '0.0.0.0',
-          d_addr: '0.0.0.1'
+          s_addr: randomIp(),
+          d_addr: randomIp()
         }
       })
     }

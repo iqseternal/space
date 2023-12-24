@@ -10,9 +10,9 @@
     </Subfield>
 
     <ATable v-bind="tableAttrs" :dataSource="dataList" :columns="columns">
-      <template #bodyCell="{ record, column }: TableType.BodyCell<Response>">
+      <template #bodyCell="{ record, column }">
         <template v-if="column.dataIndex === 'operator'">
-          <AButton @click="handleEdit(record)">编辑</AButton>
+          <AButton @click="handleEdit(record as Response)">编辑</AButton>
         </template>
       </template>
     </ATable>
@@ -26,8 +26,8 @@ import { ref } from 'vue';
 import { useTableAttrs, useColumns } from '@renderer/hooks';
 import type { Response } from './api';
 import { getListApi } from './api';
-import NewLi from './NewLi.vue';
 import Subfield from '@components/Subfield';
+import NewLi from './NewLi.vue';
 
 const dataList = ref<Response[]>([]);
 const columns = useColumns<Response>([
@@ -40,7 +40,7 @@ const columns = useColumns<Response>([
 
 const { tableAttrs, modalAllAttrs, open } = useTableAttrs<Response>({
   rowKey: row => row.name
-}, (next) => {
+}, next => {
   getListApi().then(res => {
     dataList.value = res;
     next();

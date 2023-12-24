@@ -24,8 +24,8 @@ import { useMousetrap } from '@renderer/hooks/useMousetrap';
 
 import { windowMax, windowMin, windowClose, windowReduction, windowDevtool } from '@renderer/actions';
 
-import Subfield from '@renderer/components/Subfield';
-import Widget from '@renderer/components/Widget';
+import Subfield from '@components/Subfield';
+import Widget from '@components/Widget';
 
 const props = defineProps({
   isPane: { type: Boolean, default: false },

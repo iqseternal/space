@@ -12,12 +12,11 @@ export type { MousetrapAction, MousetrapBindFn, MousetrapBinds } from './useMous
 export { useMousetrap } from './useMousetrap';
 export { useTimeout } from './useTimeout';
 
-export type { ValidateRef, ValidateRefResult } from './useValidate';
+export type { ValidateRef, ValidateRefResult, Result } from './useValidate';
 export { useValidate, useValidateRef } from './useValidate';
 
-
-export type { ModalMode, ModalHookEmits, ModalEvt, ModalAllAttrs } from './useModalAttrs';
-export { useModalAttrs, useModalEvt } from './useModalAttrs';
+export type { ModalMode, ModalHookEmits, ModalEvt, ModalAllAttrs } from './useModal';
+export { useModalAttrs, useModalProps, useModalEvt } from './useModal';
 
 export { usePagination } from './usePaginationAttrs';
 
@@ -29,4 +28,5 @@ export { useFadeIn, useFadeOut } from './useFade';
 
 export { useColumns } from './useColumns';
 
+export type { AntdRuleObject, AntdRules, Rules, RuleObject } from './useRules';
 export { useRules } from './useRules';

@@ -4,7 +4,7 @@ import { reactive } from 'vue';
 import type { TableProps } from 'ant-design-vue';
 
 import { usePagination } from './usePaginationAttrs';
-import { useModalAttrs } from './useModalAttrs';
+import { useModalAttrs } from './useModal';
 
 export type InitTableFn<R> = (
   next: BaseCb,

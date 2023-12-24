@@ -55,7 +55,7 @@ import { windowSetSize, windowResizeAble, windowRelaunch, windowShow, windowSetP
 import { Subfield, SubfieldSpace } from '@components/Subfield';
 import Widget from '@components/Widget';
 import IconFont from '@components/IconFont';
-import BlendedText from '@components/BlendedText/BlendedText.vue';
+import BlendedText from '@components/BlendedText';
 
 import Header from '@components/Header';
 import Logo from '@components/Logo';

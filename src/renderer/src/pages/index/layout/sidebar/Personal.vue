@@ -42,6 +42,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { Dropdown, Avatar, Space, Popover, Button, Menu, MenuItem, SubMenu } from 'ant-design-vue';
 import { UserOutlined } from '@ant-design/icons-vue';
 import { settingSvg } from '@renderer/assets';
+import { loginRoute } from '@pages/index/router/modules';
 
 import { Subfield } from '@components/Subfield';
 import { DropdownMenu, ComboBoxMenu, SingleMenu, MenuDriver } from '@components/DropdownMenu';
@@ -58,7 +59,7 @@ const route = useRoute();
 const autoSize = ref(0);
 
 const logout = () => useFadeOut(() => {
-  router.replace({ path: '/login' });
+  router.replace(loginRoute.meta.fullpath);
 });
 
 onMounted(() => {
