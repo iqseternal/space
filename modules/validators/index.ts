@@ -1,4 +1,9 @@
 import { isString, isDecimal, isDef } from '@suey/pkg-utils';
 
-export const validatorNotSpace = (str: string) => isString(str) && str.trim() !== '';
+/** 
+ * 校验目标字符串是一个空串
+ * @param str
+ * @returns
+ */
+export const validatorIsSpace = (str: string) => isString(str) && str.trim() === '';
 
