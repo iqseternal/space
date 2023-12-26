@@ -5,6 +5,9 @@ directories:
 files:
   - '!**/.vscode/*'
   - '!src/*'
+# - '!modules/*'
+  - '!.husky/*'
+  - '!**/node_modules/electron/dist/*'
   - '!electron.vite.config.{js,ts,mjs,cjs}'
   - '!vite.config.util.ts'
   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'

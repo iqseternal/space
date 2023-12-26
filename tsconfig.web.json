@@ -31,6 +31,7 @@
     "sourceMap": false,
     "baseUrl": ".",
     "paths": {
+      "modules/*": ["./modules/*"],
       "@components/*": ["src/renderer/src/components/*"],
       "@pages/*": ["src/renderer/src/pages/*"],
       "@libs/*": ["src/renderer/src/libs/*"],
