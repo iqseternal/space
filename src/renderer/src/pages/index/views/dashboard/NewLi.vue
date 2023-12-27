@@ -16,8 +16,9 @@
 import { reactive, watch, ref } from 'vue';
 import type { FormInstance, FormProps } from 'ant-design-vue';
 import type { Response } from './api';
-import { useModalEvt, useRules, useModalProps, is, not, and, or } from '@renderer/hooks';
+import { useModalEvt, useRules, useModalProps, not, and, or } from '@renderer/hooks';
 import { message } from 'ant-design-vue';
+import { validatorValidStr, validatorRealName, validatorNumberRange } from 'modules/validators';
 import Modal from '@components/Modal';
 
 const form = reactive<Response>({
@@ -33,10 +34,9 @@ const formRef = ref<FormInstance>();
 const rules = useRules<Response>({
   name: {
     required: true,
-    validator: (_, value) => new Promise<void>((resolve, reject) => {
-      if (!value || (value as string).trim() === '') return reject('请输入名称');
-      return resolve();
-    })
+    validator: [
+      validatorValidStr, [validatorRealName, '请输入真实姓名']
+    ]
   }
 })
 

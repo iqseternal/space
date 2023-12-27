@@ -17,6 +17,12 @@ const FADE_OUT_OPTIONS: FadeOptions = {
   timer: CONFIG.FADE.FADE_OUT.TIMER
 };
 
+/**
+ * 同一个 HTML 页面，需要使用转场： 窗口消失，等待加载另一个路由，完成后又显示
+ * 这是进入的转场
+ * @param callback
+ * @param options
+ */
 export async function useFadeIn(callback: FadeCallback, options?: FadeOptions) {
   options = { ...FADE_IN_OPTIONS, ...options  };
 
@@ -30,6 +36,11 @@ export async function useFadeIn(callback: FadeCallback, options?: FadeOptions) {
   });
 }
 
+/**
+ * 页面转出的转场
+ * @param callback
+ * @param options
+ */
 export async function useFadeOut(callback: FadeCallback, options?: FadeOptions) {
   options = { ...FADE_OUT_OPTIONS, ...options  };
 

@@ -9,7 +9,7 @@ const randomStr = (len: number) => [...new Array(len)].map(() => randomChar()).j
 
 export interface Response {
   name: string;
-  age: string | number;
+  age: string;
   data: {
     s_addr: string;
     d_addr: string;

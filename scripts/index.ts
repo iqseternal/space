@@ -2,16 +2,17 @@
 import { rsaGetKey, aesEncrypt, aesDecrypt, rsaEncryptAlgorithm, rsaDecryptAlgorithm } from '@suey/pkg-utils';
 import { printClear, printError, Printer, printInfo, printWarn, print } from '@suey/printer';
 
-const [pubKey, priKey] = rsaGetKey({
-  bytes: 1024
-});
+const map = new WeakMap();
 
-// print(pubKey, priKey);
+const obj = {
+  value: 1
+};
+const obj2 = {
+  value: 1
+}
 
-const text = 'Hello';
+// map.set(obj, 1);
+map.set({}, 1);
 
-const encryptText = rsaEncryptAlgorithm(text, pubKey);
 
-const decryptText = rsaDecryptAlgorithm(encryptText, priKey);
-
-print(encryptText, decryptText);
+print(map.get({}));

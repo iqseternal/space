@@ -28,5 +28,5 @@ export { useFadeIn, useFadeOut } from './useFade';
 
 export { useColumns } from './useColumns';
 
-export type { AntdRuleObject, AntdRules, Rules, RuleObject, ValidatorFn, ValidatorFnArg } from './useRules';
+export type { AntdRuleObject, AntdRules, Rules, RuleObject, RuleArr, ValidatorFn } from './useRules';
 export { useRules, is, not, and, or } from './useRules';
