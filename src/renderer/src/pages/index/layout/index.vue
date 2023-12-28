@@ -2,8 +2,59 @@
   <div class="compose">
     <Sidebar class="sidebar" />
     <Header class="header">
+      <template #left>
+        <Indicator />
+        <Subfield class="navMenu" style="justify-content: flex-start;">
+          <DropdownMenu placement="bottom">
+            <span class="nav-item-title">文件</span>
+
+            <template #overlay>
+              <SingleMenu mark="FileAddOutlined" :shortcut="hotKeys.createFile.key">新建</SingleMenu>
+              <SingleMenu mark="FolderOpenOutlined" :shortcut="hotKeys.openFile.key">打开</SingleMenu>
+              <SingleMenu mark="ImportOutlined">导入</SingleMenu>
+              <MenuDriver />
+              <SingleMenu mark="SaveOutlined" :shortcut="hotKeys.saveFile.key">保存</SingleMenu>
+              <SingleMenu :shortcut="hotKeys.saveFileTo.key">另存为</SingleMenu>
+              <ComboBoxMenu mark="ExportOutlined" title="导出">
+                <SingleMenu mark="FileJpgOutlined">JSON</SingleMenu>
+                <MenuDriver />
+                <SingleMenu mark="FileImageOutlined">PNG</SingleMenu>
+                <SingleMenu>SVG</SingleMenu>
+
+                <MenuDriver />
+                <SingleMenu mark="FilePdfOutlined">Pdf</SingleMenu>
+                <SingleMenu mark="Html5Outlined">Html</SingleMenu>
+                <SingleMenu mark="FileMarkdownOutlined">Markdown</SingleMenu>
+              </ComboBoxMenu>
+              <SingleMenu mark="PrinterOutlined" :shortcut="hotKeys.printFile.key">打印</SingleMenu>
+            </template>
+          </DropdownMenu>
+          <DropdownMenu placement="bottom">
+            <span class="nav-item-title">编辑</span>
+
+            <template #overlay>
+              <SingleMenu mark="RollbackOutlined" :shortcut="hotKeys.rollback.key">撤销</SingleMenu>
+              <SingleMenu mark="UndoOutlined" :shortcut="hotKeys.undo.key">恢复</SingleMenu>
+              <MenuDriver />
+              <SingleMenu mark="ScissorOutlined" :shortcut="hotKeys.scissor.key">剪切</SingleMenu>
+              <SingleMenu mark="CopyOutlined" :shortcut="hotKeys.copy.key">复制</SingleMenu>
+              <SingleMenu mark="SnippetsOutlined" :shortcut="hotKeys.snippets.key">粘贴</SingleMenu>
+              <MenuDriver />
+              <SingleMenu mark="SelectOutlined" :shortcut="hotKeys.allSelect.key">全选</SingleMenu>
+              <SingleMenu mark="DeleteOutlined" :shortcut="hotKeys.delete.key">删除</SingleMenu>
+            </template>
+          </DropdownMenu>
+          <DropdownMenu placement="bottom">
+            <span class="nav-item-title">帮助</span>
+
+            <template #overlay>
+              <SingleMenu mark="KeyOutlined">快捷键</SingleMenu>
+            </template>
+          </DropdownMenu>
+        </Subfield>
+      </template>
       <template #control>
-        <Widget title="打开设置页面" icon="DingtalkCircleFilled" />
+        <!-- <Widget title="打开设置页面" icon="DingtalkCircleFilled" /> -->
       </template>
     </Header>
     <!-- <AFloatButton /> -->
@@ -49,10 +100,11 @@ import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
 import { canCopyText } from '@libs/common';
 import { useMousetrap, useFadeIn } from '@renderer/hooks';
 
-import Header from '@renderer/components/Header';
+import { Header, Indicator } from '@renderer/components/Header';
 import Sidebar from './sidebar/index.vue';
 import IconFont from '@components/IconFont';
 import Widget from '@components/Widget';
+import Subfield from '@components/Subfield';
 
 useFadeIn(() => {
   windowResizeAble(true);
@@ -89,15 +141,39 @@ div.compose {
     position: absolute;
     top: 0px;
     left: 0px;
+    user-select: none;
+
+    .navMenu {
+      color: rgba(0, 0, 0, .6);
+      height: 100%;
+      font-size: 12px;
+      transition: all .5s linear;
+
+      .nav-item-title {
+        display: inline-block;
+        height: $sMainCaptionBarHeight;
+        line-height: calc($sMainCaptionBarHeight - 8px);
+        padding: 4px 8px;
+        text-align: center;
+        font-size: 12px;
+        @include appRegionNo;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, .05);
+        }
+      }
+    }
   }
 
   main.container {
     padding: 0px 5px;
-    width: calc(100% - calc(var(--s-main-frame-sidebar-width)));
+    width: calc(100% - var(--s-main-frame-sidebar-width));
+    /* width: calc(100%); */
     height: calc(100% - $sMainCaptionBarHeight - 2 * var(--p));
     background-color: var(--s-main-frame-bg-darkness-color);
     position: absolute;
     top: calc($sMainCaptionBarHeight + var(--p));
+    /* left: 0; */
     left: var(--s-main-frame-sidebar-width);
     padding-top: var(--p);
     @include beautifulBar(auto);

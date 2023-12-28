@@ -1,7 +1,9 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { terminalSvg, dashboardSvg, settingSvg } from '@renderer/assets';
 import { makeRoute } from '@libs/router';
-import Layout from '@renderer/pages/index/layout/index.vue';
+// import Layout from '@renderer/pages/index/layout/index.vue';
+
+const Layout = () => import('@renderer/pages/index/layout/index.vue');
 
 export const loginRoute = makeRoute({
   name: 'Login',
@@ -13,13 +15,13 @@ export const spaceRoutes = makeRoute({
   name: 'Space',
   path: '/space',
   component: Layout,
-  redirect: '/space/dynamics',
+  redirect: '/space/workbenches',
   children: [
     {
-      name: 'Dynamics',
-      path: 'dynamics',
-      meta: { svg: terminalSvg },
-      component: () => import('@pages/index/views/dynamics/index.vue')
+      name: 'Workbenches',
+      path: 'workbenches',
+      meta: { svg: terminalSvg, title: '工作台' },
+      component: () => import('@pages/index/views/workbenches/index.vue')
     },
     {
       name: 'Dashboard',

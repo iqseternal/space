@@ -17,10 +17,59 @@ function makeHotKeys<
 }
 
 export const hotKeys = makeHotKeys({
+  createFile: {
+    key: 'Ctrl+N',
+    tip: '新建文件', changeAble: false,
+  },
+  openFile: {
+    key: 'Ctrl+O',
+    tip: '打开文件', changeAble: false
+  },
+  saveFile: {
+    key: 'Ctrl+S',
+    tip: '保存文件', changeAble: false
+  },
+  saveFileTo: {
+    key: 'Ctrl+Shift+S',
+    tip: '文件另存为', changeAble: false
+  },
+  printFile: {
+    key: 'Ctrl+Shift+P',
+    tip: '打印文件', changeAble: false,
+  },
+
+
+  rollback: {
+    key: 'Ctrl+Z',
+    tip: '撤销', changeAble: false
+  },
+  undo: {
+    key: 'Ctrl+Y',
+    tip: '恢复', changeAble: false
+  },
+  scissor: {
+    key: 'Ctrl+X',
+    tip: '剪切', changeAble: false
+  },
   copy: {
     key: 'Ctrl+C',
     tip: '复制', changeAble: false
   },
+  snippets: {
+    key: 'Ctrl+V',
+    tip: '粘贴', changeAble: false
+  },
+
+  allSelect: {
+    key: 'Ctrl+A',
+    tip: '全选', changeAble: false
+  },
+  delete: {
+    key: 'Delete',
+    tip: '删除', changeAble: false
+  },
+
+
   reload: {
     key: 'Ctrl+R', moreKey: ['F5'],
     tip: '刷新页面', changeAble: false

@@ -19,7 +19,7 @@ const router = useRouter(), route = useRoute();
 const controls = [
   {
     svg: terminalSvg,
-    path: '/space/dynamics'
+    path: '/space/workbenches'
   },
   {
     svg: dashboardSvg,

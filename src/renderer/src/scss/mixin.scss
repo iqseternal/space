@@ -21,7 +21,7 @@
 }
 
 @mixin beautifulBar($status: scroll) {
-  overflow-y: $status !important;
+  overflow-y: $status;
 
   @media screen and (orientation:portrait) and (max-device-width:768px) and (max-device-height:1024px),
   screen and (orientation:landscape) and (max-device-width:1024px) and (max-device-height:768px) {

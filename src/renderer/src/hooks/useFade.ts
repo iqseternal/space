@@ -27,7 +27,9 @@ export async function useFadeIn(callback: FadeCallback, options?: FadeOptions) {
   options = { ...FADE_IN_OPTIONS, ...options  };
 
   onBeforeMount(async () => {
-    await callback();
+    await callback()?.catch(err => {
+      console.log(err);
+    });
   });
   onMounted(async () => {
     setTimeout(async () => {

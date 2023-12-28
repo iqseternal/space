@@ -4,6 +4,12 @@
  * ==========================================
  */
 
+@import './mixin.scss';
+
+// * {
+//   @include beautifulBar(unset);
+// }
+
 @mixin Flex {
   display: flex;
   align-items: center;

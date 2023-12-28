@@ -3,16 +3,6 @@
     <template #left>
       <Subfield gap="10px" class="navMenu" style="justify-content: flex-start;">
         <Indicator />
-        <DropdownMenu placement="bottom">
-          <span>开始</span>
-
-          <template #overlay>
-            <SingleMenu disabled>开始</SingleMenu>
-            <ComboBoxMenu mark="SelectOutlined" title="首选项">
-              <SingleMenu mark="FileOutlined" disabled>配置文件</SingleMenu>
-            </ComboBoxMenu>
-          </template>
-        </DropdownMenu>
       </Subfield>
     </template>
     <template #center>
