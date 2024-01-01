@@ -3,11 +3,11 @@
     <AForm v-if="pen" labelAlign="left">
       <h5 class="mb-24">图元</h5>
       <AFormItem label="文本" name="text">
-        <AInput v-model="pen.text" @change="changeValue('text')" />
+        <AInput v-model:value="pen.text" @change="changeValue('text')" />
       </AFormItem>
       <AFormItem label="颜色" name="color">
         <AcolorPicker
-          v-model="pen.color"
+          v-model:value="pen.color"
           class="w-full"
           :showPrimaryColorPreview="false"
           format="CSS"
@@ -17,7 +17,7 @@
       </AFormItem>
       <AFormItem label="背景" name="background">
         <AColorPicker
-          v-model="pen.background"
+          v-model:value="pen.background"
           class="w-full"
           :showPrimaryColorPreview="false"
           format="CSS"
@@ -26,7 +26,7 @@
         />
       </AFormItem>
       <AFormItem label="线条" name="dash">
-        <ASelect v-model="pen.dash" @change="changeValue('dash')">
+        <ASelect v-model:value="pen.dash" @change="changeValue('dash')">
           <ASelectOption :key="0" :value="0" label="实线"/>
           <ASelectOption :key="1" :value="1" label="虚线"/>
         </ASelect>
@@ -42,7 +42,7 @@
       </AFormItem>
       <AFormItem label="不透明度" name="globalAlpha">
         <ASlider
-          v-model="pen.globalAlpha"
+          v-model:value="pen.globalAlpha"
           :min="0"
           :max="1"
           :step="0.01"
@@ -56,22 +56,22 @@
       <ADivider />
 
       <AFormItem label="X" name="x">
-        <AInputNumber v-model="rect.x" @change="changeRect('x')" />
+        <AInputNumber v-model:value="rect.x" @change="changeRect('x')" />
       </AFormItem>
       <AFormItem label="Y" name="y">
-        <AInputNumber v-model="rect.y" @change="changeRect('y')" />
+        <AInputNumber v-model:value="rect.y" @change="changeRect('y')" />
       </AFormItem>
       <AFormItem label="宽" name="width">
-        <AInputNumber v-model="rect.width" @change="changeRect('width')" />
+        <AInputNumber v-model:value="rect.width" @change="changeRect('width')" />
       </AFormItem>
       <AFormItem label="高" name="height">
-        <AInputNumber v-model="rect.height" @change="changeRect('height')" />
+        <AInputNumber v-model:value="rect.height" @change="changeRect('height')" />
       </AFormItem>
 
       <ADivider />
 
       <AFormItem label="文字水平对齐" name="textAlign">
-        <ASelect v-model="pen.textAlign" @change="changeValue('textAlign')">
+        <ASelect v-model:value="pen.textAlign" @change="changeValue('textAlign')">
           <ASelectOption key="left" value="left" label="左对齐"/>
           <ASelectOption key="center" value="center" label="居中"/>
           <ASelectOption key="right" value="right" label="右对齐"/>
@@ -79,7 +79,7 @@
       </AFormItem>
       <AFormItem label="文字垂直对齐" name="textBaseline">
         <ASelect
-          v-model="pen.textBaseline"
+          v-model:value="pen.textBaseline"
           @change="changeValue('textBaseline')"
         >
           <ASelectOption key="top" value="top" label="顶部对齐"/>
@@ -102,7 +102,7 @@
 
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref, watch } from 'vue';
-import { useSelection } from '../services/selections';
+import { useSelection } from '../hooks/selections';
 
 const { selections } = useSelection();
 
@@ -165,7 +165,7 @@ onUnmounted(() => {
   watcher();
 });
 </script>
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .props-panel {
   :deep(.t-form) {
     .t-form__item {

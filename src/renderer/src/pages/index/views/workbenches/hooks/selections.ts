@@ -1,5 +1,5 @@
-import { Pen } from '@meta2d/core';
 import type { UnwrapNestedRefs } from 'vue';
+import { Pen } from '@meta2d/core';
 import { reactive } from 'vue';
 
 export enum SelectionMode {
@@ -7,13 +7,10 @@ export enum SelectionMode {
   Pen,
 }
 
-const selections = reactive<{
-  mode: SelectionMode;
-  pen?: Pen;
-}>({
+const selections = reactive({
   // 选中对象类型：0 - 画布；1 - 单个图元
   mode: SelectionMode.File,
-  pen: void 0,
+  pen: void 0 as (Pen | undefined),
 });
 
 export const useSelection = (): { selections: UnwrapNestedRefs<{ mode: SelectionMode, pen?: Pen }>;select: (pens?: Pen[]) => void; } => {
@@ -27,7 +24,6 @@ export const useSelection = (): { selections: UnwrapNestedRefs<{ mode: Selection
 
     selections.mode = SelectionMode.Pen;
     selections.pen = pens[0];
-
   };
   return {
     selections,

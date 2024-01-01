@@ -9,11 +9,11 @@
 import FileProps from './FileProps.vue';
 import PenProps from './PenProps.vue';
 
-import { useSelection, SelectionMode } from '../services/selections';
+import { useSelection, SelectionMode } from '../hooks/selections';
 
 const { selections } = useSelection();
 </script>
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .app-props {
   padding: 16px;
   border-left: 1px solid var(--color-border);

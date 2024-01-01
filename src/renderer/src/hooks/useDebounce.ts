@@ -15,3 +15,5 @@ export const useDebounce = (fn: (...args: any[]) => void, wait = 300) => {
     perTimeout(() => fn && fn(), wait);
   };
 };
+
+export const useDebounceHook = useDebounce;

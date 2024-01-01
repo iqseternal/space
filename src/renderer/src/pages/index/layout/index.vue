@@ -60,7 +60,9 @@
     <!-- <AFloatButton /> -->
     <DropdownMenu trigger="contextmenu">
       <main class="container">
-        <RouterView />
+        <KeepAlive>
+          <RouterView />
+        </KeepAlive>
       </main>
 
       <template #overlay>

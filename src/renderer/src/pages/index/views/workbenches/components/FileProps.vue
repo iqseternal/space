@@ -3,24 +3,24 @@
     <AForm labelAlign="left">
       <h5 class="mb-24">图纸</h5>
       <AFormItem label="图纸名称" name="name">
-        <AInput v-model="data.name" @change="onChangeData" />
+        <AInput v-model:value="data.name" @change="onChangeData" />
       </AFormItem>
       <ADivider />
       <AFormItem label="网格" name="grid">
-        <t-switch v-model="options.grid" @change="onChangeOptions" />
+        <t-switch v-model:value="options.grid" @change="onChangeOptions" />
       </AFormItem>
       <AFormItem label="网格大小" name="gridSize">
-        <AInput v-model.number="options.gridSize" @change="onChangeOptions" />
+        <AInput v-model:value.number="options.gridSize" @change="onChangeOptions" />
       </AFormItem>
       <AFormItem label="网格角度" name="gridRotate">
         <AInput
-          v-model.number="options.gridRotate"
+          v-model:value.number="options.gridRotate"
           @change="onChangeOptions"
         />
       </AFormItem>
       <AFormItem label="网格颜色" name="gridColor">
         <AColorPicker
-          v-model="options.gridColor"
+          v-model:value="options.gridColor"
           class="w-full"
           :showPrimaryColorPreview="false"
           format="CSS"
@@ -32,14 +32,14 @@
       <ADivider />
 
       <AFormItem label="标尺" name="rule">
-        <ASwitch v-model="options.rule" @change="onChangeOptions" />
+        <ASwitch v-model:value="options.rule" @change="onChangeOptions" />
       </AFormItem>
 
       <ADivider />
 
       <AFormItem label="背景颜色" name="background">
         <AColorPicker
-          v-model="data.background"
+          v-model:value="data.background"
           class="w-full"
           :showPrimaryColorPreview="false"
           format="CSS"
@@ -49,7 +49,7 @@
       </AFormItem>
       <AFormItem label="图元默认颜色" name="color">
         <AColorPicker
-          v-model="data.color"
+          v-model:value="data.color"
           class="w-full"
           :showPrimaryColorPreview="false"
           format="CSS"
@@ -95,28 +95,29 @@ const onChangeData = () => {
   meta2d.render();
 };
 
-const onChangeOptions = () => {
+const onChangeOptions = (value) => {
+  options.opened = value;
   meta2d.setOptions(options);
   meta2d.store.patchFlagsTop = true;
   meta2d.store.patchFlagsBackground = true;
   meta2d.render();
 };
 </script>
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .props-panel {
-  :deep(.t-form) {
-    .t-form__item {
+  &:deep(.a-form) {
+    .a-form__item {
       margin-bottom: 8px;
     }
-    .t-form__label {
+    .a-form__label {
       padding-right: 8px;
     }
 
-    .t-divider {
+    .a-divider {
       margin: 12px 0;
     }
 
-    .t-input--auto-width {
+    .a-input--auto-width {
       width: 100%;
     }
   }

@@ -1,38 +1,39 @@
-<template>
-  <div id="meta2d" />
-</template>
-
-<script lang="ts" setup>
-import { onMounted, onUnmounted } from 'vue';
-import {
-  Meta2d,
-  Pen,
-  register,
-  registerAnchors,
-  registerCanvasDraw,
-} from '@meta2d/core';
+import { ref, reactive, watch } from 'vue';
+import { useDebounceHook } from '@renderer/hooks';
+import { Meta2d, Pen, register, registerAnchors, registerCanvasDraw } from '@meta2d/core';
 import { flowPens, flowAnchors } from '@meta2d/flow-diagram';
-import {
-  activityDiagram,
-  activityDiagramByCtx,
-} from '@meta2d/activity-diagram';
+import { activityDiagram, activityDiagramByCtx } from '@meta2d/activity-diagram';
 import { classPens } from '@meta2d/class-diagram';
 import { sequencePens, sequencePensbyCtx } from '@meta2d/sequence-diagram';
 import { register as registerEcharts } from '@meta2d/chart-diagram';
 import { formPens } from '@meta2d/form-diagram';
 import { chartsPens } from '@meta2d/le5le-charts';
 import { ftaPens, ftaPensbyCtx, ftaAnchors } from '@meta2d/fta-diagram';
+import pako from 'pako';
 
-import { useSelection } from '../hooks/selections';
+export async function saveMeta2dData() {
+  const data = meta2d.data();
+  const buffer = pako.deflate(JSON.stringify(data));
+  console.log(buffer);
+}
 
-const { select } = useSelection();
+export async function setupMeta2dEvts() {
+  meta2d.on('scale', saveMeta2dData);
+  meta2d.on('add', saveMeta2dData);
+  meta2d.on('opened', saveMeta2dData);
+  meta2d.on('undo', saveMeta2dData);
+  meta2d.on('redo', saveMeta2dData);
+  meta2d.on('add', saveMeta2dData);
+  meta2d.on('delete', saveMeta2dData);
+  meta2d.on('rotatePens', saveMeta2dData);
+  meta2d.on('translatePens', saveMeta2dData);
+}
 
-const meta2dOptions: any = {
-  rule: true,
-};
+export async function setupMeta2dView() {
+  const meta2dOptions = {
+    rule: true,
+  };
 
-onMounted(() => {
-  // 创建实例
   new Meta2d('meta2d', meta2dOptions);
 
   // 按需注册图形库
@@ -67,26 +68,4 @@ onMounted(() => {
     }
     meta2d.open(data);
   }
-
-  meta2d.on('active', active);
-  meta2d.on('inactive', inactive);
-});
-
-const active = (pens?: Pen[]) => {
-  select(pens);
-};
-
-const inactive = () => {
-  select();
-};
-
-onUnmounted(() => {
-  meta2d.destroy();
-});
-</script>
-<style lang="scss" scoped>
-#meta2d {
-  height: calc(100vh - 80px);
-  z-index: 1;
 }
-</style>

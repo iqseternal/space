@@ -19,64 +19,118 @@ config -> 关于项目的配置，这个配置是不希望被用户更改的，�
 constant -> 一些常量枚举，比如关于主线程和渲染进程之间交互的事件规定
 
 C:\Users\SueyYen\Desktop\space
+
 ├─.env.dev
+
 ├─.env.prod
+
 ├─.gitignore
+
 ├─.npmrc
+
 ├─app.config.json
+
 ├─dev-app-update.yml
+
 ├─electron-builder.yml
+
 ├─electron.vite.config.ts
+
 ├─package.json
+
 ├─pnpm-lock.yaml
+
 ├─README.md
+
 ├─result.txt
+
 ├─test.config.json
+
 ├─tsconfig.json
+
 ├─tsconfig.node.json
+
 ├─tsconfig.web.json
+
 ├─user.config.json
+
 ├─vite.config.util.ts
+
 ├─src
-|  ├─env.d.ts
-|  ├─renderer
-|  |    ├─components.d.ts
-|  |    ├─index.html
-|  |    ├─setting.html
-|  |    ├─src
-|  |    |  ├─shims-vue.d.ts
-|  |    |  ├─store
-|  |    |  ├─scss
-|  |    |  |  ├─animation.scss transition动画
-|  |    |  |  ├─common.scss 样式覆盖
-|  |    |  |  ├─custom.scss 自定义样式
-|  |    |  |  ├─defined.scss 预定义样式
-|  |    |  |  ├─index.scss
-|  |    |  |  ├─init.scss 初始化样式
-|  |    |  |  ├─mixin.scss 混入样式
-|  |    |  |  └var.scss 变量
-|  |    |  ├─pages
-|  |    |  |   ├─setting 设置页面
-|  |    |  |   ├─index 主页
-|  |    |  ├─libs 
-|  |    |  ├─hooks
-|  |    |  ├─components
-|  |    |  ├─assets
-|  |    |  ├─api
-|  |    |  ├─actions
-|  |    |  ├─@types
-|  |    ├─public
-|  ├─preload 为渲染进程注入
-|  ├─main 主线程代码，启动和服务挂载
-|  ├─global 主线程全局变量挂载
-|  ├─constants 全局常量
-|  ├─config 全局常量
-|  ├─code 主线程主要核心代码
-|  ├─@types 主线程类型
+
+| ├─env.d.ts
+
+| ├─renderer
+
+| | ├─components.d.ts
+
+| | ├─index.html
+
+| | ├─setting.html
+
+| | ├─src
+
+| | | ├─shims-vue.d.ts
+
+| | | ├─store
+
+| | | ├─scss
+
+| | | | ├─animation.scss transition动画
+
+| | | | ├─common.scss 样式覆盖
+
+| | | | ├─custom.scss 自定义样式
+
+| | | | ├─defined.scss 预定义样式
+
+| | | | ├─index.scss
+
+| | | | ├─init.scss 初始化样式
+
+| | | | ├─mixin.scss 混入样式
+
+| | | | └var.scss 变量
+
+| | | ├─pages
+
+| | | | ├─setting 设置页面
+
+| | | | ├─index 主页
+
+| | | ├─libs
+
+| | | ├─hooks
+
+| | | ├─components
+
+| | | ├─assets
+
+| | | ├─api
+
+| | | ├─actions
+
+| | | ├─@types
+
+| | ├─public
+
+| ├─preload 为渲染进程注入
+
+| ├─main 主线程代码，启动和服务挂载
+
+| ├─global 主线程全局变量挂载
+
+| ├─constants 全局常量
+
+| ├─config 全局常量
+
+| ├─code 主线程主要核心代码
+
+| ├─@types 主线程类型
+
 ├─scripts 脚本文件
+
 ├─resources 资源文件
-
-
 
 ![Alt text](./readme/ZA0MZL5WF$Y658W4E6YQJZ2.png)
 
@@ -240,6 +294,4 @@ defineExpose({
 
 })
 </script>
-
 ```
-

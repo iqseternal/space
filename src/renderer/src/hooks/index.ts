@@ -5,7 +5,7 @@
  */
 
 export { useCssVar, useCssVarForRoot } from './useCssVar';
-export { useDebounce } from './useDebounce';
+export { useDebounce, useDebounceHook } from './useDebounce';
 export { useEventListener, useEventListenerForElement } from './useEventListener';
 
 export type { MousetrapAction, MousetrapBindFn, MousetrapBinds } from './useMousetrap';

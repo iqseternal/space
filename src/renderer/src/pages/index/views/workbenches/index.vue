@@ -1,5 +1,7 @@
 <template>
   <div class="app-page">
+    <ToolBar />
+
     <div class="designer">
       <Graphics />
       <View />
@@ -10,6 +12,8 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue';
+import { PropertyBar } from './workArea';
+import ToolBar from './components/ToolBar.vue';
 import Graphics from './components/Graphics.vue';
 import View from './components/View.vue';
 import Props from './components/Props.vue';
@@ -39,9 +43,9 @@ onMounted(() => {
 });
 </script>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .app-page {
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 
   .designer {
