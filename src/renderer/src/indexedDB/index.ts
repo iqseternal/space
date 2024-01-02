@@ -1,33 +1,26 @@
+import { IndexedDB } from '@libs/indexedDB';
+import type { TablesType } from '#constants/indexDB';
+import { DATABASES_META2D, TABLES } from '#constants/indexDB';
 
+let indexedDB: IndexedDB<TablesType> | undefined = void 0;
 
-const database = window.indexedDB.open('asds', 1);
+export async function setupIndexDB() {
+  if (indexedDB) return indexedDB;
 
-database.onerror = (evt) => {
+  indexedDB = new IndexedDB<TablesType>({
+    dbName: DATABASES_META2D.DATABASES_NAME,
+    dbVersion: DATABASES_META2D.DATABASES_VERSION
+  });
 
-}
+  await indexedDB.connection((db) => {
+    const documentStore = db.createObjectStore(DATABASES_META2D.TABLES_NAMES.TABLE_DOCUMENT, {
+      keyPath: TABLES.TABLE_DOCUMENT.GENERATOR_KEY
+    });
 
-database.onsuccess = (evt) => {
+    documentStore.createIndex(TABLES.TABLE_DOCUMENT.CREAT_AT, TABLES.TABLE_DOCUMENT.CREAT_AT, { unique: false });
+    documentStore.createIndex(TABLES.TABLE_DOCUMENT.EDIT_AT, TABLES.TABLE_DOCUMENT.EDIT_AT, { unique: false });
+    documentStore.createIndex(TABLES.TABLE_DOCUMENT.META_2D_DATA, TABLES.TABLE_DOCUMENT.META_2D_DATA, { unique: false });
+  });
 
-  const db = database.result;
-
-
-}
-
-export interface IndexDbOptions {
-  dbName: string;
-  dbVersion: number;
-}
-
-export async function setupIndexDb(options: IndexDbOptions) {
-  return new Promise<IDBDatabase>((resolve, reject) => {
-    const request = window.indexedDB.open(options.dbName, options.dbVersion);
-
-    request.onsuccess = (evt) => {
-      resolve(request.result);
-    }
-
-    request.onerror = (evt) => {
-      reject(null);
-    }
-  })
+  return indexedDB;
 }

@@ -36,7 +36,7 @@
       "@components/*": ["src/renderer/src/components/*"],
       "@pages/*": ["src/renderer/src/pages/*"],
       "@libs/*": ["src/renderer/src/libs/*"],
-      "@meta2d/*": ["src/renderer/meta2d/*"],
+      "@meta/*": ["src/renderer/meta/*"],
       "@scss/*": ["src/renderer/src/scss/*"],
       "@renderer/*": ["src/renderer/src/*"],
       "#constants/*": ["src/constants/*"],

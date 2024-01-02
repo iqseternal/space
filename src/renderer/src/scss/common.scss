@@ -27,3 +27,17 @@ form.ant-form {
     margin-bottom: 10px;
   }
 }
+
+// 折叠，口风琴?
+
+div.ant-collapse {
+  div.ant-collapse-item {
+    div.ant-collapse-header {
+      flex-direction: row-reverse;
+    }
+
+    div.ant-collapse-content .ant-collapse-content-box {
+
+    }
+  }
+}

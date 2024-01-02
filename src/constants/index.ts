@@ -10,6 +10,8 @@ export * from './store';
 
 export * from './ipc';
 
+export * from './indexDB';
+
 export const CONFIG = {
   PROJECT: 'SPACE',
   VIEW: {

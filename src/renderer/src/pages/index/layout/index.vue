@@ -58,7 +58,12 @@
       </template>
     </Header>
     <!-- <AFloatButton /> -->
-    <DropdownMenu trigger="contextmenu">
+    <main class="container">
+      <RouterView v-slot="{ Component }">
+        <KeepAlive><component :is="Component" /></KeepAlive>
+      </RouterView>
+    </main>
+    <!-- <DropdownMenu trigger="contextmenu">
       <main class="container">
         <KeepAlive>
           <RouterView />
@@ -88,7 +93,7 @@
         <MenuDriver />
         <SingleMenu mark="TrophyOutlined" disabled>转到设置</SingleMenu>
       </template>
-    </DropdownMenu>
+    </DropdownMenu> -->
   </div>
 </template>
 

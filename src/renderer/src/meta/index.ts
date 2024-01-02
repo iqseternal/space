@@ -9,12 +9,16 @@ import { register as registerEcharts } from '@meta2d/chart-diagram';
 import { formPens } from '@meta2d/form-diagram';
 import { chartsPens } from '@meta2d/le5le-charts';
 import { ftaPens, ftaPensbyCtx, ftaAnchors } from '@meta2d/fta-diagram';
+import { setupIndexDB } from '@renderer/indexedDB';
+import { TABLES, TABLE_DOCUMENT, DATABASES_META2D } from '#constants/indexDB';
+import { useSelection } from '@pages/index/views/workbenches/hooks/selections';
 import pako from 'pako';
 
 export async function saveMeta2dData() {
   const data = meta2d.data();
   const buffer = pako.deflate(JSON.stringify(data));
   console.log(buffer);
+  localStorage.setItem('meta2d', JSON.stringify(data));
 }
 
 export async function setupMeta2dEvts() {
@@ -29,12 +33,12 @@ export async function setupMeta2dEvts() {
   meta2d.on('translatePens', saveMeta2dData);
 }
 
-export async function setupMeta2dView() {
+export async function setupMeta2dView(target: HTMLElement) {
   const meta2dOptions = {
     rule: true,
   };
 
-  new Meta2d('meta2d', meta2dOptions);
+  new Meta2d(target, meta2dOptions);
 
   // 按需注册图形库
   // 以下为自带基础图形库
@@ -55,6 +59,10 @@ export async function setupMeta2dView() {
   // 注册其他自定义图形库
   // ...
 
+  const indexedDB = await setupIndexDB();
+  const objectStore = indexedDB.transition(DATABASES_META2D.TABLES_NAMES.TABLE_DOCUMENT).objectStore(DATABASES_META2D.TABLES_NAMES.TABLE_DOCUMENT);
+
+
   // 读取本地存储
   let data: any = localStorage.getItem('meta2d');
   if (data) {
@@ -68,4 +76,17 @@ export async function setupMeta2dView() {
     }
     meta2d.open(data);
   }
+
+  meta2d.on('active', active);
+  meta2d.on('inactive', inactive);
 }
+
+
+const { select } = useSelection();
+const active = (pens?: Pen[]) => {
+  select(pens);
+};
+
+const inactive = () => {
+  select();
+};

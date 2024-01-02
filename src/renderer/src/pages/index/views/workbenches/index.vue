@@ -1,52 +1,48 @@
 <template>
-  <div class="app-page">
-    <ToolBar />
+  <div ref="f" class="app-page">
+    <Toolbar />
 
-    <div class="designer">
-      <Graphics />
+    <Subfield class="h-full">
+      <Graphics v-ResizeWidth="graphicsBindings" />
       <View />
-      <Props />
-    </div>
+      <PropertyBar />
+    </Subfield>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue';
-import { PropertyBar } from './workArea';
-import ToolBar from './components/ToolBar.vue';
-import Graphics from './components/Graphics.vue';
-import View from './components/View.vue';
-import Props from './components/Props.vue';
+import { onMounted, onBeforeMount, ref, getCurrentInstance, reactive } from 'vue';
+import { PropertyBar, Toolbar, View, Graphics } from './workArea';
+import { setupIndexDB } from '@renderer/indexedDB';
+import { setupMeta2dView, setupMeta2dEvts } from '@renderer/meta';
+import { vResizeWidth } from '@libs/directives';
+import type { VResizeWidthBindings } from '@libs/directives';
 
-let timer: any;
-function save() {
-  if (timer) {
-    clearTimeout(timer);
-  }
-  timer = setTimeout(() => {
-    const data: any = meta2d.data();
-    localStorage.setItem('meta2d', JSON.stringify(data));
-    timer = void 0;
-  }, 1000);
-}
+import Subfield from '@components/Subfield';
 
-onMounted(() => {
-  meta2d.on('scale', save);
-  meta2d.on('add', save);
-  meta2d.on('opened', save);
-  meta2d.on('undo', save);
-  meta2d.on('redo', save);
-  meta2d.on('add', save);
-  meta2d.on('delete', save);
-  meta2d.on('rotatePens', save);
-  meta2d.on('translatePens', save);
+const graphicsBindings: VResizeWidthBindings = reactive({
+  width: 300,
+  barClass: 'default-c'
 });
+
+
+onMounted(setupMeta2dEvts);
 </script>
 
+<style lang="scss">
+.default-c {
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
+</style>
+
 <style lang="scss" scoped>
+
 .app-page {
   height: 100%;
   overflow: hidden;
+  user-select: none;
 
   .designer {
     display: grid;

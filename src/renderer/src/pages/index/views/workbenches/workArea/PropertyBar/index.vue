@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="propertyBar">
      1
   </div>
 </template>
@@ -10,4 +10,8 @@
 
 <style lang="scss" scoped>
 
+
+.propertyBar {
+  width: 300px;
+}
 </style>
