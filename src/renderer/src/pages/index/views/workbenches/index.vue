@@ -1,5 +1,5 @@
 <template>
-  <div ref="f" class="app-page">
+  <div ref="f" class="h-full overflow user-select-none">
     <Toolbar />
 
     <Subfield class="h-full">
@@ -21,33 +21,9 @@ import type { VResizeWidthBindings } from '@libs/directives';
 import Subfield from '@components/Subfield';
 
 const graphicsBindings: VResizeWidthBindings = reactive({
-  width: 300,
-  barClass: 'default-c'
+  width: 300
 });
 
 
 onMounted(setupMeta2dEvts);
 </script>
-
-<style lang="scss">
-.default-c {
-  position: absolute;
-  right: 0;
-  height: 100%;
-}
-</style>
-
-<style lang="scss" scoped>
-
-.app-page {
-  height: 100%;
-  overflow: hidden;
-  user-select: none;
-
-  .designer {
-    display: grid;
-    grid-template-columns: 300px 1fr 301px;
-    height: calc(100vh - 80px);
-  }
-}
-</style>

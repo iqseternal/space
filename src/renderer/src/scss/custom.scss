@@ -62,3 +62,19 @@ div.dropdown-menu.ant-dropdown, div.ant-dropdown-menu-submenu {
   }
 }
 
+
+// 自定义指令拖拽条的样式
+div.drag-and-drop-bar-right {
+  width: 8px;
+  height: 100%;
+  position: absolute;
+  right: -8px;
+  z-index: 1;
+  cursor: ew-resize;
+}
+div.drag-and-drop-bar-right-hover {
+  background-color: black;
+}
+div.drag-and-drop-bar-right-active {
+  background-color: black;
+}

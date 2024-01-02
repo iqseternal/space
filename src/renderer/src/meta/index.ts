@@ -16,8 +16,8 @@ import pako from 'pako';
 
 export async function saveMeta2dData() {
   const data = meta2d.data();
-  const buffer = pako.deflate(JSON.stringify(data));
-  console.log(buffer);
+  // const buffer = pako.deflate(JSON.stringify(data));
+  // console.log(buffer);
   localStorage.setItem('meta2d', JSON.stringify(data));
 }
 
