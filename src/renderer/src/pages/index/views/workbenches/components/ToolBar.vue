@@ -525,29 +525,13 @@ const onView = () => {
 
 <style lang="scss" scoped>
 
-
 .toolBar {
-
-
   display: flex;
   height: 40px;
   padding: 0 12px;
   position: relative;
   border-bottom: 1px solid var(--color-border);
   z-index: 2;
-
-  .logo {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 500;
-    padding-left: 0;
-
-    img {
-      height: 20px;
-      margin-right: 6px;
-    }
-  }
 
   a {
     display: flex;

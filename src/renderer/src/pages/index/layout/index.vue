@@ -115,7 +115,7 @@ import Subfield from '@components/Subfield';
 
 useFadeIn(() => {
   windowResizeAble(true);
-  windowResetCustomSize('mainWindow');
+  // windowResetCustomSize('mainWindow');
 });
 
 useMousetrap(hotKeys.reload.allKey, windowReload);

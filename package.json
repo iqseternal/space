@@ -55,6 +55,7 @@
     "file-saver": "^2.0.5",
     "http": "0.0.1-security",
     "lodash": "^4.17.21",
+    "marked": "^11.1.1",
     "mousetrap": "^1.6.5",
     "nightmare": "^3.0.2",
     "pako": "^2.1.0",

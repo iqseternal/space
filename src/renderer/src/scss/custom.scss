@@ -62,19 +62,23 @@ div.dropdown-menu.ant-dropdown, div.ant-dropdown-menu-submenu {
   }
 }
 
-
 // 自定义指令拖拽条的样式
-div.drag-and-drop-bar-right {
-  width: 8px;
+div.drag-and-drop-bar {
   height: 100%;
   position: absolute;
-  right: -8px;
-  z-index: 1;
+  z-index: 9999999;
   cursor: ew-resize;
 }
-div.drag-and-drop-bar-right-hover {
-  background-color: black;
+div.drag-and-drop-bar-hover {
+  animation: drag-enter-hover .2s ease-out forwards;
+  animation-delay: .5s;
 }
-div.drag-and-drop-bar-right-active {
-  background-color: black;
+div.drag-and-drop-bar-active {
+  background-color: rgb(145, 211, 239) !important;
+}
+
+@keyframes drag-enter-hover {
+  to {
+    background-color: rgb(145, 211, 239);
+  }
 }
