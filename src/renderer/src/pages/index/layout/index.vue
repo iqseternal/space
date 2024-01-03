@@ -58,11 +58,14 @@
       </template>
     </Header>
     <!-- <AFloatButton /> -->
-    <main class="container">
-      <RouterView v-slot="{ Component }">
-        <KeepAlive><component :is="Component" /></KeepAlive>
-      </RouterView>
-    </main>
+    <AutoDropdownMenu :menu="menuData">
+      <main class="container">
+        <RouterView v-slot="{ Component }">
+          <KeepAlive><component :is="Component" /></KeepAlive>
+        </RouterView>
+      </main>
+    </AutoDropdownMenu>
+
     <!-- <DropdownMenu trigger="contextmenu">
       <main class="container">
         <KeepAlive>
@@ -98,20 +101,29 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, nextTick, onBeforeMount } from 'vue';
+import { onMounted, nextTick, onBeforeMount, ref } from 'vue';
 import { IPC_MAIN_WINDOW } from '#/constants';
-import { DropdownMenu, MenuDriver, SingleMenu, ComboBoxMenu } from '@renderer/components/DropdownMenu';
+import type { DropdownDataType } from '@components/DropdownMenu';
+import { DropdownMenu, MenuDriver, SingleMenu, ComboBoxMenu, AutoDropdownMenu } from '@components/DropdownMenu';
 import { UserOutlined, ReloadOutlined, BugOutlined } from '@ant-design/icons-vue';
 import { hotKeys, windowReload, windowShow, windowRelaunch, windowMax, windowMin, windowClose, windowReduction, windowDevtool, copyText, pasteText, windowResetCustomSize, windowResizeAble } from '@renderer/actions';
 import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
 import { canCopyText } from '@libs/common';
 import { useMousetrap, useFadeIn } from '@renderer/hooks';
 
-import { Header, Indicator } from '@renderer/components/Header';
+import { Header, Indicator } from '@components/Header';
 import Sidebar from './sidebar/index.vue';
 import IconFont from '@components/IconFont';
 import Widget from '@components/Widget';
 import Subfield from '@components/Subfield';
+
+
+const menuData = ref<DropdownDataType>([
+  {
+    mark: 'FullscreenOutlined'
+  }
+]);
+
 
 useFadeIn(() => {
   windowResizeAble(true);

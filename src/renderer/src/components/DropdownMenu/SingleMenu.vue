@@ -25,17 +25,18 @@
 
 <script lang="ts" setup>
 import type { Ref } from 'vue';
-import { inject, computed, watchEffect, watch } from 'vue';
+import { inject, computed, watchEffect, watch, withDefaults } from 'vue';
 import { UserOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { DROPDOWN_STATUS } from './declare';
+import type { SingleMenuProps } from './declare';
 import { Subfield } from '@components/Subfield';
-
 import IconFont from '../IconFont';
 
-const props = defineProps({
-  mark: { type: String as PropType<IconRealKey | `icon-${string}`>, default: 'icon-' },
-  shortcut: { type: String, default: '' }
+const props = withDefaults(defineProps<SingleMenuProps>(), {
+  mark: 'icon-',
+  shortcut: ''
 });
+
 const emits = defineEmits(['click']);
 
 const dropdownStatus = inject<Ref<boolean>>(DROPDOWN_STATUS);
