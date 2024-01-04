@@ -1,19 +1,17 @@
 <template>
-  <div>
-    <ATooltip :title="props.title" :mouseEnterDelay="props.mouseEnterDelay">
-      <div class="widget" :class="props.className + ' ' + (props.autoHover  ? 'widget-hover' : '')" @click="() => emits('click')">
-        <template v-if="$slots.default"><slot name="default" /></template>
+  <ATooltip :title="props.title" :mouseEnterDelay="props.mouseEnterDelay">
+    <div v-bind="$attrs" class="widget" :class="props.className + ' ' + (props.autoHover  ? 'widget-hover' : '')" @click="() => emits('click')">
+      <template v-if="$slots.default"><slot name="default" /></template>
 
-        <template v-else-if="props.icon">
-          <IconFont :type="props.icon" />
-        </template>
+      <template v-else-if="props.icon">
+        <IconFont :type="props.icon" />
+      </template>
 
-        <template v-else>
-          <img class="widgetImg" :src="props.src" alt="" />
-        </template>
-      </div>
-    </ATooltip>
-  </div>
+      <template v-else>
+        <img class="widgetImg" :src="props.src" alt="" />
+      </template>
+    </div>
+  </ATooltip>
 </template>
 
 <script lang="ts" setup>

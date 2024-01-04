@@ -62,7 +62,7 @@ export const vResizeWidth: Directive<HTMLElement, VResizeWidthBindings> = {
     location();
     window.addEventListener('resize', location);
     function location() {
-      const v = el.offsetLeft + (value.direction === 'right' ? el.getBoundingClientRect().width - value.barSize / 2 : 1 * value.barSize / 2);
+      const v = el.offsetLeft + (value.direction === 'right' ? el.getBoundingClientRect().width - value.barSize / 2 : -1 * value.barSize / 2);
       setCssVar(div, 'left', toPixel(v));
     }
 

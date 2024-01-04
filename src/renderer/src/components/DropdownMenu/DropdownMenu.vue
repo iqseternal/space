@@ -14,13 +14,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watchEffect, provide } from 'vue';
-import { DROPDOWN_STATUS } from './declare';
+import { ref, watchEffect, provide, getCurrentInstance, inject } from 'vue';
+import type { Ref } from 'vue';
+import { DROPDOWN_STATUS, setupDropdownOpenModel } from './declare';
 import { useEventListener, useEventListenerForElement, useMousetrap } from '@renderer/hooks';
 
-const open = ref(false);
-
-provide(DROPDOWN_STATUS, open);
+const open = setupDropdownOpenModel();
 
 useEventListenerForElement(window as any, 'resize', () => {
   open.value = false;

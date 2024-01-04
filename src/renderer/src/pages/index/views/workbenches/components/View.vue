@@ -7,6 +7,7 @@ import { onMounted, onUnmounted } from 'vue';
 import { setupMeta2dView } from '@renderer/meta';
 
 onMounted(async () => {
+  // @ts-ignore
   await setupMeta2dView();
 })
 

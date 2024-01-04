@@ -21,4 +21,4 @@ export type {
   DropdownDataType
 } from './declare';
 
-export { isSingleMenuData, isComboBoxMenuData, isMenuDriverData } from './declare';
+export { isSingleMenuData, isComboBoxMenuData, isMenuDriverData, DROPDOWN_STATUS, setupDropdownOpenModel } from './declare';

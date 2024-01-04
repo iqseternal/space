@@ -5,52 +5,15 @@
       <template #left>
         <Indicator />
         <Subfield class="navMenu" style="justify-content: flex-start;">
-          <DropdownMenu placement="bottom">
+          <AutoDropdownMenu :menu="fileMenu" trigger="click">
             <span class="nav-item-title">文件</span>
-
-            <template #overlay>
-              <SingleMenu mark="FileAddOutlined" :shortcut="hotKeys.createFile.key">新建</SingleMenu>
-              <SingleMenu mark="FolderOpenOutlined" :shortcut="hotKeys.openFile.key">打开</SingleMenu>
-              <SingleMenu mark="ImportOutlined">导入</SingleMenu>
-              <MenuDriver />
-              <SingleMenu mark="SaveOutlined" :shortcut="hotKeys.saveFile.key">保存</SingleMenu>
-              <SingleMenu :shortcut="hotKeys.saveFileTo.key">另存为</SingleMenu>
-              <ComboBoxMenu mark="ExportOutlined" title="导出">
-                <SingleMenu mark="FileJpgOutlined">JSON</SingleMenu>
-                <MenuDriver />
-                <SingleMenu mark="FileImageOutlined">PNG</SingleMenu>
-                <SingleMenu>SVG</SingleMenu>
-
-                <MenuDriver />
-                <SingleMenu mark="FilePdfOutlined">Pdf</SingleMenu>
-                <SingleMenu mark="Html5Outlined">Html</SingleMenu>
-                <SingleMenu mark="FileMarkdownOutlined">Markdown</SingleMenu>
-              </ComboBoxMenu>
-              <SingleMenu mark="PrinterOutlined" :shortcut="hotKeys.printFile.key">打印</SingleMenu>
-            </template>
-          </DropdownMenu>
-          <DropdownMenu placement="bottom">
+          </AutoDropdownMenu>
+          <AutoDropdownMenu :menu="editMenu" trigger="click">
             <span class="nav-item-title">编辑</span>
-
-            <template #overlay>
-              <SingleMenu mark="RollbackOutlined" :shortcut="hotKeys.rollback.key">撤销</SingleMenu>
-              <SingleMenu mark="UndoOutlined" :shortcut="hotKeys.undo.key">恢复</SingleMenu>
-              <MenuDriver />
-              <SingleMenu mark="ScissorOutlined" :shortcut="hotKeys.scissor.key">剪切</SingleMenu>
-              <SingleMenu mark="CopyOutlined" :shortcut="hotKeys.copy.key">复制</SingleMenu>
-              <SingleMenu mark="SnippetsOutlined" :shortcut="hotKeys.snippets.key">粘贴</SingleMenu>
-              <MenuDriver />
-              <SingleMenu mark="SelectOutlined" :shortcut="hotKeys.allSelect.key">全选</SingleMenu>
-              <SingleMenu mark="DeleteOutlined" :shortcut="hotKeys.delete.key">删除</SingleMenu>
-            </template>
-          </DropdownMenu>
-          <DropdownMenu placement="bottom">
+          </AutoDropdownMenu>
+          <AutoDropdownMenu :menu="helpMenu" trigger="click">
             <span class="nav-item-title">帮助</span>
-
-            <template #overlay>
-              <SingleMenu mark="KeyOutlined">快捷键</SingleMenu>
-            </template>
-          </DropdownMenu>
+          </AutoDropdownMenu>
         </Subfield>
       </template>
       <template #control>
@@ -58,13 +21,11 @@
       </template>
     </Header>
     <!-- <AFloatButton /> -->
-    <AutoDropdownMenu :menu="menuData">
-      <main class="container">
-        <RouterView v-slot="{ Component }">
-          <KeepAlive><component :is="Component" /></KeepAlive>
-        </RouterView>
-      </main>
-    </AutoDropdownMenu>
+    <main class="container">
+      <RouterView v-slot="{ Component }">
+        <KeepAlive><component :is="Component" /></KeepAlive>
+      </RouterView>
+    </main>
 
     <!-- <DropdownMenu trigger="contextmenu">
       <main class="container">
@@ -110,20 +71,13 @@ import { hotKeys, windowReload, windowShow, windowRelaunch, windowMax, windowMin
 import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
 import { canCopyText } from '@libs/common';
 import { useMousetrap, useFadeIn } from '@renderer/hooks';
+import { fileMenu, editMenu, helpMenu } from '@renderer/menus';
 
 import { Header, Indicator } from '@components/Header';
 import Sidebar from './sidebar/index.vue';
 import IconFont from '@components/IconFont';
 import Widget from '@components/Widget';
 import Subfield from '@components/Subfield';
-
-
-const menuData = ref<DropdownDataType>([
-  {
-    mark: 'FullscreenOutlined'
-  }
-]);
-
 
 useFadeIn(() => {
   windowResizeAble(true);

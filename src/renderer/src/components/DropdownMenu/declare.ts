@@ -1,7 +1,16 @@
+import { ref, inject, provide } from 'vue';
 import { isBoolean, isUndefined } from '@suey/pkg-utils';
 import type { SubMenuProps } from 'ant-design-vue';
 
 export const DROPDOWN_STATUS = 'DROPDOWN_STATUS';
+
+export const setupDropdownOpenModel = () => {
+  const open = ref(false);
+
+  provide(DROPDOWN_STATUS, inject(DROPDOWN_STATUS, open));
+
+  return open;
+}
 
 export type SingleMenuProps = {
   mark?: IconRealKey | `icon-${string}`;
@@ -10,6 +19,7 @@ export type SingleMenuProps = {
 
 /** 快捷菜单单项的类型 */
 export type SingleMenuDataType = SingleMenuProps & {
+  title: string;
   onClick?: MouseOnClickCallBack;
 };
 

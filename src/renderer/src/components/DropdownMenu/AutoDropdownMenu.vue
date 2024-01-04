@@ -1,36 +1,19 @@
-<template>
-  <DropdownMenu trigger="contextmenu">
-    <slot name="default" />
-
-    <template #overlay>
-      {{ renderMenu(props.menu) }}
-    </template>
-  </DropdownMenu>
-</template>
-
-<script lang="tsx" setup>
-import { withDefaults } from 'vue';
+<script lang="tsx">
+import { withDefaults, defineComponent, computed } from 'vue';
 import type { DropdownDataType } from './declare';
 import { isComboBoxMenuData, isMenuDriverData, isSingleMenuData } from './declare';
+import type { DropdownProps } from 'ant-design-vue';
 import DropdownMenu from './DropdownMenu.vue';
 import MenuDriver from './MenuDriver.vue';
 import ComboBoxMenu from './ComboBoxMenu.vue';
 import SingleMenu from './SingleMenu.vue';
 
-const props = withDefaults(defineProps<{
-  menu: DropdownDataType;
-}>(), {
-  menu: () => ([])
-});
-
 const renderMenu = (menus: DropdownDataType) => {
   return menus.map((item, index) => {
     if (isMenuDriverData(item)) return <MenuDriver />;
-    if (isSingleMenuData(item)) return <SingleMenu {...item} key={item.mark as string + index} />;
-
+    if (isSingleMenuData(item)) return <SingleMenu {...item}>{item.title}</SingleMenu>;
     if (isComboBoxMenuData(item)) {
       const comboxBoxMenuProps = { ...item, children: void 0 };
-
       return <ComboBoxMenu {...comboxBoxMenuProps}>
         {renderMenu(item.children)}
       </ComboBoxMenu>
@@ -38,4 +21,23 @@ const renderMenu = (menus: DropdownDataType) => {
     return <></>;
   })
 }
+
+export default defineComponent({
+  props: {
+    trigger: { type: String as PropType<DropdownProps['trigger']>, default: () => 'contextmenu' },
+    menu: { type: Array as PropType<DropdownDataType>, default: () => ([]) }
+  },
+  setup(props, { slots, attrs }) {
+
+    const contextMenu = computed(() => renderMenu(props.menu));
+
+    // @ts-ignore
+    return () => <DropdownMenu {...attrs} trigger={props.trigger}>
+      {{
+        default: slots.default,
+        overlay: () => contextMenu.value
+      }}
+    </DropdownMenu>
+  }
+})
 </script>

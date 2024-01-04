@@ -1,6 +1,6 @@
 import { ref, reactive, watch } from 'vue';
 import { useDebounceHook } from '@renderer/hooks';
-import { Meta2d, Pen, register, registerAnchors, registerCanvasDraw } from '@meta2d/core';
+import { Meta2d, Pen, register, registerAnchors, registerCanvasDraw, deepClone } from '@meta2d/core';
 import { flowPens, flowAnchors } from '@meta2d/flow-diagram';
 import { activityDiagram, activityDiagramByCtx } from '@meta2d/activity-diagram';
 import { classPens } from '@meta2d/class-diagram';
@@ -12,7 +12,14 @@ import { ftaPens, ftaPensbyCtx, ftaAnchors } from '@meta2d/fta-diagram';
 import { setupIndexDB } from '@renderer/indexedDB';
 import { TABLES, TABLE_DOCUMENT, DATABASES_META2D } from '#constants/indexDB';
 import { useSelection } from '@pages/index/views/workbenches/hooks/selections';
+import type { Graphic } from '@pages/index/views/workbenches/preset';
 import pako from 'pako';
+
+export * from './actions';
+
+export const meta2dState = reactive({
+  isSetup: false
+});
 
 export async function saveMeta2dData() {
   const data = meta2d.data();
@@ -59,8 +66,8 @@ export async function setupMeta2dView(target: HTMLElement) {
   // 注册其他自定义图形库
   // ...
 
-  const indexedDB = await setupIndexDB();
-  const objectStore = indexedDB.transition(DATABASES_META2D.TABLES_NAMES.TABLE_DOCUMENT).objectStore(DATABASES_META2D.TABLES_NAMES.TABLE_DOCUMENT);
+  // const indexedDB = await setupIndexDB();
+  // const objectStore = indexedDB.transition(DATABASES_META2D.TABLES_NAMES.TABLE_DOCUMENT).objectStore(DATABASES_META2D.TABLES_NAMES.TABLE_DOCUMENT);
 
 
   // 读取本地存储
@@ -90,3 +97,4 @@ const active = (pens?: Pen[]) => {
 const inactive = () => {
   select();
 };
+

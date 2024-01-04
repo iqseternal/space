@@ -91,6 +91,7 @@ onMounted(() => {
 
 const onChangeData = () => {
   Object.assign(meta2d.store.data, data);
+  // @ts-ignore
   meta2d.store.patchFlagsBackground = true;
   meta2d.render();
 };
@@ -99,6 +100,7 @@ const onChangeOptions = (value) => {
   options.opened = value;
   meta2d.setOptions(options);
   meta2d.store.patchFlagsTop = true;
+  // @ts-ignore
   meta2d.store.patchFlagsBackground = true;
   meta2d.render();
 };

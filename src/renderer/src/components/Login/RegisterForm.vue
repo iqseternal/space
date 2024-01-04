@@ -42,7 +42,7 @@ import { vAutoAnimate } from '@formkit/auto-animate/vue';
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import RInput from '@renderer/components/RInput/RInput.vue';
 import RButton from '@renderer/components/RButton/RButton.vue';
-import RFormItem from './RFormItem.vue';
+import RFormItem from '@components/RFormItem';
 
 const emits = defineEmits(['finish']);
 

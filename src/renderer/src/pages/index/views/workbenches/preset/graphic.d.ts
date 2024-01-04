@@ -26,6 +26,9 @@ export interface Graphic {
     list?: unknown[];
     props?: unknown;
     z?: number;
+    anchors?: unknown;
+    lineName?: string;
+    type?: number;
   },
 }
 

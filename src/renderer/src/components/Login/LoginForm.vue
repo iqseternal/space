@@ -29,7 +29,7 @@ import { useValidate, useValidateRef } from '@renderer/hooks/useValidate';
 import Subfield from '@renderer/components/Subfield/Subfield.vue';
 import RInput from '@renderer/components/RInput/RInput.vue';
 import RButton from '@renderer/components/RButton/RButton.vue';
-import RFormItem from './RFormItem.vue';
+import RFormItem from '@components/RFormItem';
 
 const props = defineProps({
   autoFill: { type: Boolean, default: () => false }

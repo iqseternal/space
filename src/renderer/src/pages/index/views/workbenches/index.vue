@@ -34,12 +34,17 @@ const viewWidth = computed(() => graphicsBindings.width + propertyBindings.width
 onMounted(setupMeta2dEvts);
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .workbenches {
   --tool-bar-height: 40px;
+  --tool-bar-size: calc(var(--tool-bar-height) * 0.6);
+  --tool-bar-widget-padding: 4px;
+  --tool-bar-gap: 4px;
+  --tool-bar-margin: 4px;
 
   .viewContainer {
-    height: calc(100% - var(--tool-bar-height));
+    margin-top: var(--tool-bar-margin);
+    height: calc(100% - var(--tool-bar-height) - var(--tool-bar-margin));
   }
 }
 </style>
