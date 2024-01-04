@@ -6,13 +6,13 @@
         <Indicator />
         <Subfield class="navMenu" style="justify-content: flex-start;">
           <AutoDropdownMenu :menu="fileMenu" trigger="click">
-            <span class="nav-item-title">文件</span>
+            <span class="navItemTitle">文件</span>
           </AutoDropdownMenu>
           <AutoDropdownMenu :menu="editMenu" trigger="click">
-            <span class="nav-item-title">编辑</span>
+            <span class="navItemTitle">编辑</span>
           </AutoDropdownMenu>
           <AutoDropdownMenu :menu="helpMenu" trigger="click">
-            <span class="nav-item-title">帮助</span>
+            <span class="navItemTitle">帮助</span>
           </AutoDropdownMenu>
         </Subfield>
       </template>
@@ -122,7 +122,7 @@ div.compose {
       font-size: 12px;
       transition: all .5s linear;
 
-      .nav-item-title {
+      .navItemTitle {
         display: inline-block;
         height: $sMainCaptionBarHeight;
         line-height: calc($sMainCaptionBarHeight - 8px);

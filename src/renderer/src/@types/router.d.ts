@@ -2,18 +2,7 @@ import "vue-router";
 import * as icons from '@ant-design/icons-vue';
 import * as assrtUrls from '@renderer/assets';
 
-export type IconRealKey =
-Exclude<
-  Exclude<
-    Exclude<
-      Exclude<
-        Exclude<
-          keyof typeof icons
-        , 'TwoToneColor'>
-      , 'setTwoToneColor'>
-    , 'getTwoToneColor'>
-  , 'createFromIconfontCN'>
-, 'default'>;
+export type IconRealKey = Exclude<keyof typeof icons, 'TwoToneColor' | 'setTwoToneColor' | 'getTwoToneColor' | 'createFromIconfontCN' | 'default'>;
 
 declare module "vue-router" {
   interface RouteMeta {

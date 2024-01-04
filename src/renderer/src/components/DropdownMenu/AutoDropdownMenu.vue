@@ -22,9 +22,10 @@ const renderMenu = (menus: DropdownDataType) => {
   })
 }
 
+
 export default defineComponent({
   props: {
-    trigger: { type: String as PropType<DropdownProps['trigger']>, default: () => 'contextmenu' },
+    trigger: { type: String as PropType<Required<DropdownProps>['trigger']>, default: () => 'contextmenu' },
     menu: { type: Array as PropType<DropdownDataType>, default: () => ([]) }
   },
   setup(props, { slots, attrs }) {
