@@ -25,7 +25,7 @@
 
 <script lang="ts" setup>
 import type { Ref } from 'vue';
-import { inject, computed, watchEffect, watch, withDefaults } from 'vue';
+import { inject, computed, watchEffect, watch } from 'vue';
 import { UserOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { DROPDOWN_STATUS } from './declare';
 import type { SingleMenuProps } from './declare';

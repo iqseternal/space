@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import type { Ref } from 'vue';
-import { inject, computed, watchEffect, watch, withDefaults } from 'vue';
+import { inject, computed, watchEffect, watch } from 'vue';
 import { UserOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import type { ComboBoxMenuProps } from './declare';
 import { DROPDOWN_STATUS } from './declare';
