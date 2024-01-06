@@ -8,8 +8,10 @@ export type AntdRuleObject = ExtractObj<AntdRules[string]>;
 
 export type AntdValidator<V, RulesForm = any> = (rules: RulesForm, value: V, callback: (errMsg?: string) => void) => Promise<string | void>;
 
+// 验证函数的类型
 export type ValidatorFn<T> = (value: T) => boolean | Promise<boolean>;
 
+// 可以传递给 useRules 的 validator 的类型
 export type RuleArr<T> = (string | ValidatorFn<T> | RuleArr<T>)[];
 
 export type RuleObject<V> = Omit<AntdRuleObject, 'validator'> & {
@@ -20,6 +22,7 @@ export type Rules<R> = {
   [Key in keyof R]: RuleObject<R[Key]>;
 };
 
+// 逻辑函数，和 useRules 传递的函数一起用, 可对传递函数进行逻辑变换
 export const is = <T>(validatorFn: ValidatorFn<T>): ValidatorFn<T> => validatorFn;
 
 export const and = <T>(...validatorFns: ValidatorFn<T>[]): ValidatorFn<T> => (value) => validatorFns.every(fn => fn(value));

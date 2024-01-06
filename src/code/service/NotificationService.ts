@@ -3,6 +3,9 @@ import { CONFIG } from '#/constants';
 import { Notification } from 'electron';
 import icon from '#/../resources/icon.png?asset';
 
+/**
+ * 系统通知
+ */
 export class NotificationService {
 
 

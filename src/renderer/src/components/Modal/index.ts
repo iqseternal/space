@@ -2,8 +2,6 @@
 
 import Modal from './index.vue';
 
-export type ModalProps = ComponentsProps<typeof Modal>;
-
 export type ModalEmits = Record<
   (typeof Modal)['emits'] extends string[]
     ? (typeof Modal)['emits'][number]
@@ -11,6 +9,9 @@ export type ModalEmits = Record<
   ,
   () => void
 >;
+
+export * from './declare';
+
 
 export { Modal };
 

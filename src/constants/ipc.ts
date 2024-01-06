@@ -34,6 +34,7 @@ export class IPC_RENDER_DIALOG_WINDOW {
   public static readonly DIALOG_TYPE = 'DIALOG_TYPE';
 }
 
+/** 定义每一个 Channel 所对应的类型 */
 export type MainEventHandlers = {
   [IPC_DEV.DEV_OPEN_TOOL]: (status: boolean, options?: {
     mode: ('left' | 'right' | 'bottom' | 'undocked' | 'detach');

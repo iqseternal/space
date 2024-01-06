@@ -7,7 +7,10 @@ export enum SelectionMode {
   Pen,
 }
 
-const selections = reactive({
+const selections: UnwrapNestedRefs<{
+  mode: SelectionMode;
+  pen: Pen | undefined;
+}> = reactive({
   // 选中对象类型：0 - 画布；1 - 单个图元
   mode: SelectionMode.File,
   pen: void 0 as (Pen | undefined),

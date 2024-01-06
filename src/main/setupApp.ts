@@ -1,7 +1,8 @@
 import { app, BrowserView, BrowserWindow } from 'electron';
 import { electronApp, optimizer } from '@electron-toolkit/utils';
 import { PrinterService } from '#/code/service/PrinterService';
-import { print } from '@suey/printer';
+import { safeRunNoneArgAsyncFn } from '#code/core/common/app';
+import { print, printError } from '@suey/printer';
 
 import './setupHandles';
 
@@ -14,9 +15,12 @@ export const DEFAULT_APP_OPTIONS: Required<AppOptions> = {
 };
 
 export const setupApp = async (startApp: () => void, ops?: Partial<AppOptions>): Promise<void> => {
-  print();
   PrinterService.printInfo('应用程序构建, setupApp...');
   const options = { ...DEFAULT_APP_OPTIONS, ...ops } as Required<AppOptions>;
+
+  const safeStartApp = safeRunNoneArgAsyncFn(startApp, () => {
+    app.quit();
+  });
 
   app.whenReady().then(() => {
     electronApp.setAppUserModelId(options.modelId);
@@ -26,13 +30,10 @@ export const setupApp = async (startApp: () => void, ops?: Partial<AppOptions>):
     if (BrowserWindow.getAllWindows().length !== 0) {
       BrowserWindow.getAllWindows()[0].focus();
     }
-    else startApp();
+    else safeStartApp();
 
     app.on('activate', () => {
-      if (BrowserWindow.getAllWindows().length === 0) {
-        try { startApp(); }
-        catch { app.quit(); }
-      }
+      if (BrowserWindow.getAllWindows().length === 0)  safeStartApp();
     });
   });
 

@@ -33,7 +33,6 @@ const props = defineProps({
 });
 
 const isMaximized = ref(false);
-window.electron.ipcRenderer.on(IPC_RENDER_WINDOW.WINDOW_STATUS, (_, d) => (isMaximized.value = d.data));
 
 const openDevTool = () => windowDevtool(true, { mode: 'detach' });
 const maxWindow = () => windowMax();

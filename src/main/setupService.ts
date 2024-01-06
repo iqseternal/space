@@ -1,6 +1,5 @@
 import { WindowService } from '#code/service/WindowService';
 import { WallpaperService } from '#/code/service/WallpaperService';
-import { ReptileService } from '#/code/service/ReptileService';
 import { DownloadService } from '#/code/service/DownloadService';
 import { AppDataService } from '#/code/service/AppDataService';
 import { IpcResponseOk, sendToRenderer, setIpcMainHandle } from '#/code/core/common/ipcR';
@@ -34,6 +33,11 @@ export async function setupMainWindow() {
   setWindowDevtoolsDetach(windowService.window);
 
   PrinterService.printInfo('主窗口ID, ', windowService.window.id);
+
+  windowService.addOpenCatchCb(() => {
+    app.exit(1);
+  });
+
   return windowService;
 }
 

@@ -1,4 +1,3 @@
-import type {} from 'vue';
 import { defineProps } from 'vue';
 import type { ModalProps as AntdModalProps } from 'ant-design-vue';
 
@@ -14,7 +13,7 @@ export const getProps = () => defineProps({
   okText: { type: String, default: '确定' }
 });
 
-export type ModalProps = ReturnType<typeof getProps> & AntdModalProps;
+export type ModalProps = ReturnType<typeof getProps>;
 
 export function getTop<T extends HTMLElement>(e: T) {
   let offset = e.offsetTop;

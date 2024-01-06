@@ -24,11 +24,11 @@ import type { FormInstance } from 'ant-design-vue';
 import { Space, FormItem, Modal, Form, Input, InputPassword, notification, message, Checkbox, Radio } from 'ant-design-vue';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
-import { useValidate, useValidateRef } from '@renderer/hooks/useValidate';
+import { useValidate, useValidateRef } from '@renderer/hooks';
 
-import Subfield from '@renderer/components/Subfield/Subfield.vue';
-import RInput from '@renderer/components/RInput/RInput.vue';
-import RButton from '@renderer/components/RButton/RButton.vue';
+import Subfield from '@components/Subfield';
+import RInput from '@components/RInput';
+import RButton from '@components/RButton';
 import RFormItem from '@components/RFormItem';
 
 const props = defineProps({

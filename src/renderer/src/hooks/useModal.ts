@@ -1,7 +1,6 @@
 
 import type { UnwrapNestedRefs, Ref, ComponentPublicInstance } from 'vue';
 import { reactive, ref, toRefs, computed, getCurrentInstance, watch, ToRefs, toValue } from 'vue';
-
 import type { ModalEmits, ModalProps } from '@components/Modal';
 
 const defaultModalProps = {
@@ -9,7 +8,7 @@ const defaultModalProps = {
   title: '',
   okText: '确定',
   cancelText: '取消',
-  height: 'max-content'
+  height: 'max-content',
 };
 
 export type ModalMode = 'view' | 'create' | 'edit' | `other-${string}`;
@@ -85,7 +84,7 @@ export function useModalAttrs<
 
 }
 
-
+// modal 的所有 Attrs
 export type ModalAllAttrs<R> = ReturnType<typeof useModalAttrs<R>>['modalAllAttrs'];
 
 export interface ModalEvt<SourceDataType> {
@@ -93,6 +92,11 @@ export interface ModalEvt<SourceDataType> {
   init: (modeAttrs: ModalAllAttrs<SourceDataType>['value']) => void;
 }
 
+/**
+ * 使用事件, 一般使用这个进行 Modal 数据初始化
+ * @param evts
+ * @returns
+ */
 export function useModalEvt<R>(evts: Partial<ModalEvt<Partial<R>>>) {
   const instance = getCurrentInstance();
 
@@ -109,13 +113,17 @@ export function useModalEvt<R>(evts: Partial<ModalEvt<Partial<R>>>) {
   })
 }
 
-
-export function useModalProps<R>() {
+/**
+ * 访问 Modal 的传递的 Props，准确来说是 Attrs
+ * @returns
+ */
+export function useModalProps<R>(): ModalAllAttrs<R> {
   const instance = getCurrentInstance();
 
   const attrs = computed(() => ({
     ...(instance?.props ?? {}),
     ...((instance as any).setupContext.attrs ?? {})
   })) as ModalAllAttrs<R>;
+
   return attrs;
 }

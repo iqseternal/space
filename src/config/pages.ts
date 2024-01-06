@@ -1,7 +1,22 @@
+/**
+ * ==========================================
+ * 页面 常量编写, 关于页面入口路径的编写
+ * ==========================================
+ */
+
 import { is } from '@electron-toolkit/utils';
 import { join } from 'path';
 
 /** Config , 并不存储在 JSON 中, 不希望用户更改 */
+/**
+ * 根据当前的环境获取URL
+ *
+ * dev: 获取URL
+ * pro: 获取路径
+ *
+ * @param url
+ * @returns
+ */
 const makeStartUrl = (url: string) => {
   if (is.dev && process.env['ELECTRON_RENDERER_URL'])
     return `${process.env['ELECTRON_RENDERER_URL']}/${url}`;

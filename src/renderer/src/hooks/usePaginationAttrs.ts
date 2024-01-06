@@ -3,6 +3,13 @@ import { reactive, onBeforeMount } from 'vue';
 
 import type { PaginationProps } from 'ant-design-vue';
 
+/**
+ * 表格分页参数的 Hook
+ * @param props
+ * @param callbackFn
+ * @param autoload
+ * @returns
+ */
 export function usePagination<T extends Partial<PaginationProps>>(props?: T, callbackFn?: () => void | Promise<void>, autoload = true) {
 
   const callback = {

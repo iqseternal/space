@@ -17,7 +17,7 @@
         </Subfield>
       </template>
       <template #control>
-        <!-- <Widget title="打开设置页面" icon="DingtalkCircleFilled" /> -->
+        <Widget title="打开设置页面" icon="SettingOutlined" @click="() => openSettingPage()" />
       </template>
     </Header>
     <!-- <AFloatButton /> -->
@@ -67,7 +67,7 @@ import { IPC_MAIN_WINDOW } from '#/constants';
 import type { DropdownDataType } from '@components/DropdownMenu';
 import { DropdownMenu, MenuDriver, SingleMenu, ComboBoxMenu, AutoDropdownMenu } from '@components/DropdownMenu';
 import { UserOutlined, ReloadOutlined, BugOutlined } from '@ant-design/icons-vue';
-import { hotKeys, windowReload, windowShow, windowRelaunch, windowMax, windowMin, windowClose, windowReduction, windowDevtool, copyText, pasteText, windowResetCustomSize, windowResizeAble } from '@renderer/actions';
+import { hotKeys, windowReload, windowShow, windowRelaunch, windowMax, windowMin, windowClose, windowReduction, windowDevtool, copyText, pasteText, windowResetCustomSize, windowResizeAble, openSettingPage } from '@renderer/actions';
 import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
 import { canCopyText } from '@libs/common';
 import { useMousetrap, useFadeIn } from '@renderer/hooks';
@@ -141,12 +141,10 @@ div.compose {
   main.container {
     padding: 0px 5px;
     width: calc(100% - var(--s-main-frame-sidebar-width));
-    /* width: calc(100%); */
     height: calc(100% - $sMainCaptionBarHeight - 2 * var(--p));
     background-color: var(--s-main-frame-bg-darkness-color);
     position: absolute;
     top: calc($sMainCaptionBarHeight + var(--p));
-    /* left: 0; */
     left: var(--s-main-frame-sidebar-width);
     padding-top: var(--p);
     @include beautifulBar(auto);

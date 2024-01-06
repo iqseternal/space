@@ -14,9 +14,10 @@
 <script lang="ts" setup>
 import { useMousetrap, useFadeIn } from '@renderer/hooks';
 import { hotKeys, windowReload } from '@renderer/actions';
-import Header from '@renderer/components/Header';
-import SiderNav from './SiderNav.vue';
 import { useRoute } from 'vue-router';
+import Header from '@components/Header';
+import SiderNav from './SiderNav.vue';
+
 
 const route = useRoute();
 

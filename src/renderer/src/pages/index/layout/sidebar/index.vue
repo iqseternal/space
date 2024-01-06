@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Subfield } from '@renderer/components/Subfield';
+import { Subfield } from '@components/Subfield';
 import Navigation from './Navigation.vue';
 import Personal from './Personal.vue';
 </script>

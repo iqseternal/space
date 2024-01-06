@@ -1,6 +1,6 @@
 import "vue-router";
-import * as icons from '@ant-design/icons-vue';
-import * as assrtUrls from '@renderer/assets';
+import type * as icons from '@ant-design/icons-vue';
+import type * as assrtUrls from '@renderer/assets';
 
 export type IconRealKey = Exclude<keyof typeof icons, 'TwoToneColor' | 'setTwoToneColor' | 'getTwoToneColor' | 'createFromIconfontCN' | 'default'>;
 
