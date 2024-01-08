@@ -91,7 +91,11 @@ export function useRules<R>(rules: Partial<Rules<R>>): AntdRules {
 
         if (result) {
           // 后续是个数组, 那么走子块逻辑
-          if (Array.isArray(arr[j])) return judgeSubChunk(arr[j] as RuleArr<V>, value);
+          if (Array.isArray(arr[j])) {
+            const subStatus = judgeSubChunk(arr[j] as RuleArr<V>, value);
+            if (isString(subStatus)) return subStatus;
+          }
+
           // 不是逻辑块, 那么就应该走下一个逻辑
           i = findArrIndex(arr, e => isFunction(e), j) - 1;
           if (i < 0) return true;
@@ -102,9 +106,13 @@ export function useRules<R>(rules: Partial<Rules<R>>): AntdRules {
           if (isString(arr[j])) return arr[j] as string;
           // 错误块子逻辑
           if (Array.isArray(arr[j]) && j + 1 < arr.length) {
-            if (Array.isArray(arr[j + 1])) return judgeSubChunk(arr[j + 1] as RuleArr<V>, value);
-            if (isString(arr[j + 1])) return arr[j + 1] as string;
-            throw new Error(`useRules: 子逻辑表述错误`);
+            if (Array.isArray(arr[j + 1])) {
+              if (arr[j + 1].length < 2) throw new Error(`useRules: 子逻辑表述错误`);
+              const subStatus = judgeSubChunk(arr[j + 1] as RuleArr<V>, value);
+              if (isString(subStatus)) return subStatus;
+            }
+            else if (isString(arr[j + 1])) return arr[j + 1] as string;
+            else throw new Error(`useRules: 子逻辑表述错误`);
           }
           // 下一次
           i = findArrIndex(arr, e => isFunction(e), j) - 1;
