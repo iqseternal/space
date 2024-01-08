@@ -35,7 +35,9 @@ const rules = useRules<Response>({
   name: {
     required: true,
     validator: [
-      validatorValidStr, [validatorRealName, '请输入真实姓名']
+      validatorValidStr, [
+        validatorRealName, '请输入真实姓名'
+      ]
     ]
   }
 })

@@ -56,7 +56,7 @@ import Widget from '@components/Widget';
 
 useFadeIn(() => {
   windowResizeAble(true);
-  windowResetCustomSize('mainWindow');
+  // windowResetCustomSize('mainWindow');
 });
 
 useMousetrap(hotKeys.reload.allKey, windowReload);
