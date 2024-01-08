@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref, watch, computed, watchEffect, nextTick, provide } from 'vue';
 import { setupMeta2dView } from '@renderer/meta';
-import { useDebounceHook } from '@renderer/hooks';
+import { useDebounce } from '@renderer/hooks';
 import { AutoDropdownMenu, setupDropdownOpenModel } from '@components/DropdownMenu';
 import { meta2dViewMenu } from '@renderer/menus';
 import { useSelection, SelectionMode } from '../../hooks/selections';
@@ -33,7 +33,7 @@ onMounted(() => {
   if (!viewContainer.value) return;
   setupMeta2dView(viewContainer.value);
 
-  watch(() => props.width, useDebounceHook(() => {
+  watch(() => props.width, useDebounce(() => {
     meta2d.resize();
   }, 40), {
     flush: 'sync'
