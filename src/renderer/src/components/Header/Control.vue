@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { IPC_DEV, IPC_MAIN_WINDOW, IPC_RENDER_WINDOW, CONFIG } from '#/constants';
+import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW, CONFIG } from '#/constants';
 import { windowCloseSvg, windowMaxSvg, windowMinSvg, windowRegionSvg } from '@renderer/assets';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 

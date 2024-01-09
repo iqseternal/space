@@ -1,6 +1,6 @@
 
 
 export * from './graphic';
-export type * from './graphic.d';
+export type * from './graphic';
 
 export * from './toolbar';

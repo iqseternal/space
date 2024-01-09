@@ -3,7 +3,7 @@
     <div class="flex-center" style="padding: 10px;">
       <AAvatar src="https://www.antdv.com/assets/logo.1ef800a8.svg" :size="32" shape="square" />
       <div class="overflow-x-hidden flex-col" style="align-items: unset;font-size: 12px;margin-left: 8px;">
-        <Ellipsis text="严旭" />
+        <Ellipsis text="1" />
         <Ellipsis text="xun.yan@dbounce.com" />
       </div>
     </div>

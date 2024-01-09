@@ -1,5 +1,5 @@
 
-import type { Graphic, GraphicGroup } from './graphic.d';
+import type { Graphic, GraphicGroup } from './graphic';
 
 export const SYSYTEM_GRAPHIC_GROUPS: GraphicGroup = [
   {

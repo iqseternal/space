@@ -73,7 +73,8 @@ export const setWindowCloseCaptionContextmenu = (window: BrowserWindow) => {
 }
 
 export const setWindowDevtoolsDetach = (window: BrowserWindow) => {
-  if (is.dev) window.webContents.openDevTools({ mode: 'detach' });
+  // if (is.dev)
+  window.webContents.openDevTools({ mode: 'detach' });
 }
 
 

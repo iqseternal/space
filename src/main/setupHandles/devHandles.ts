@@ -1,7 +1,7 @@
 import { BrowserWindow, app, screen } from 'electron';
 import { setIpcMainHandle, sendToRenderer, IpcResponseOk } from '#/code/core/common/ipcR';
 import { reloadApp } from '#code/core/common/app';
-import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW, IPC_DEV } from '#/constants';
+import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
 import { PAGES_WINDOW_SETTING, PAGES_WINDOW_MAIN } from '#/config/pages';
 import { getWindowFrom } from '#/code/core/common/window';
 import { is } from '@electron-toolkit/utils';
@@ -10,7 +10,7 @@ import { AppConfigService } from '#/code/service/AppConfigService';
 import { UserConfigService } from '#/code/service/UserConfigService';
 import { PrinterService } from '#/code/service/PrinterService';
 
-setIpcMainHandle(IPC_DEV.DEV_OPEN_TOOL, (e, status, options?) => ipcR((ok, fail) => {
+setIpcMainHandle(IPC_MAIN_WINDOW.DEV_OPEN_TOOL, (e, status, options?) => ipcR((ok, fail) => {
   const window = getWindowFrom(e);
 
   if (!window) return fail(false, '找不到指定窗口');

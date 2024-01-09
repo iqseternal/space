@@ -1,9 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { terminalSvg, dashboardSvg, settingSvg } from '@renderer/assets';
-import { makeRoute } from '@libs/router';
-// import Layout from '@renderer/pages/index/layout/index.vue';
-
-const Layout = () => import('@renderer/pages/index/layout/index.vue');
+import { View, makeRoute } from '@libs/router';
 
 export const loginRoute = makeRoute({
   name: 'Login',
@@ -14,14 +11,27 @@ export const loginRoute = makeRoute({
 export const spaceRoutes = makeRoute({
   name: 'Space',
   path: '/space',
-  component: Layout,
+  component: () => import('@renderer/pages/index/layout/index.vue'),
   redirect: '/space/workbenches',
   children: [
     {
       name: 'Workbenches',
       path: 'workbenches',
-      meta: { svg: terminalSvg, title: '工作台' },
-      component: () => import('@pages/index/views/workbenches/index.vue')
+      meta: { svg: dashboardSvg, title: '工作台' },
+      component: View,
+      redirect: '/space/workbenches/bulletinBoard',
+      children: [
+        {
+          name: 'BulletinBoard',
+          path: 'bulletinBoard',
+          component: () => import('@pages/index/views/workbenches/bulletinBoard/index.vue')
+        },
+        {
+          name: 'DrawingBoard',
+          path: 'drawingBoard',
+          component: () => import('@pages/index/views/workbenches/drawingBoard/index.vue')
+        }
+      ]
     },
     {
       name: 'Dashboard',
@@ -32,7 +42,7 @@ export const spaceRoutes = makeRoute({
     {
       name: 'Profile',
       path: 'profile',
-      meta: { svg: settingSvg },
+      meta: { icon: 'ProfileOutlined' },
       component: () => import('@pages/index/views/profile/index.vue')
     }
   ]

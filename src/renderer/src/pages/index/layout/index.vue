@@ -15,49 +15,19 @@
             <span class="navItemTitle">帮助</span>
           </AutoDropdownMenu>
         </Subfield>
+        <Widget title="历史记录">
+          <IconFont type="HistoryOutlined" />
+        </Widget>
       </template>
       <template #control>
         <Widget title="打开设置页面" icon="SettingOutlined" @click="() => openSettingPage()" />
       </template>
     </Header>
-    <!-- <AFloatButton /> -->
     <main class="container">
       <RouterView v-slot="{ Component }">
         <KeepAlive><component :is="Component" /></KeepAlive>
       </RouterView>
     </main>
-
-    <!-- <DropdownMenu trigger="contextmenu">
-      <main class="container">
-        <KeepAlive>
-          <RouterView />
-        </KeepAlive>
-      </main>
-
-      <template #overlay>
-        <SingleMenu mark="FolderViewOutlined" disabled>查看</SingleMenu>
-        <SingleMenu disabled>排序方式</SingleMenu>
-        <SingleMenu mark="CopyOutlined" :shortcut="hotKeys.copy.key" :disabled="!canCopyText()" @click="() => copyText()">
-          复制
-        </SingleMenu>
-        <SingleMenu shortcut="Ctrl+V">粘贴</SingleMenu>
-        <SingleMenu mark="ReloadOutlined" shortcut="Ctrl+R" @click="() => windowReload()">重新加载</SingleMenu>
-        <SingleMenu mark="BugOutlined" :shortcut="hotKeys.openDevTool.key" @click="() => windowDevtool(true, { mode: 'detach' })">
-          打开开发者工具
-        </SingleMenu>
-        <MenuDriver />
-        <ComboBoxMenu mark="WindowsOutlined" title="窗口">
-          <SingleMenu mark="FullscreenOutlined" @click="() => windowMax()">最大化</SingleMenu>
-          <SingleMenu mark="MinusOutlined" @click="() => windowMin()"> 最小化</SingleMenu>
-          <SingleMenu @click="() => windowReduction()">还原窗口</SingleMenu>
-          <SingleMenu mark="CloseOutlined" :shortcut="hotKeys.closeWindow.key" @click="() => windowClose()">
-            关闭窗口
-          </SingleMenu>
-        </ComboBoxMenu>
-        <MenuDriver />
-        <SingleMenu mark="TrophyOutlined" disabled>转到设置</SingleMenu>
-      </template>
-    </DropdownMenu> -->
   </div>
 </template>
 
@@ -67,7 +37,7 @@ import { IPC_MAIN_WINDOW } from '#/constants';
 import type { DropdownDataType } from '@components/DropdownMenu';
 import { DropdownMenu, MenuDriver, SingleMenu, ComboBoxMenu, AutoDropdownMenu } from '@components/DropdownMenu';
 import { UserOutlined, ReloadOutlined, BugOutlined } from '@ant-design/icons-vue';
-import { hotKeys, windowReload, windowShow, windowRelaunch, windowMax, windowMin, windowClose, windowReduction, windowDevtool, copyText, pasteText, windowResetCustomSize, windowResizeAble, openSettingPage } from '@renderer/actions';
+import { hotKeys, windowReload, windowDevtool, copyText, pasteText, windowResizeAble, openSettingPage } from '@renderer/actions';
 import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
 import { canCopyText } from '@libs/common';
 import { useMousetrap, useFadeIn } from '@renderer/hooks';

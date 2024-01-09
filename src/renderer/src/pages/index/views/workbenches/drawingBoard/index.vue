@@ -2,11 +2,19 @@
   <div class="h-full overflow user-select-none workbenches">
     <Toolbar />
 
-    <div class="w-full flex-between viewContainer" style="flex-shrink: 0;">
+    <div class="w-full flex-between viewContainer">
       <Graphics v-ResizeWidth="graphicsBindings" />
       <View :width="viewWidth" />
       <PropertyBar v-ResizeWidth="propertyBindings" />
     </div>
+
+    <AFloatButtonGroup trigger="click" type="primary" :style="{ right: '24px' }">
+      <template #icon>
+        <IconFont type="CustomerServiceOutlined" />
+      </template>
+
+      <AFloatButton />
+    </AFloatButtonGroup>
   </div>
 </template>
 
@@ -16,8 +24,10 @@ import { PropertyBar, Toolbar, View, Graphics } from './workArea';
 import { setupIndexDB } from '@renderer/indexedDB';
 import { setupMeta2dView, setupMeta2dEvts, saveMeta2dData } from '@renderer/meta';
 import { vResizeWidth } from '@libs/directives';
+
 import type { VResizeWidthBindings } from '@libs/directives';
 import Subfield from '@components/Subfield';
+import IconFont from '@components/IconFont';
 
 const graphicsBindings: VResizeWidthBindings = reactive({
   minWidth: 190,

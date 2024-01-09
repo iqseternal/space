@@ -11,8 +11,8 @@ import { chartsPens } from '@meta2d/le5le-charts';
 import { ftaPens, ftaPensbyCtx, ftaAnchors } from '@meta2d/fta-diagram';
 import { setupIndexDB } from '@renderer/indexedDB';
 import { TABLES, TABLE_DOCUMENT, DATABASES_META2D } from '#constants/indexDB';
-import { useSelection } from '@pages/index/views/workbenches/hooks/selections';
-import type { Graphic } from '@pages/index/views/workbenches/preset';
+import { useSelection } from '@pages/index/views/workbenches/drawingBoard/hooks/selections';
+import type { Graphic } from '@pages/index/views/workbenches/drawingBoard/preset';
 import pako from 'pako';
 
 export * from './actions';

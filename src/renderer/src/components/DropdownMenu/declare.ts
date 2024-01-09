@@ -20,6 +20,7 @@ export type SingleMenuProps = {
 /** 快捷菜单单项的类型 */
 export type SingleMenuDataType = SingleMenuProps & {
   title: string;
+  disabled?: boolean;
   onClick?: MouseOnClickCallBack;
 };
 

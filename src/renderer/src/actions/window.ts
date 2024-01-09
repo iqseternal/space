@@ -1,4 +1,4 @@
-import { IPC_MAIN_WINDOW, IPC_DEV } from '#/constants';
+import { IPC_MAIN_WINDOW } from '#/constants';
 import type { MainEventHandlers } from '#/constants/ipc';
 
 /**
@@ -83,4 +83,4 @@ export const windowClose = (id?: number) => window.electron.ipcRenderer.invoke(I
  * @param args
  * @returns
  */
-export const windowDevtool = (...args: Parameters<MainEventHandlers[typeof IPC_DEV.DEV_OPEN_TOOL]>) => window.electron.ipcRenderer.invoke(IPC_DEV.DEV_OPEN_TOOL, ...args);
+export const windowDevtool = (...args: Parameters<MainEventHandlers[typeof IPC_MAIN_WINDOW.DEV_OPEN_TOOL]>) => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.DEV_OPEN_TOOL, ...args);

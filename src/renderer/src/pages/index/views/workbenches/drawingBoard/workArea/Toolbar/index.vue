@@ -109,6 +109,9 @@
     <Widget title="窗口大小" @click="onScaleWindow">
       <IconFont type="FullscreenOutlined" />
     </Widget>
+    <Widget title="刷新" @click="refresh">
+      <IconFont type="ReloadOutlined" />
+    </Widget>
     <Widget :autoHover="false">
       <div style="width: 64px" />
     </Widget>
@@ -206,6 +209,9 @@ const changeToArrow = (value: string) => {
   }
 };
 
+const refresh = () => {
+  meta2d.render();
+}
 </script>
 
 <style lang="scss" scoped>

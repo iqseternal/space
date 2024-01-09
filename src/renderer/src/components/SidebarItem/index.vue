@@ -51,5 +51,17 @@ export default defineComponent({
     height: 100%;
     object-fit: contain;
   }
+
+  &:deep(span) {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 </style>

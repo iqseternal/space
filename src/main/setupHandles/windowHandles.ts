@@ -8,7 +8,7 @@ import { PAGES_WINDOW_SETTING, PAGES_WINDOW_MAIN } from '#/config/pages';
 import { AppConfigService } from '#/code/service/AppConfigService';
 import { UserConfigService } from '#/code/service/UserConfigService';
 import { Printer } from '@suey/printer';
-import { setupMainWindow, setupSettingWindow } from '../../setupService';
+import { setupMainWindow, setupSettingWindow } from '../setupService';
 import { PrinterService } from '#/code/service/PrinterService';
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_MAX_SIZE, (e, id) => ipcR((ok, fail) => {

@@ -1,8 +1,15 @@
 
 <template>
   <ASpace style="display: flex;flex-direction: column;" :size="14">
-    <template v-for="item in controls" :key="item.svg">
-      <SidebarItem :src="item.svg" @click="() => router.push(item.path)" />
+    <template v-for="item in spaceRoutes.children" :key="item.meta.fullpath">
+      <template v-if="item.meta.svg">
+        <SidebarItem :src="item.meta.svg" @click="() => router.push(item.meta.fullpath)" />
+      </template>
+      <template v-else>
+        <SidebarItem @click="() => router.push(item.meta.fullpath)">
+          <IconFont :type="item.meta.icon" />
+        </SidebarItem>
+      </template>
     </template>
   </ASpace>
 </template>
@@ -11,23 +18,10 @@
 import { useRouter, useRoute } from 'vue-router';
 import { Space } from 'ant-design-vue';
 import { terminalSvg, dashboardSvg, settingSvg } from '@renderer/assets';
+import { spaceRoutes } from '@pages/index/router/modules';
 
-import SidebarItem from '@renderer/components/SidebarItem';
+import SidebarItem from '@components/SidebarItem';
+import IconFont from '@components/IconFont';
 
-const router = useRouter(), route = useRoute();
-
-const controls = [
-  {
-    svg: terminalSvg,
-    path: '/space/workbenches'
-  },
-  {
-    svg: dashboardSvg,
-    path: '/space/dashboard'
-  },
-  {
-    svg: settingSvg,
-    path: '/space/profile'
-  }
-];
+const router = useRouter();
 </script>

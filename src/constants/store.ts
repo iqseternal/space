@@ -14,7 +14,3 @@ export interface StoreKeyMap {
     height: number;
   };
 }
-
-export const defaultStoreMapValue: Partial<Record<keyof StoreKeyMap, StoreKeyMap[keyof StoreKeyMap]>> = {
-
-}

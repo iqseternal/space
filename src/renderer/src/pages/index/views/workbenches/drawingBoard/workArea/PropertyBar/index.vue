@@ -19,7 +19,7 @@ const { selections } = useSelection();
 
 .propertyBar {
   width: 300px;
-  z-index: 9999;
+  z-index: 99;
   background-color: var(--s-main-frame-bg-normal-color);
   padding: 8px;
 }

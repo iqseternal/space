@@ -1,5 +1,5 @@
 <template>
-  <div id="frame_app">
+  <div id="frame_app" class="user-select-none">
     <RouterView />
   </div>
 </template>
