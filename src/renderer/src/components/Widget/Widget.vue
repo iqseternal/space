@@ -41,7 +41,7 @@ const emits = defineEmits(['click']);
   display: flex;
   justify-content: center;
   align-items: center;
-
+  flex-shrink: 0;
   width: calc($sMainCaptionBarHeight);
   height: $sMainCaptionBarHeight;
   cursor: default;

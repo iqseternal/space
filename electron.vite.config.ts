@@ -37,7 +37,7 @@ const mainConfig: UserConfig['main'] = {
   }
 };
 
-const preloadConfig: UserConfig['main'] = {
+const preloadConfig: UserConfig['preload'] = {
   plugins: [
     externalizeDepsPlugin(),
     bytecodePlugin(),

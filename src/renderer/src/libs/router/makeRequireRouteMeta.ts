@@ -46,6 +46,10 @@ export function makeRequireRouteMeta<T extends RouteRecordRaw>(_route: T, preRou
     + (route.path.startsWith('/') ? '' : '/')
     + (route.path.substring(1).includes('/') ? route.path.substring(0, route.path.lastIndexOf('/')) : route.path);
 
+  if (route.meta.fullpath.endsWith('/')) route.meta.fullpath = route.meta.fullpath.substring(0, route.meta.fullpath.length - 1)
+
+  if (route.redirect) route.redirect = route.meta.fullpath + ((route.redirect as string).startsWith('/') ? '' : '/') + route.redirect
+
   if (route.children) route.children = route.children.map(routeChild => {
     if (routeChild.path.startsWith('/')) routeChild.path = routeChild.path.replace('/', '');
     return makeRequireRouteMeta(routeChild, route);

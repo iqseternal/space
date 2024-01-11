@@ -3,21 +3,26 @@
     <Sidebar class="sidebar" />
     <Header class="header">
       <template #left>
-        <Indicator />
-        <Subfield class="navMenu" style="justify-content: flex-start;">
-          <AutoDropdownMenu :menu="fileMenu" trigger="click">
-            <span class="navItemTitle">文件</span>
-          </AutoDropdownMenu>
-          <AutoDropdownMenu :menu="editMenu" trigger="click">
-            <span class="navItemTitle">编辑</span>
-          </AutoDropdownMenu>
-          <AutoDropdownMenu :menu="helpMenu" trigger="click">
-            <span class="navItemTitle">帮助</span>
-          </AutoDropdownMenu>
-        </Subfield>
-        <Widget title="历史记录">
-          <IconFont type="HistoryOutlined" />
-        </Widget>
+        <Slogan>
+          <template #center>
+            <Subfield class="navMenu w-full" style="justify-content: flex-start;">
+              <AutoDropdownMenu :menu="fileMenu" trigger="click">
+                <span class="navItemTitle">文件</span>
+              </AutoDropdownMenu>
+              <AutoDropdownMenu :menu="editMenu" trigger="click">
+                <span class="navItemTitle">编辑</span>
+              </AutoDropdownMenu>
+              <AutoDropdownMenu :menu="helpMenu" trigger="click">
+                <span class="navItemTitle">帮助</span>
+              </AutoDropdownMenu>
+            </Subfield>
+          </template>
+          <template #right>
+            <Widget title="历史记录">
+              <IconFont type="HistoryOutlined" />
+            </Widget>
+          </template>
+        </Slogan>
       </template>
       <template #control>
         <Widget title="打开设置页面" icon="SettingOutlined" @click="() => openSettingPage()" />
@@ -32,7 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, nextTick, onBeforeMount, ref } from 'vue';
+import { onMounted, nextTick, onBeforeMount, ref, onErrorCaptured } from 'vue';
 import { IPC_MAIN_WINDOW } from '#/constants';
 import type { DropdownDataType } from '@components/DropdownMenu';
 import { DropdownMenu, MenuDriver, SingleMenu, ComboBoxMenu, AutoDropdownMenu } from '@components/DropdownMenu';
@@ -43,7 +48,7 @@ import { canCopyText } from '@libs/common';
 import { useMousetrap, useFadeIn } from '@renderer/hooks';
 import { fileMenu, editMenu, helpMenu } from '@renderer/menus';
 
-import { Header, Indicator } from '@components/Header';
+import { Header, Indicator, Slogan } from '@components/Header';
 import Sidebar from './sidebar/index.vue';
 import IconFont from '@components/IconFont';
 import Widget from '@components/Widget';
@@ -94,6 +99,7 @@ div.compose {
 
       .navItemTitle {
         display: inline-block;
+        flex-shrink: 0;
         height: $sMainCaptionBarHeight;
         line-height: calc($sMainCaptionBarHeight - 8px);
         padding: 4px 8px;
@@ -109,7 +115,7 @@ div.compose {
   }
 
   main.container {
-    padding: 0px 5px;
+    padding: 4px 5px;
     width: calc(100% - var(--s-main-frame-sidebar-width));
     height: calc(100% - $sMainCaptionBarHeight - 2 * var(--p));
     background-color: var(--s-main-frame-bg-darkness-color);

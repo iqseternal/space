@@ -4,8 +4,7 @@
     <Subfield :gap="4" style="margin: 0 8px;justify-content: flex-end;" class="control overflow-hidden">
       <slot name="control" />
       <Widget title="打开开发者工具" icon="BugFilled" @click="() => openDevTool()" />
-      <Widget title="悬浮" icon="PushpinOutlined" @click="() => {}" />
-      <template v-if="!$props.isDialog">
+      <template v-if="!props.isDialog">
         <Widget title="最小化" :src="windowMinSvg" @click="() => minWindow()" />
       </template>
       <template v-if="!props.isPane">

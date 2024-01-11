@@ -12,14 +12,14 @@ export const spaceRoutes = makeRoute({
   name: 'Space',
   path: '/space',
   component: () => import('@renderer/pages/index/layout/index.vue'),
-  redirect: '/space/workbenches',
+  redirect: 'workbenches',
   children: [
     {
       name: 'Workbenches',
       path: 'workbenches',
       meta: { svg: dashboardSvg, title: '工作台' },
       component: View,
-      redirect: '/space/workbenches/bulletinBoard',
+      redirect: 'bulletinBoard',
       children: [
         {
           name: 'BulletinBoard',

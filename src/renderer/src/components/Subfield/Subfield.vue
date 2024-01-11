@@ -1,5 +1,5 @@
 <template>
-  <div class="subfield" :style="{ flex: props.flex, gap: typeof props.gap === 'number' ? props.gap + 'px' : props.gap, ...generatorStyle }">
+  <div ref="container" class="subfield" :style="{ flex: props.flex, gap: typeof props.gap === 'number' ? props.gap + 'px' : props.gap, ...generatorStyle }">
     <template v-if="!$slots.left && !$slots.center && !$slots.right">
       <slot />
     </template>
@@ -13,7 +13,8 @@
 
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import type { SubfieldInstance } from './index.d';
 
 const props = defineProps({
   flex: { type: Number, default: 1 },
@@ -21,10 +22,15 @@ const props = defineProps({
   gap: { type: [Number, String] as PropType<number | `${number}${'px' | 'rem' | 'em' | 'rpx' | 'vw' | 'vh'}`>, default: 0 }
 });
 
+const container = ref<HTMLElement>();
+
 const generatorStyle = computed<CSSProperties>(() => ({
   flexDirection: props.direction === 'row' ? 'row' : 'column'
 }));
 
+defineExpose<SubfieldInstance>({
+  container: container as unknown as HTMLElement
+})
 </script>
 
 <style lang="scss" scoped>

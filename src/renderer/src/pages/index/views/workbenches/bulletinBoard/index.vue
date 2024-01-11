@@ -1,12 +1,26 @@
 <template>
-  <div>
+  <div class="bulletinBoard">
     <Subfield :gap="20">
-      <div class="flex-col-center" style="width: 100px;height: 80px;gap: 10px;" @click="handleWork">
-        <IconFont type="FileAddOutlined" />
-        <span>新建空白绘图</span>
-      </div>
+      <!-- <div class="flex-col-center" @click="handleWork">
+        <Graph text="新建空白文档" />
+      </div> -->
+      <Graph text="新建空白文档" @click="handleWork" />
 
-      <div style="width: 80%;height: 80px;" />
+      <GraphGroup>
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+        <Graph text="新建空白文档" />
+      </GraphGroup>
     </Subfield>
 
     <ATabs v-model:activeKey="activeKey">
@@ -30,6 +44,8 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { spaceRoutes } from '@pages/index/router/modules';
+import { Graph, GraphGroup } from './components';
+
 import IconFont from '@components/IconFont';
 import Subfield from '@components/Subfield';
 
@@ -44,9 +60,11 @@ const activeKey = ref('1');
 const handleWork = () => {
   router.push(spaceRoutes.children[0].children[1].meta.fullpath);
 }
-
 </script>
 
 <style lang="scss" scoped>
 
+.bulletinBoard {
+  padding: 0 10px;
+}
 </style>

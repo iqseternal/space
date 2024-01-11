@@ -34,6 +34,10 @@
     "allowUnusedLabels": true,
     "isolatedModules": false,
     "composite": true,
+    "removeComments": true,
+    "noEmitHelpers": true,
+    "downlevelIteration": true,
+    "strict": true,
     "types": ["electron-vite/node"],
     "baseUrl": ".",
     "paths": {

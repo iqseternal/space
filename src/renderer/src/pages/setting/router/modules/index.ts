@@ -9,7 +9,7 @@ export const settingRoutes = makeRoute({
   name: 'setting',
   path: '/setting',
   component: Layout,
-  redirect: '/setting/general',
+  redirect: 'general',
   children: settingChildrenRoutes
 });
 
@@ -17,7 +17,7 @@ export const routes: RouteRecordRaw[] = [
   {
     name: 'root',
     path: '/',
-    redirect: settingRoutes.meta.fullpath
+    redirect: settingRoutes.path
   },
   settingRoutes
 ];
