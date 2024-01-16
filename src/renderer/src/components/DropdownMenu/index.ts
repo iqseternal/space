@@ -1,3 +1,9 @@
+/**
+ * ==========================================
+ * 快捷菜单类
+ * ==========================================
+ */
+
 // 包裹一层的原因为需要定制化样式, 但是又不想污染原来的组件库
 import type { DefineComponent } from 'vue';
 import type { Dropdown, Menu, SubMenu, MenuItem, Divider } from 'ant-design-vue';

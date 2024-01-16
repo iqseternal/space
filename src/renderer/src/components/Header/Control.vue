@@ -3,6 +3,9 @@
     <div />
     <Subfield :gap="4" style="margin: 0 8px;justify-content: flex-end;" class="control overflow-hidden">
       <slot name="control" />
+      <template v-if="!props.isDialog && !props.isPane">
+        <Widget title="全屏" icon="FullscreenOutlined" @click="() => windowAutoFullScreen()" />
+      </template>
       <Widget title="打开开发者工具" icon="BugFilled" @click="() => openDevTool()" />
       <template v-if="!props.isDialog">
         <Widget title="最小化" :src="windowMinSvg" @click="() => minWindow()" />
@@ -21,7 +24,7 @@ import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW, CONFIG } from '#/constants';
 import { windowCloseSvg, windowMaxSvg, windowMinSvg, windowRegionSvg } from '@renderer/assets';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 
-import { windowMax, windowMin, windowClose, windowReduction, windowDevtool } from '@renderer/actions';
+import { windowMax, windowMin, windowClose, windowReduction, windowDevtool, windowAutoFullScreen } from '@renderer/actions';
 
 import Subfield from '@components/Subfield';
 import Widget from '@components/Widget';

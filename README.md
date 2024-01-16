@@ -219,7 +219,8 @@ Vue 组件遵循编写规范：
 
 ```vue
 <template>
-  <ASpace>
+  <!-- 类名可能会出现短横线或者驼峰命名，1短横线为全局的类名，2驼峰为局部的类名 -->
+  <ASpace class="test-title testTitle">
     <span>组件名大驼峰</span>
     <span style="color: red;">属性名小驼峰，避免使用短横线方式</span>
   </ASpace>

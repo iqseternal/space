@@ -1,5 +1,6 @@
 import { reactive } from 'vue';
 import { onRedo, onUndo, onAddShape, onAll, onCopy, onCut, onDelete, onPaste, onScaleDefault, onScaleWindow } from '@renderer/meta';
+import { windowAutoFullScreen } from './window';
 
 /**
  * 这个函数的意义为让 hotKeys 拥有编写的类型提示, 并且导出的时候能够具有编写时的运行时类型
@@ -110,6 +111,12 @@ export const hotKeys = makeHotKeys({
     evt: () => {
 
     }
+  },
+  fullScreen: {
+    key: 'F11', moreKey: [],
+    tip: '全屏展示', changeAble: false,
+    description: '点击全屏',
+    evt: windowAutoFullScreen
   },
   openDevTool: {
     key: 'Ctrl+Shift+I', moreKey: ['Command+Shift+I', 'F12'],

@@ -6,9 +6,9 @@ import { PAGES_WINDOW_SETTING, PAGES_WINDOW_MAIN } from '#/config/pages';
 import { getWindowFrom } from '#/code/core/common/window';
 import { is } from '@electron-toolkit/utils';
 
-import { AppConfigService } from '#/code/service/AppConfigService';
-import { UserConfigService } from '#/code/service/UserConfigService';
-import { PrinterService } from '#/code/service/PrinterService';
+import { AppConfigService } from '#service/AppConfigService';
+import { UserConfigService } from '#service/UserConfigService';
+import { PrinterService } from '#service/PrinterService';
 
 setIpcMainHandle(IPC_MAIN_WINDOW.DEV_OPEN_TOOL, (e, status, options?) => ipcR((ok, fail) => {
   const window = getWindowFrom(e);

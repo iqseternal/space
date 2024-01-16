@@ -1,6 +1,11 @@
+/**
+ * ==========================================
+ * preload 文件 自动注入 的 Api封装
+ * ==========================================
+ */
 import { contextBridge } from 'electron';
 
-type ExposeApiObj = Record<string | symbol, any>;
+export type ExposeApiObj = Record<string | symbol, any>;
 
 export function autoExpose<T extends ExposeApiObj>(exposeApiObj: Required<T>): void {
   if (process.contextIsolated) {

@@ -1,16 +1,10 @@
-import '@scss/index.scss';
+import { setupApp } from '../';
 import './styles.scss';
 
-import { createApp } from 'vue';
-import router from './router';
-import App from './App.vue';
-
-(async () => {
-  const app = createApp(App);
-
-  app.use(router);
+setupApp(import('./App.vue'), {}, async (app, use) => {
+  const router = await use(import('./router'));
 
   router.isReady().then(() => {
     app.mount('#app');
   });
-})();
+});

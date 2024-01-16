@@ -1,20 +1,9 @@
-import { createApp } from 'vue';
-import router from './router';
-import store from '@renderer/store';
-import App from './App.vue';
+import { setupApp } from '../';
 
-import 'animate.css';
-import 'ant-design-vue/dist/reset.css';
-import 'dayjs/locale/zh-cn';
-
-import '@scss/index.scss';
-
-;(async () => {
-  const app = createApp(App);
-
-  app.use(store).use(router);
+setupApp(import('./App.vue'), {}, async (app, use) => {
+  const router = await use(import('./router'));
 
   router.isReady().then(() => {
     app.mount('#app');
   });
-})();
+});

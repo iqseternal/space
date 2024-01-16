@@ -84,3 +84,29 @@ export const windowClose = (id?: number) => window.electron.ipcRenderer.invoke(I
  * @returns
  */
 export const windowDevtool = (...args: Parameters<MainEventHandlers[typeof IPC_MAIN_WINDOW.DEV_OPEN_TOOL]>) => window.electron.ipcRenderer.invoke(IPC_MAIN_WINDOW.DEV_OPEN_TOOL, ...args);
+
+/**
+ * 全屏
+ * @param el
+ * @returns
+ */
+export const windowEnableFullScreen = (el = document.body) => el.requestFullscreen();
+
+/**
+ * 退出全屏
+ * @returns
+ */
+export const windowExitFullScreen = () => document.exitFullscreen();
+
+/**
+ * 自动全屏或者推出全屏
+ * @param el
+ * @returns
+ */
+export const windowAutoFullScreen = (el = document.body) => {
+  if (document.fullscreenElement) {
+    return document.exitFullscreen();
+  }
+
+  return el.requestFullscreen();
+}

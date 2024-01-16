@@ -16,4 +16,6 @@ declare interface ShortcutKey {
   changeAble: boolean;
 
   description?: string;
+
+  evt?: BaseCb;
 }

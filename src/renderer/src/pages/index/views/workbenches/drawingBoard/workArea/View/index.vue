@@ -16,9 +16,9 @@ const props = defineProps({
   width: { type: [Number, String], default: () => '' }
 });
 
-const viewContainer = ref<HTMLDivElement>();
 const { selections } = useSelection();
 
+const viewContainer = ref<HTMLDivElement>();
 const open = setupDropdownOpenModel();
 
 const openChange = (value: boolean) => {

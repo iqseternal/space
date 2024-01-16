@@ -1,3 +1,8 @@
+/**
+ * ==========================================
+ * preload 需要的类型声明
+ * ==========================================
+ */
 import type { ElectronAPI as BaseElectionAPI, NodeProcess, IpcRenderer as BaseIcpRenderer, WebFrame } from '@electron-toolkit/preload';
 
 import type { IPC_MAIN_WINDOW, MainEventHandlers, RendererEventHandlers, STORE_KEYS } from '#/constants';
