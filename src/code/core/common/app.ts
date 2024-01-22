@@ -1,8 +1,9 @@
 import { app } from 'electron';
 
+export const exitApp = (exitCode?: number) => app.exit(exitCode);
+
 export const reloadApp = () => {
   app.relaunch();
-
   app.exit();
 }
 

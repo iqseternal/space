@@ -83,7 +83,7 @@ export class PrinterService {
   static printError(...message: unknown[]) {
     print(
       ...makePrintMessage(
-        toColor(['magenta', 'bright']),
+        toColor(['magenta:bg', 'white', 'bright']),
         toColor(['cyan', 'bright']),
         toColor(['red', 'underline']), 'ERROR',
         'MAIN',

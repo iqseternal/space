@@ -7,5 +7,17 @@
     "configFile": ".eslint.js"
   },
   // 在保存时运行 ESLint 和 Prettier
-  "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "trailing",
+  "editor.suggestSelection": "recentlyUsed",
+  "workbench.editor.closeOnFileDelete": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.tabCloseButton": "right",
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.perEditorGroup": true,
+  "workbench.editor.limit.value": 5,
+  "workbench.list.smoothScrolling": true,
+  "workbench.tree.expandMode": "singleClick",
+  "workbench.tree.indent": 10,
 }

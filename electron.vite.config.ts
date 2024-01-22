@@ -1,6 +1,6 @@
-import type { UserConfig, UserConfigExport } from 'electron-vite';
+import type { UserConfig, UserConfigExport, UserConfigFn } from 'electron-vite';
 import { defineConfig, defineViteConfig, externalizeDepsPlugin, bytecodePlugin } from 'electron-vite';
-import { webAlias, nodeAlias, loadLintDevPlugins } from './vite.config.util';
+import { webAlias, nodeAlias, loadLintDevPlugins, define } from './vite.config.util';
 import { join } from 'path';
 import { obfuscator } from 'rollup-obfuscator';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
@@ -15,8 +15,9 @@ import autoImport from 'unplugin-auto-import/vite';
 import eslintPlugin from 'vite-plugin-eslint';
 import components from 'unplugin-vue-components/vite';
 
+export type ConfigEnv = Parameters<UserConfigFn>[0];
 
-const mainConfig: UserConfig['main'] = {
+const mainConfig = ({ mode }: ConfigEnv): UserConfig['main'] => ({
   plugins: [
     externalizeDepsPlugin(),
     bytecodePlugin(),
@@ -25,6 +26,7 @@ const mainConfig: UserConfig['main'] = {
   resolve: {
     alias: nodeAlias
   },
+  define: define(mode),
   build: {
     chunkSizeWarningLimit: 2000,
     minify: 'terser',
@@ -35,21 +37,21 @@ const mainConfig: UserConfig['main'] = {
       }
     }
   }
-};
+});
 
-const preloadConfig: UserConfig['preload'] = {
+const preloadConfig = ({ mode }: ConfigEnv): UserConfig['preload'] => ({
   plugins: [
     externalizeDepsPlugin(),
     bytecodePlugin(),
     ...loadLintDevPlugins()
   ],
+  define: define(mode),
   resolve: {
     alias: nodeAlias
   }
-};
+});
 
-
-const rendererConfig = defineViteConfig(() => {
+const rendererConfig = ({ mode }: ConfigEnv): UserConfig['renderer'] => {
   return {
     resolve: {
       alias: webAlias,
@@ -80,6 +82,7 @@ const rendererConfig = defineViteConfig(() => {
       }),
       ...loadLintDevPlugins()
     ],
+    define: define(mode),
     server: {
       hmr: true,
       host: '0.0.0.0',
@@ -108,10 +111,10 @@ const rendererConfig = defineViteConfig(() => {
       outDir: join(__dirname, './out/renderer')
     }
   }
-})
+};
 
-export default defineConfig(() => ({
-  main: mainConfig,
-  preload: preloadConfig,
-  renderer: rendererConfig
+export default defineConfig((configEnv) => ({
+  main: mainConfig(configEnv),
+  preload: preloadConfig(configEnv),
+  renderer: rendererConfig(configEnv)
 }));

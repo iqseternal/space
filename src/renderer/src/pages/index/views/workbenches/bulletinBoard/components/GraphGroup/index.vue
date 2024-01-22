@@ -20,10 +20,10 @@ import IconFont from '@components/IconFont';
 const graphGroup = ref<SubfieldInstance>();
 
 onMounted(() => {
-  if (!isDef(graphGroup.value?.container)) return;
+  if (!graphGroup.value?.container) return;
 
   useEventListenerForElement(graphGroup.value.container, 'wheel', e => {
-    if (isUnDef(graphGroup.value?.container?.scrollLeft)) return;
+    if (!graphGroup.value?.container?.scrollLeft) return;
     graphGroup.value.container.scrollLeft += e.deltaY;
   })
 })

@@ -1,18 +1,57 @@
+import type { RouteRecordRaw, RouteMeta, _RouteRecordBase } from 'vue-router';
+import type { RequiredRouteRecordRaw } from '../src/renderer/src/libs/router';
+import { makeRequireRouteMeta, makeRoute, View } from '../src/renderer/src/libs/router';
 
-import { rsaGetKey, aesEncrypt, aesDecrypt, rsaEncryptAlgorithm, rsaDecryptAlgorithm } from '@suey/pkg-utils';
-import { printClear, printError, Printer, printInfo, printWarn, print } from '@suey/printer';
+export function toRoutes<T extends Readonly<RouteRecordRaw>>(route: T) {
 
-const map = new WeakMap();
+  return {
 
-const obj = {
-  value: 1
-};
-const obj2 = {
-  value: 1
+  }
 }
 
-// map.set(obj, 1);
-map.set({}, 1);
+export const spaceRoutes = makeRequireRouteMeta({
+  name: 'Space',
+  path: '/space',
+  component: View,
+  redirect: 'workbenches',
+  children: [
+    {
+      name: 'Workbenches',
+      path: 'workbenches',
+      meta: { svg: '1', title: '工作台' },
+      redirect: 'bulletinBoard',
+      children: [
+        {
+          name: 'BulletinBoard',
+          path: 'bulletinBoard',
+          component: View,
+        },
+        {
+          name: 'DrawingBoard',
+          path: 'drawingBoard',
+          component: View,
+        }
+      ]
+    },
+    {
+      name: 'Dashboard',
+      path: 'dashboard',
+      meta: { svg: '2' },
+      component: View,
+    },
+    {
+      name: 'Profile',
+      path: 'profile',
+      meta: { icon: 'ProfileOutlined' },
+      component: View,
+    }
+  ]
+} as const);
+
+export const { workbenchesRoute, profileRoute, dashboardRoute } = toRoutes(spaceRoutes);
+
+const c = workbenchesRoute.children;
 
 
-print(map.get({}));
+
+

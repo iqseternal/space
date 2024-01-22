@@ -9,8 +9,7 @@ import { PrinterService } from '#/code/service/PrinterService';
 import { PAGES_WINDOW_DIALOG, PAGES_WINDOW_MAIN, PAGES_WINDOW_SETTING } from '#/config';
 import { UserConfigService } from '#/code/service/UserConfigService';
 import { BrowserWindow, app } from 'electron';
-import { Printer } from '@suey/printer';
-
+import { exitApp } from '#code/core/common/app';
 import { setWindowCloseCaptionContextmenu, setWindowDevtoolsDetach, setWindowOpenHandler } from '#code/core/common/window';
 
 export async function setupAppDataDownload() {
@@ -23,7 +22,7 @@ export async function setupMainWindow() {
   PrinterService.printInfo('窗口构建');
   const appConfigService = AppConfigService.getInstance();
 
-  const windowService = new WindowService(appConfigService.config.windows.mainWindow as Electron.BrowserWindowConstructorOptions, {
+  const windowService = new WindowService(appConfigService.config.windows.mainWindow, {
     url: PAGES_WINDOW_MAIN,
     autoShow: false
   });
@@ -34,10 +33,7 @@ export async function setupMainWindow() {
 
   PrinterService.printInfo('主窗口ID, ', windowService.window.id);
 
-  windowService.addOpenCatchCb(() => {
-    app.exit(1);
-  });
-
+  windowService.addOpenCatchCb(exitApp);
   return windowService;
 }
 
@@ -45,11 +41,10 @@ export async function setupSettingWindow() {
   PrinterService.printInfo('构建设置页面');
 
   const appConfigService = AppConfigService.getInstance();
-  const windowService = new WindowService(appConfigService.config.windows.mediumPopupWindow as Electron.BrowserViewConstructorOptions, {
+  const windowService = new WindowService(appConfigService.config.windows.mediumPopupWindow, {
     url: PAGES_WINDOW_SETTING,
     autoShow: false
   });
-
 
   windowService.window.setResizable(false);
   windowService.window.setMenu(null);
@@ -64,7 +59,7 @@ export async function setupDialogWindow(options: DialogWindowOptions) {
   PrinterService.printInfo('构建弹窗');
 
   const appConfigService = AppConfigService.getInstance();
-  const windowService = new WindowService(appConfigService.config.windows.smallPopupWindow as Electron.BrowserWindowConstructorOptions, {
+  const windowService = new WindowService(appConfigService.config.windows.smallPopupWindow, {
     url: PAGES_WINDOW_DIALOG,
     autoShow: true
   });

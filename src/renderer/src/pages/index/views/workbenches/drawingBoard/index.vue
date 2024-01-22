@@ -2,7 +2,7 @@
   <div class="h-full overflow user-select-none workbenches">
     <Toolbar />
 
-    <div class="w-full flex-between viewContainer">
+    <div class="w-full flex-between overflow-hidden viewContainer">
       <Graphics v-ResizeWidth="graphicsBindings" />
       <View :width="viewWidth" />
       <PropertyBar v-ResizeWidth="propertyBindings" />

@@ -10,4 +10,6 @@ import Slogan from './Slogan.vue';
 
 export { Header, Indicator, Slogan };
 
+export type * from './declare';
+
 export default Header;

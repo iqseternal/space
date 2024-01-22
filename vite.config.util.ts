@@ -1,7 +1,8 @@
-import type { ProxyOptions, AliasOptions, Alias, Plugin } from 'vite';
+import type { ProxyOptions, AliasOptions, Alias, Plugin, UserConfig } from 'vite';
 import { loadEnv } from 'vite';
+import { PLATFORMS } from './target.config';
 import eslintPlugin from 'vite-plugin-eslint';
-import * as path from 'path'
+import * as path from 'path';
 import * as webConfig from './tsconfig.web.json';
 import * as nodeConfig from './tsconfig.node.json';
 
@@ -9,13 +10,10 @@ const START_OPTIONS = {
   LINT_ON_DEV: false // dev 模式下启用 lint
 }
 
-
-const resolveAlias = (aliasPath: Record<string, string[]>): AliasOptions => {
-  if (!aliasPath) return [];
-  const alias: Alias[] = [];
-  for (const key in aliasPath)
-    alias.push({ find: key.replace('/*', ''), replacement: path.resolve(__dirname, aliasPath[key][0].replace('/*', '')) });
-  return alias;
+export const define = (mode: string) => {
+  return {
+    CURRENT_PLATFORM: PLATFORMS.WINDOWS
+  }
 }
 
 export const webAlias = resolveAlias(webConfig.compilerOptions.paths);
@@ -25,6 +23,7 @@ export const nodeAlias = resolveAlias(nodeConfig.compilerOptions.paths);
 // 没有作用
 export const webProxy = (mode: string): Record<string, string | ProxyOptions> => {
   const env = loadEnv(mode, __dirname, ['SPACE_', 'VITE_']);
+
   return {
     [env.SPACE_API_BASE_URL]: {
       target: 'https://www.oupro.cn:3000/api/v1.0.0',
@@ -36,7 +35,18 @@ export const webProxy = (mode: string): Record<string, string | ProxyOptions> =>
   }
 };
 
+export function resolveAlias(aliasPath: Record<string, string[]>): AliasOptions {
+  if (!aliasPath) return [];
+  const alias: Alias[] = [];
+  for (const key in aliasPath)
+    alias.push({ find: key.replace('/*', ''), replacement: path.resolve(__dirname, aliasPath[key][0].replace('/*', '')) });
+  return alias;
+}
 
+/**
+ * 检查Vue文件名的插件
+ * @returns
+ */
 export function vitecheckVueNamePlugin(): Plugin {
   return {
     name: 'vite-plugin-check-file-name',
@@ -52,7 +62,10 @@ export function vitecheckVueNamePlugin(): Plugin {
   }
 }
 
-
+/**
+ * 加载lint插件
+ * @returns
+ */
 export function loadLintDevPlugins(): Plugin[] {
   if (!START_OPTIONS.LINT_ON_DEV) return [];
 

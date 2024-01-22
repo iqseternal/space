@@ -70,6 +70,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@crawlee/cheerio": "^3.7.2",
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@electron/notarize": "^1.2.3",
     "@electron/remote": "^2.0.10",

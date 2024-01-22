@@ -6,7 +6,7 @@ export const loginRoute = makeRoute({
   name: 'Login',
   path: '/login',
   component: () => import('@pages/index/views/login/index.vue')
-});
+} as const);
 
 export const spaceRoutes = makeRoute({
   name: 'Space',
@@ -46,7 +46,7 @@ export const spaceRoutes = makeRoute({
       component: () => import('@pages/index/views/profile/index.vue')
     }
   ]
-});
+} as const);
 
 export const routes = [
   {
@@ -57,6 +57,6 @@ export const routes = [
   },
   loginRoute,
   spaceRoutes
-];
+] as const;
 
 export default routes;

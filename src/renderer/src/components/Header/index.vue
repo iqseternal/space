@@ -1,5 +1,5 @@
 <template>
-  <Subfield class="captionBar">
+  <Subfield ref="subfiledInstance" class="captionBar">
     <template v-if="$slots.left"><slot name="left" /></template>
     <template v-else><Slogan v-if="props.isPane === false" /></template>
     <template v-if="$slots.center"><slot name="center" /></template>
@@ -15,7 +15,11 @@
 </template>
 
 <script lang="ts" setup>
+import { reactive, ref, computed, toRefs } from 'vue';
+import type { Ref } from 'vue';
+import type { SubfieldInstance } from '@components/Subfield';
 import { Subfield, SubfieldSpace } from '@components/Subfield';
+import type { HeaderInstance } from './declare';
 
 import Slogan from './Slogan.vue';
 import Search from './Search.vue';
@@ -26,6 +30,13 @@ const props = defineProps({
   isDialog: { type: Boolean, default: false } // 弹窗, 警告类型
 });
 
+const subfiledInstance = ref<SubfieldInstance>();
+
+const expose = reactive({
+  container: computed(() => subfiledInstance.value?.container) as unknown as Ref<HTMLDivElement>
+});
+
+defineExpose<HeaderInstance>(expose);
 </script>
 
 <style lang="scss" scoped>

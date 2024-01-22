@@ -7,21 +7,28 @@ export const DEFAULT_META: Required<RouteMeta> = {
   roles: [], permission: 0, hidden: false
 }
 
-type RouteRecordSingleView = Omit<RouteRecordRaw, 'RouteRecordSingleView'>;
-type RouteRecordSingleViewWithChildren = Omit<RouteRecordRaw, 'RouteRecordSingleViewWithChildren'>;
-type RouteRecordMultipleViewsWithChildren = Omit<RouteRecordRaw, 'RouteRecordMultipleViewsWithChildren'>;
-type RouteRecordMultipleViews = Omit<RouteRecordRaw, 'RouteRecordMultipleViews'>;
-type RouteRecordRedirect = Omit<RouteRecordRaw, 'RouteRecordRedirect'>;
+export type RouteRecordSingleView = Omit<RouteRecordRaw, 'RouteRecordSingleView'>;
+export type RouteRecordSingleViewWithChildren = Omit<RouteRecordRaw, 'RouteRecordSingleViewWithChildren'>;
+export type RouteRecordMultipleViewsWithChildren = Omit<RouteRecordRaw, 'RouteRecordMultipleViewsWithChildren'>;
+export type RouteRecordMultipleViews = Omit<RouteRecordRaw, 'RouteRecordMultipleViews'>;
+export type RouteRecordRedirect = Omit<RouteRecordRaw, 'RouteRecordRedirect'>;
+
+export type RequiredRouteRecordSingleView = (Omit<RouteRecordSingleView, 'meta'> & { name: string;meta: Required<RouteMeta>;children: never;components: never; });
+export type RequiredRouteRecordSingleViewWithChildren = (Omit<RouteRecordSingleViewWithChildren, 'meta' | 'children'> & { name: string;meta: Required<RouteMeta>;children: RequiredRouteRecordRaw[];components: never; });
+export type RequiredRouteRecordMultipleViewsWithChildren = (Omit<RouteRecordMultipleViewsWithChildren, 'meta' | 'children'> & { name: string;meta: Required<RouteMeta>;children: RequiredRouteRecordRaw[];components: never; });
+export type RequiredRouteRecordMultipleViews = (Omit<RouteRecordMultipleViews, 'meta'> & { name: string;meta: Required<RouteMeta>;children: never;components: never; });
+export type RequiredRouteRecordRedirect = (Omit<RouteRecordRedirect, 'meta'> & { name: string;meta: Required<RouteMeta>;children: never;components: never; });
 
 export type RequiredRouteRecordRaw =
-  (Omit<RouteRecordSingleView, 'meta'> & { name: string;meta: Required<RouteMeta>;children: never;components: never; }) |
-  (Omit<RouteRecordSingleViewWithChildren, 'meta' | 'children'> & { name: string;meta: Required<RouteMeta>;children: RequiredRouteRecordRaw[];components: never; }) |
-  (Omit<RouteRecordMultipleViewsWithChildren, 'meta' | 'children'> & { name: string;meta: Required<RouteMeta>;children: RequiredRouteRecordRaw[];components: never; }) |
-  (Omit<RouteRecordMultipleViews, 'meta'> & { name: string;meta: Required<RouteMeta>;children: never;components: never; }) |
-  (Omit<RouteRecordRedirect, 'meta'> & { name: string;meta: Required<RouteMeta>;children: never;components: never; });
+  RequiredRouteRecordSingleView |
+  RequiredRouteRecordSingleViewWithChildren |
+  RequiredRouteRecordMultipleViewsWithChildren |
+  RequiredRouteRecordMultipleViews |
+  RequiredRouteRecordRedirect;
 
-export function makeRequireRouteMeta<T extends RouteRecordRaw>(_route: T, preRoute?: T): RequiredRouteRecordRaw {
-  const route = _route as RequiredRouteRecordRaw;
+
+export function makeRequireRouteMeta<T extends Readonly<RouteRecordRaw>>(_route: T, preRoute?: T): RequiredRouteRecordRaw {
+  const route = _route as unknown as RequiredRouteRecordRaw;
   if (!route.meta) route.meta = {} as Required<RouteMeta>;
 
   for (const key in DEFAULT_META) if (!route.meta[key]) route.meta[key] = DEFAULT_META[key];
@@ -59,3 +66,4 @@ export function makeRequireRouteMeta<T extends RouteRecordRaw>(_route: T, preRou
 }
 
 export { makeRequireRouteMeta as makeRoute };
+

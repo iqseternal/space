@@ -85,3 +85,74 @@ declare type CustomColumn<T, K> =
  * 将会返回 A 类型。请注意: 如果 C 还包含了其他类型可能导致推断不正确
  */
 declare type ExtractObj<T> = T extends (infer U)[] ? U : T;
+
+/**
+ * 获得数组的索引
+ *
+ * type Arr = [1, 2]
+ *
+ * type Keys = ArrayKeys<Arr>; // '0' | '1' 包含两项
+ *
+ * 请确保数据是一个常类型,readonly
+ */
+declare type ArrayKeys<T extends readonly any[]> = Exclude<keyof T, Exclude<keyof T, `${number}`> | symbol>;
+
+/**
+ * 反转对象键值对
+ *
+ * type Obj = {
+ *  a: 1;
+ *  b: 2;
+ *  c: 3;
+ * }
+ *
+ * type ReverseObj = ReverseObjKeyValue<Obj>;
+ *
+ * 那么得到的类型如下:
+ * {
+ *  1: 'a';
+ *  2: 'b';
+ *  3: 'c';
+ * }
+ *
+ * 当然请确保传递时拥有正确的键值对
+ */
+declare type ReverseObjKeyValue<Obj extends Record<string | number | symbol, any>> = {
+  [Key in keyof Obj as Obj[Key]]: Key;
+}
+
+/**
+ * 自动补全类型，当你的一个类型是另一个的子类型的时候，你编写了部分属性，但是想在你的基础上补全你所缺少的其他类型
+ *
+ * 例如：
+ *
+ * // 基类
+ * interface Lib {
+ *  name: string;
+ *  age: number;
+ *  sex: boolean;
+ * }
+ *
+ * function make<T extends Partial<Lib>>(options: T) {
+ *   return options;
+ * }
+ *
+ * const r = make({
+ *  name: '1'
+ * });
+ * 当然建议在传递的时候使用 as const断言，让类型获取更加准确
+ * const r = make({
+ *  name: '1'
+ * } as const); // !
+ *
+ * 此时r只会有一个键值类型 name，如果你需要补全，将除开你所编写的键值外的类型添加进去，就使用这个
+ *
+ * function make<T extends Partial<Lib>>(options: T) {
+ *  return options as ObjAutoComplete<T, Lib>;
+ * }
+ *
+ *
+ * T: 当前目标
+ * R: 接口目标
+ */
+declare type ObjAutoComplete<T extends Record<string | number | symbol, any>, R extends Record<string | number | symbol, any>> = T & Pick<R, Exclude<keyof R, keyof T>>;

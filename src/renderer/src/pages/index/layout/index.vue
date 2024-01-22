@@ -3,17 +3,18 @@
     <Sidebar class="sidebar" />
     <Header class="header">
       <template #left>
-        <Slogan>
+        <Slogan ref="sloganInstance">
           <template #center>
             <Subfield class="navMenu w-full" style="justify-content: flex-start;">
-              <AutoDropdownMenu :menu="fileMenu" trigger="click">
-                <span class="navItemTitle">文件</span>
-              </AutoDropdownMenu>
-              <AutoDropdownMenu :menu="editMenu" trigger="click">
-                <span class="navItemTitle">编辑</span>
-              </AutoDropdownMenu>
-              <AutoDropdownMenu :menu="helpMenu" trigger="click">
-                <span class="navItemTitle">帮助</span>
+              <template v-for="navMenu in navMenus" :key="navMenu.title">
+                <AutoDropdownMenu :menu="navMenu.menu" trigger="click">
+                  <span class="navItemTitle">{{ navMenu.title }}</span>
+                </AutoDropdownMenu>
+              </template>
+              <AutoDropdownMenu :menu="navMenusStackMenu" trigger="click">
+                <span v-show="navMenusStack.length" class="navItemTitle">
+                  <IconFont type="MenuOutlined" />
+                </span>
               </AutoDropdownMenu>
             </Subfield>
           </template>
@@ -30,34 +31,105 @@
     </Header>
     <main class="container">
       <RouterView v-slot="{ Component }">
-        <KeepAlive><component :is="Component" /></KeepAlive>
+        <KeepAlive>
+          <component :is="Component" />
+        </KeepAlive>
       </RouterView>
     </main>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, nextTick, onBeforeMount, ref, onErrorCaptured } from 'vue';
+import { onMounted, nextTick, onBeforeMount, ref, onErrorCaptured, computed, reactive } from 'vue';
+import type { Ref } from 'vue';
 import { IPC_MAIN_WINDOW } from '#/constants';
-import type { DropdownDataType } from '@components/DropdownMenu';
+import type { DropdownDataType, ComboBoxMenuDataType } from '@components/DropdownMenu';
 import { DropdownMenu, MenuDriver, SingleMenu, ComboBoxMenu, AutoDropdownMenu } from '@components/DropdownMenu';
 import { UserOutlined, ReloadOutlined, BugOutlined } from '@ant-design/icons-vue';
 import { hotKeys, windowReload, windowDevtool, copyText, pasteText, windowResizeAble, openSettingPage } from '@renderer/actions';
 import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
 import { canCopyText } from '@libs/common';
-import { useMousetrap, useFadeIn } from '@renderer/hooks';
+import { useMousetrap, useFadeIn, useEventListener, useResizeObserver } from '@renderer/hooks';
 import { fileMenu, editMenu, helpMenu } from '@renderer/menus';
-
+import type { HeaderInstance, SloganInstance } from '@components/Header';
 import { Header, Indicator, Slogan } from '@components/Header';
+import { isDef } from '@suey/pkg-utils';
 import Sidebar from './sidebar/index.vue';
 import IconFont from '@components/IconFont';
 import Widget from '@components/Widget';
 import Subfield from '@components/Subfield';
 
+const sloganInstance = ref<SloganInstance>();
+
+interface NavMenuItem {
+  /** 菜单附带的响应式数据,当原来的数据被更改的时候,这里跟着改 */
+  menu: DropdownDataType | Ref<DropdownDataType>;
+  title: string;
+  /** 当容器宽度大于这个宽度的时候才能展示,否则被收纳进栈 */
+  maxWidth: number;
+  /** 被收纳的时候展示的mark */
+  mark?: IconRealKey;
+}
+
+const navMenus = ref<NavMenuItem[]>([
+  { menu: fileMenu, title: '文件', mark: 'FolderOutlined', maxWidth: 120 },
+  { menu: editMenu, title: '编辑', mark: 'EditOutlined', maxWidth: 120 },
+  { menu: helpMenu, title: '帮助', maxWidth: 160 }
+]);
+/** 菜单栈,当从展示的菜单中进入栈之后就代表被收纳 */
+const navMenusStack = ref<typeof navMenus.value>([
+
+]);
+/** 转换被收纳的菜单项,并作出展示数据 */
+const navMenusStackMenu = computed<DropdownDataType>(() => navMenusStack.value.map(stackItem => ({
+  title: stackItem.title,
+  shortcut: 'Ctrl',
+  mark: stackItem.mark,
+  children: stackItem.menu
+})));
+
+/**
+ * 进栈,代表收纳一个菜单元素
+ * @param clientWidth
+ */
+function pushStack(clientWidth: number) {
+  if (!navMenus.value.length) return;
+  const curMenu = navMenus.value[navMenus.value.length - 1];
+
+  if (curMenu.maxWidth >= clientWidth) {
+    navMenus.value.pop();
+    navMenusStack.value.unshift(curMenu);
+    pushStack(clientWidth);
+  }
+}
+/**
+ * 出栈
+ * @param clientWidth
+ */
+function popStack(clientWidth: number) {
+  if (!navMenusStack.value.length) return;
+  const curMenu = navMenusStack.value[0];
+
+  if (curMenu.maxWidth < clientWidth) {
+    navMenusStack.value.shift();
+    navMenus.value.push(curMenu);
+    popStack(clientWidth);
+  }
+}
+
 useFadeIn(() => {
   windowResizeAble(true);
   // windowResetCustomSize('mainWindow');
 });
+
+useResizeObserver(computed(() => sloganInstance.value?.centerContainer), () => {
+  const dom = sloganInstance.value?.centerContainer;
+  if (!isDef(dom)) return;
+
+  pushStack(dom.clientWidth);
+  popStack(dom.clientWidth);
+});
+
 
 useMousetrap(hotKeys.reload.allKey, windowReload);
 </script>
@@ -98,6 +170,7 @@ div.compose {
       transition: all .5s linear;
 
       .navItemTitle {
+        width: 40px;
         display: inline-block;
         flex-shrink: 0;
         height: $sMainCaptionBarHeight;
@@ -117,7 +190,7 @@ div.compose {
   main.container {
     padding: 4px 5px;
     width: calc(100% - var(--s-main-frame-sidebar-width));
-    height: calc(100% - $sMainCaptionBarHeight - 2 * var(--p));
+    height: calc(100% - $sMainCaptionBarHeight - 1 * var(--p));
     background-color: var(--s-main-frame-bg-darkness-color);
     position: absolute;
     top: calc($sMainCaptionBarHeight + var(--p));

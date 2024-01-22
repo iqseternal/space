@@ -5,6 +5,7 @@
   width: 300px;
   height: 100%;
   background-color: var(--s-main-frame-bg-darkness-color);
+
   border-radius: var(--s-block-border-radius);
   @include beautifulBar;
   @include hoverDisplayBar;
@@ -12,6 +13,9 @@
   &:deep(div.ant-tabs-nav) {
     background-color: var(--s-main-frame-bg-normal-color);
     margin-bottom: unset;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 
     div.ant-tabs-nav-wrap {
       display: unset;
@@ -23,6 +27,10 @@
           padding: 8px 10px;
           font-size: 12px;
           margin: 0;
+        }
+
+        div.ant-tabs-ink-bar {
+          transition: unset !important;
         }
       }
     }
@@ -39,13 +47,24 @@
         padding: 8px 16px;
       }
 
+
+      div.ant-collapse-content .ant-collapse-content-box:last-child {
+        margin-right: auto;
+      }
+      div.ant-collapse-content .ant-collapse-content-box::after {
+        content: '';
+        flex: auto;
+      }
+
+      // 包裹图形的容器
       div.ant-collapse-content .ant-collapse-content-box {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
         justify-content: space-around;
-        gap: 12px;
+        grid-template-columns: repeat(auto-fill, 52px);
+        grid-gap: 10px;
         padding: 10px 10px;
 
+        // 某个具体的图形
         div.graphic {
           display: flex;
           flex-direction: column;
@@ -56,6 +75,7 @@
           padding: 10px 0;
           border-radius: 2px;
           border: 1px solid transparent;
+          background-color: unset;
 
           &:hover {
             cursor: pointer;

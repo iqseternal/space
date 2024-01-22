@@ -14,6 +14,7 @@ const renderMenu = (menus: DropdownDataType) => {
     if (isSingleMenuData(item)) return <SingleMenu {...item}>{item.title}</SingleMenu>;
     if (isComboBoxMenuData(item)) {
       const comboxBoxMenuProps = { ...item, children: void 0 };
+      delete comboxBoxMenuProps.children;
       return <ComboBoxMenu {...comboxBoxMenuProps}>
         {renderMenu(item.children)}
       </ComboBoxMenu>
@@ -22,14 +23,12 @@ const renderMenu = (menus: DropdownDataType) => {
   })
 }
 
-
 export default defineComponent({
   props: {
     trigger: { type: String as PropType<Required<DropdownProps>['trigger']>, default: () => 'contextmenu' },
     menu: { type: Array as PropType<DropdownDataType>, default: () => ([]) }
   },
   setup(props, { slots, attrs }) {
-
     const contextMenu = computed(() => renderMenu(props.menu));
 
     // @ts-ignore

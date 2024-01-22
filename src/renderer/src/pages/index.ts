@@ -37,6 +37,7 @@ export async function setupApp(...args: Partial<SetupAppArgs>) {
   }
 
   const app = createApp((await App).default, appArg);
+  app.config.globalProperties.CURRENT_PLATFORM = CURRENT_PLATFORM;
 
   app.use(store);
 

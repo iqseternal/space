@@ -32,3 +32,4 @@ export type { AntdRuleObject, AntdRules, Rules, RuleObject, RuleArr, ValidatorFn
 export { useRules, is, not, and, or } from './useRules';
 
 export { useErrorCaptured } from './useErrorCaptured';
+export { useResizeObserver } from './useResizeObserver';

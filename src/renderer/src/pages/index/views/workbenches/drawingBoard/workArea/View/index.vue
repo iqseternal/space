@@ -1,16 +1,13 @@
 <template>
-  <AutoDropdownMenu :open="open" :menu="meta2dViewMenu" @openChange="openChange">
-    <div ref="viewContainer" class="viewContainer" />
-  </AutoDropdownMenu>
+  <div ref="viewContainer" class="viewContainer" />
 </template>
 
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref, watch, computed, watchEffect, nextTick, provide } from 'vue';
-import { setupMeta2dView } from '@renderer/meta';
 import { useDebounce } from '@renderer/hooks';
 import { AutoDropdownMenu, setupDropdownOpenModel } from '@components/DropdownMenu';
 import { meta2dViewMenu } from '@renderer/menus';
-import { useSelection, SelectionMode } from '../../hooks/selections';
+import { useSelection, SelectionMode, setupMeta2dView } from '@renderer/meta';
 
 const props = defineProps({
   width: { type: [Number, String], default: () => '' }
@@ -19,15 +16,6 @@ const props = defineProps({
 const { selections } = useSelection();
 
 const viewContainer = ref<HTMLDivElement>();
-const open = setupDropdownOpenModel();
-
-const openChange = (value: boolean) => {
-  if (selections.mode === SelectionMode.File) {
-    open.value = false;
-    return;
-  }
-  open.value = value;
-}
 
 onMounted(() => {
   if (!viewContainer.value) return;
@@ -35,7 +23,7 @@ onMounted(() => {
 
   watch(() => props.width, useDebounce(() => {
     meta2d.resize();
-  }, 40), {
+  }, 30), {
     flush: 'sync'
   });
 });

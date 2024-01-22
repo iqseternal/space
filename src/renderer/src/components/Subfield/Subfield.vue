@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue';
-import { computed, ref } from 'vue';
+import { computed, ref, reactive } from 'vue';
 import type { SubfieldInstance } from './index.d';
 
 const props = defineProps({
@@ -24,13 +24,15 @@ const props = defineProps({
 
 const container = ref<HTMLElement>();
 
+const expose = reactive({
+  container
+})
+
 const generatorStyle = computed<CSSProperties>(() => ({
   flexDirection: props.direction === 'row' ? 'row' : 'column'
 }));
 
-defineExpose<SubfieldInstance>({
-  container: container as unknown as HTMLElement
-})
+defineExpose<SubfieldInstance>(expose);
 </script>
 
 <style lang="scss" scoped>
