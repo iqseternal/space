@@ -7,8 +7,6 @@ import icon from '#/../resources/icon.png?asset';
  * 系统通知
  */
 export class NotificationService {
-
-
   static showNotificationInfo() {
     return new Promise((resolve, reject) => {
       const notification = new Notification({

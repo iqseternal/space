@@ -7,9 +7,7 @@
     "src/renderer/src/**/*.ts",
     "src/renderer/src/**/*.tsx",
     "src/renderer/src/**/*.vue",
-
     "src/constants/**/*.ts",
-    "./target.config.ts",
 
     "src/preload/*.d.ts",
     "src/@types/**/*.d.ts",
@@ -36,7 +34,6 @@
     "sourceMap": false,
     "baseUrl": ".",
     "paths": {
-      "target.config": ["./target.config.ts"],
       "modules/*": ["./modules/*"],
       "@components/*": ["src/renderer/src/components/*"],
       "@pages/*": ["src/renderer/src/pages/*"],

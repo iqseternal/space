@@ -5,6 +5,7 @@ import { getWindowFrom } from '#/code/core/common/window';
 import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
 import { PAGES_WINDOW_SETTING, PAGES_WINDOW_MAIN } from '#/config/pages';
 
+import { WindowService } from '#code/service/WindowService';
 import { AppConfigService } from '#/code/service/AppConfigService';
 import { UserConfigService } from '#/code/service/UserConfigService';
 import { Printer } from '@suey/printer';
@@ -12,41 +13,41 @@ import { setupMainWindow, setupSettingWindow } from '../setupService';
 import { PrinterService } from '#/code/service/PrinterService';
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_MAX_SIZE, (e, id) => ipcR((ok, fail) => {
-  const window = getWindowFrom(id ?? e);
-  if (!window) return fail(void 0, '找不到指定窗口');
+  const windowService = WindowService.findWindowService(id ?? e);
+  if (!windowService) return fail(void 0, '找不到指定窗口');
 
-  window?.maximize();
-  sendToRenderer(window, IPC_RENDER_WINDOW.WINDOW_STATUS, new IpcResponseOk(true, '最大化了'));
+  windowService.window.maximize();
+  sendToRenderer(windowService.window, IPC_RENDER_WINDOW.WINDOW_STATUS, new IpcResponseOk(true, '最大化了'));
   return ok();
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_MIN_SIZE, (e, id) => ipcR((ok, fail) => {
-  const window = getWindowFrom(id ?? e);
-  if (!window) return fail(void 0, '找不到指定窗口');
+  const windowService = WindowService.findWindowService(id ?? e);
+  if (!windowService) return fail(void 0, '找不到指定窗口');
 
-  window?.minimize();
+  windowService.window.minimize();
   return ok();
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_REDUCTION, (e, id?: number) => ipcR((ok, fail) => {
-  const window = getWindowFrom(id ?? e);
-  if (!window) return fail(false, '找不到指定窗口');
+  const windowService = WindowService.findWindowService(id ?? e);
+  if (!windowService) return fail(false, '找不到指定窗口');
 
-  if (window?.isMaximized()) {
-    window.restore();
-    sendToRenderer(window, IPC_RENDER_WINDOW.WINDOW_STATUS, new IpcResponseOk(false, '被还原了'));
+  if (windowService.window.isMaximized()) {
+    windowService.window.restore();
+    sendToRenderer(windowService.window, IPC_RENDER_WINDOW.WINDOW_STATUS, new IpcResponseOk(false, '被还原了'));
     return ok(true);
   }
-  window?.maximize();
-  sendToRenderer(window, IPC_RENDER_WINDOW.WINDOW_STATUS, new IpcResponseOk(true, '最大化了'));
+  windowService.window.maximize();
+  sendToRenderer(windowService.window, IPC_RENDER_WINDOW.WINDOW_STATUS, new IpcResponseOk(true, '最大化了'));
   return ok(true);
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESIZE_ABLE, (e, able: boolean) => ipcR((ok, fail) => {
-  const window = getWindowFrom(e);
-  if (!window) return fail(false, '找不到指定窗口');
+  const windowService = WindowService.findWindowService(e);
+  if (!windowService) return fail(false, '找不到指定窗口');
 
-  window.setResizable(able);
+  windowService.window.setResizable(able);
   return ok(true, '窗口RESIZE更改成功');
 }));
 
@@ -56,24 +57,24 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RELAUNCH, () => ipcR((ok, fail) => {
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SET_SIZE, (e, width, height) => ipcR((ok, fail) => {
-  const window = getWindowFrom(e);
-  if (!window) return fail(false, '找不到指定窗口');
+  const windowService = WindowService.findWindowService(e);
+  if (!windowService) return fail(false, '找不到指定窗口');
 
-  if (window.isMaximized()) window.restore();
-  window.setMinimumSize(0, 0);
-  window.setSize(width, height);
+  if (windowService.window.isMaximized()) windowService.window.restore();
+  windowService.window.setMinimumSize(0, 0);
+  windowService.window.setSize(width, height);
   return ok(true);
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SET_POSITION, (e, _1: number | 'center' | 'left' | 'right' | 'top' | 'bottom', _2?: number) => ipcR((ok, fail) => {
-  const window = getWindowFrom(e);
-  if (!window) return fail(false, '找不到指定窗口');
+  const windowService = WindowService.findWindowService(e);
+  if (!windowService) return fail(false, '找不到指定窗口');
 
   if (typeof _1 === 'string' && !_2) {
     const type = _1; // 类型, 窗口大小
 
-    const [currentPx, currentPy] = window.getPosition();
-    const [width, height] = window.getSize();
+    const [currentPx, currentPy] = windowService.window.getPosition();
+    const [width, height] = windowService.window.getSize();
 
     if (type === 'center') {
       const { width: maxScreenWidth, height: maxScreenHeight } = screen.getPrimaryDisplay().size;
@@ -81,7 +82,7 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SET_POSITION, (e, _1: number | 'center' 
       const targetPx = maxScreenWidth / 2 - width / 2;
       const targetPy = maxScreenHeight / 2 - height / 2;
 
-      window.setPosition(targetPx, targetPy, false);
+      windowService.window.setPosition(targetPx, targetPy, false);
       return ok(true);
     }
 
@@ -91,12 +92,12 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SET_POSITION, (e, _1: number | 'center' 
     if (type === 'right') { targetPx += width; }
     if (type === 'top') { targetPy -= height; }
     if (type === 'bottom') { targetPy += height; }
-    window.setPosition(targetPx, targetPy);
+    windowService.window.setPosition(targetPx, targetPy);
     return ok(true);
   }
 
   if (typeof _1 === 'number' && typeof _2 === 'number') {
-    window.setPosition(_1, _2);
+    windowService.window.setPosition(_1, _2);
     return ok(true);
   }
 
@@ -106,8 +107,8 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SET_POSITION, (e, _1: number | 'center' 
 // 渲染进程改变窗口大小, 在此做了更改大小的时候, 窗口也会更随着自动定位到原来窗口的中心位置扩展
 // 例如原本的窗口小, 但在正中间, 那么更改放大之后, 窗口的中心也会在屏幕的正中央
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, (e, type) => ipcR((ok, fail) => {
-  const window = getWindowFrom(e);
-  if (!window) {
+  const windowService = WindowService.findWindowService(e);
+  if (!windowService) {
     reloadApp();
     return fail(void 0, '找不到指定窗口');
   }
@@ -117,13 +118,13 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, (e, type) => ipcR((ok
 
   if (type === 'mainWindow') {
     const { minWidth, minHeight } = appConfigService.config.windows.mainWindow;
-    window.setMinimumSize(minWidth, minHeight);
+    windowService.window.setMinimumSize(minWidth, minHeight);
 
     const { width: userWidth, height: userHeight } = userConfigService.config.windows.mainWindow;
     const { width: appWidth, height: appHeight } = appConfigService.config.windows.mainWindow;
 
-    const [width, height] = window.getSize();
-    const [positionX, positionY] = window.getPosition();
+    const [width, height] = windowService.window.getSize();
+    const [positionX, positionY] = windowService.window.getPosition();
 
     let targetWidth: number = 0, targetHeight: number = 0;
     let gapWidth: number = 0, gapHeight: number = 0;
@@ -142,8 +143,8 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, (e, type) => ipcR((ok
     if (targetPx <= 10) targetPx = positionX;
     if (targetPy <= 50) targetPy = positionY;
 
-    window.setPosition(targetPx, targetPy);
-    window.setSize(targetWidth, targetHeight);
+    windowService.window.setPosition(targetPx, targetPy);
+    windowService.window.setSize(targetWidth, targetHeight);
     return ok();
   }
 
@@ -151,28 +152,31 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_RESET_CUSTOM_SIZE, (e, type) => ipcR((ok
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_OPEN, (e, type) => ipcR(async (ok, fail) => {
+  const windowService = WindowService.findWindowService(e);
+  if (!windowService) return fail(false, '找不到指定窗口');
+
   if (type === 'windowSetting') {
-    const settingWindow = await setupSettingWindow();
-    settingWindow.open();
+    const settingWindowService = await setupSettingWindow(windowService);
+    settingWindowService.open();
   }
   return ok(true);
 }));
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_CLOSE, (e, id?: number) => ipcR(async (ok, fail) => {
-  const window = getWindowFrom(id ?? e);
-  if (!window) return fail(false, '找不到指定窗口');
+  const windowService = WindowService.findWindowService(id ?? e);
+  if (!windowService) return fail(false, '找不到指定窗口');
 
-  window.close();
+  windowService.destroy();
   return ok(true);
 }));
 
 
 setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_SHOW, (e, show: boolean, id?: number) => ipcR((ok, fail) => {
-  const window = getWindowFrom(id ?? e);
-  if (!window) return fail(false, '找不到指定窗口');
+  const windowService = WindowService.findWindowService(id ?? e);
+  if (!windowService) return fail(false, '找不到指定窗口');
 
-  if (show) window.show();
-  else window.hide();
+  if (show) windowService.window.show();
+  else windowService.window.hide();
 
   return ok(true);
 }));

@@ -26,8 +26,21 @@ export type RequiredRouteRecordRaw =
   RequiredRouteRecordMultipleViews |
   RequiredRouteRecordRedirect;
 
+export type AutoRequiredRouteRecordRaw<
+  T extends Readonly<RouteRecordRaw>,
+  Children extends T['children'] = T['children']
+> = Omit<T, 'meta' | 'children'> & {
+  meta: T['meta'] extends unknown ? Required<RouteMeta> : ObjAutoComplete<Exclude<T['meta'], undefined>, Required<RouteMeta>>;
+  children: Children extends {} ? {
+    [Index in keyof Children]:
+      Index extends (number | `${number}`)
+        // @ts-ignore
+        ? AutoRequiredRouteRecordRaw<Exclude<Children[Index], undefined>>
+        : Children[Index];
+  } : never;
+}
 
-export function makeRequireRouteMeta<T extends Readonly<RouteRecordRaw>>(_route: T, preRoute?: T): RequiredRouteRecordRaw {
+export function makeRequireRouteMeta<T extends Readonly<RouteRecordRaw>>(_route: T, preRoute?: T): AutoRequiredRouteRecordRaw<T> {
   const route = _route as unknown as RequiredRouteRecordRaw;
   if (!route.meta) route.meta = {} as Required<RouteMeta>;
 
@@ -62,8 +75,33 @@ export function makeRequireRouteMeta<T extends Readonly<RouteRecordRaw>>(_route:
     return makeRequireRouteMeta(routeChild, route);
   });
 
-  return route as RequiredRouteRecordRaw;
+  return route as unknown as AutoRequiredRouteRecordRaw<T>;
 }
 
 export { makeRequireRouteMeta as makeRoute };
 
+export function toRoutes<T>(route: T) {
+  // type R = typeof spaceRoutes.children;
+
+  // @ts-ignore
+  type R = T['children'];
+  // @ts-ignore
+  type ChildrenKeys = ArrayKeys<R>;
+  // @ts-ignore
+  type IndexToName = { [Index in ChildrenKeys]: R[Index]['name']; }
+  type Res = {
+    // @ts-ignore
+    [Index in keyof IndexToName as `${Lowercase<IndexToName[Index]>}Route`]: R[Index];
+  }
+
+  const res = {} as Res;
+  // @ts-ignore
+  route.children?.forEach(child => {
+    if (!child) return;
+    if (!child.name) return;
+
+    res[`${(child.name as string).toLowerCase()}Route`] = child;
+  });
+
+  return res;
+}

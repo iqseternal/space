@@ -3,6 +3,8 @@ import { electronApp, optimizer } from '@electron-toolkit/utils';
 import { PrinterService } from '#/code/service/PrinterService';
 import { safeRunNoneArgAsyncFn } from '#code/core/common/app';
 import { print, printError } from '@suey/printer';
+import { WindowService, WindowServiceOptions } from '#code/service/WindowService';
+import { isString, isNumber } from '@suey/pkg-utils';
 
 import './setupHandles';
 
@@ -46,3 +48,4 @@ export const setupApp = async (startApp: () => void, ops?: Partial<AppOptions>):
 
   return Promise.resolve();
 }
+

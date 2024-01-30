@@ -39,7 +39,7 @@ export const CONFIG = {
       SVG: ''
     }
   }
-};
+} as const;
 
 // don't modify it!
 export const RSA_PUBLIC_KEY = `
@@ -49,7 +49,7 @@ Gor8OZe+06s73C4H5b/Iyy/vbAzFFWsfL1y04AnNDkZ9swoFWnmYjon1XGUTvN3Z
 BuLWKW9UjDCcTcno4MEhP1qrk3X0iiBeu09aJdiWogjbN4kaBq/KcKRQ5kvXdcTP
 hvcDZhJI/YiPgbRW9wIDAQAB
 -----END PUBLIC KEY-----
-`;
+` as const;
 
 // don't modify it!
-export const AES_KEY = `drawingbed`;
+export const AES_KEY = `drawingbed` as const;

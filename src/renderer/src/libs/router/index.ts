@@ -8,5 +8,5 @@
 
 export { default as View } from './View.vue';
 
-export type { RequiredRouteRecordRaw } from './makeRequireRouteMeta';
-export { makeRequireRouteMeta, makeRoute } from './makeRequireRouteMeta';
+export type { RequiredRouteRecordRaw, AutoRequiredRouteRecordRaw } from './makeRequireRouteMeta';
+export { makeRequireRouteMeta, makeRoute, toRoutes } from './makeRequireRouteMeta';

@@ -14,10 +14,10 @@
 <script lang="ts" setup>
 import type { MenuProps } from 'ant-design-vue';
 import { ref } from 'vue';
-import { settingChildrenRoutes } from '@pages/setting/router/modules';
+import { settingRoutes } from '@pages/setting/router/modules';
 import { useRouter, useRoute } from 'vue-router';
 import Ellipsis from '@components/Ellipsis';
-const routes: MenuProps['items'] = settingChildrenRoutes.map((item) => {
+const routes: MenuProps['items'] = settingRoutes.children.map((item) => {
   return {
     key: item.meta?.fullpath ?? '',
     label: item.meta?.title,

@@ -7,3 +7,9 @@ export enum PLATFORMS {
 }
 
 
+export enum ENV {
+  DEV = 1,
+  PROD = 2
+}
+
+

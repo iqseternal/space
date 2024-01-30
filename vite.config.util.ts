@@ -1,6 +1,6 @@
 import type { ProxyOptions, AliasOptions, Alias, Plugin, UserConfig } from 'vite';
 import { loadEnv } from 'vite';
-import { PLATFORMS } from './target.config';
+import { ENV, PLATFORMS } from './target.config';
 import eslintPlugin from 'vite-plugin-eslint';
 import * as path from 'path';
 import * as webConfig from './tsconfig.web.json';
@@ -12,7 +12,8 @@ const START_OPTIONS = {
 
 export const define = (mode: string) => {
   return {
-    CURRENT_PLATFORM: PLATFORMS.WINDOWS
+    CURRENT_PLATFORM: PLATFORMS.WINDOWS,
+    CURRENT_ENV: ENV.DEV
   }
 }
 

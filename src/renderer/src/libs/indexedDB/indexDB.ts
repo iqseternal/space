@@ -19,8 +19,10 @@ export class IndexedDB<DatabasesConstruct> {
       request.onerror = () => reject();
       request.onupgradeneeded = async e => {
         upgrade && await upgrade(request.result);
-        request.onsuccess = () => resolve();
+
       };
+
+      request.onsuccess = () => resolve();
     });
   }
 

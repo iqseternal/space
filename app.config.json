@@ -19,6 +19,7 @@
       "type": "pop",
       "icon": "/resources/icon.png",
       "titleBarStyle": "hidden",
+      "modal": true,
       "descriptor": "大型弹窗"
     },
     "mediumPopupWindow": {
@@ -27,6 +28,7 @@
       "width": 690,
       "height": 580,
       "resizable": false,
+      "modal": true,
       "titleBarStyle": "hidden",
       "descriptor": "中型弹窗"
     },
@@ -34,6 +36,7 @@
       "type": "pop",
       "width": 300,
       "height": 200,
+      "modal": true,
       "icon": "/resources/icon.png",
       "titleBarStyle": "hidden",
       "descriptor": "小型弹窗"

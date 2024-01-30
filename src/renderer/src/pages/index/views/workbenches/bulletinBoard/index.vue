@@ -58,7 +58,7 @@ const router = useRouter();
 const activeKey = ref('1');
 
 const handleWork = () => {
-  router.push(spaceRoutes.children[0].children[1].meta.fullpath);
+
 }
 </script>
 

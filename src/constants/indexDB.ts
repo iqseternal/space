@@ -12,9 +12,9 @@ export type CalcTableEnumKeyToValue<TableEnum, T extends {
  * 这里是文档表，用于存储Meta2d所产生的需要存储的数据
  */
 export class TABLE_DOCUMENT {
-  public static readonly GENERATOR_KEY = 'GENERATOR_KEY';
   public static readonly CREAT_AT = 'CREAT_AT'; // 创建于
   public static readonly EDIT_AT = 'EDIT_AT'; // 编辑于
+  public static readonly META_2D_DOC_NAME = 'META_2D_DOC_NAME'; // 图纸名称
   public static readonly META_2D_DATA = 'META_2D_DATA'; // meta2d 数据
 };
 
@@ -22,9 +22,9 @@ export class TABLE_DOCUMENT {
  * TABLE_DOCUMENT 表的字段所对应的值的类型
  */
 export type TableDocumentType = CalcTableEnumKeyToValue<TABLE_DOCUMENT, {
-  [TABLE_DOCUMENT.GENERATOR_KEY]?: string;
   [TABLE_DOCUMENT.CREAT_AT]: string;
   [TABLE_DOCUMENT.EDIT_AT]: string;
+  [TABLES.TABLE_DOCUMENT.META_2D_DOC_NAME]: string;
   [TABLE_DOCUMENT.META_2D_DATA]: Meta2dData;
 }>;
 
