@@ -9,17 +9,18 @@ import { windowClose } from '@renderer/actions';
 import { isDef, isUnDef } from '@suey/pkg-utils';
 import store from '@renderer/store';
 
-export const useDocStore = defineStore('doc-store', () => {
+export const useDocStore = defineStore('docStore', () => {
   let indexedDB = void 0 as unknown as IndexedDB<TablesType>;
 
-  const state = reactive({
-    currentId: void 0 as (undefined | number)
+  const currentId = ref<number | undefined>(void 0);
+  const isWork = computed(() => isDef(currentId.value));
 
-
-  });
-  const isWork = computed(() => isDef(state.currentId));
   const setDocId = (id: number | undefined) => {
-    state.currentId = id;
+
+    console.log(currentId.value, id);
+
+    currentId.value = id;
+
   }
 
 
@@ -56,7 +57,7 @@ export const useDocStore = defineStore('doc-store', () => {
   })
 
   return {
-    state,
+    currentId,
     isWork,
 
     setDocId,

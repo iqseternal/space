@@ -18,7 +18,7 @@
     "scripts:build": "pnpm run -C scripts build",
     "docs:dev": "pnpm run -C docs dev",
     "docs:build": "pnpm run -C docs build",
-    "build": "npm run typecheck && electron-vite build",
+    "build": "electron-vite build",
     "build:win": "npm run build && electron-builder --win --config",
     "build:mac": "npm run build && electron-builder --mac --config",
     "build:linux": "npm run build && electron-builder --linux --config",

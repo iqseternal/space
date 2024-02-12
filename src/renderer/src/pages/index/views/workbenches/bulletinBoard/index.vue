@@ -62,7 +62,7 @@ const router = useRouter();
 const activeKey = ref('1');
 
 
-const { createDoc, state, setDocId } = useDocStore();
+const { createDoc, setDocId } = useDocStore();
 
 const handleCreateDoc = async () => {
   const doc = await createDoc().catch(err => err);
