@@ -4,7 +4,7 @@ import { DATABASES_META2D, TABLES } from '#constants/indexDB';
 
 let indexedDB: IndexedDB<TablesType> | undefined = void 0;
 
-export async function setupIndexDB() {
+export async function setupIndexedDB() {
   if (indexedDB) return Promise.resolve(indexedDB);
 
   indexedDB = new IndexedDB<TablesType>({
@@ -13,7 +13,7 @@ export async function setupIndexDB() {
   });
 
   return new Promise<IndexedDB<TablesType>>((resolve, reject) => {
-    if (!indexedDB) return reject(null)
+    if (!indexedDB) return reject(null);
 
     indexedDB.connection((db) => {
       const documentStore = db.createObjectStore(DATABASES_META2D.TABLES_NAMES.TABLE_DOCUMENT, {

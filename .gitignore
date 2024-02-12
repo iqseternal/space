@@ -6,3 +6,4 @@ node_modules
 /scripts/*.js
 /scripts/*.node
 /src/renderer/components.d.ts
+/docs/.vitepress/cache

@@ -4,3 +4,4 @@ import { makeRequireRouteMeta, makeRoute, View } from '../src/renderer/src/libs/
 
 
 
+console.log('scripts');

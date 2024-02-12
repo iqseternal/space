@@ -1,9 +1,9 @@
 import { ref } from "vue";
-import store from "@renderer/store";
 import { defineStore } from 'pinia';
 import { getToken, removeToken, setToken } from '@libs/storage';
 import { apiUrl, apiPost } from '@renderer/api';
 import type { RouteRecordRaw } from 'vue-router';
+import store from "@renderer/store";
 
 import '@vue/shared';
 
@@ -73,3 +73,5 @@ export const useUserStore = defineStore("user", () => {
 export function useUserStoreHook() {
   return useUserStore(store)
 }
+
+

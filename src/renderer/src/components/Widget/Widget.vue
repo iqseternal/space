@@ -1,5 +1,5 @@
 <template>
-  <ATooltip :title="props.title" :mouseEnterDelay="props.mouseEnterDelay">
+  <ATooltip v-model:open="open" :title="props.title" :mouseEnterDelay="props.mouseEnterDelay">
     <div v-bind="$attrs" class="widget" :class="props.className + ' ' + (props.autoHover  ? 'widget-hover' : '')" @click="() => emits('click')">
       <template v-if="$slots.default"><slot name="default" /></template>
 
@@ -15,9 +15,10 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, nextTick } from 'vue';
 import { Tooltip } from 'ant-design-vue';
 import { CONFIG } from '#/constants';
-
+import { useEventListener } from '@renderer/hooks';
 import IconFont from '@renderer/components/IconFont';
 
 const props = defineProps({
@@ -29,6 +30,8 @@ const props = defineProps({
   className: { type: String, default: '' }
 });
 const emits = defineEmits(['click']);
+
+const open = ref(false);
 </script>
 
 <style lang="scss" scoped>

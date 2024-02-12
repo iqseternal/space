@@ -1,5 +1,5 @@
 import { print, printError, printInfo } from '@suey/printer';
-import type { IndexedDbDatabase, IndexedDBOptions, IndexedDBTransaction } from './declare';
+import type { IndexedDbDatabase, IndexedDBOptions, IndexedDBObjectStore } from './declare';
 
 export class IndexedDB<DatabasesConstruct> {
   #db: IndexedDbDatabase | undefined;
@@ -26,11 +26,55 @@ export class IndexedDB<DatabasesConstruct> {
     });
   }
 
-  transition<
+  transaction<
     Name extends Exclude<keyof DatabasesConstruct, number | symbol>,
     TableConstruct extends DatabasesConstruct[Name],
     Args extends Parameters<IndexedDbDatabase['transaction']>
   >(storeNames: Name | Name[], mode?: Args[1], options?: Args[2]): IndexedDBTransaction<Name, TableConstruct> {
-    return this.db.transaction(storeNames, mode, options);
+    return new IndexedDBTransaction(this.db.transaction(storeNames, mode, options));
+  }
+}
+
+export class IndexedDBTransaction<Name extends string, TableConstruct> {
+  constructor(
+    private readonly transaction: IDBTransaction
+  ) {}
+
+  objectStore(name: Name) {
+    return new IndexedDBTable(this.transaction.objectStore(name));
+  }
+}
+
+export class IndexedDBTable {
+  constructor(
+    private readonly objectStore: IDBObjectStore
+  ) {}
+
+  getAll<T>(...args: Parameters<typeof this.objectStore.getAll>) {
+    return new Promise<T[]>((resolve, reject) => {
+      const request = this.objectStore.getAll(...args);
+
+      request.onsuccess = () => {
+        resolve(request.result);
+      }
+
+      request.onerror = () => {
+        reject([]);
+      }
+    })
+  }
+
+  create(...args: Parameters<typeof this.objectStore.add>) {
+    return new Promise((resolve, reject) => {
+      const request = this.objectStore.add(...args);
+
+      request.onsuccess = () => {
+        resolve(request.result);
+      }
+
+      request.onerror = () => {
+        reject([])
+      }
+    })
   }
 }

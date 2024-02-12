@@ -1,4 +1,5 @@
 <script lang="tsx">
+import type { Ref } from 'vue';
 import { withDefaults, defineComponent, computed } from 'vue';
 import type { DropdownDataType } from './declare';
 import { isComboBoxMenuData, isMenuDriverData, isSingleMenuData } from './declare';
@@ -26,10 +27,10 @@ const renderMenu = (menus: DropdownDataType) => {
 export default defineComponent({
   props: {
     trigger: { type: String as PropType<Required<DropdownProps>['trigger']>, default: () => 'contextmenu' },
-    menu: { type: Array as PropType<DropdownDataType>, default: () => ([]) }
+    menu: { type: Array as PropType<DropdownDataType | Ref<DropdownDataType>>, default: () => ([]) }
   },
   setup(props, { slots, attrs }) {
-    const contextMenu = computed(() => renderMenu(props.menu));
+    const contextMenu = computed(() => renderMenu(props.menu as DropdownDataType));
 
     // @ts-ignore
     return () => <DropdownMenu {...attrs} trigger={props.trigger}>

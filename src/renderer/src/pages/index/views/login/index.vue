@@ -1,10 +1,6 @@
 <template>
   <div class="loginPage">
-    <Header isPane>
-      <template #control>
-        <Widget title="设置" icon='SettingOutlined' @click="() => openSettingPage()" />
-      </template>
-    </Header>
+    <Header isPane />
     <div class="contain">
       <template v-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_REQUEST_STAGE">
         <LoginLoading @cancel="() => (stage = preStageKey)" />

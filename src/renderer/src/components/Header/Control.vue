@@ -6,7 +6,7 @@
       <template v-if="!props.isDialog && !props.isPane">
         <Widget title="全屏" icon="FullscreenOutlined" @click="() => windowAutoFullScreen()" />
       </template>
-      <Widget title="打开开发者工具" icon="BugFilled" @click="() => openDevTool()" />
+      <DeBugWidget />
       <template v-if="!props.isDialog">
         <Widget title="最小化" :src="windowMinSvg" @click="() => minWindow()" />
       </template>
@@ -18,12 +18,11 @@
   </Subfield>
 </template>
 
-<script lang="ts" setup>
+<script lang="tsx" setup>
 import { ref } from 'vue';
-import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW, CONFIG } from '#/constants';
+import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW, CONFIG, IS_DEV } from '#/constants';
 import { windowCloseSvg, windowMaxSvg, windowMinSvg, windowRegionSvg } from '@renderer/assets';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
-
 import { windowMax, windowMin, windowClose, windowReduction, windowDevtool, windowAutoFullScreen } from '@renderer/actions';
 
 import Subfield from '@components/Subfield';
@@ -41,6 +40,8 @@ const maxWindow = () => windowMax();
 const minWindow = () => windowMin();
 const reductionWindow = () => windowReduction();
 const closeWindow = () => windowClose();
+
+const DeBugWidget = IS_DEV ? <Widget title="打开开发者工具" icon="BugFilled" onClick={() => openDevTool()} /> : <></>;
 
 useMousetrap(['ctrl+shift+i', 'command+shift+i'], () => openDevTool());
 </script>

@@ -33,3 +33,6 @@ export { useRules, is, not, and, or } from './useRules';
 
 export { useErrorCaptured } from './useErrorCaptured';
 export { useResizeObserver } from './useResizeObserver';
+
+export type { StorageStackOptions, JudgeIsCanControlStack } from './useStorageStack';
+export { useStorageStack } from './useStorageStack';

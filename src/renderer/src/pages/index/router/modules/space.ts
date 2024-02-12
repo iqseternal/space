@@ -2,6 +2,8 @@ import type { RouteRecordRaw } from 'vue-router';
 import { terminalSvg, dashboardSvg, settingSvg } from '@renderer/assets';
 import { View, makeRoute, toRoutes } from '@libs/router';
 
+import { WORKBENCHES_NAME } from './constant';
+
 export const spaceRoutes = makeRoute({
   name: 'Space',
   path: '/space',
@@ -9,7 +11,7 @@ export const spaceRoutes = makeRoute({
   redirect: 'workbenches',
   children: [
     {
-      name: 'Workbenches',
+      name: WORKBENCHES_NAME,
       path: 'workbenches',
       meta: { svg: dashboardSvg, title: '工作台' },
       component: () => import('@pages/index/views/workbenches/index.vue'),
@@ -25,7 +27,9 @@ export const spaceRoutes = makeRoute({
       path: 'profile',
       meta: { icon: 'ProfileOutlined' },
       component: () => import('@pages/index/views/profile/index.vue'),
-
     }
   ]
 } as const);
+
+
+export const { workbenchesRoute, dashboardRoute, profileRoute } = toRoutes(spaceRoutes);

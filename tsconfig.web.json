@@ -10,7 +10,7 @@
     "src/constants/**/*.ts",
 
     "src/preload/*.d.ts",
-    "src/@types/**/*.d.ts",
+
     "src/rendererer/@types/**/*.d.ts",
     "modules/**/*"
   ],

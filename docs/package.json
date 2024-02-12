@@ -1,0 +1,7 @@
+{
+  "name": "docs",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon -e ts --exec (ts-node ./index.ts -h)"
+  }
+}

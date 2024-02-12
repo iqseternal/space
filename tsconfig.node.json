@@ -14,8 +14,6 @@
     "./user.config.json",
     "./app.config.json",
 
-    "./devScripts/common.ts",
-
     "electron.vite.config.*",
     "tsconfig.node.json",
     "tsconfig.web.json",
@@ -23,7 +21,7 @@
     "src/@types/**/*.d.ts",
     "src/env.d.ts"
   ],
-  "exclude": ["node_modules", "dist", "out"],
+  "exclude": ["node_modules", "dist", "out", "src/renderer/**/*"],
   "compilerOptions": {
     "noEmit": true,
     "noEmitOnError": true,

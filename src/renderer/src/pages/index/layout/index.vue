@@ -25,9 +25,6 @@
           </template>
         </Slogan>
       </template>
-      <template #control>
-        <Widget title="打开设置页面" icon="SettingOutlined" @click="() => openSettingPage()" />
-      </template>
     </Header>
     <main class="container">
       <RouterView v-slot="{ Component }">
@@ -49,7 +46,7 @@ import { UserOutlined, ReloadOutlined, BugOutlined } from '@ant-design/icons-vue
 import { hotKeys, windowReload, windowDevtool, copyText, pasteText, windowResizeAble, openSettingPage } from '@renderer/actions';
 import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
 import { canCopyText } from '@libs/common';
-import { useMousetrap, useFadeIn, useEventListener, useResizeObserver } from '@renderer/hooks';
+import { useMousetrap, useFadeIn, useEventListener, useResizeObserver, useStorageStack } from '@renderer/hooks';
 import { fileMenu, editMenu, helpMenu } from '@renderer/menus';
 import type { HeaderInstance, SloganInstance } from '@components/Header';
 import { Header, Indicator, Slogan } from '@components/Header';
@@ -71,15 +68,15 @@ interface NavMenuItem {
   mark?: IconRealKey;
 }
 
-const navMenus = ref<NavMenuItem[]>([
-  { menu: fileMenu, title: '文件', mark: 'FolderOutlined', maxWidth: 120 },
-  { menu: editMenu, title: '编辑', mark: 'EditOutlined', maxWidth: 120 },
-  { menu: helpMenu, title: '帮助', maxWidth: 160 }
-]);
-/** 菜单栈,当从展示的菜单中进入栈之后就代表被收纳 */
-const navMenusStack = ref<typeof navMenus.value>([
+const { preStack: navMenus, nextStack: navMenusStack, pushStack, popStack } = useStorageStack<NavMenuItem>({
+  preStack: [
+    { menu: fileMenu, title: '文件', mark: 'FolderOutlined', maxWidth: 120 },
+    { menu: editMenu, title: '编辑', mark: 'EditOutlined', maxWidth: 120 },
+    { menu: helpMenu, title: '帮助', maxWidth: 160 }
+  ],
+  nextStack: []
+});
 
-]);
 /** 转换被收纳的菜单项,并作出展示数据 */
 const navMenusStackMenu = computed<DropdownDataType>(() => navMenusStack.value.map(stackItem => ({
   title: stackItem.title,
@@ -87,35 +84,6 @@ const navMenusStackMenu = computed<DropdownDataType>(() => navMenusStack.value.m
   mark: stackItem.mark,
   children: stackItem.menu
 })));
-
-/**
- * 进栈,代表收纳一个菜单元素
- * @param clientWidth
- */
-function pushStack(clientWidth: number) {
-  if (!navMenus.value.length) return;
-  const curMenu = navMenus.value[navMenus.value.length - 1];
-
-  if (curMenu.maxWidth >= clientWidth) {
-    navMenus.value.pop();
-    navMenusStack.value.unshift(curMenu);
-    pushStack(clientWidth);
-  }
-}
-/**
- * 出栈
- * @param clientWidth
- */
-function popStack(clientWidth: number) {
-  if (!navMenusStack.value.length) return;
-  const curMenu = navMenusStack.value[0];
-
-  if (curMenu.maxWidth < clientWidth) {
-    navMenusStack.value.shift();
-    navMenus.value.push(curMenu);
-    popStack(clientWidth);
-  }
-}
 
 useFadeIn(() => {
   windowResizeAble(true);
@@ -126,10 +94,9 @@ useResizeObserver(computed(() => sloganInstance.value?.centerContainer), () => {
   const dom = sloganInstance.value?.centerContainer;
   if (!isDef(dom)) return;
 
-  pushStack(dom.clientWidth);
-  popStack(dom.clientWidth);
+  pushStack((current) => current.maxWidth >= dom.clientWidth);
+  popStack((current) => current.maxWidth < dom.clientWidth);
 });
-
 
 useMousetrap(hotKeys.reload.allKey, windowReload);
 </script>
