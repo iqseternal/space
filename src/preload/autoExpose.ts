@@ -7,6 +7,10 @@ import { contextBridge } from 'electron';
 
 export type ExposeApiObj = Record<string | symbol, any>;
 
+/**
+ * 自动暴露Api，解决手动的烦恼
+ * @param exposeApiObj
+ */
 export function autoExpose<T extends ExposeApiObj>(exposeApiObj: Required<T>): void {
   if (process.contextIsolated) {
     Object.keys(exposeApiObj).forEach(key => {
@@ -15,7 +19,7 @@ export function autoExpose<T extends ExposeApiObj>(exposeApiObj: Required<T>): v
   }
   else {
     Object.keys(exposeApiObj).forEach(key => {
-      window[key] = exposeApiObj[key];
+      window[key as any] = exposeApiObj[key];
     });
   }
 }

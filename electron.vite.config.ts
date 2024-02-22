@@ -64,7 +64,11 @@ const rendererConfig = ({ mode }: ConfigEnv): UserConfig['renderer'] => {
       }
     },
     plugins: [
-      vue(),
+      vue({
+        script: {
+          defineModel: true
+        }
+      }),
       vueJsx(),
       svgLoader({ defaultImport: 'url' }),
       components({
@@ -84,6 +88,7 @@ const rendererConfig = ({ mode }: ConfigEnv): UserConfig['renderer'] => {
     ],
     define: define(mode),
     server: {
+      port: 8888,
       hmr: true,
       host: '0.0.0.0',
       proxy: {

@@ -16,13 +16,14 @@
         </Subfield>
 
         <Subfield v-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE" style="margin-top: 10px;height: 70%;">
-          <template #left>
+          <Subfield>
             <div />
             <img alt="" :src="loginTakeFilePng" />
-          </template>
-          <template #right>
+          </Subfield>
+          <div />
+          <Subfield>
             <Login />
-          </template>
+          </Subfield>
         </Subfield>
         <Subfield v-else-if="stage === DEFINE_PROVIDE_PROP_KEYS.R_CPT_REGISTER_STAGE">
           <div />
@@ -37,16 +38,16 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue';
 import { onBeforeMount, onBeforeUnmount, onMounted, ref, computed, provide } from 'vue';
-import { useRouter } from 'vue-router';
-import { Space, Input, Button, Form, FormItem, Modal, TabPane, Tabs, Card } from 'ant-design-vue';
+import { useRouter, useRoute } from 'vue-router';
 import { IPC_MAIN_WINDOW, CONFIG } from '#/constants';
-import { useMousetrap, useFadeIn } from '@renderer/hooks';
+import { useMousetrap, useFadeIn, useDisableRouterBack } from '@renderer/hooks';
 import { loginTakeFilePng } from '@renderer/assets';
-
-import { LoginLoading } from '@components/Loading';
 import { useStage, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 
-import { windowSetSize, windowResizeAble, windowRelaunch, windowShow, windowSetPosition, windowResetCustomSize, hotKeys, windowReload, openSettingPage } from '@renderer/actions';
+import {
+  windowSetSize, windowResizeAble, windowRelaunch, windowShow, windowSetPosition,
+  windowResetCustomSize, hotKeys, windowReload, openSettingPage
+} from '@renderer/actions';
 
 import { Subfield, SubfieldSpace } from '@components/Subfield';
 import Widget from '@components/Widget';
@@ -57,6 +58,7 @@ import Header from '@components/Header';
 import Logo from '@components/Logo';
 
 import Login from './Login.vue';
+import LoginLoading from './LoginLoading.vue';
 import Register from './Register.vue';
 
 const [stage, preStageKey] = useStage();
@@ -69,6 +71,7 @@ useFadeIn(async () => {
   // windowSetPosition('center');
   windowShow(true);
 });
+useDisableRouterBack();
 
 onBeforeUnmount(() => {
   windowResizeAble(true);

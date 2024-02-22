@@ -27,12 +27,16 @@ import type { Ref } from 'vue';
 import { ref, reactive, onMounted, onBeforeUnmount, watch } from 'vue';
 import { Space, Progress, ProgressProps, Button } from 'ant-design-vue';
 import { DeleteOutlined, CloseCircleOutlined, CloseCircleFilled, CloseCircleTwoTone } from '@ant-design/icons-vue';
-import { Subfield, SubfieldSpace } from '../Subfield';
+import { Subfield, SubfieldSpace } from '@components/Subfield';
+import { useStage, useStageInject, DEFINE_PROVIDE_PROP_KEYS } from './useStage';
 
 import FakeProgress from 'fake-progress';
 import Logo from '@renderer/components/Logo/Logo.vue';
 
+
 const emits = defineEmits(['cancel']);
+
+const [stage, setStage] = useStageInject();
 
 const fake = reactive(new FakeProgress({
   timeConstant: 6000,  // timeConstant相当于分母, 分母越大则加的越少
@@ -42,6 +46,10 @@ const fake = reactive(new FakeProgress({
 onMounted(() => {
   fake.progress = 0;
   fake.start();
+
+  setTimeout(() => {
+    setStage(DEFINE_PROVIDE_PROP_KEYS.R_CPT_LOGIN_STAGE);
+  }, 10000);
 });
 
 onBeforeUnmount(() => {

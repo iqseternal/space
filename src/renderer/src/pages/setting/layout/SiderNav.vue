@@ -1,5 +1,5 @@
 <template>
-  <div class="sider-menu">
+  <div class="sider-menu h-full">
     <div class="flex-center" style="padding: 10px;">
       <AAvatar src="https://www.antdv.com/assets/logo.1ef800a8.svg" :size="32" shape="square" />
       <div class="overflow-x-hidden flex-col" style="align-items: unset;font-size: 12px;margin-left: 8px;">
@@ -16,7 +16,9 @@ import type { MenuProps } from 'ant-design-vue';
 import { ref } from 'vue';
 import { settingRoutes } from '@pages/setting/router/modules';
 import { useRouter, useRoute } from 'vue-router';
+
 import Ellipsis from '@components/Ellipsis';
+
 const routes: MenuProps['items'] = settingRoutes.children.map((item) => {
   return {
     key: item.meta?.fullpath ?? '',
@@ -36,10 +38,18 @@ const handlePath = ({ selectedKeys }: Parameters<Required<MenuProps>['onSelect']
 
 <style lang="scss" scoped>
 @import '@scss/mixin.scss';
+
 .sider-menu {
   width: 156px;
-  height: 100vh;
   background: #f5f5f5;
   @include appRegion;
+}
+
+
+.a-menu {
+  border-inline-end: none !important;
+  background: #f5f5f5;
+  user-select: none;
+  @include appRegionNo;
 }
 </style>

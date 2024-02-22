@@ -10,8 +10,9 @@
     "src/constants/**/*.ts",
 
     "src/preload/*.d.ts",
+    "src/@types/**/*.d.ts",
 
-    "src/rendererer/@types/**/*.d.ts",
+    "src/renderer/src/@types/**/*.d.ts",
     "modules/**/*"
   ],
   "compilerOptions": {
@@ -33,6 +34,7 @@
     "composite": true,
     "sourceMap": false,
     "baseUrl": ".",
+    "typeRoots": ["@vue/shared"],
     "paths": {
       "modules/*": ["./modules/*"],
       "@components/*": ["src/renderer/src/components/*"],

@@ -1,16 +1,16 @@
-import { ref } from "vue";
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { getToken, removeToken, setToken } from '@libs/storage';
 import { apiUrl, apiPost } from '@renderer/api';
 import type { RouteRecordRaw } from 'vue-router';
-import store from "@renderer/store";
+import store from '@renderer/store';
 
-import '@vue/shared';
+export const USER_STORE_NAME = 'userStore';
 
-export const useUserStore = defineStore("user", () => {
-  const token = ref<string>(getToken() || "");
+export const useUserStore = defineStore(USER_STORE_NAME, () => {
+  const token = ref<string>(getToken() || '');
   const roles = ref<string[]>([]);
-  const username = ref<string>("");
+  const username = ref<string>('');
   const routes = ref<RouteRecordRaw[]>([]);
 
   /** 设置用户路由 */
@@ -55,14 +55,14 @@ export const useUserStore = defineStore("user", () => {
   /** 登出 */
   const logout = () => {
     removeToken()
-    token.value = ""
+    token.value = ''
     roles.value = []
   }
 
   /** 重置 Token */
   const resetToken = () => {
     removeToken()
-    token.value = ""
+    token.value = ''
     roles.value = []
   }
 

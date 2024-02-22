@@ -9,7 +9,7 @@ import { register as registerEcharts } from '@meta2d/chart-diagram';
 import { formPens } from '@meta2d/form-diagram';
 import { chartsPens } from '@meta2d/le5le-charts';
 import { ftaPens, ftaPensbyCtx, ftaAnchors } from '@meta2d/fta-diagram';
-import { setupIndexDB } from '@renderer/indexedDB';
+import { setupIndexedDB } from '@renderer/indexedDB';
 import { TABLES, TABLE_DOCUMENT, DATABASES_META2D } from '#constants/indexDB';
 import { useSelection } from './selections';
 import pako from 'pako';
@@ -63,6 +63,7 @@ export async function setupMeta2dView(target: HTMLElement) {
   registerCanvasDraw(ftaPensbyCtx());
   registerAnchors(ftaAnchors());
 
+  await setupMeta2dEvts();
   // 注册其他自定义图形库
   // ...
 

@@ -9,18 +9,16 @@ import { windowClose } from '@renderer/actions';
 import { isDef, isUnDef } from '@suey/pkg-utils';
 import store from '@renderer/store';
 
-export const useDocStore = defineStore('docStore', () => {
+export const DOC_STORE_NAME = 'docStore';
+
+export const useDocStore = defineStore(DOC_STORE_NAME, () => {
   let indexedDB = void 0 as unknown as IndexedDB<TablesType>;
 
   const currentId = ref<number | undefined>(void 0);
   const isWork = computed(() => isDef(currentId.value));
 
   const setDocId = (id: number | undefined) => {
-
-    console.log(currentId.value, id);
-
     currentId.value = id;
-
   }
 
 
@@ -63,6 +61,11 @@ export const useDocStore = defineStore('docStore', () => {
     setDocId,
 
     createDoc, deleteDoc, putDocData
+  }
+}, {
+  persist: {
+    key: DOC_STORE_NAME,
+    storage: sessionStorage
   }
 });
 

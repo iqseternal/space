@@ -12,7 +12,7 @@ export class SingleInstanceService<T extends SingleInstanceService<T>> {
       throw new Error(`请不要使用 New 操作符手动实例化 SingleInstanceService 对象, 请使用 SingleInstanceService 对象.getInstance().`);
     }
 
-    app.on('will-quit', () => this.distory());
+    app.on('will-quit', () => this.destory());
   }
 
   /**
@@ -34,7 +34,7 @@ export class SingleInstanceService<T extends SingleInstanceService<T>> {
   /**
    * 单一实例才应用程序即将退出时做的事情
    */
-  distory(): void {
+  destory(): void {
 
   }
 }

@@ -1,3 +1,5 @@
+import { IS_DEV } from '#/constants';
+import { printError } from '@suey/printer';
 import type { RouteRecordRaw, RouteMeta, _RouteRecordBase } from 'vue-router';
 
 export const DEFAULT_META: Required<RouteMeta> = {
@@ -41,6 +43,12 @@ export type AutoRequiredRouteRecordRaw<
 }
 
 export function makeRequireRouteMeta<T extends Readonly<RouteRecordRaw>>(_route: T, preRoute?: T): AutoRequiredRouteRecordRaw<T> {
+  if (IS_DEV) {
+    const startChat = (_route.name as string)?.charAt(0);
+    if (!startChat) printError(`lib: 路由的name必须是一个字符串`);
+    if (startChat < 'A' || startChat > 'Z') printError(`lib: 路由的name必须大写字母开头`);
+  }
+
   const route = _route as unknown as RequiredRouteRecordRaw;
   if (!route.meta) route.meta = {} as Required<RouteMeta>;
 
@@ -80,6 +88,14 @@ export function makeRequireRouteMeta<T extends Readonly<RouteRecordRaw>>(_route:
 
 export { makeRequireRouteMeta as makeRoute };
 
+/**
+ * 传入一个makeRequiredRouteMeta 然后从这个对象得children中进行解构出对象
+ *
+ * key 为chidren中每一项得name得小写字母加Route
+ * value 就是这children中的一项
+ * @param route
+ * @returns
+ */
 export function toRoutes<T>(route: T) {
   // type R = typeof spaceRoutes.children;
 

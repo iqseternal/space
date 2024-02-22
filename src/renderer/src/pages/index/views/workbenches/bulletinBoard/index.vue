@@ -24,15 +24,15 @@
     </Subfield>
 
     <ATabs v-model:activeKey="activeKey">
-      <ATabPane key="1">
+      <ATabPane :key="TABPANE_KEYS.RecentFiles">
         <template #tab><IconFont type="FileOutlined" />最近文件</template>
         <RecentFiles />
       </ATabPane>
-      <ATabPane key="2">
+      <ATabPane :key="TABPANE_KEYS.RecommendedTemplates">
         <template #tab><IconFont type="InteractionOutlined" />推荐模板</template>
         <RecommendedTemplates />
       </ATabPane>
-      <ATabPane key="3">
+      <ATabPane :key="TABPANE_KEYS.PersonalTemplates">
         <template #tab><IconFont type="PercentageOutlined" />个人模板</template>
         <PersonalTemplates />
       </ATabPane>
@@ -46,8 +46,9 @@ import { useRouter } from 'vue-router';
 import { spaceRoutes } from '@pages/index/router/modules';
 import { Graph, GraphGroup } from './components';
 import { useDocStore } from '@renderer/store/modules/doc';
-import { setupIndexedDB } from '@renderer/indexedDB';
+import { setupIndexedDB, getDocsAllList } from '@renderer/indexedDB';
 import { TABLES, TABLE_DOCUMENT, DATABASES_META2D } from '#constants/indexDB';
+import { WindowPopup } from '@renderer/actions';
 
 import IconFont from '@components/IconFont';
 import Subfield from '@components/Subfield';
@@ -59,7 +60,8 @@ import PersonalTemplates from './PersonalTemplates.vue';
 
 const router = useRouter();
 
-const activeKey = ref('1');
+enum TABPANE_KEYS { RecentFiles, RecommendedTemplates, PersonalTemplates }
+const activeKey = ref(TABPANE_KEYS.RecentFiles);
 
 
 const { createDoc, setDocId } = useDocStore();
@@ -72,13 +74,7 @@ const handleCreateDoc = async () => {
 }
 
 onMounted(async () => {
-  const indexedDB = await setupIndexedDB();
-
-  const objectStore = indexedDB.transaction(DATABASES_META2D.TABLES_NAMES.TABLE_DOCUMENT, 'readonly').objectStore(DATABASES_META2D.TABLES_NAMES.TABLE_DOCUMENT);
-
-  const res = await objectStore.getAll();
-
-  console.log(res);
+  const res = await getDocsAllList();
 
 })
 </script>

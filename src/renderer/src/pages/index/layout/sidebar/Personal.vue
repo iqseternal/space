@@ -46,7 +46,7 @@ import { loginRoute } from '@pages/index/router/modules';
 
 import { Subfield } from '@components/Subfield';
 import { DropdownMenu, ComboBoxMenu, SingleMenu, MenuDriver } from '@components/DropdownMenu';
-import { windowShow, openSettingPage } from '@renderer/actions';
+import { windowShow, openSettingPage, windowReload, windowURLBackDisabled } from '@renderer/actions';
 
 import { useFadeOut } from '@renderer/hooks';
 
@@ -59,7 +59,7 @@ const route = useRoute();
 const autoSize = ref(0);
 
 const logout = () => useFadeOut(() => {
-  router.replace(loginRoute.meta.fullpath);
+  router.push(loginRoute.meta.fullpath);
 });
 
 onMounted(() => {

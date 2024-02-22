@@ -1,3 +1,7 @@
+/**
+ * 复写 indexedDB 的 Api，使其变成 promise 并且附带创建的表类型
+ */
+
 import { print, printError, printInfo } from '@suey/printer';
 import type { IndexedDbDatabase, IndexedDBOptions, IndexedDBObjectStore } from './declare';
 

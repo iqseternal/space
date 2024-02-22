@@ -15,8 +15,6 @@
     "./app.config.json",
 
     "electron.vite.config.*",
-    "tsconfig.node.json",
-    "tsconfig.web.json",
     "vite.config.util.ts",
     "src/@types/**/*.d.ts",
     "src/env.d.ts"

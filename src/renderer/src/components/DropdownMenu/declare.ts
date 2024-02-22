@@ -2,7 +2,7 @@ import { ref, inject, provide } from 'vue';
 import { isBoolean, isUndefined } from '@suey/pkg-utils';
 import type { SubMenuProps } from 'ant-design-vue';
 
-export const DROPDOWN_STATUS = 'DROPDOWN_STATUS';
+export const DROPDOWN_STATUS = Symbol('DROPDOWN_STATUS');
 
 export const setupDropdownOpenModel = () => {
   const open = ref(false);

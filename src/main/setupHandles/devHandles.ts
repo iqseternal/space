@@ -1,10 +1,9 @@
 import { BrowserWindow, app, screen } from 'electron';
 import { setIpcMainHandle, sendToRenderer, IpcResponseOk } from '#/code/core/common/ipcR';
 import { reloadApp } from '#code/core/common/app';
-import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
+import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW, IS_DEV } from '#/constants';
 import { PAGES_WINDOW_SETTING, PAGES_WINDOW_MAIN } from '#/config/pages';
 import { getWindowFrom } from '#/code/core/common/window';
-import { is } from '@electron-toolkit/utils';
 
 import { WindowService } from '#code/service/WindowService';
 import { AppConfigService } from '#service/AppConfigService';
@@ -17,7 +16,7 @@ setIpcMainHandle(IPC_MAIN_WINDOW.DEV_OPEN_TOOL, (e, status, options?) => ipcR((o
   if (!windowService) return fail(false, '找不到指定窗口');
 
   if (status) {
-    if (is.dev) {
+    if (IS_DEV) {
       PrinterService.printInfo(`id: ${e.frameId} 打开了开发者工具`);
       windowService.window.webContents.openDevTools(options);
     }

@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router';
 import { makeRoute, toRoutes } from '@libs/router';
 
 export const settingRoutes = makeRoute({
-  name: 'setting',
+  name: 'Setting',
   path: '/setting',
   component: () => import('@pages/setting/layout'),
   redirect: 'general',
@@ -52,13 +52,12 @@ export const settingRoutes = makeRoute({
   ]
 } as const);
 
-export const routes = [
-  {
-    name: 'root',
-    path: '/',
-    redirect: settingRoutes.path
-  },
-  settingRoutes
-];
+export const rootRoute = makeRoute({
+  name: 'root',
+  path: '/',
+  redirect: settingRoutes.path
+} as const);
+
+export const routes = [rootRoute, settingRoutes];
 
 export default routes;

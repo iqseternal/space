@@ -16,7 +16,7 @@ export class UserConfigService extends SingleInstanceService<UserConfigService> 
     return super.getInstance<T>();
   }
 
-  distory(): void {
+  destory(): void {
     if (!AppConfigService.getInstance().config.miscellaneous.userJson.overwrite) {
       PrinterService.printWarn(`当前关闭了 UserConfigJson 的覆写, 用户窗口配置参数将会失效, 建议开启`);
 

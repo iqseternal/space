@@ -1,8 +1,6 @@
 @import '@scss/mixin.scss';
 
-
-.a-menu.ant-menu {
-  border-inline-end: none !important;
-  background: #f5f5f5;
-  @include appRegionNo;
+#app {
+  width: 100vw;
+  height: 100vh;
 }

@@ -3,6 +3,7 @@ import { is } from '@electron-toolkit/utils';
 import { printWarn } from '@suey/printer';
 import { BrowserWindow, globalShortcut, app, screen, Tray, Menu, shell } from 'electron';
 import { isNumber } from '@suey/pkg-utils';
+import { IS_DEV } from '#constants/index';
 
 /**
  * 设置浏览器窗口允许跨域的设置
@@ -51,7 +52,10 @@ export const setWindowMinSize = (window: BrowserWindow, wMin: number, hMin: numb
   window.setMinimumSize(wMin, hMin);
 }
 
-
+/**
+ * 设置窗口打开的方式，例如打开了链接
+ * @param window
+ */
 export const setWindowOpenHandler = (window: BrowserWindow): void => {
   window.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
@@ -59,11 +63,21 @@ export const setWindowOpenHandler = (window: BrowserWindow): void => {
   });
 }
 
+/**
+ * 设置窗口的表头
+ * @param window
+ * @param icon
+ * @param title
+ */
 export const setWindowCaption = (window: BrowserWindow, icon: string, title: string): void => {
   window.setIcon(icon);
   window.setTitle(title);
 }
 
+/**
+ * 关闭标题栏右键菜单
+ * @param window
+ */
 export const setWindowCloseCaptionContextmenu = (window: BrowserWindow) => {
   window.hookWindowMessage(278, e => {
     window.setEnabled(false);
@@ -72,20 +86,38 @@ export const setWindowCloseCaptionContextmenu = (window: BrowserWindow) => {
   });
 }
 
+/**
+ * 设置并打开开发者工具
+ * @param window
+ */
 export const setWindowDevtoolsDetach = (window: BrowserWindow) => {
-  // if (is.dev)
-  window.webContents.openDevTools({ mode: 'detach' });
+  if (IS_DEV) window.webContents.openDevTools({ mode: 'detach' });
 }
 
 
+/**
+ * 通过ipc事件获得一个window对象
+ * @param evt
+ * @returns
+ */
 export function getWindowFromIpcEvt(evt: IpcMainEvent | IpcMainInvokeEvent) {
   return BrowserWindow.fromWebContents(evt.sender);
 }
 
+/**
+ * 通过ID获得一个window对象
+ * @param id
+ * @returns
+ */
 export function getWindowFromId(id: number) {
   return BrowserWindow.fromId(id);
 }
 
+/**
+ * 获得一个window对象
+ * @param arg
+ * @returns
+ */
 export function getWindowFrom(arg: number | IpcMainEvent | IpcMainInvokeEvent): BrowserWindow | null {
   if (isNumber(arg)) return getWindowFromId(arg);
   else return getWindowFromIpcEvt(arg);

@@ -1,7 +1,5 @@
 <template>
-<SettingContent title="">
-
-</SettingContent>
+  <SettingContent title="" />
 </template>
 
 <script lang="ts" setup>

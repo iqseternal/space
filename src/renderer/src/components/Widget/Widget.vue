@@ -48,12 +48,14 @@ const open = ref(false);
   width: calc($sMainCaptionBarHeight);
   height: $sMainCaptionBarHeight;
   cursor: default;
+  border-radius: 2px;
   @include appRegionNo;
 
   img.widgetImg {
     width: 60%;
     height: 60%;
     object-fit: contain;
+
   }
 }
 

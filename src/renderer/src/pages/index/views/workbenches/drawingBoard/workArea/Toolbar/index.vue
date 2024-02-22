@@ -128,14 +128,16 @@ import { Pen, PenType, deepClone } from '@meta2d/core';
 import { message } from 'ant-design-vue';
 import { DropdownMenu, MenuDriver, ComboBoxMenu, SingleMenu } from '@components/DropdownMenu';
 import { lineTypes, fromArrows, toArrows } from '../../preset';
-import { onUndo, onRedo, onAddShape, onAll, onCopy, onCut, onDelete, onPaste, onScaleDefault, onScaleWindow, meta2dState } from '@renderer/meta';
+import { onUndo, onRedo, onAddShape, onCopy, onDelete, onPaste, onScaleDefault, onScaleWindow, meta2dState } from '@renderer/meta';
 
 import Widget from '@components/Widget';
 import IconFont from '@components/IconFont';
 
 const currentLineType = ref('curve');
+
 const fromArrow = ref('');
 const toArrow = ref('');
+
 const scale = ref(0);
 
 const isDrawLine = ref(false);
@@ -153,6 +155,7 @@ const drawLine = () => {
     meta2d.store.options.disableAnchor = false;
   }
 };
+
 /** 更换线条 */
 const changeLineType = (value: string) => {
   currentLineType.value = value;

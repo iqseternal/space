@@ -2,7 +2,7 @@ import { BrowserWindow, app, screen, dialog } from 'electron';
 import { setIpcMainHandle, sendToRenderer, IpcResponseOk } from '#/code/core/common/ipcR';
 import { reloadApp } from '#code/core/common/app';
 import { getWindowFrom } from '#/code/core/common/window';
-import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW } from '#/constants';
+import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW, WINDOW_STATE_MACHINE_KEYS } from '#/constants';
 import { PAGES_WINDOW_SETTING, PAGES_WINDOW_MAIN } from '#/config/pages';
 
 import { WindowService } from '#code/service/WindowService';
@@ -155,7 +155,7 @@ setIpcMainHandle(IPC_MAIN_WINDOW.WINDOW_OPEN, (e, type) => ipcR(async (ok, fail)
   const windowService = WindowService.findWindowService(e);
   if (!windowService) return fail(false, '找不到指定窗口');
 
-  if (type === 'windowSetting') {
+  if (type === WINDOW_STATE_MACHINE_KEYS.SETTING_WINDOW) {
     const settingWindowService = await setupSettingWindow(windowService);
     settingWindowService.open();
   }

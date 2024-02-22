@@ -1,6 +1,7 @@
 import type { App, Plugin } from 'vue';
 import { createApp } from 'vue';
-
+import { IS_DEV, IS_PROD } from '#constants/index';
+import { printError } from '@suey/printer';
 import store from '@renderer/store';
 
 import 'animate.css';
@@ -8,6 +9,7 @@ import 'ant-design-vue/dist/reset.css';
 import 'dayjs/locale/zh-cn';
 
 import '@scss/index.scss';
+
 
 export type ImportDefault<T> = Promise<{ default: T }>;
 
@@ -47,6 +49,8 @@ export async function setupApp(...args: Partial<SetupAppArgs>) {
     return pl;
   }).catch(() => {
     // 构建 Web App出现了异常
-    windowClose();
+
+    // if (IS_DEV) printError(`运行异常`);
+    if (IS_PROD) windowClose();
   });
 }

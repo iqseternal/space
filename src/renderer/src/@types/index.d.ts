@@ -5,6 +5,8 @@ import type { TableColumnType as AntdTableColumnType } from 'ant-design-vue';
 import type { EvtCallback } from '@components/Modal/index.d';
 import type { Meta2d } from '@meta2d/core';
 
+import '@vue/shared';
+
 declare global {
   declare const meta2d: Meta2d;
   declare const C2S: any;

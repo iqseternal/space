@@ -6,6 +6,7 @@
 
 import { is } from '@electron-toolkit/utils';
 import { join } from 'path';
+import { IS_DEV } from '#constants/index';
 
 /** Config , 并不存储在 JSON 中, 不希望用户更改 */
 /**
@@ -18,7 +19,7 @@ import { join } from 'path';
  * @returns
  */
 const makeStartUrl = (url: string) => {
-  if (is.dev && process.env['ELECTRON_RENDERER_URL'])
+  if (IS_DEV && process.env['ELECTRON_RENDERER_URL'])
     return `${process.env['ELECTRON_RENDERER_URL']}/${url}`;
 
   return join(__dirname, `../renderer/${url}`);

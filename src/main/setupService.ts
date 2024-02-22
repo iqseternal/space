@@ -50,7 +50,7 @@ export async function setupSettingWindow(parentWindowService: WindowService) {
   const appConfigService = AppConfigService.getInstance();
   const windowService = new WindowService(appConfigService.config.windows.mediumPopupWindow, {
     url: PAGES_WINDOW_SETTING,
-    autoShow: false,
+    autoShow: true,
     windowKey: WINDOW_STATE_MACHINE_KEYS.SETTING_WINDOW
   });
 
@@ -62,7 +62,6 @@ export async function setupSettingWindow(parentWindowService: WindowService) {
 
   windowService.window.setParentWindow(parentWindowService.window);
   windowService.addDestroyCb(() => {
-
     parentWindowService.window.setEnabled(true);
   });
 

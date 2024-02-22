@@ -5,7 +5,7 @@
  */
 import type { CONFIG } from './config';
 import { STORE_KEYS, StoreKeyMap } from './store';
-import type ElectronStore from 'electron-store';
+import { WINDOW_STATE_MACHINE_KEYS } from '#/constants';
 
 export class IPC_MAIN_WINDOW {
   public static readonly DEV_OPEN_TOOL = 'DEV_OPEN_TOOL'; // 打开 devtools
@@ -71,7 +71,7 @@ export type MainEventHandlers = {
 
   [IPC_MAIN_WINDOW.WINDOW_SET_POSITION]: (x: number | 'center' | 'left' | 'right' | 'top' | 'bottom', y?: number) => IpcResponse<boolean>;
 
-  [IPC_MAIN_WINDOW.WINDOW_OPEN]: (pageType: 'windowMain' | 'windowSetting') => IpcResponse<boolean>; // 三个页面, 登录、主窗口、设置页面
+  [IPC_MAIN_WINDOW.WINDOW_OPEN]: (pageType: WINDOW_STATE_MACHINE_KEYS) => IpcResponse<boolean>; // 三个页面, 登录、主窗口、设置页面
   [IPC_MAIN_WINDOW.WINDOW_CLOSE]: (id?: number) => IpcResponse<boolean>;
   [IPC_MAIN_WINDOW.WINDOW_SHOW]: (isShow: boolean, id?: number) => IpcResponse<boolean>; // 是否展示改窗口
 }

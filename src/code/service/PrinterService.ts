@@ -1,9 +1,22 @@
 import { print, toColor, printClear, type PrintTargetType, toPrintClear } from '@suey/printer';
 import { getCurDate, getCurFullDate, getCurTime } from '../core/common/common';
 import { AppConfigService } from './AppConfigService';
+import { IS_DEV } from '#constants/index';
 
 const appConfigService = AppConfigService.getInstance();
 type PrintColor = ReturnType<typeof toColor>;
+
+/**
+ * 打印服务的方法的条件执行
+ * 可以利用此方法实现打印在何时生效
+ * @param fn
+ * @returns
+ */
+const judgeExec = <T>(fn: (...args: T[]) => void) => {
+  return (...args: T[]) => {
+    fn(...args);
+  }
+}
 
 /**
  * 按照格式创建打印的Message信息
@@ -46,7 +59,7 @@ export class PrinterService {
    * 打印一条普通日志，蓝色
    * @param message
    */
-  static printInfo(...message: unknown[]) {
+  static printInfo = judgeExec((...message: unknown[]) => {
     print(
       ...makePrintMessage(
         toColor(['magenta', 'bright']),
@@ -57,13 +70,13 @@ export class PrinterService {
         ...message
       ).typeMs
     );
-  }
+  })
 
   /**
    * 打印一条警告信息
    * @param message
    */
-  static printWarn(...message: unknown[]) {
+  static printWarn = judgeExec((...message: unknown[]) => {
     print(
       ...makePrintMessage(
         toColor(['magenta', 'bright']),
@@ -74,13 +87,13 @@ export class PrinterService {
         ...message
       ).typeMs
     );
-  }
+  })
 
   /**
    * 打印一条错误信息
    * @param message
    */
-  static printError(...message: unknown[]) {
+  static printError = judgeExec((...message: unknown[]) => {
     print(
       ...makePrintMessage(
         toColor(['magenta:bg', 'white', 'bright']),
@@ -91,5 +104,5 @@ export class PrinterService {
         ...message
       ).typeMs
     );
-  }
+  })
 }

@@ -1,6 +1,23 @@
 import { IPC_MAIN_WINDOW } from '#/constants';
 import type { MainEventHandlers } from '#/constants/ipc';
 
+export class WindowPopup {
+  /**
+   * 弹出一个警告框
+   * @param message
+   */
+  static warn(message?: any) {
+    return window.alert(message);
+  }
+
+  /**
+   * 弹出一个确认框
+   */
+  static confim(message?: string) {
+    return window.confirm(message);
+  }
+}
+
 /**
  * 刷新页面
  * @returns
@@ -110,3 +127,22 @@ export const windowAutoFullScreen = (el = document.body) => {
 
   return el.requestFullscreen();
 }
+
+/**
+ * 让当前页面URL禁用前进导航
+ * @returns
+ */
+export const windowURLForwardDisabled = () => {
+  // TODO: 原生实现
+  // window.history.state.forward = null;
+}
+
+/**
+ * 让当前页面URL禁用后退导航
+ * @returns
+ */
+export const windowURLBackDisabled = () => {
+  // TODO: 原生实现
+  // window.history.state.back = null;
+}
+

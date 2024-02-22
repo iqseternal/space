@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeUnmount, onMounted, ref, watch, computed, watchEffect, nextTick, provide } from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch, computed, watchEffect, nextTick, provide, getCurrentInstance, onDeactivated, onActivated } from 'vue';
 import { useDebounce } from '@renderer/hooks';
 import { AutoDropdownMenu, setupDropdownOpenModel } from '@components/DropdownMenu';
 import { meta2dViewMenu } from '@renderer/menus';
-import { useSelection, SelectionMode, setupMeta2dView } from '@renderer/meta';
+import { useSelection, SelectionMode, setupMeta2dView, setupMeta2dEvts, meta2dState } from '@renderer/meta';
 
 const props = defineProps({
   width: { type: [Number, String], default: () => '' }
@@ -15,22 +15,36 @@ const props = defineProps({
 
 const { selections } = useSelection();
 
+const instance = getCurrentInstance();
+
 const viewContainer = ref<HTMLDivElement>();
 
-onMounted(() => {
-  if (!viewContainer.value) return;
+const metaSetuped = ref(false);
+
+const setupMeta2dLife = () => {
+  if (metaSetuped.value || !viewContainer.value) return;
   setupMeta2dView(viewContainer.value);
+  metaSetuped.value = true;
+}
 
-  watch(() => props.width, useDebounce(() => {
-    meta2d.resize();
-  }, 30), {
-    flush: 'sync'
-  });
-});
-
-onBeforeUnmount(() => {
+const destroyMeta2dLife = () => {
+  if (!metaSetuped.value) return;
   meta2d.destroy();
-});
+  metaSetuped.value = false;
+}
+
+onMounted(setupMeta2dLife);
+onActivated(setupMeta2dLife);
+
+onDeactivated(destroyMeta2dLife);
+onBeforeUnmount(destroyMeta2dLife);
+
+watch(() => props.width, useDebounce(() => {
+  if (instance?.isDeactivated) return;
+  if (!viewContainer.value) return;
+  if (!viewContainer.value.clientWidth || !viewContainer.value.clientHeight) return;
+  if (instance?.isMounted && !instance.isDeactivated) meta2d.resize();
+}, 30));
 </script>
 
 <style lang="scss" scoped>

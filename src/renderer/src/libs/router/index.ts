@@ -6,7 +6,9 @@
  * ==========================================
  */
 
-export { default as View } from './View.vue';
+import View from './View.vue';
+
+export { View }
 
 export type { RequiredRouteRecordRaw, AutoRequiredRouteRecordRaw } from './makeRequireRouteMeta';
 export { makeRequireRouteMeta, makeRoute, toRoutes } from './makeRequireRouteMeta';

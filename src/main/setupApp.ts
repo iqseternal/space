@@ -16,6 +16,12 @@ export const DEFAULT_APP_OPTIONS: Required<AppOptions> = {
   modelId: 'com.electron'
 };
 
+/**
+ * 装载一次 setupApp, 用于捕捉可能会出现的错误, 让程序能够在受到致命错误时进行相应处理
+ * @param startApp
+ * @param ops
+ * @returns
+ */
 export const setupApp = async (startApp: () => void, ops?: Partial<AppOptions>): Promise<void> => {
   PrinterService.printInfo('应用程序构建, setupApp...');
   const options = { ...DEFAULT_APP_OPTIONS, ...ops } as Required<AppOptions>;

@@ -37,13 +37,13 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, nextTick, onBeforeMount, ref, onErrorCaptured, computed, reactive } from 'vue';
+import { onMounted, nextTick, onBeforeMount, ref, onErrorCaptured, computed, reactive, onDeactivated, onBeforeUpdate, onActivated } from 'vue';
 import type { Ref } from 'vue';
 import { IPC_MAIN_WINDOW } from '#/constants';
 import type { DropdownDataType, ComboBoxMenuDataType } from '@components/DropdownMenu';
 import { DropdownMenu, MenuDriver, SingleMenu, ComboBoxMenu, AutoDropdownMenu } from '@components/DropdownMenu';
 import { UserOutlined, ReloadOutlined, BugOutlined } from '@ant-design/icons-vue';
-import { hotKeys, windowReload, windowDevtool, copyText, pasteText, windowResizeAble, openSettingPage } from '@renderer/actions';
+import { hotKeys, windowReload, windowDevtool, copyText, pasteText, windowResizeAble, openSettingPage, WindowPopup } from '@renderer/actions';
 import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
 import { canCopyText } from '@libs/common';
 import { useMousetrap, useFadeIn, useEventListener, useResizeObserver, useStorageStack } from '@renderer/hooks';
@@ -51,6 +51,7 @@ import { fileMenu, editMenu, helpMenu } from '@renderer/menus';
 import type { HeaderInstance, SloganInstance } from '@components/Header';
 import { Header, Indicator, Slogan } from '@components/Header';
 import { isDef } from '@suey/pkg-utils';
+
 import Sidebar from './sidebar/index.vue';
 import IconFont from '@components/IconFont';
 import Widget from '@components/Widget';

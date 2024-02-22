@@ -1,5 +1,4 @@
 
-/** ICP响应格式定义, 让响应体格式规范化 */
 interface IpcResponse<T = any> {
   ok: boolean; // 响应状态是否正确
 

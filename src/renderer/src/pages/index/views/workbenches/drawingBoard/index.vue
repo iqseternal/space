@@ -19,9 +19,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onBeforeMount, ref, getCurrentInstance, reactive, computed, watchEffect, watch } from 'vue';
+import { onMounted, onBeforeMount, ref, getCurrentInstance, reactive, computed, watchEffect, watch, onActivated, onDeactivated, onBeforeUnmount } from 'vue';
 import { PropertyBar, Toolbar, View, Graphics } from './workArea';
-import { setupIndexDB } from '@renderer/indexedDB';
+import { setupIndexedDB } from '@renderer/indexedDB';
 import { setupMeta2dView, setupMeta2dEvts, saveMeta2dData } from '@renderer/meta';
 import { vResizeWidth } from '@libs/directives';
 
@@ -29,19 +29,34 @@ import type { VResizeWidthBindings } from '@libs/directives';
 import Subfield from '@components/Subfield';
 import IconFont from '@components/IconFont';
 
+const instance = getCurrentInstance();
+
 const graphicsBindings: VResizeWidthBindings = reactive({
   minWidth: 190,
-  width: 300
+  width: 300,
+  canExec: true
 });
 
 const propertyBindings: VResizeWidthBindings = reactive({
   width: 300,
-  direction: 'left'
+  direction: 'left',
+  canExec: true
 });
 
 const viewWidth = computed(() => graphicsBindings.width + propertyBindings.width);
 
-onMounted(setupMeta2dEvts);
+onActivated(() => {
+  graphicsBindings.canExec = true;
+  propertyBindings.canExec = true;
+})
+onDeactivated(() => {
+  graphicsBindings.canExec = false;
+  propertyBindings.canExec = false;
+})
+onBeforeUnmount(() => {
+  graphicsBindings.canExec = false;
+  propertyBindings.canExec = false;
+})
 </script>
 
 <style lang="scss" scoped>

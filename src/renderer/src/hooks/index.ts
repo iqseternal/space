@@ -36,3 +36,7 @@ export { useResizeObserver } from './useResizeObserver';
 
 export type { StorageStackOptions, JudgeIsCanControlStack } from './useStorageStack';
 export { useStorageStack } from './useStorageStack';
+
+export { useDisableRouterBack, useDisableRouterBackHook } from './useRouterJump';
+
+export { useDisableDragText } from './useDisableDragText';

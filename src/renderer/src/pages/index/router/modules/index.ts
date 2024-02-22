@@ -15,8 +15,7 @@ export const rootRoute = makeRoute({
   redirect: loginRoute.meta.fullpath
 } as const);
 
-export { spaceRoutes };
-export const { workbenchesRoute, dashboardRoute, profileRoute } = toRoutes(spaceRoutes);
+export * from './space';
 
 export const routes = [
   rootRoute,
