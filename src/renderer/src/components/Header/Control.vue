@@ -20,7 +20,7 @@
 
 <script lang="tsx" setup>
 import { ref } from 'vue';
-import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW, CONFIG, IS_DEV } from '#/constants';
+import { IPC_MAIN_WINDOW, IPC_RENDER_WINDOW, CONFIG, IS_DEV, IS_PROD } from '#/constants';
 import { windowCloseSvg, windowMaxSvg, windowMinSvg, windowRegionSvg } from '@renderer/assets';
 import { useMousetrap } from '@renderer/hooks/useMousetrap';
 import { windowMax, windowMin, windowClose, windowReduction, windowDevtool, windowAutoFullScreen } from '@renderer/actions';
@@ -41,7 +41,7 @@ const minWindow = () => windowMin();
 const reductionWindow = () => windowReduction();
 const closeWindow = () => windowClose();
 
-const DeBugWidget = IS_DEV ? <Widget title="打开开发者工具" icon="BugFilled" onClick={() => openDevTool()} /> : <></>;
+const DeBugWidget = IS_DEV ? <Widget title="打开开发者工具" icon="BugFilled" onClick={openDevTool} /> : <div></div>;
 
 useMousetrap(['ctrl+shift+i', 'command+shift+i'], () => openDevTool());
 </script>

@@ -13,6 +13,9 @@
     "src/@types/**/*.d.ts",
 
     "src/renderer/src/@types/**/*.d.ts",
+
+
+    "./libs/**/*.ts",
     "modules/**/*"
   ],
   "compilerOptions": {
@@ -36,7 +39,6 @@
     "baseUrl": ".",
     "typeRoots": ["@vue/shared"],
     "paths": {
-      "modules/*": ["./modules/*"],
       "@components/*": ["src/renderer/src/components/*"],
       "@pages/*": ["src/renderer/src/pages/*"],
       "@libs/*": ["src/renderer/src/libs/*"],

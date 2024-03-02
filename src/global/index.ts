@@ -10,8 +10,8 @@ import type { StoreKeyMap } from '#/constants';
 import ElectronStore from 'electron-store';
 
 
-global.ipcR = ipcR;
+globalThis.ipcR = ipcR;
 
-global.appStore = new ElectronStore<StoreKeyMap>;
+globalThis.appStore = new ElectronStore<StoreKeyMap>;
 
 

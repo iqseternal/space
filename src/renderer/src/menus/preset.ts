@@ -4,7 +4,7 @@ import { ref } from 'vue';
 import { onRedo, onUndo } from '@renderer/meta';
 import type { DropdownDataType } from '@components/DropdownMenu';
 import { hotKeys, windowClose, windowDevtool, windowMax, windowMin, windowReload, windowReduction } from '@renderer/actions';
-import { canCopyText } from '@libs/common';
+import { canCopyText } from 'libs/common';
 
 
 export const presetMenu = ref<DropdownDataType>([

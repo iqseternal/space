@@ -3,6 +3,8 @@ node_modules
 /out
 *.log*
 /storage
+/scripts/build
+/scripts/dist
 /scripts/*.js
 /scripts/*.node
 /src/renderer/components.d.ts

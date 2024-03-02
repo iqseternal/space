@@ -1,5 +1,5 @@
 import { reactive } from 'vue';
-import { onRedo, onUndo, onAddShape, onAll, onCopy, onCut, onDelete, onPaste, onScaleDefault, onScaleWindow } from '@renderer/meta';
+import { onRedo, onUndo, onAddShape, onCopy, onCut, onDelete, onPaste, onScaleDefault, onScaleWindow } from '@renderer/meta';
 import { windowAutoFullScreen } from './window';
 
 /**

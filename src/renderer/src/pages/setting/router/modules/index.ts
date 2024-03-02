@@ -50,13 +50,13 @@ export const settingRoutes = makeRoute({
       component: () => import('@pages/setting/views/update/index.vue')
     }
   ]
-} as const);
+});
 
 export const rootRoute = makeRoute({
   name: 'root',
   path: '/',
   redirect: settingRoutes.path
-} as const);
+});
 
 export const routes = [rootRoute, settingRoutes];
 

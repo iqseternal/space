@@ -1,32 +1,26 @@
-import type { UserConfig, UserConfigExport, UserConfigFn } from 'electron-vite';
-import { defineConfig, defineViteConfig, externalizeDepsPlugin, bytecodePlugin } from 'electron-vite';
-import { webAlias, nodeAlias, loadLintDevPlugins, define } from './vite.config.util';
+import type { UserConfig, UserConfigFn } from 'electron-vite';
+import { defineConfig, externalizeDepsPlugin, bytecodePlugin } from 'electron-vite';
+import { webAlias, nodeAlias, loadLintDevPlugins, defineVars } from './vite.config.util';
 import { join } from 'path';
-import { obfuscator } from 'rollup-obfuscator';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-import { AndDesignVueResolve } from 'vite-plugin-style-import';
 
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import svgLoader from 'vite-svg-loader';
-
-import autoImport from 'unplugin-auto-import/vite';
-
-import eslintPlugin from 'vite-plugin-eslint';
 import components from 'unplugin-vue-components/vite';
 
 export type ConfigEnv = Parameters<UserConfigFn>[0];
 
-const mainConfig = ({ mode }: ConfigEnv): UserConfig['main'] => ({
+const mainConfig = (configEnv: ConfigEnv): UserConfig['main'] => ({
   plugins: [
     externalizeDepsPlugin(),
     bytecodePlugin(),
-    ...loadLintDevPlugins()
+    ...loadLintDevPlugins(configEnv)
   ],
   resolve: {
     alias: nodeAlias
   },
-  define: define(mode),
+  define: defineVars(configEnv),
   build: {
     chunkSizeWarningLimit: 2000,
     minify: 'terser',
@@ -35,23 +29,24 @@ const mainConfig = ({ mode }: ConfigEnv): UserConfig['main'] => ({
         drop_console: true,
         drop_debugger: true
       }
-    }
+    },
+    sourcemap: false
   }
 });
 
-const preloadConfig = ({ mode }: ConfigEnv): UserConfig['preload'] => ({
+const preloadConfig = (configEnv: ConfigEnv): UserConfig['preload'] => ({
   plugins: [
     externalizeDepsPlugin(),
     bytecodePlugin(),
-    ...loadLintDevPlugins()
+    ...loadLintDevPlugins(configEnv)
   ],
-  define: define(mode),
+  define: defineVars(configEnv),
   resolve: {
     alias: nodeAlias
   }
 });
 
-const rendererConfig = ({ mode }: ConfigEnv): UserConfig['renderer'] => {
+const rendererConfig = (configEnv: ConfigEnv): UserConfig['renderer'] => {
   return {
     resolve: {
       alias: webAlias,
@@ -84,9 +79,9 @@ const rendererConfig = ({ mode }: ConfigEnv): UserConfig['renderer'] => {
           })
         ]
       }),
-      ...loadLintDevPlugins()
+      ...loadLintDevPlugins(configEnv)
     ],
-    define: define(mode),
+    define: defineVars(configEnv),
     server: {
       port: 8888,
       hmr: true,
@@ -99,14 +94,18 @@ const rendererConfig = ({ mode }: ConfigEnv): UserConfig['renderer'] => {
       chunkSizeWarningLimit: 2000,
       assetsDir: 'static',
       minify: 'terser',
-      manifest: true,
+      manifest: false,
       terserOptions: {
         compress: {
           drop_console: true,
           drop_debugger: true
         }
       },
+      sourcemap: false,
       rollupOptions: {
+        plugins: [
+
+        ],
         input: {
           index: join(__dirname, './src/renderer/index.html'),
           setting: join(__dirname, './src/renderer/setting.html'),

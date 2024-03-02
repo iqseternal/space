@@ -19,7 +19,7 @@
  * const a: ObjKeyToArr<A> = ['a']; // 当为 a 的时候, 只能由一个索引, 因为 A['a'] 不是一个对象
  * const a: ObjKeyToArr<A> = ['b', 'c']; // 当为 b 的时候, 可以有第二个索引, 因为 A['b'] 是一个对象, 可以递归按层级识别
  */
-declare type ObjKeyToArr<
+export type ObjKeyToArr<
   T,
   K extends keyof T = keyof T,
   S = T[K]
@@ -48,7 +48,7 @@ declare type ObjKeyToArr<
  * }
  *
  */
-declare type ComponentsProps<T extends unknown> = Exclude<Required<T['__defaults']>, undefined>;
+export type ComponentsProps<T extends unknown> = Exclude<Required<T['__defaults']>, undefined>;
 
 /**
  * 创建 table columns 的时候的类型转换, T 是原本的类型, K 则是 Response 对象
@@ -69,7 +69,7 @@ declare type ComponentsProps<T extends unknown> = Exclude<Required<T['__defaults
  *  { title: 'id', dataIndex: 'id' } // 此时 dataIndex 将会获得 Response 的类型
  * ]
  */
-declare type CustomColumn<T, K> =
+export type CustomColumn<T, K> =
   (T & { dataIndex: (keyof K) | ObjKeyToArr<K> })
   |
   (T & { dataIndex: string | ObjKeyToArr<K> } )
@@ -84,7 +84,7 @@ declare type CustomColumn<T, K> =
  *
  * 将会返回 A 类型。请注意: 如果 C 还包含了其他类型可能导致推断不正确
  */
-declare type ExtractObj<T> = T extends (infer U)[] ? U : T;
+export type ExtractObj<T> = T extends (infer U)[] ? U : T;
 
 /**
  * 获得数组的索引
@@ -95,7 +95,7 @@ declare type ExtractObj<T> = T extends (infer U)[] ? U : T;
  *
  * 请确保数据是一个常类型,readonly
  */
-declare type ArrayKeys<T extends readonly any[]> = Exclude<keyof T, Exclude<keyof T, `${number}`> | symbol>;
+export type ArrayKeys<T extends readonly any[]> = Exclude<keyof T, Exclude<keyof T, `${number}`> | symbol>;
 
 /**
  * 反转对象键值对
@@ -117,7 +117,7 @@ declare type ArrayKeys<T extends readonly any[]> = Exclude<keyof T, Exclude<keyo
  *
  * 当然请确保传递时拥有正确的键值对
  */
-declare type ReverseObjKeyValue<Obj extends Record<string | number | symbol, any>> = {
+export type ReverseObjKeyValue<Obj extends Record<string | number | symbol, any>> = {
   [Key in keyof Obj as Obj[Key]]: Key;
 }
 
@@ -155,4 +155,4 @@ declare type ReverseObjKeyValue<Obj extends Record<string | number | symbol, any
  * T: 当前目标
  * R: 接口目标
  */
-declare type ObjAutoComplete<T extends Record<string | number | symbol, any>, R extends Record<string | number | symbol, any>> = T & Pick<R, Exclude<keyof R, keyof T>>;
+export type ObjAutoComplete<T extends Record<string | number | symbol, any>, R extends Record<string | number | symbol, any>> = T & Pick<R, Exclude<keyof R, keyof T>>;

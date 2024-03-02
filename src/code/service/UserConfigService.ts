@@ -24,9 +24,9 @@ export class UserConfigService extends SingleInstanceService<UserConfigService> 
     }
 
     FileService.saveObjToJson(this.config, join(__dirname, '../../user.config.json')).then(() => {
-      PrinterService.printInfo('应用程序即将退出, 复写 UserConfigJson');
+      PrinterService.printInfo('应用程序即将退出, 覆写 UserConfigJson');
     }).catch(() => {
-      PrinterService.printWarn('应用程序即将退出, 复写 UserConfigJson 失败!!');
+      PrinterService.printWarn('应用程序即将退出, 覆写 UserConfigJson 失败!!');
     });
   }
 }

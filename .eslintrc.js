@@ -83,10 +83,12 @@ module.exports = {
     // best-practice
     'array-callback-return': 'error',
     'block-scoped-var': 'error',
-    'no-alert': 'warn',
+    'no-alert': 'off',
     'no-case-declarations': 'error',
     'no-multi-str': 'error',
     'no-with': 'error',
+    'no-confim': 'off',
+    'no-var': 'off',
 
     'sort-imports': [
       'warn',

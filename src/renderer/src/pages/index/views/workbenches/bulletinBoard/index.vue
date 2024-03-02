@@ -60,7 +60,14 @@ import PersonalTemplates from './PersonalTemplates.vue';
 
 const router = useRouter();
 
-enum TABPANE_KEYS { RecentFiles, RecommendedTemplates, PersonalTemplates }
+enum TABPANE_KEYS {
+  // 最近文件
+  RecentFiles,
+  // 推荐模板
+  RecommendedTemplates,
+  // 个人模板
+  PersonalTemplates
+}
 const activeKey = ref(TABPANE_KEYS.RecentFiles);
 
 

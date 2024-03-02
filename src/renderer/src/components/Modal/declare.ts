@@ -66,7 +66,7 @@ export async function dragStretch(widthR: string | number, heightR: string | num
   const spanArr = ['n', 'e', 's', 'w', 'se', 'sw', 'ne', 'nw']; // 拉伸外层 div
 
   spanArr.forEach(item => {
-    let span = document.createElement('span');
+    const span = document.createElement('span');
     span.classList.add(item, 'pubSpan');
     modal.appendChild(span);
   });

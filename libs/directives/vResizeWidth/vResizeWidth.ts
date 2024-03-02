@@ -1,24 +1,28 @@
 import type { Directive, UnwrapNestedRefs, UnwrapRef, Plugin, DirectiveBinding } from 'vue';
 import { computed, getCurrentInstance, reactive, ref, watchEffect, watch, onBeforeUnmount } from 'vue';
-import { setCssVars, setCssVar } from '@libs/common';
+import { setStyleProperty } from '../../common';
 import { isDef, isUndefined } from '@suey/pkg-utils';
 import { printError } from '@suey/printer';
-import { IS_DEV } from '#constants/index';
-import type { SpaceHTMLElement } from './basic';
-import { registerUnmountEvt, unmountAllEvts } from './basic';
+import { IS_DEV } from '../../constants';
+import type { SpaceHTMLElement } from '../basic';
+import { registerUnmountEvt, unmountAllEvts } from '../basic';
+
+import styles from './vResizeWidth.module.scss';
 
 const DEFAULT_BINDINGS = {
   minWidth: 150,
   width: 300,
   maxWidth: 400,
   barSize: 4,
-  barHoverClass: 'drag-and-drop-bar-hover',
-  barClass: 'drag-and-drop-bar',
-  barActiveClass: 'drag-and-drop-bar-active',
+  barHoverClass: styles.dragAndDropBarHover,
+  barClass: styles.dragAndDropBar,
+  barActiveClass: styles.dragAndDropBarActive,
   canDrag: false,
   direction: 'right' as ('left' | 'right'),
   canExec: true
 }
+
+export { styles };
 
 export type VResizeWidthBindings = UnwrapNestedRefs<Partial<typeof DEFAULT_BINDINGS> & Pick<Required<typeof DEFAULT_BINDINGS>, 'width'>>;
 
@@ -51,24 +55,24 @@ export const vResizeWidth: Directive<HTMLElement, VResizeWidthBindings> = {
     const div = document.createElement('div');
 
     // 设置极限宽度
-    watchEffect(() => setCssVar(el, 'min-width', toPixel(value.minWidth)));
-    watchEffect(() => setCssVar(el, 'max-width', toPixel(value.maxWidth)));
+    watchEffect(() => setStyleProperty(el, 'minWidth', toPixel(value.minWidth)));
+    watchEffect(() => setStyleProperty(el, 'maxWidth', toPixel(value.maxWidth)));
 
     // 设置当前宽度
-    setCssVar(el, 'width', toPixel(value.width));
+    setStyleProperty(el, 'width', toPixel(value.width));
     value.width = parseInt(getComputedStyle(el).width);
-    watch(() => value.width, () => setCssVar(el, 'width', toPixel(value.width)));
+    watch(() => value.width, () => setStyleProperty(el, 'width', toPixel(value.width)));
 
     // 设置动作类名
     const combationClassname = computed(() => [value.barHoverClass, value.barClass, value.barActiveClass].join(' '));
     watchEffect(() => { div.className = combationClassname.value; });
-    watchEffect(() => setCssVar(div, 'width', toPixel(value.barSize)));
+    watchEffect(() => setStyleProperty(div, 'width', toPixel(value.barSize)));
 
     // 设置 Dom 的定位
     const location = () => {
       if (!value.canExec) return;
-      const v = el.offsetLeft + (value.direction === 'right' ? el.getBoundingClientRect().width - value.barSize / 2 : -1 * value.barSize / 2);
-      setCssVar(div, 'left', toPixel(v));
+      const v = el.offsetLeft + (value.direction === 'right' ? el.getBoundingClientRect().width - value.barSize / 2 : -1 * value.barSize);
+      setStyleProperty(div, 'left', toPixel(v));
     }
     watch(() => [value.width, value.barSize], location);
     location();

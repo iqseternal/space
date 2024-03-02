@@ -3,7 +3,7 @@
  * 项目常量的编写
  * ==========================================
  */
-import { PLATFORMS, ENV } from '#/../target.config';
+import { PLATFORMS, ENV, MANUFACTURER } from '#/../target.config';
 
 export * from './config';
 
@@ -13,7 +13,7 @@ export * from './ipc';
 
 export * from './indexDB';
 
-export { PLATFORMS, ENV };
+export { PLATFORMS, ENV, MANUFACTURER };
 
 // 运行的操做系统环境
 export const IS_WINDOWS = CURRENT_PLATFORM === PLATFORMS.WINDOWS;

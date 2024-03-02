@@ -1,14 +1,14 @@
 
 import { reactive } from 'vue';
 
-
 export const lineTypes = reactive([
   { name: '曲线', icon: '#l-curve2', value: 'curve' },
   { name: '线段', icon: '#l-polyline', value: 'polyline' },
   { name: '直线', icon: '#l-line', value: 'line' },
   { name: '脑图曲线', icon: '#l-mind', value: 'mind' },
 ]);
-export const fromArrows = [
+
+export const fromArrows = reactive([
   { icon: '#l-line', value: '' },
   { icon: '#l-from-triangle', value: 'triangle' },
   { icon: '#l-from-diamond', value: 'diamond' },
@@ -19,8 +19,9 @@ export const fromArrows = [
   { icon: '#l-from-diamondSolid', value: 'diamondSolid' },
   { icon: '#l-from-circleSolid', value: 'circleSolid' },
   { icon: '#l-from-line', value: 'line' },
-];
-export const toArrows = [
+]);
+
+export const toArrows = reactive([
   { icon: '#l-line', value: '' },
   { icon: '#l-to-triangle', value: 'triangle' },
   { icon: '#l-to-diamond', value: 'diamond' },
@@ -31,4 +32,4 @@ export const toArrows = [
   { icon: '#l-to-diamondSolid', value: 'diamondSolid' },
   { icon: '#l-to-circleSolid', value: 'circleSolid' },
   { icon: '#l-to-line', value: 'line' },
-];
+]);

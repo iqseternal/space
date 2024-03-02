@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue';
 import { onMounted, ref } from 'vue';
-import { getCssVar, setCssVar, setCssVars, getStyleProperty } from '@libs/common';
+import { getCssVar, setCssVar, setCssVars, getStyleProperty } from 'libs/common';
 import { useCssVar } from '@renderer/hooks/useCssVar';
 
 // 交融文字
@@ -17,7 +17,7 @@ const props = defineProps({
 const blended = ref() as Ref<HTMLElement>;
 
 onMounted(() => {
-  setCssVar(blended.value, '--spacing', parseInt(getCssVar(blended.value, 'font-size')) * -1 + 'px');
+  setCssVar(blended.value, '--spacing', parseInt(getCssVar(blended.value, 'fontSize')) * -1 + 'px');
   setCssVar(blended.value, '--dist-spacing', props.distSpacing + 'px');
 });
 </script>

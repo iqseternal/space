@@ -1,5 +1,5 @@
-
 /// <reference types="vite/client" />
+
 import { ipcR as ipcResponseFn } from '#/code/core/common/ipcR';
 import type { PropType as VuePropType } from 'vue';
 
@@ -8,9 +8,8 @@ import type { StoreKeyMap } from '#constants/store';
 
 declare global {
   // 主进程
-  var ipcR: typeof ipcResponseFn;
-
-  var appStore: ElectronStore<StoreKeyMap>;
+  declare var ipcR: typeof ipcResponseFn;
+  declare var appStore: ElectronStore<StoreKeyMap>;
 }
 
 export {};

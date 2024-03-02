@@ -1,5 +1,5 @@
 <template>
-  <div class="button" ref="bt">
+  <div ref="bt" class="button">
     <span>{{ props.text }}</span>
   </div>
 </template>

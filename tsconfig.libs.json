@@ -1,0 +1,26 @@
+{
+  "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
+  "include": [
+    "./libs/**/*.ts",
+    "./libs/**/*.vue",
+    "./target.config.ts"
+  ],
+  "exclude": ["node_modules", "dist", "out", "src/renderer/**/*"],
+  "compilerOptions": {
+    "noEmit": true,
+    "noEmitOnError": true,
+    "noUncheckedIndexedAccess": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "allowUnusedLabels": true,
+    "isolatedModules": false,
+    "composite": true,
+    "removeComments": true,
+    "noEmitHelpers": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "types": ["electron-vite/node", "vite/client"],
+    "baseUrl": "."
+  }
+}

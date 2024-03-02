@@ -1,20 +1,37 @@
-import type { ProxyOptions, AliasOptions, Alias, Plugin, UserConfig } from 'vite';
+import type { ProxyOptions, AliasOptions, Alias, Plugin, UserConfig, ConfigEnv } from 'vite';
 import { loadEnv } from 'vite';
 import { ENV, PLATFORMS } from './target.config';
+
 import eslintPlugin from 'vite-plugin-eslint';
+
 import * as path from 'path';
 import * as webConfig from './tsconfig.web.json';
 import * as nodeConfig from './tsconfig.node.json';
 
 const START_OPTIONS = {
-  LINT_ON_DEV: false // dev 模式下启用 lint
+  LINT_ON_DEV: false, // dev 模式下启用 lint
+  LINT_ON_BUILD: true, // build 模式下启用 lint
 }
 
-export const define = (mode: string) => {
-  return {
+enum CONFIG_ENV_MODE { DEVELOPMENT = 'development', PRODUCTION = 'production' }
+enum CONFIG_ENV_COMMAND { SERVE = 'serve', BUILD = 'build' };
+
+/**
+ * Vite 为环境注入的变量
+ * 返回值必须是一个对象, 并且能够获得其类型
+ * @param param0
+ * @returns
+ */
+export const defineVars = ({ mode }: ConfigEnv) => {
+  const vars = {
     CURRENT_PLATFORM: PLATFORMS.WINDOWS,
     CURRENT_ENV: ENV.DEV
   }
+
+  if (mode === CONFIG_ENV_MODE.DEVELOPMENT) vars.CURRENT_ENV = ENV.DEV;
+  else if (mode === CONFIG_ENV_MODE.PRODUCTION) vars.CURRENT_ENV = ENV.PROD;
+
+  return vars;
 }
 
 export const webAlias = resolveAlias(webConfig.compilerOptions.paths);
@@ -36,6 +53,11 @@ export const webProxy = (mode: string): Record<string, string | ProxyOptions> =>
   }
 };
 
+/**
+ * 解析 tsconfig paths 为vite的路径别名，实现自动化
+ * @param aliasPath
+ * @returns
+ */
 export function resolveAlias(aliasPath: Record<string, string[]>): AliasOptions {
   if (!aliasPath) return [];
   const alias: Alias[] = [];
@@ -67,8 +89,13 @@ export function vitecheckVueNamePlugin(): Plugin {
  * 加载lint插件
  * @returns
  */
-export function loadLintDevPlugins(): Plugin[] {
-  if (!START_OPTIONS.LINT_ON_DEV) return [];
+export function loadLintDevPlugins({ command }: ConfigEnv): Plugin[] {
+  if (command === CONFIG_ENV_COMMAND.SERVE) {
+    if (!START_OPTIONS.LINT_ON_DEV) return [];
+  }
+  else if (command === CONFIG_ENV_COMMAND.BUILD) {
+    if (!START_OPTIONS.LINT_ON_BUILD) return [];
+  }
 
   return [
     vitecheckVueNamePlugin(),
@@ -83,4 +110,28 @@ export function loadLintDevPlugins(): Plugin[] {
       fix: false
     })
   ]
+}
+
+
+export interface DevConfig {
+  lintFileName?: boolean;
+}
+
+export interface BuildConfig {
+
+}
+
+export interface StartConfig {
+  devConfig?: DevConfig;
+  buildConfig?: BuildConfig;
+}
+
+export interface StartConfigProp {
+  env: ENV;
+
+  plactform: PLATFORMS;
+}
+
+export function defineStartConfig(startConfig: (config: StartConfigProp) => StartConfig) {
+
 }

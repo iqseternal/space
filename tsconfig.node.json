@@ -10,6 +10,8 @@
     "src/config/**/*.ts",
     "src/global/**/*.ts",
 
+    "./libs/**/*.ts",
+
     "./test.config.json",
     "./user.config.json",
     "./app.config.json",
@@ -37,7 +39,6 @@
     "types": ["electron-vite/node"],
     "baseUrl": ".",
     "paths": {
-      "modules/*": ["./modules/*"],
       "#code/*": ["src/code/*"],
       "#service/*": ["src/code/service/*"],
       "#constants/*": ["src/constants/*"],

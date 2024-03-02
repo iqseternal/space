@@ -1,6 +1,7 @@
 import { isDef, isFunction, isString, isUndefined } from '@suey/pkg-utils';
 import type { FormProps } from 'ant-design-vue';
-import { findArrIndex } from '@libs/common';
+import type { ExtractObj } from 'libs/types';
+import { findArrIndex } from 'libs/common';
 
 export type AntdRules = Required<FormProps>['rules'];
 

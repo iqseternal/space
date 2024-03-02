@@ -23,7 +23,7 @@ export class AppDataService {
 
   saveFile(url: string): Promise<string>
   saveFile(source: Source): Promise<string>
-  saveFile(fu: string | Source): Promise<string> {
+  saveFile(data: string | Source): Promise<string> {
     return new Promise(async (resolve, reject) => {
 
     });

@@ -1,4 +1,4 @@
 {
-  "name": "libs",
-  "description": "外部独立依赖"
+  "name": "modules",
+  "description": "外部独立模块"
 }

@@ -1,5 +1,5 @@
 <template>
-  <div ref="viewContainer" class="viewContainer" />
+  <div ref="view" class="view h-full" />
 </template>
 
 <script lang="ts" setup>
@@ -17,13 +17,13 @@ const { selections } = useSelection();
 
 const instance = getCurrentInstance();
 
-const viewContainer = ref<HTMLDivElement>();
+const view = ref<HTMLDivElement>();
 
 const metaSetuped = ref(false);
 
 const setupMeta2dLife = () => {
-  if (metaSetuped.value || !viewContainer.value) return;
-  setupMeta2dView(viewContainer.value);
+  if (metaSetuped.value || !view.value) return;
+  setupMeta2dView(view.value);
   metaSetuped.value = true;
 }
 
@@ -41,8 +41,8 @@ onBeforeUnmount(destroyMeta2dLife);
 
 watch(() => props.width, useDebounce(() => {
   if (instance?.isDeactivated) return;
-  if (!viewContainer.value) return;
-  if (!viewContainer.value.clientWidth || !viewContainer.value.clientHeight) return;
+  if (!view.value) return;
+  if (!view.value.clientWidth || !view.value.clientHeight) return;
   if (instance?.isMounted && !instance.isDeactivated) meta2d.resize();
 }, 30));
 </script>
@@ -50,10 +50,9 @@ watch(() => props.width, useDebounce(() => {
 <style lang="scss" scoped>
 @import '@scss/var.scss';
 
-.viewContainer {
+.view {
   width: 100%;
   min-width: 200px;
-  height: 100%;
   flex: 1;
   touch-action: none;
 }

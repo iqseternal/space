@@ -23,7 +23,7 @@ onMounted(() => {
   if (!graphGroup.value?.container) return;
 
   useEventListenerForElement(graphGroup.value.container, 'wheel', e => {
-    if (!isDef(graphGroup.value?.container?.scrollLeft)) return;
+    if (!graphGroup.value || !graphGroup.value.container) return;
     graphGroup.value.container.scrollLeft += e.deltaY;
   })
 })

@@ -27,6 +27,4 @@ export const spaceRoutes = makeRoute({
       component: () => import('@pages/index/views/profile/index.vue'),
     }
   ]
-} as const);
-
-export const { workbenchesRoute, dashboardRoute, profileRoute } = toRoutes(spaceRoutes);
+});

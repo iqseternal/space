@@ -12,10 +12,14 @@ export type CalcTableEnumKeyToValue<TableEnum, T extends {
  * 这里是文档表，用于存储Meta2d所产生的需要存储的数据
  */
 export class TABLE_DOCUMENT {
-  public static readonly CREAT_AT = 'CREAT_AT'; // 创建于
-  public static readonly EDIT_AT = 'EDIT_AT'; // 编辑于
-  public static readonly META_2D_DOC_NAME = 'META_2D_DOC_NAME'; // 图纸名称
-  public static readonly META_2D_DATA = 'META_2D_DATA'; // meta2d 数据
+  /** 创建于 */
+  public static readonly CREAT_AT = 'CREAT_AT';
+  /** 编辑于 */
+  public static readonly EDIT_AT = 'EDIT_AT';
+  /** 图纸名称 */
+  public static readonly META_2D_DOC_NAME = 'META_2D_DOC_NAME';
+  /** meta2d 数据 */
+  public static readonly META_2D_DATA = 'META_2D_DATA';
 };
 
 /**

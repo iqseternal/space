@@ -61,25 +61,3 @@ div.dropdown-menu.ant-dropdown, div.ant-dropdown-menu-submenu {
     }
   }
 }
-
-// 自定义指令拖拽条的样式
-div.drag-and-drop-bar {
-  height: 100%;
-  position: absolute;
-  z-index: 2;
-  cursor: ew-resize;
-  background-color: unset;
-  transition: background-color .2s ease-out;
-}
-div.drag-and-drop-bar-hover {
-  background-color: rgb(145, 211, 239);
-}
-div.drag-and-drop-bar-active {
-  background-color: rgb(145, 211, 239) !important;
-}
-
-@keyframes dragEnterHover {
-  to {
-    background-color: rgb(145, 211, 239);
-  }
-}

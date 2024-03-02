@@ -1,7 +1,7 @@
-
+import { reactive } from 'vue';
 import type { Graphic, GraphicGroup } from './graphic.d';
 
-export const SYSYTEM_GRAPHIC_GROUPS: GraphicGroup = [
+export const SYSYTEM_GRAPHIC_GROUPS: GraphicGroup = reactive([
   {
     name: '基本形状',
     show: true,
@@ -671,4 +671,4 @@ export const SYSYTEM_GRAPHIC_GROUPS: GraphicGroup = [
       }
     ]
   }
-];
+]);

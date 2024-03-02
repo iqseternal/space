@@ -1,7 +1,7 @@
-import { IndexedDB } from '@libs/indexedDB';
+import { IndexedDB } from 'libs/indexedDB';
 import type { TablesType } from '#constants/indexDB';
 import { DATABASES_META2D, TABLES } from '#constants/indexDB';
-import type { IndexedDbDatabase } from '@libs/indexedDB';
+import type { IndexedDbDatabase } from 'libs/indexedDB';
 
 let indexedDB: IndexedDB<TablesType> | undefined = void 0;
 

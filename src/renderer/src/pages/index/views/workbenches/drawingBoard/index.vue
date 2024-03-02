@@ -23,10 +23,9 @@ import { onMounted, onBeforeMount, ref, getCurrentInstance, reactive, computed, 
 import { PropertyBar, Toolbar, View, Graphics } from './workArea';
 import { setupIndexedDB } from '@renderer/indexedDB';
 import { setupMeta2dView, setupMeta2dEvts, saveMeta2dData } from '@renderer/meta';
-import { vResizeWidth } from '@libs/directives';
+import { vResizeWidth } from 'libs/directives';
+import type { VResizeWidthBindings } from 'libs/directives';
 
-import type { VResizeWidthBindings } from '@libs/directives';
-import Subfield from '@components/Subfield';
 import IconFont from '@components/IconFont';
 
 const instance = getCurrentInstance();
@@ -60,6 +59,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
+
+
 .workbenches {
   --tool-bar-height: 40px;
   --tool-bar-size: calc(var(--tool-bar-height) * 0.6);

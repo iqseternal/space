@@ -19,5 +19,5 @@
   "workbench.editor.limit.value": 5,
   "workbench.list.smoothScrolling": true,
   "workbench.tree.expandMode": "singleClick",
-  "workbench.tree.indent": 10,
+  "workbench.tree.indent": 12,
 }

@@ -10,6 +10,4 @@ export * from './dom';
 
 export * from './random';
 
-export * from './time';
-
 export * from './common';

@@ -1,3 +1,10 @@
 {
-  "include": ["./**/*.ts"]
+  "include": ["./**/*.ts"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "paths": {
+      "libs/*": ["../libs/*"]
+    }
+  }
 }

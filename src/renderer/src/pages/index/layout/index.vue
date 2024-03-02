@@ -45,7 +45,7 @@ import { DropdownMenu, MenuDriver, SingleMenu, ComboBoxMenu, AutoDropdownMenu } 
 import { UserOutlined, ReloadOutlined, BugOutlined } from '@ant-design/icons-vue';
 import { hotKeys, windowReload, windowDevtool, copyText, pasteText, windowResizeAble, openSettingPage, WindowPopup } from '@renderer/actions';
 import { windowMaxSvg, windowCloseSvg } from '@renderer/assets';
-import { canCopyText } from '@libs/common';
+import { canCopyText } from 'libs/common';
 import { useMousetrap, useFadeIn, useEventListener, useResizeObserver, useStorageStack } from '@renderer/hooks';
 import { fileMenu, editMenu, helpMenu } from '@renderer/menus';
 import type { HeaderInstance, SloganInstance } from '@components/Header';

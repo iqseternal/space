@@ -7,7 +7,7 @@ const server = express()
 server.get('/', (req, res) => {
   const app = createSSRApp({
     data: () => ({ count: 1 }),
-    template: `<button @click="count++">{{ count }}</button>`
+    template: `<button @click="() => count++">{{ count }}</button>`
   })
 
   renderToString(app).then((html) => {
