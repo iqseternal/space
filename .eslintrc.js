@@ -42,7 +42,7 @@ module.exports = {
     'no-debugger': 'warn',
     'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
     'no-return-await': 'error',
-    'no-var': 'error',
+    'no-var': 'off',
     'no-empty': ['error', { allowEmptyCatch: true }],
     'prefer-const': [
       'warn',
@@ -63,6 +63,7 @@ module.exports = {
     'no-redeclare': 'off',
     '@typescript-eslint/no-redeclare': 'error',
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-namespace': 'off',
     'no-undef': 'off',
     'vue/attribute-hyphenation': ['error', 'never'],
     'multiline-ternary': 'off',
@@ -88,7 +89,6 @@ module.exports = {
     'no-multi-str': 'error',
     'no-with': 'error',
     'no-confim': 'off',
-    'no-var': 'off',
 
     'sort-imports': [
       'warn',

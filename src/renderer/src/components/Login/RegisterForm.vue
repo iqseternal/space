@@ -1,5 +1,5 @@
 <template>
-  <Form v-AutoAnimate :model="form">
+  <AForm v-AutoAnimate :model="form">
     <RFormItem name="username" hasFeedback :validateStatus="userVaStatus" :rules="{ validator: userVaFn }">
       <RInput v-model:value="form.username" placeholder="请输入邮箱" :maxlength="16">
         <template #prefix><MailOutlined style="color: rgba(0, 0, 144, 0.25)" /></template>
@@ -24,7 +24,7 @@
         <template #topic>Password</template>
       </RInput>
     </RFormItem>
-  </Form>
+  </AForm>
 </template>
 
 <script lang="ts" setup>

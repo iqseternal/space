@@ -1,5 +1,4 @@
 {
-  "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
   "include": [
     "./libs/**/*.ts",
     "./libs/**/*.vue",
@@ -11,6 +10,10 @@
     "noEmitOnError": true,
     "noUncheckedIndexedAccess": false,
     "noUnusedLocals": false,
+    "moduleResolution": "Node",
+    "module": "ESNext",
+    "target": "ESNext",
+    "lib": ["DOM", "ESNext", "WebWorker"],
     "noUnusedParameters": false,
     "noImplicitAny": false,
     "allowUnusedLabels": true,
@@ -18,6 +21,7 @@
     "composite": true,
     "removeComments": true,
     "noEmitHelpers": true,
+    "skipLibCheck": true,
     "downlevelIteration": true,
     "strict": true,
     "types": ["electron-vite/node", "vite/client"],

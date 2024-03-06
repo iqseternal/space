@@ -113,8 +113,24 @@ export function loadLintDevPlugins({ command }: ConfigEnv): Plugin[] {
 }
 
 
+export enum LintMode { DEV = 'dev', BUILD = 'build' }
+
 export interface DevConfig {
-  lintFileName?: boolean;
+  lint?: {
+    mode?: boolean | LintMode;
+
+    lintFileName?: boolean;
+  }
+  scripts?: {
+
+  }
+  docs?: {
+    autoStart?: boolean;
+    sidebars?: Record<string, {
+      title?: string;
+      path?: string;
+    }>
+  }
 }
 
 export interface BuildConfig {

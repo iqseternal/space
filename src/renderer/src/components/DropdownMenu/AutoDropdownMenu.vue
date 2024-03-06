@@ -3,8 +3,9 @@ import type { Ref } from 'vue';
 import { withDefaults, defineComponent, computed } from 'vue';
 import type { DropdownDataType } from './declare';
 import { isComboBoxMenuData, isMenuDriverData, isSingleMenuData } from './declare';
-import type { DropdownProps } from 'ant-design-vue';
-import DropdownMenu from './DropdownMenu.vue';
+import type { DropdownProps, Dropdown as DropdownMenuVue } from 'ant-design-vue';
+
+import Dropdown from './DropdownMenu.vue';
 import MenuDriver from './MenuDriver.vue';
 import ComboBoxMenu from './ComboBoxMenu.vue';
 import SingleMenu from './SingleMenu.vue';
@@ -32,13 +33,14 @@ export default defineComponent({
   setup(props, { slots, attrs }) {
     const contextMenu = computed(() => renderMenu(props.menu as DropdownDataType));
 
-    // @ts-ignore
-    return () => <DropdownMenu {...attrs} trigger={props.trigger}>
+    const Cpt = Dropdown as (typeof Dropdown & typeof DropdownMenuVue);
+
+    return () => <Cpt {...attrs} trigger={props.trigger}>
       {{
         default: slots.default,
         overlay: () => contextMenu.value
       }}
-    </DropdownMenu>
+    </Cpt>
   }
 })
 </script>

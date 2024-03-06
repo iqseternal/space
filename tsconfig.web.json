@@ -37,7 +37,7 @@
     "composite": true,
     "sourceMap": false,
     "baseUrl": ".",
-    "typeRoots": ["@vue/shared"],
+    "typeRoots": ["@vue/shared", "vite/client"],
     "paths": {
       "@components/*": ["src/renderer/src/components/*"],
       "@pages/*": ["src/renderer/src/pages/*"],
